@@ -1854,7 +1854,11 @@
             border: 1px solid var(--vb);
             color: var(--v2);
             border-radius: var(--r);
-            letter-spacing: .06em
+            letter-spacing: .04em;
+            white-space: normal;
+            max-width: 140px;
+            text-align: center;
+            line-height: 1.35;
         }
 
         /* meta chips */
@@ -1948,7 +1952,7 @@
         }
 
         /* ══════════════════════════════════════════════════
-           CONSOLE & GAMES (Space Invaders / Doom)
+           CONSOLE & SPACE INVADERS
         ══════════════════════════════════════════════════ */
         .console-wrap {
             margin-top: 40px;
@@ -1980,7 +1984,8 @@
             font-family: var(--mono);
             font-size: 0.85rem;
             color: var(--v2);
-            min-height: 500px;
+            min-height: 200px;
+            max-height: 500px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
@@ -2027,30 +2032,6 @@
             border-radius: var(--r);
             image-rendering: pixelated;
         }
-
-        /* Crop iframe to hide extra web text and beige panel */
-        .doom-crop-container {
-            display: none;
-            width: 640px;
-            height: 400px;
-            max-width: 100%;
-            margin: 0 auto;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid var(--b);
-            border-radius: var(--r);
-            background: #000;
-        }
-
-            .doom-crop-container iframe {
-                position: absolute;
-                top: -115px;
-                left: -8px;
-                width: 1000px;
-                height: 800px;
-                border: none;
-                transform-origin: top left;
-            }
 
         .game-controls {
             display: none;
@@ -2141,7 +2122,7 @@
             }
         }
 
-        @media(max-width:768px) {
+        @media(max-width: 768px) {
             .game-controls.active {
                 display: flex;
                 flex-wrap: wrap;
@@ -2156,16 +2137,6 @@
             .btn-exit {
                 flex-basis: 100%;
             }
-
-            .doom-crop-container {
-                height: 300px;
-            }
-
-                .doom-crop-container iframe {
-                    transform: scale(0.7);
-                    top: -80px;
-                    left: -5px;
-                }
         }
 
         @media(max-width:580px) {
@@ -2200,16 +2171,6 @@
             .hud-panel {
                 display: block
             }
-
-            .doom-crop-container {
-                height: 220px;
-            }
-
-                .doom-crop-container iframe {
-                    transform: scale(0.5);
-                    top: -57px;
-                    left: -4px;
-                }
         }
     </style>
 </head>
@@ -2337,7 +2298,7 @@
                 </div>
             </div>
         </div>
-        <footer><div class="fc">© 2025 NZ_ // GAME DESIGN PORTFOLIO</div><div class="fl"><a href="https://www.instagram.com/raksakoreko/" target="_blank">INSTAGRAM</a><a href="https://x.com/RaksakorekoPro" target="_blank">TWITTER</a><a href="mailto:Pro.Nicolas.Zimmermann@gmail.com">MAIL</a></div></footer>
+        <footer><div class="fc">© 2025 NZ_ // GAME DESIGN PORTFOLIO</div><div class="fl"><a href="https://www.instagram.com/raksakoreko/" target="_blank">INSTAGRAM</a><a href="https://x.com/RaksakorekoPro" target="_blank">TWITTER</a><a href="/cdn-cgi/l/email-protection#d787a5b8f999beb4b8bbb6a4f98dbebabab2a5bab6b9b997b0bab6bebbf9b4b8ba">MAIL</a></div></footer>
     </div>
 
     <div class="page" id="page-docs">
@@ -2520,7 +2481,7 @@
                     <div class="cc">
                         <div class="cch">// CONTACT</div>
                         <div class="ccb">
-                            <a href="mailto:Pro.Nicolas.Zimmermann@gmail.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 7 10 6 10-6" /></svg>Pro.Nicolas.Zimmermann@gmail.com</a>
+                            <a href="/cdn-cgi/l/email-protection#e1b1938ecfaf88828e8d8092cfbb888c8c84938c808f8fa1868c80888dcf828e8c"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 7 10 6 10-6" /></svg><span class="__cf_email__" data-cfemail="da8aa8b5f494b3b9b5b6bba9f480b3b7b7bfa8b7bbb4b49abdb7bbb3b6f4b9b5b7">[email&#160;protected]</span></a>
                             <a href="https://www.instagram.com/raksakoreko/" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" /></svg>@raksakoreko</a>
                             <a href="https://x.com/RaksakorekoPro" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>@RaksakorekoPro</a>
                         </div>
@@ -2545,7 +2506,8 @@
                 </div>
                 <div class="console-body" id="c-body">
                     <div id="c-history">
-                        <div class="console-line" style="color:var(--dim)">[System] Terminal initialized. Awaiting commands...</div>
+                        <div class="console-line" style="color:var(--dim)">[System] Terminal initialized. Type a command and press Enter.</div>
+                        <div class="console-line" style="color:var(--dim)">[System] Available: <span style="color:var(--v2)">play spaceinvader</span> &bull; <span style="color:var(--v2)">play pacman</span> &bull; <span style="color:var(--v2)">play frogger</span> &bull; <span style="color:var(--v2)">play trex</span></div>
                     </div>
                     <div class="console-input-row" id="c-input-row">
                         <span class="console-prompt">&gt;</span>
@@ -2553,25 +2515,24 @@
                     </div>
 
                     <canvas id="game-canvas" width="600" height="400"></canvas>
-
-                    <div id="doom-wrapper" class="doom-crop-container">
-                        <iframe id="doom-canvas" src="about:blank" scrolling="no"></iframe>
-                    </div>
+                    
                 </div>
 
                 <div class="game-controls" id="g-controls">
+                    <button class="game-btn" id="btn-up">▲ UP</button>
                     <button class="game-btn" id="btn-left">◀ LEFT</button>
                     <button class="game-btn" id="btn-fire">FIRE</button>
                     <button class="game-btn" id="btn-right">RIGHT ▶</button>
+                    <button class="game-btn" id="btn-down">▼ DOWN</button>
                     <button class="game-btn btn-exit" id="btn-exit">EXIT (F8)</button>
                 </div>
             </div>
 
         </div>
-        <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="https://www.instagram.com/raksakoreko/" target="_blank">INSTAGRAM</a><a href="https://x.com/RaksakorekoPro" target="_blank">TWITTER</a><a href="mailto:Pro.Nicolas.Zimmermann@gmail.com">MAIL</a></div></footer>
+        <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="https://www.instagram.com/raksakoreko/" target="_blank">INSTAGRAM</a><a href="https://x.com/RaksakorekoPro" target="_blank">TWITTER</a><a href="/cdn-cgi/l/email-protection#df8fadb0f191b6bcb0b3beacf185b6b2b2baadb2beb1b19fb8b2beb6b3f1bcb0b2">MAIL</a></div></footer>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         /* ── ANTI-DRAG (TUE LE BUG DE L'IMAGE FANTÔME) ── */
         window.ondragstart = function () { return false; };
         document.addEventListener('dragstart', e => e.preventDefault());
@@ -2700,8 +2661,8 @@
             { id: 'tft', thumb: ftj('f60a91becf484b6ea0a5b6022b0927e0'), type: 'GD · Analyse', title: 'ANALYSE & DÉCONSTRUCTION : TFT', sub: 'Teamfight Tactics · 2024–2025', desc: 'Analyse et déconstruction du jeu TFT de Riot Games avec OPESANEC (Fnatic). Outils : 3C, Game Loops, ARM, Benchmark, FTUE, MetaGame, Correlation Chart, Layers of Gameplay, Emotional Triggers.', meta: [{ k: 'Type', v: 'Analyse & Déconstruction' }, { k: 'Date', v: '2024–2025' }, { k: 'Collaborateur', v: 'OPESANEC (Fnatic)' }], imgs: [fj('13804af545bf4a258e8e0e98c16ee72f'), fj('3c60cba961974fc6bb2587fbd6e69471'), fj('b7b3f0542b6a4b999a9a398e9c917d88'), fj('3130139f82a54e1f81d7adb6e0e1123a'), fj('bf16d15d3d4847489bb01432fa27ca9c'), fj('53a534d7e32e44c18135430660362001'), fj('0ae79a9bfc764dcb902473562c4abb83'), fj('d102fbeb2ccf42bd9c6c3f70018e8e5b'), fj('3c4218bb82c1421198b5edbdbbfeeea0'), fj('f0cd9c17ba0d48bea443baa216c9d359'), fj('a86ed4d2283a42e3b9ac220aa6f9cd00'), fj('0ebca3610e184ad9a647eaf01e10e80e'), fj('426933102a9d487d825c37c271426ff5'), fj('15de3731aa0d4c3bb46611bd4e45e813'), fj('18ecd44895514babb7a2950f31b04989'), fj('fc7986d818634cb1bb0a0adbb7aa569c'), fj('cf4e8ff3eff9447b9014a70d84c29510'), fj('4c2b9ce90c0e48089e74d344da20d412'), fj('d345ce72ebf143e0aeb984da92515bff'), fj('79f217405afd413587b886c164adf07f'), fj('95e7da4cfc884a89a122d1d0f755c1b6'), fj('df87f329583142e09a7fcfb90a63fa01'), fj('a3c7ee9aa3c44b10a2cacc286a295733'), fj('6c2f3eb6a32245adb7458ce9b3757713'), fj('75ef79efdc11431b8376eaf378c8e2eb'), fj('58827df8ff0148748fd5a3be2e30ec48'), fj('f72764d66a974be8a8a1305b5741507c')] },
             { id: 'tt', thumb: ftj('874a1faf5118467b8f49d6ea47767b45'), type: 'GD · Concept', title: 'TIC-TAC TAC-TIC', sub: 'Concept complet · Hiver 2025', desc: 'Concept réalisé fin 2025 détaillant mes 3C et systèmes : Mécaniques, Progression, Économique, Social, Meta et boucles rétroactives.', meta: [{ k: 'Date', v: 'Hiver 2025' }, { k: 'Contenu', v: '3C, Systèmes, Boucles rétroactives' }], imgs: [fj('733c24a134fa409bb483b307f35aeeec'), fj('810d43449fc541a18fb1fabddb9dff97'), fj('13954240cdf44cf8ad15ccc46435e47b'), fj('2dd0ac4d3f68446ebe418cd4b7cf797c'), fj('3bb27740b2074a5d8237279def1d3c20'), fj('556c1263fa8240a9856456d9a0b8f016'), fj('4c04b9bcfac84ef5b94ec256b883cdba'), fj('cc732430b6d34000b5bd5cf82617adcf'), fj('d84d0fbd272f458fa1bbfc8dc14761f1'), fj('96b33e6a840441b4be217626549f4380'), fj('a4a4768f76014405a9da13ddf8f8c38e'), fj('ef2c16f95dc94abd8a4e0657f14d447e')] },
             { id: 'nb', thumb: ftj('1d18a45d9f6c4e0db96c63cc615b8f2f'), type: 'GD · Pitch', title: 'SAVE YOUR NEIGHBOR', sub: 'Projet de fin d\'année 2025–2026 · Pitch accepté', desc: 'Second pitch retenu par l\'administration. Réalisé entièrement seul.', meta: [{ k: 'Auteur', v: 'Solo' }, { k: 'Type', v: 'Pitch end-of-year' }], imgs: [fj('4e22af9f92bd4139be96a2fd75322327'), fj('1a5a00e18e52406f83e5c3f0bfbf6ef2'), fj('2f3fd653520e4ff782bd3818a8237025'), fj('772d448d3b7044679ac2c0f583ad31b0'), fj('4e5a07a2ef78448dbfd6e4471d56e5b3'), fj('60ab860d05c24aebab076f94880c4396'), fj('5f1ea2683f0c4852ac84b162dd10069d'), fj('528d0701ce6c41ef899b66de74ed3d5f')] },
-            { id: 'lv', thumb: `${W}45ed80_30773ad239074feab05780d50dea060f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_30773ad239074feab05780d50dea060f~mv2.jpg`, type: 'LD', title: 'COUR NAPOLÉON DU LOUVRE', sub: 'Level Design · Paris', desc: 'Exercice de Level Design basé sur la Cour Napoléon du Louvre.', meta: [{ k: 'Type', v: 'Level Design' }], imgs: [`${W}45ed80_30773ad239074feab05780d50dea060f~mv2.jpg/v1/fill/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_30773ad239074feab05780d50dea060f~mv2.jpg`] },
-            { id: 'pk', thumb: `${W}45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg`, type: 'GD · Concept', title: 'POKÉMON FREEDOM', sub: 'Game Design Concept', desc: 'Concept de Game Design basé sur l\'univers Pokémon.', meta: [{ k: 'Type', v: 'GD Concept' }], imgs: [`${W}45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg/v1/fill/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg`] },
+            { id: 'lv', thumb: `${W}45ed80_30773ad239074feab05780d50dea060f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_30773ad239074feab05780d50dea060f~mv2.jpg`, type: 'LD', title: 'COUR NAPOLÉON DU LOUVRE', sub: 'Level Design · FPS Capture the Flag', desc: 'Level design basé sur la Cour Napoléon du Louvre pour un FPS en équipe capture-the-flag.', meta: [{ k: 'Type', v: 'Level Design' }, { k: 'Mode', v: 'Capture the Flag' }, { k: 'Genre', v: 'FPS équipe' }], imgs: [`${W}45ed80_3290c277bfd54ab1b768b273934e018f~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_3290c277bfd54ab1b768b273934e018f~mv2.jpg`, `${W}45ed80_a5f7b8fc88d4437985c4d97202ed238b~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_a5f7b8fc88d4437985c4d97202ed238b~mv2.jpg`, `${W}45ed80_26368fa1e619405998947f8d5a08b744~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_26368fa1e619405998947f8d5a08b744~mv2.jpg`, `${W}45ed80_e6609d615e484ab1bb4096d80f012c4b~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_e6609d615e484ab1bb4096d80f012c4b~mv2.jpg`, `${W}45ed80_fac035e22a1d4ee693528dc2a78d6910~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_fac035e22a1d4ee693528dc2a78d6910~mv2.jpg`] },
+            { id: 'pk', thumb: `${W}45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg`, type: 'GD · Concept', title: 'POKÉMON FREEDOM', sub: 'Concept 30 min · Thème : La Squirtle de Sacha', desc: 'Concept réalisé en 30 minutes sur le thème : la Squirtle de Sacha (Pokémon).', meta: [{ k: 'Type', v: 'GD Concept' }, { k: 'Durée', v: '30 minutes' }, { k: 'Thème', v: 'Squirtle de Sacha' }], imgs: [`${W}45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg`, `${W}45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg`, `${W}45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg`, `${W}45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg`, `${W}45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg`] },
             { id: 'ud', thumb: ftj('62494ecf77694d02a523e077e00cd7ae'), type: 'GD/LD · Concept', title: 'UPDEE & DOWNDEE', sub: 'Concept 1 jour · 2024–2025', desc: 'Concept réalisé en 1 jour (3C, USP, LD explicatif). Mon rôle : Level Design de la mécanique de levier.', meta: [{ k: 'Date', v: '2024–2025' }, { k: 'Durée', v: '1 journée' }, { k: 'Rôle', v: 'Level Design' }], imgs: [fj('9d4ce0de51804d7f9d7e4311f7e01cd8'), fj('f4e0a38eb2364d37ac1475a99ab7655d'), fj('813aab6adce4408c89f12345dea45d6d'), fj('4d16eb765f5b44878c9a89c31c5be36f'), fj('6e2da79637cf42828c38bdb5cc514d77'), fj('75023383ca6547d18befe6ee5f6f8724'), fj('acd221cb4bb5487a9a65d4ff31e76fa7'), fj('8d002f3b76fb4da79e8dfd29291cf163'), fj('2ce2c42502c54a4a9a2ade921ec4ca91'), fj('63046b2fcbe7429d8add8821384e0750'), fj('792731b0f9bf4f23b88c5a8f2f80fdab'), fj('8130c16a5dfd41178465ceace1b74356'), fj('daf571fc1c2d4656882c5ed4edb14d37')] },
             { id: 'nf', thumb: f('9fa605fc01e044aaaf17b4c4520d46b7'), type: 'GD · Gamification', title: 'NETFLIX GAMIFICATION', sub: 'Concept 30 min · Thème imposé', desc: 'Concept réalisé en 30 minutes sur le thème : Gamification de Netflix.', meta: [{ k: 'Durée', v: '30 minutes' }, { k: 'Thème', v: 'Gamification Netflix' }], imgs: [fj('487dc86c854e4308ad447e353564fa4e')] },
             { id: 'es', thumb: ftj('861ebaafc26b4ac4a3543b6eee01dc1a'), type: 'UI Design', title: 'UI DESIGN — ESPORTS MANAGER', sub: 'Mockup Photoshop · 2021–2022', desc: 'Maquette de concept UI pour "ESPORT MANAGER".', meta: [{ k: 'Type', v: 'UI Design' }, { k: 'Date', v: '2021–2022' }, { k: 'Outil', v: 'Photoshop' }], imgs: [fj('861ebaafc26b4ac4a3543b6eee01dc1a')] },
@@ -2858,14 +2819,13 @@
         document.getElementById('lb').addEventListener('click', e => { if (e.target === document.getElementById('lb')) cLB(); });
 
 
-        /* ── TERMINAL & GAMES (DOOM / SPACE INVADERS) ───── */
+        /* ── TERMINAL & GAMES ───────────────────────── */
         const cInput = document.getElementById('c-input');
         const cHistory = document.getElementById('c-history');
         const cInputRow = document.getElementById('c-input-row');
         const canvas = document.getElementById('game-canvas');
-        const doomCanvas = document.getElementById('doom-canvas');
+        
         const gControls = document.getElementById('g-controls');
-        const doomWrapper = document.getElementById('doom-wrapper');
         const ctx = canvas.getContext('2d');
 
         let gameAnimFrame;
@@ -2887,48 +2847,74 @@
             if (e.key === 'ArrowLeft' && document.getElementById('lb').classList.contains('op')) lbN(-1);
         });
 
+        function cLog(txt, color) {
+            const d = document.createElement('div');
+            d.className = 'console-line';
+            d.style.color = color || 'var(--v2)';
+            d.innerHTML = txt;
+            cHistory.appendChild(d);
+            document.getElementById('c-body').scrollTop = 99999;
+        }
+
         cInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                const val = cInput.value.trim();
-                if (!val) return;
+            if (e.key !== 'Enter') return;
+            const val = cInput.value.trim(); if (!val) return;
+            cLog('> ' + val, 'var(--dim)');
+            const v = val.toLowerCase();
 
-                const lineCmd = document.createElement('div');
-                lineCmd.className = 'console-line';
-                lineCmd.textContent = '> ' + val;
-                cHistory.appendChild(lineCmd);
+            if (v === 'play spaceinvader')  startGame('spaceinvader');
+            else if (v === 'play pacman')   startGame('pacman');
+            else if (v === 'play frogger')  startGame('frogger');
+            else if (v === 'play trex' || v === 'play t-rex') startGame('trex');
+            else if (v === 'play doom')     cLog('// DOOM cannot run embedded — browser blocks iframe injection from external hosts. Not available.', 'var(--console-err, #f43f5e)');
+            else if (v === 'goat')          cLog('// OPESANEC — <a href="https://www.twitch.tv/opesanec" target="_blank" style="color:var(--v2);text-decoration:underline">twitch.tv/opesanec</a>', 'var(--cyan)');
+            else if (v === 'lol')           cLog('// pire jeu all time');
+            else if (v === 'yuumi')         cLog('// mérite une total destruction et disparition du jeu', '#f43f5e');
+            else if (v === 'raksa')         cLog('// moi');
+            else if (v === 'lisa')          cLog('// ADMV', '#f472b6');
+            else if (v === 'akira' || v === 'akipouette') cLog('// la fifille', '#fbbf24');
+            else { cLog(`'${val}' : commande inconnue`, '#f43f5e'); }
 
-                if (val.toLowerCase() === 'play spaceinvader') {
-                    startGame('spaceinvader');
-                } else if (val.toLowerCase() === 'play doom') {
-                    startGame('doom');
-                } else {
-                    const lineErr = document.createElement('div');
-                    lineErr.className = 'console-line console-err';
-                    lineErr.textContent = 'command console inconnue';
-                    cHistory.appendChild(lineErr);
-                }
+            cInput.value = '';
+        });
 
-                cInput.value = '';
-                const cBody = document.getElementById('c-body');
-                cBody.scrollTop = cBody.scrollHeight;
+        // GAME ENGINE — Delta Time
+        let keys = { left: false, right: false, space: false, up: false, down: false };
+        let player, bullets, aliens, alienDir, alienBaseSpeed, alienSpeed, gameOver, victory;
+        let siLastTS = 0;
+
+        // Global key handler for all games
+        window.addEventListener('keydown', e => {
+            if (!gameActive) return;
+            if (currentGame === 'spaceinvader') {
+                if (e.key === 'ArrowLeft')  { keys.left = true; e.preventDefault(); }
+                if (e.key === 'ArrowRight') { keys.right = true; e.preventDefault(); }
+                if (e.key === ' ')          { keys.space = true; e.preventDefault(); }
+            }
+            if (currentGame === 'trex') {
+                if (e.key === ' ' || e.key === 'ArrowUp') { keys.up = true; e.preventDefault(); }
+            }
+            if (currentGame === 'frogger') {
+                const moves = { ArrowUp:'up', ArrowDown:'down', ArrowLeft:'left', ArrowRight:'right' };
+                if (moves[e.key]) { froggerMove(moves[e.key]); e.preventDefault(); }
+            }
+            if (currentGame === 'pacman') {
+                if (e.key === 'ArrowUp')    { pmNextDir = {r:-1,c:0}; e.preventDefault(); }
+                if (e.key === 'ArrowDown')  { pmNextDir = {r:1, c:0}; e.preventDefault(); }
+                if (e.key === 'ArrowLeft')  { pmNextDir = {r:0, c:-1}; e.preventDefault(); }
+                if (e.key === 'ArrowRight') { pmNextDir = {r:0, c:1}; e.preventDefault(); }
             }
         });
-
-        // SPACE INVADERS ENGINE
-        let keys = { left: false, right: false, space: false };
-        let player, bullets, aliens, alienDir, alienSpeed, gameOver, victory;
-
-        window.addEventListener('keydown', e => {
-            if (!gameActive || currentGame !== 'spaceinvader') return;
-            if (e.key === 'ArrowLeft') keys.left = true;
-            if (e.key === 'ArrowRight') keys.right = true;
-            if (e.key === ' ') { keys.space = true; e.preventDefault(); }
-        });
         window.addEventListener('keyup', e => {
-            if (!gameActive || currentGame !== 'spaceinvader') return;
-            if (e.key === 'ArrowLeft') keys.left = false;
-            if (e.key === 'ArrowRight') keys.right = false;
-            if (e.key === ' ') keys.space = false;
+            if (!gameActive) return;
+            if (currentGame === 'spaceinvader') {
+                if (e.key === 'ArrowLeft')  keys.left = false;
+                if (e.key === 'ArrowRight') keys.right = false;
+                if (e.key === ' ')          keys.space = false;
+            }
+            if (currentGame === 'trex') {
+                if (e.key === ' ' || e.key === 'ArrowUp') keys.up = false;
+            }
         });
 
         // Mobile Controls
@@ -2937,28 +2923,39 @@
         const btnF = document.getElementById('btn-fire');
         const btnE = document.getElementById('btn-exit');
 
-        const bindBtn = (btn, keyProp) => {
-            btn.addEventListener('mousedown', e => { if (gameActive && currentGame === 'spaceinvader') keys[keyProp] = true; });
-            btn.addEventListener('mouseup', e => { if (gameActive && currentGame === 'spaceinvader') keys[keyProp] = false; });
-            btn.addEventListener('touchstart', e => { if (gameActive && currentGame === 'spaceinvader') { keys[keyProp] = true; e.preventDefault(); } });
-            btn.addEventListener('touchend', e => { if (gameActive && currentGame === 'spaceinvader') { keys[keyProp] = false; e.preventDefault(); } });
-        };
-        bindBtn(btnL, 'left');
-        bindBtn(btnR, 'right');
-        bindBtn(btnF, 'space');
+        const btnU = document.getElementById('btn-up');
+        const btnD = document.getElementById('btn-down');
 
+        function bindKey(btn, down, up) {
+            const si = () => currentGame === 'spaceinvader';
+            btn.addEventListener('mousedown',  () => { if (gameActive) down(); });
+            btn.addEventListener('mouseup',    () => { if (gameActive) up(); });
+            btn.addEventListener('touchstart', e => { if (gameActive) { down(); e.preventDefault(); } }, { passive:false });
+            btn.addEventListener('touchend',   e => { if (gameActive) { up();   e.preventDefault(); } }, { passive:false });
+        }
+        // Space invader directional
+        bindKey(btnL, ()=>{ if(currentGame==='spaceinvader') keys.left=true; }, ()=>keys.left=false);
+        bindKey(btnR, ()=>{ if(currentGame==='spaceinvader') keys.right=true; }, ()=>keys.right=false);
+        bindKey(btnF, ()=>{ if(currentGame==='spaceinvader') keys.space=true; if(currentGame==='trex') keys.up=true; }, ()=>{ keys.space=false; keys.up=false; });
+        bindKey(btnU, ()=>{ if(currentGame==='trex') keys.up=true; if(currentGame==='frogger') froggerMove('up'); if(currentGame==='pacman') pmNextDir={r:-1,c:0}; }, ()=>keys.up=false);
+        bindKey(btnD, ()=>{ if(currentGame==='frogger') froggerMove('down'); if(currentGame==='pacman') pmNextDir={r:1,c:0}; }, ()=>{});
+        // Extra left/right for frogger/pacman
+        btnL.addEventListener('touchstart', e=>{ if(currentGame==='frogger'){froggerMove('left');e.preventDefault();} if(currentGame==='pacman'){pmNextDir={r:0,c:-1};e.preventDefault();} },{passive:false});
+        btnR.addEventListener('touchstart', e=>{ if(currentGame==='frogger'){froggerMove('right');e.preventDefault();} if(currentGame==='pacman'){pmNextDir={r:0,c:1};e.preventDefault();} },{passive:false});
         btnE.addEventListener('click', stopGame);
-        btnE.addEventListener('touchstart', (e) => { e.preventDefault(); stopGame(); });
+        btnE.addEventListener('touchstart', e => { e.preventDefault(); stopGame(); }, { passive: false });
 
         function initSpaceInvaders() {
             player = { x: canvas.width / 2 - 15, y: canvas.height - 30, w: 30, h: 10, speed: 5, cooldown: 0 };
             bullets = [];
             aliens = [];
             alienDir = 1;
-            alienSpeed = 1;
+            alienBaseSpeed = 0.8;
+            alienSpeed = alienBaseSpeed;
             gameOver = false;
             victory = false;
             keys.space = false;
+            siLastTS = 0;
 
             const rows = 4, cols = 8;
             for (let r = 0; r < rows; r++) {
@@ -2968,39 +2965,44 @@
             }
         }
 
+        function showBtns(l,r,f,u,d) {
+            btnL.style.display = l ? 'block':'none';
+            btnR.style.display = r ? 'block':'none';
+            btnF.style.display = f ? 'block':'none';
+            btnU.style.display = u ? 'block':'none';
+            btnD.style.display = d ? 'block':'none';
+        }
+
         function startGame(gameType) {
             cHistory.style.display = 'none';
             cInputRow.style.display = 'none';
             gControls.classList.add('active');
             gameActive = true;
             currentGame = gameType;
+            canvas.style.display = 'block';
+            gameOver = false; victory = false;
 
             if (gameType === 'spaceinvader') {
-                canvas.style.display = 'block';
-                doomWrapper.style.display = 'none';
-                btnL.style.display = 'block';
-                btnR.style.display = 'block';
-                btnF.style.display = 'block';
+                showBtns(1,1,1,0,0);
+                btnF.textContent = 'FIRE';
                 initSpaceInvaders();
-                gameLoop();
-            } else if (gameType === 'doom') {
-                canvas.style.display = 'none';
-                doomWrapper.style.display = 'block';
-                // Masque les contrôles Space Invaders pour Doom
-                btnL.style.display = 'none';
-                btnR.style.display = 'none';
-                btnF.style.display = 'none';
-                // Charge Doom
-                doomCanvas.src = 'https://diekmann.github.io/wasm-fizzbuzz/doom/';
+                gameAnimFrame = requestAnimationFrame(gameLoop);
+            } else if (gameType === 'trex') {
+                showBtns(0,0,1,1,0);
+                btnF.textContent = '▲ JUMP';
+                initTrex();
+                gameAnimFrame = requestAnimationFrame(trexLoop);
+            } else if (gameType === 'frogger') {
+                showBtns(1,1,0,1,1);
+                initFrogger();
+                gameAnimFrame = requestAnimationFrame(froggerLoop);
+            } else if (gameType === 'pacman') {
+                showBtns(1,1,0,1,1);
+                initPacman();
+                gameAnimFrame = requestAnimationFrame(pacmanLoop);
             }
 
-            setTimeout(() => {
-                const gameView = gameType === 'doom' ? doomWrapper : canvas;
-                gameView.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                if (gameType === 'doom') {
-                    doomCanvas.focus();
-                }
-            }, 100);
+            setTimeout(() => canvas.scrollIntoView({ behavior:'smooth', block:'center' }), 100);
         }
 
         function stopGame() {
@@ -3010,9 +3012,7 @@
 
             cancelAnimationFrame(gameAnimFrame);
             canvas.style.display = 'none';
-
-            doomWrapper.style.display = 'none';
-            doomCanvas.src = 'about:blank'; // Arrête l'audio et libère la mémoire de Doom
+            
 
             gControls.classList.remove('active');
             cHistory.style.display = 'block';
@@ -3027,8 +3027,13 @@
             return !(r2.x > r1.x + r1.w || r2.x + r2.w < r1.x || r2.y > r1.y + r1.h || r2.y + r2.h < r1.y);
         }
 
-        function gameLoop() {
+        function gameLoop(timestamp) {
             if (!gameActive || currentGame !== 'spaceinvader') return;
+
+            // ── DELTA TIME (frame-rate independent) ──
+            if (!siLastTS) siLastTS = timestamp;
+            const delta = Math.min((timestamp - siLastTS) / 16.667, 3.5); // cap at 3.5× (avoids huge jumps on tab focus)
+            siLastTS = timestamp;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -3039,83 +3044,396 @@
                 ctx.fillText(victory ? 'VICTORY !' : 'GAME OVER', canvas.width / 2, canvas.height / 2);
                 ctx.font = '14px "IBM Plex Mono"';
                 ctx.fillText('Press SPACE / FIRE to restart', canvas.width / 2, canvas.height / 2 + 30);
-
                 if (keys.space) initSpaceInvaders();
                 gameAnimFrame = requestAnimationFrame(gameLoop);
                 return;
             }
 
             // Player Update
-            if (keys.left && player.x > 0) player.x -= player.speed;
-            if (keys.right && player.x + player.w < canvas.width) player.x += player.speed;
+            if (keys.left && player.x > 0) player.x -= player.speed * delta;
+            if (keys.right && player.x + player.w < canvas.width) player.x += player.speed * delta;
 
             if (keys.space && player.cooldown <= 0) {
                 bullets.push({ x: player.x + player.w / 2 - 2, y: player.y, w: 4, h: 10, dy: -7, type: 'p' });
                 player.cooldown = 15;
             }
-            if (player.cooldown > 0) player.cooldown--;
+            if (player.cooldown > 0) player.cooldown -= delta;
 
             // Bullets Update
             for (let i = bullets.length - 1; i >= 0; i--) {
-                let b = bullets[i];
-                b.y += b.dy;
-
+                const b = bullets[i];
+                b.y += b.dy * delta;
                 if (b.y < 0 || b.y > canvas.height) { bullets.splice(i, 1); continue; }
 
                 if (b.type === 'p') {
                     for (let j = aliens.length - 1; j >= 0; j--) {
-                        let a = aliens[j];
-                        if (rectIntersect(b, a)) {
+                        if (rectIntersect(b, aliens[j])) {
                             aliens.splice(j, 1);
                             bullets.splice(i, 1);
-                            alienSpeed += 0.05;
+                            alienSpeed += 0.03;
                             break;
                         }
                     }
                 } else if (b.type === 'a') {
-                    if (rectIntersect(b, player)) {
-                        gameOver = true;
-                    }
+                    if (rectIntersect(b, player)) gameOver = true;
                 }
             }
 
             // Aliens Update
             let edgeHit = false;
-            for (let a of aliens) {
-                a.x += alienSpeed * alienDir;
+            for (const a of aliens) {
+                a.x += alienSpeed * alienDir * delta;
                 if (a.x <= 10 || a.x + a.w >= canvas.width - 10) edgeHit = true;
-                if (Math.random() < 0.001) {
+                if (Math.random() < 0.0006 * delta) {
                     bullets.push({ x: a.x + a.w / 2 - 2, y: a.y + a.h, w: 4, h: 10, dy: 4, type: 'a' });
                 }
             }
             if (edgeHit) {
                 alienDir *= -1;
-                for (let a of aliens) {
-                    a.x += alienSpeed * alienDir;
-                    a.y += 20;
+                for (const a of aliens) {
+                    a.x += alienSpeed * alienDir * delta;
+                    a.y += 18;
                     if (a.y + a.h >= player.y) gameOver = true;
                 }
             }
 
             if (aliens.length === 0) victory = true;
 
-            // Draw Player
-            ctx.fillStyle = '#a855f7'; // var(--v2)
+            // ── DRAW ──
+            // Player (ship shape)
+            ctx.fillStyle = '#a855f7';
             ctx.fillRect(player.x, player.y, player.w, player.h);
             ctx.fillRect(player.x + 10, player.y - 6, 10, 6);
 
-            // Draw Aliens
-            ctx.fillStyle = '#22d3ee'; // var(--cyan)
-            for (let a of aliens) ctx.fillRect(a.x, a.y, a.w, a.h);
+            // Aliens
+            ctx.fillStyle = '#22d3ee';
+            for (const a of aliens) {
+                ctx.fillRect(a.x, a.y, a.w, a.h);
+                ctx.fillRect(a.x + 4, a.y + a.h, 4, 4);
+                ctx.fillRect(a.x + a.w - 8, a.y + a.h, 4, 4);
+            }
 
-            // Draw Bullets
-            for (let b of bullets) {
-                ctx.fillStyle = b.type === 'p' ? '#fff' : '#f43f5e';
+            // Bullets
+            for (const b of bullets) {
+                ctx.fillStyle = b.type === 'p' ? '#a855f7' : '#f43f5e';
                 ctx.fillRect(b.x, b.y, b.w, b.h);
             }
 
             gameAnimFrame = requestAnimationFrame(gameLoop);
         }
+
+
+
+        // ═══════════════════════════════════════════════════
+        //  T-REX RUNNER
+        // ═══════════════════════════════════════════════════
+        let trex, trexObs, trexScore, trexSpeed, trexSpawn, trexLastTS;
+        const GROUND = canvas.height - 55;
+
+        function initTrex() {
+            trex = { x:80, y:GROUND-45, w:28, h:45, vy:0, onGround:true, legPhase:0 };
+            trexObs = [];
+            trexScore = 0; trexSpeed = 4; trexSpawn = 90; trexLastTS = 0;
+            gameOver = false; victory = false; keys.up = false;
+        }
+
+        function trexLoop(ts) {
+            if (!gameActive || currentGame !== 'trex') return;
+            const dt = trexLastTS ? Math.min((ts - trexLastTS)/16.667, 3) : 1;
+            trexLastTS = ts;
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+
+            if (gameOver || victory) {
+                ctx.fillStyle='#fff'; ctx.font='22px "IBM Plex Mono"'; ctx.textAlign='center';
+                ctx.fillText(victory ? 'YOU WIN' : 'GAME OVER', canvas.width/2, canvas.height/2);
+                ctx.font='13px "IBM Plex Mono"';
+                ctx.fillText('Press SPACE / JUMP to restart', canvas.width/2, canvas.height/2+28);
+                if (keys.up || keys.space) { initTrex(); }
+                gameAnimFrame = requestAnimationFrame(trexLoop); return;
+            }
+
+            // Jump
+            if ((keys.up || keys.space) && trex.onGround) { trex.vy = -13; trex.onGround = false; }
+            trex.vy += 0.55 * dt;
+            trex.y  += trex.vy * dt;
+            if (trex.y >= GROUND - trex.h) { trex.y = GROUND - trex.h; trex.vy = 0; trex.onGround = true; }
+            if (trex.onGround) trex.legPhase += 0.25 * dt;
+
+            // Obstacles
+            trexSpawn -= dt;
+            if (trexSpawn <= 0) {
+                const h = 30 + Math.random() * 40;
+                trexObs.push({ x: canvas.width+10, y: GROUND-h, w: 18+Math.random()*14, h });
+                trexSpawn = 55 + Math.random()*55 - trexScore*0.03;
+            }
+            for (let i=trexObs.length-1; i>=0; i--) {
+                trexObs[i].x -= trexSpeed * dt;
+                if (trexObs[i].x + trexObs[i].w < 0) { trexObs.splice(i,1); continue; }
+                if (rectIntersect({x:trex.x+4,y:trex.y+4,w:trex.w-8,h:trex.h-4}, trexObs[i])) gameOver = true;
+            }
+            trexScore += dt * 0.2;
+            trexSpeed = 4 + trexScore * 0.012;
+
+            // Draw ground
+            ctx.fillStyle='#1c2040'; ctx.fillRect(0, GROUND, canvas.width, 3);
+            ctx.fillStyle='#252850'; ctx.fillRect(0, GROUND+3, canvas.width, canvas.height-GROUND-3);
+
+            // Draw dino (pixel art style)
+            ctx.fillStyle='#a855f7';
+            ctx.fillRect(trex.x, trex.y, trex.w, trex.h);            // body
+            ctx.fillStyle='#c084fc';
+            ctx.fillRect(trex.x+trex.w, trex.y, 12, 16);              // head
+            ctx.fillStyle='#22d3ee';
+            ctx.fillRect(trex.x+trex.w+8, trex.y+4, 4, 4);           // eye
+            // legs
+            ctx.fillStyle='#7c3aed';
+            const lp = Math.sin(trex.legPhase)*6;
+            ctx.fillRect(trex.x+4, trex.y+trex.h, 8, trex.onGround ? 8+lp : 12);
+            ctx.fillRect(trex.x+16, trex.y+trex.h, 8, trex.onGround ? 8-lp : 8);
+
+            // Draw obstacles
+            ctx.fillStyle='#22d3ee';
+            for (const o of trexObs) {
+                ctx.fillRect(o.x, o.y, o.w, o.h);
+                ctx.fillStyle='#0891b2';
+                ctx.fillRect(o.x+o.w/2-3, o.y-8, 6, 10);
+                ctx.fillStyle='#22d3ee';
+            }
+
+            // Score
+            ctx.fillStyle='var(--dim)'; ctx.font='13px "IBM Plex Mono"'; ctx.textAlign='right';
+            ctx.fillText('SCORE: '+Math.floor(trexScore), canvas.width-10, 20);
+
+            gameAnimFrame = requestAnimationFrame(trexLoop);
+        }
+
+        // ═══════════════════════════════════════════════════
+        //  FROGGER
+        // ═══════════════════════════════════════════════════
+        let frog, frogCars, froggerLastTS, frogScore, frogDead, frogWin;
+        const FR_ROWS=9, FR_COLS=12, FR_CW=50, FR_CH=Math.floor(canvas.height/FR_ROWS);
+        const FR_LANES=[
+            {type:'safe'},
+            {type:'road', dir:1,  speed:2.2, carW:70},
+            {type:'road', dir:-1, speed:3.0, carW:90},
+            {type:'road', dir:1,  speed:2.6, carW:60},
+            {type:'safe'},
+            {type:'road', dir:-1, speed:2.0, carW:80},
+            {type:'road', dir:1,  speed:3.5, carW:55},
+            {type:'road', dir:-1, speed:2.5, carW:75},
+            {type:'safe'},
+        ];
+
+        function initFrogger() {
+            frog = { col:5, row:FR_ROWS-1 };
+            frogCars = [];
+            for (let r=0; r<FR_ROWS; r++) {
+                const lane = FR_LANES[r]; if (lane.type!=='road') continue;
+                for (let i=0; i<4; i++) {
+                    frogCars.push({ row:r, x: (i/4)*canvas.width + Math.random()*FR_CW,
+                        w:lane.carW, dir:lane.dir, speed:lane.speed });
+                }
+            }
+            frogScore=0; frogDead=false; frogWin=false; froggerLastTS=0;
+            gameOver=false; victory=false;
+        }
+
+        function froggerMove(dir) {
+            if (!gameActive || currentGame!=='frogger') return;
+            if (frogDead || frogWin) { initFrogger(); return; }
+            if (dir==='up'    && frog.row>0)           frog.row--;
+            if (dir==='down'  && frog.row<FR_ROWS-1)   frog.row++;
+            if (dir==='left'  && frog.col>0)           frog.col--;
+            if (dir==='right' && frog.col<FR_COLS-1)   frog.col++;
+            if (frog.row===0) { frogWin=true; victory=true; }
+        }
+
+        function froggerLoop(ts) {
+            if (!gameActive || currentGame!=='frogger') return;
+            const dt = froggerLastTS ? Math.min((ts-froggerLastTS)/16.667,3) : 1;
+            froggerLastTS = ts;
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+
+            if (gameOver || victory) {
+                ctx.fillStyle='#fff'; ctx.font='22px "IBM Plex Mono"'; ctx.textAlign='center';
+                ctx.fillText(victory ? 'HOME SAFE !' : 'GAME OVER', canvas.width/2, canvas.height/2);
+                ctx.font='13px "IBM Plex Mono"';
+                ctx.fillText('Arrow keys to restart', canvas.width/2, canvas.height/2+28);
+                gameAnimFrame = requestAnimationFrame(froggerLoop); return;
+            }
+
+            // Move cars
+            for (const car of frogCars) {
+                car.x += car.dir * car.speed * dt;
+                if (car.dir>0 && car.x > canvas.width+10) car.x = -car.w-10;
+                if (car.dir<0 && car.x < -car.w-10) car.x = canvas.width+10;
+            }
+
+            // Draw lanes
+            for (let r=0; r<FR_ROWS; r++) {
+                const y = r*FR_CH;
+                const lane = FR_LANES[r];
+                ctx.fillStyle = r===0 ? '#0f3' : lane.type==='safe' ? '#0f2018' : '#1a1128';
+                ctx.fillRect(0, y, canvas.width, FR_CH);
+                if (lane.type==='road') {
+                    ctx.strokeStyle='#2a2040'; ctx.setLineDash([20,20]);
+                    ctx.beginPath(); ctx.moveTo(0,y+FR_CH/2); ctx.lineTo(canvas.width,y+FR_CH/2); ctx.stroke();
+                    ctx.setLineDash([]);
+                }
+            }
+
+            // Draw goal row markers
+            for (let c=0; c<FR_COLS; c++) {
+                ctx.fillStyle='#0a3018';
+                ctx.fillRect(c*FR_CW+5, 5, FR_CW-10, FR_CH-10);
+            }
+            ctx.fillStyle='#00ff88'; ctx.font='10px "IBM Plex Mono"'; ctx.textAlign='center';
+            ctx.fillText('HOME', canvas.width/2, FR_CH/2+4);
+
+            // Draw cars
+            for (const car of frogCars) {
+                const y = car.row*FR_CH;
+                ctx.fillStyle='#e11d48';
+                ctx.fillRect(car.x, y+5, car.w, FR_CH-10);
+                ctx.fillStyle='#fbbf24';
+                ctx.fillRect(car.x+(car.dir>0?car.w-8:4), y+8, 6, 6);
+            }
+
+            // Collision
+            const fx = frog.col*FR_CW, fy = frog.row*FR_CH;
+            for (const car of frogCars) {
+                if (car.row===frog.row && !(fx+FR_CW-8 < car.x || fx+8 > car.x+car.w)) { frogDead=true; gameOver=true; }
+            }
+
+            // Draw frog
+            ctx.fillStyle = frogDead ? '#f43f5e' : '#a855f7';
+            ctx.fillRect(fx+8, fy+6, FR_CW-16, FR_CH-12);
+            ctx.fillStyle='#22d3ee';
+            ctx.fillRect(fx+10, fy+8, 6, 5); ctx.fillRect(fx+FR_CW-16, fy+8, 6, 5); // eyes
+            // legs
+            ctx.fillStyle='#7c3aed';
+            ctx.fillRect(fx+6, fy+FR_CH-10, 8, 6);
+            ctx.fillRect(fx+FR_CW-14, fy+FR_CH-10, 8, 6);
+
+            frogScore++;
+            ctx.fillStyle='var(--dim)'; ctx.font='13px "IBM Plex Mono"'; ctx.textAlign='right';
+            ctx.fillText('SCORE: '+Math.floor(frogScore/60), canvas.width-10, 20);
+
+            gameAnimFrame = requestAnimationFrame(froggerLoop);
+        }
+
+        // ═══════════════════════════════════════════════════
+        //  PACMAN
+        // ═══════════════════════════════════════════════════
+        const PM_C=20, PM_R=13, PM_S=30;
+        const PM_DEF=[
+            '####################',
+            '#........##........#',
+            '#.##.###.##.###.##.#',
+            '#O..................O#',
+            '#.##.#.######.#.##.#',
+            '#....#....##....#..#',
+            '####.###..##..###.####',
+            '   #.#....##....#.#   ',
+            '####.#.##GG##.#.####',
+            '#.........##.......#',
+            '#.##.###.##.###.##.#',
+            '#O.#.....P......#.O#',
+            '####################',
+        ];
+        let pmMap, pmPac, pmGhosts, pmDir, pmNextDir, pmDots, pmTimer, pmLastTS, pmScore;
+
+        function pmCell(r,c) { return pmMap[r] && pmMap[r][c] !== undefined ? pmMap[r][c] : 1; }
+        function pmWall(r,c) { return pmCell(r,c) === 1; }
+
+        function initPacman() {
+            pmMap = PM_DEF.map(row => {
+                const arr = [];
+                for (let i=0; i<PM_C; i++) arr.push(row[i]==='#'?1 : row[i]==='.'?0 : row[i]==='O'?2 : 3);
+                return arr;
+            });
+            // Find player and ghost starts
+            let pRow=11, pCol=9;
+            const ghostStarts=[];
+            for (let r=0;r<PM_R;r++) for (let c=0;c<PM_C;c++) {
+                const ch = PM_DEF[r][c];
+                if (ch==='P') { pRow=r; pCol=c; pmMap[r][c]=0; }
+                if (ch==='G') { ghostStarts.push({r,c}); pmMap[r][c]=3; }
+            }
+            pmPac = { r:pRow, c:pCol, dr:0, dc:0, px:pCol*PM_S+PM_S/2, py:pRow*PM_S+PM_S/2, step:0 };
+            pmGhosts = ghostStarts.map((s,i)=>({
+                r:s.r, c:s.c, px:s.c*PM_S+PM_S/2, py:s.r*PM_S+PM_S/2,
+                color:['#f43f5e','#fb923c','#22d3ee','#a78bfa'][i%4],
+                dr:0,dc:1, timer:0, scatter:i*20
+            }));
+            pmDir={r:0,c:0}; pmNextDir={r:0,c:0};
+            pmGhosts = []; // no ghosts
+            pmDots = 0;
+            for (let r=0;r<PM_R;r++) for (let c=0;c<PM_C;c++) if (pmMap[r][c]===0||pmMap[r][c]===2) pmDots++;
+            pmScore=0; pmMoveTimer=0; pmLastTS=0;
+            gameOver=false; victory=false;
+        }
+
+        function pacmanLoop(ts) {
+            if (!gameActive || currentGame!=='pacman') return;
+            const dt = pmLastTS ? Math.min((ts-pmLastTS)/16.667,3) : 1;
+            pmLastTS = ts;
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+
+            if (gameOver || victory) {
+                ctx.fillStyle='#fff'; ctx.font='22px "IBM Plex Mono"'; ctx.textAlign='center';
+                ctx.fillText(victory ? 'YOU WIN !' : 'GAME OVER', canvas.width/2, canvas.height/2);
+                ctx.font='13px "IBM Plex Mono"';
+                ctx.fillText('Press arrow key to restart', canvas.width/2, canvas.height/2+28);
+                if (pmNextDir.r||pmNextDir.c) initPacman();
+                gameAnimFrame = requestAnimationFrame(pacmanLoop); return;
+            }
+
+            const SPEED = 16; // frames per cell (slower = ~4 cells/sec at 60fps)
+            pmMoveTimer -= dt;
+
+            // Move pacman when timer hits 0
+            if (pmMoveTimer <= 0) {
+                pmMoveTimer = SPEED;
+                // Try next direction first
+                const nr = pmPac.r + pmNextDir.r, nc = pmPac.c + pmNextDir.c;
+                if (!pmWall(nr,nc) && (pmNextDir.r||pmNextDir.c)) { pmDir=pmNextDir; }
+                const mr = pmPac.r + pmDir.r, mc = pmPac.c + pmDir.c;
+                if (!pmWall(mr,mc)) {
+                    pmPac.r = (mr+PM_R)%PM_R; pmPac.c = (mc+PM_C)%PM_C;
+                }
+                // Eat dot
+                const cell = pmMap[pmPac.r][pmPac.c];
+                if (cell===0||cell===2) { pmMap[pmPac.r][pmPac.c]=3; pmScore+=10*(cell===2?5:1); pmDots--; }
+                if (pmDots<=0) victory=true;
+            }
+
+            // Draw maze
+            for (let r=0;r<PM_R;r++) for (let c=0;c<PM_C;c++) {
+                const x=c*PM_S, y=r*PM_S, cell=pmMap[r][c];
+                if (cell===1) { ctx.fillStyle='#1c2040'; ctx.fillRect(x,y,PM_S,PM_S); ctx.strokeStyle='#3730a3'; ctx.strokeRect(x+1,y+1,PM_S-2,PM_S-2); }
+                else {
+                    ctx.fillStyle='#06070d'; ctx.fillRect(x,y,PM_S,PM_S);
+                    if (cell===0) { ctx.fillStyle='#4a5070'; ctx.beginPath(); ctx.arc(x+PM_S/2,y+PM_S/2,3,0,Math.PI*2); ctx.fill(); }
+                    if (cell===2) { ctx.fillStyle='#fbbf24'; ctx.beginPath(); ctx.arc(x+PM_S/2,y+PM_S/2,6,0,Math.PI*2); ctx.fill(); }
+                }
+            }
+
+            // Draw pacman
+            const angle = pmDir.c!==0 ? 0 : pmDir.r<0 ? Math.PI*1.5 : Math.PI*0.5;
+            const mouth = 0.25 + 0.15*Math.sin(ts*0.004);
+            ctx.fillStyle='#fbbf24';
+            ctx.beginPath();
+            ctx.moveTo(pmPac.c*PM_S+PM_S/2, pmPac.r*PM_S+PM_S/2);
+            ctx.arc(pmPac.c*PM_S+PM_S/2, pmPac.r*PM_S+PM_S/2, PM_S/2-3, angle+mouth, angle+Math.PI*2-mouth);
+            ctx.closePath(); ctx.fill();
+
+            ctx.fillStyle='var(--dim)'; ctx.font='13px "IBM Plex Mono"'; ctx.textAlign='right';
+            ctx.fillText('SCORE: '+pmScore+'  DOTS: '+pmDots, canvas.width-10, canvas.height-8);
+
+            gameAnimFrame = requestAnimationFrame(pacmanLoop);
+        }
+
     </script>
 </body>
 </html>
