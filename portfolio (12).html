@@ -1861,6 +1861,27 @@
             line-height: 1.35;
         }
 
+
+        /* Tool logos grid */
+        .tool-grid { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px }
+        .tool-item {
+            display:flex; flex-direction:column; align-items:center; gap:5px;
+            padding:10px 8px; border:1px solid var(--b); border-radius:var(--r);
+            background:var(--surf); transition:border-color .2s,background .2s;
+            width:68px; cursor:default;
+        }
+        .tool-item:hover { border-color:var(--v); background:var(--vg) }
+        .tool-item img {
+            width:26px; height:26px;
+            filter:brightness(0) invert(1) opacity(.55);
+            transition:opacity .2s,filter .2s;
+        }
+        .tool-item:hover img { opacity:1; filter:brightness(0) invert(1) }
+        .tool-item span {
+            font-family:var(--mono); font-size:.48rem; color:var(--dim);
+            text-align:center; letter-spacing:.06em; text-transform:uppercase; line-height:1.2;
+        }
+
         /* meta chips */
         .meta-chips {
             display: flex;
@@ -2205,8 +2226,7 @@
                     <div class="hud-dots"><div class="hud-dot"></div><div class="hud-dot"></div><div class="hud-dot"></div></div>
                 </div>
                 <div class="hud-stat"><span class="hs-key">NAME</span><span class="hs-val intro-type" id="type-name" style="font-size:1.1rem; letter-spacing:0.05em;"></span></div>
-                <div class="hud-stat"><span class="hs-key">LVL</span><span class="hs-val intro-type" id="type-lvl"></span></div>
-                <div class="hud-stat"><span class="hs-key">DOCS</span><span class="hs-val intro-type" id="type-docs"></span></div>
+                <div class="hud-stat"><span class="hs-key">AGE</span><span class="hs-val intro-type" id="type-age"></span></div>
                 <div class="hud-stat"><span class="hs-key">SCHOOL</span><span class="hs-val intro-type" id="type-school" style="font-size:1.1rem"></span></div>
                 <div class="hud-stat"><span class="hs-key">STATUS</span><span class="hs-val intro-type" id="type-status" style="color:var(--cyan);font-size:.85rem;font-family:var(--mono)"></span></div>
             </div>
@@ -2257,7 +2277,7 @@
                 <div class="hero-eyebrow"><span class="hud-label">Game Design Portfolio</span></div>
                 <h1 class="glitch" data-text="NICOLAS ZIMMERMANN">
                     <div>NICOLAS</div>
-                    <div><span class="ou">ZIMMER</span><span class="g">MANN</span></div>
+                    <div><span class="g">ZIMMERMANN</span></div>
                 </h1>
                 <p class="hero-sub">Étudiant en Game Design à <strong>LISAA Paris</strong>. Créateur de mécaniques de jeu, board games et interfaces jouables.</p>
                 <div class="hero-cta">
@@ -2272,8 +2292,7 @@
                     <div class="hud-dots"><div class="hud-dot"></div><div class="hud-dot"></div><div class="hud-dot"></div></div>
                 </div>
                 <div class="hud-stat"><span class="hs-key">NAME</span><span class="hs-val" style="font-size:1.1rem; letter-spacing:0.05em;">N. ZIMMERMANN</span></div>
-                <div class="hud-stat"><span class="hs-key">LVL</span><span class="hs-val" data-count="25">25</span></div>
-                <div class="hud-stat"><span class="hs-key">DOCS</span><span class="hs-val" data-count="9">9</span></div>
+                <div class="hud-stat"><span class="hs-key">AGE</span><span class="hs-val">25</span></div>
                 <div class="hud-stat"><span class="hs-key">SCHOOL</span><span class="hs-val" style="font-size:1.1rem">LISAA</span></div>
                 <div class="hud-stat"><span class="hs-key">STATUS</span><span class="hs-val" style="color:var(--cyan);font-size:.85rem;font-family:var(--mono)">ONLINE</span></div>
             </div>
@@ -2298,7 +2317,7 @@
                 </div>
             </div>
         </div>
-        <footer><div class="fc">© 2025 NZ_ // GAME DESIGN PORTFOLIO</div><div class="fl"><a href="https://www.instagram.com/raksakoreko/" target="_blank">INSTAGRAM</a><a href="https://x.com/RaksakorekoPro" target="_blank">TWITTER</a><a href="/cdn-cgi/l/email-protection#d787a5b8f999beb4b8bbb6a4f98dbebabab2a5bab6b9b997b0bab6bebbf9b4b8ba">MAIL</a></div></footer>
+        <footer><div class="fc">© 2025 NZ_ // GAME DESIGN PORTFOLIO</div><div class="fl"><a href="mailto:Pro.Nicolas.Zimmermann@gmail.com">MAIL</a></div></footer>
     </div>
 
     <div class="page" id="page-docs">
@@ -2475,15 +2494,34 @@
                         <div class="skl">
                             <span class="sp">Game Design</span><span class="sp">Board Game</span><span class="sp">HTML/CSS/JS</span><span class="sp">Unity</span><span class="sp">Unreal Engine</span><span class="sp">Balancing</span><span class="sp">UI Design</span><span class="sp">GDD</span><span class="sp">Level Design</span><span class="sp">Prototyping</span><span class="sp">UX Design</span><span class="sp">QA</span>
                         </div>
+
+                    <div class="sks" style="margin-top:28px">
+                        <div class="skt">TOOLS</div>
+                        <div class="tool-grid">
+                            <div class="tool-item"><img src="https://cdn.simpleicons.org/unity/ffffff" alt="Unity" loading="lazy"><span>Unity</span></div>
+                            <div class="tool-item"><img src="https://cdn.simpleicons.org/unrealengine/ffffff" alt="Unreal" loading="lazy"><span>Unreal</span></div>
+                            <div class="tool-item"><img src="https://cdn.simpleicons.org/godotengine/ffffff" alt="Godot" loading="lazy"><span>Godot</span></div>
+                            <div class="tool-item"><img src="https://cdn.simpleicons.org/autodesk/ffffff" alt="3DS Max" loading="lazy"><span>3DS Max</span></div>
+                            <div class="tool-item"><img src="https://cdn.simpleicons.org/adobephotoshop/ffffff" alt="Photoshop" loading="lazy"><span>Photoshop</span></div>
+                            <div class="tool-item"><img src="https://cdn.simpleicons.org/adobepremierepro/ffffff" alt="Premiere" loading="lazy"><span>Premiere</span></div>
+                            <div class="tool-item"><img src="https://cdn.simpleicons.org/miro/ffffff" alt="Miro" loading="lazy"><span>Miro</span></div>
+                            <div class="tool-item"><img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" loading="lazy"><span>GitHub</span></div>
+                            <div class="tool-item"><img src="https://cdn.simpleicons.org/google/ffffff" alt="G. Suite" loading="lazy"><span>G. Suite</span></div>
+                            <div class="tool-item"><img src="https://cdn.simpleicons.org/googledocs/ffffff" alt="G. Docs" loading="lazy"><span>G. Docs</span></div>
+                            <div class="tool-item"><img src="https://cdn.simpleicons.org/googleslides/ffffff" alt="G. Slides" loading="lazy"><span>G. Slides</span></div>
+                            <div class="tool-item"><img src="https://cdn.simpleicons.org/figma/ffffff" alt="Figma" loading="lazy"><span>Figma</span></div>
+                            <div class="tool-item"><img src="https://cdn.simpleicons.org/trello/ffffff" alt="Trello" loading="lazy"><span>Trello</span></div>
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <div>
                     <div class="cc">
                         <div class="cch">// CONTACT</div>
                         <div class="ccb">
-                            <a href="/cdn-cgi/l/email-protection#e1b1938ecfaf88828e8d8092cfbb888c8c84938c808f8fa1868c80888dcf828e8c"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 7 10 6 10-6" /></svg><span class="__cf_email__" data-cfemail="da8aa8b5f494b3b9b5b6bba9f480b3b7b7bfa8b7bbb4b49abdb7bbb3b6f4b9b5b7">[email&#160;protected]</span></a>
-                            <a href="https://www.instagram.com/raksakoreko/" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" /></svg>@raksakoreko</a>
-                            <a href="https://x.com/RaksakorekoPro" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>@RaksakorekoPro</a>
+                            <a href="mailto:Pro.Nicolas.Zimmermann@gmail.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 7 10 6 10-6" /></svg>Pro.Nicolas.Zimmermann@gmail.com</a>
+                            
+                            
                         </div>
                     </div>
                     <div class="gb">
@@ -2506,8 +2544,7 @@
                 </div>
                 <div class="console-body" id="c-body">
                     <div id="c-history">
-                        <div class="console-line" style="color:var(--dim)">[System] Terminal initialized. Type a command and press Enter.</div>
-                        <div class="console-line" style="color:var(--dim)">[System] Available: <span style="color:var(--v2)">play spaceinvader</span> &bull; <span style="color:var(--v2)">play pacman</span> &bull; <span style="color:var(--v2)">play frogger</span> &bull; <span style="color:var(--v2)">play trex</span></div>
+                        <div class="console-line" style="color:var(--dim)">[System] Terminal initialized. Type <span style="color:var(--v2)">help</span> for commands.</div>
                     </div>
                     <div class="console-input-row" id="c-input-row">
                         <span class="console-prompt">&gt;</span>
@@ -2529,10 +2566,10 @@
             </div>
 
         </div>
-        <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="https://www.instagram.com/raksakoreko/" target="_blank">INSTAGRAM</a><a href="https://x.com/RaksakorekoPro" target="_blank">TWITTER</a><a href="/cdn-cgi/l/email-protection#df8fadb0f191b6bcb0b3beacf185b6b2b2baadb2beb1b19fb8b2beb6b3f1bcb0b2">MAIL</a></div></footer>
+        <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="mailto:Pro.Nicolas.Zimmermann@gmail.com">MAIL</a></div></footer>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         /* ── ANTI-DRAG (TUE LE BUG DE L'IMAGE FANTÔME) ── */
         window.ondragstart = function () { return false; };
         document.addEventListener('dragstart', e => e.preventDefault());
@@ -2591,8 +2628,7 @@
 
                 const queue = [
                     { el: document.getElementById('type-name'), text: "N. ZIMMERMANN" },
-                    { el: document.getElementById('type-lvl'), text: "25" },
-                    { el: document.getElementById('type-docs'), text: "9" },
+                    { el: document.getElementById('type-age'), text: "25" },
                     { el: document.getElementById('type-school'), text: "LISAA" },
                     { el: document.getElementById('type-status'), text: "ONLINE" }
                 ];
@@ -2867,6 +2903,19 @@
             else if (v === 'play frogger')  startGame('frogger');
             else if (v === 'play trex' || v === 'play t-rex') startGame('trex');
             else if (v === 'play doom')     cLog('// DOOM cannot run embedded — browser blocks iframe injection from external hosts. Not available.', 'var(--console-err, #f43f5e)');
+            else if (v === 'help') {
+                cLog('// COMMANDS ──────────────────────────────────', 'var(--dim)');
+                cLog('  <span style="color:var(--v2)">play spaceinvader</span>  — Space Invaders : défends-toi contre les aliens');
+                cLog('  <span style="color:var(--v2)">play pacman</span>        — Pac-Man : mange tous les dots du labyrinthe classique');
+                cLog('  <span style="color:var(--v2)">play frogger</span>       — Frogger : traverse les routes et rentre chez toi');
+                cLog('  <span style="color:var(--v2)">play trex</span>          — T-Rex : saute par-dessus les obstacles sans fin');
+                cLog('// ─────────────────────────────────────────────', 'var(--dim)');
+                cLog('  <span style="color:var(--v2)">goat</span>               — lien vers un streamer de qualité');
+                cLog('  <span style="color:var(--v2)">lol</span>                — opinion sur un certain jeu');
+                cLog('  <span style="color:var(--v2)">yuumi</span>              — opinion sur un certain champion');
+                cLog('  <span style="color:var(--v2)">raksa</span>              — qui suis-je ?');
+                cLog('  <span style="color:var(--v2)">lisa</span> / <span style="color:var(--v2)">akira</span> / <span style="color:var(--v2)">akipouette</span>  — les gens importants');
+            }
             else if (v === 'goat')          cLog('// OPESANEC — <a href="https://www.twitch.tv/opesanec" target="_blank" style="color:var(--v2);text-decoration:underline">twitch.tv/opesanec</a>', 'var(--cyan)');
             else if (v === 'lol')           cLog('// pire jeu all time');
             else if (v === 'yuumi')         cLog('// mérite une total destruction et disparition du jeu', '#f43f5e');
@@ -3210,17 +3259,17 @@
         // ═══════════════════════════════════════════════════
         //  FROGGER
         // ═══════════════════════════════════════════════════
-        let frog, frogCars, froggerLastTS, frogScore, frogDead, frogWin;
+        let frog, frogCars, froggerLastTS, frogDead, frogWin;
         const FR_ROWS=9, FR_COLS=12, FR_CW=50, FR_CH=Math.floor(canvas.height/FR_ROWS);
         const FR_LANES=[
             {type:'safe'},
-            {type:'road', dir:1,  speed:2.2, carW:70},
-            {type:'road', dir:-1, speed:3.0, carW:90},
-            {type:'road', dir:1,  speed:2.6, carW:60},
+            {type:'road', dir:1,  speed:1.1, carW:70},
+            {type:'road', dir:-1, speed:1.5, carW:80},
+            {type:'road', dir:1,  speed:1.3, carW:65},
             {type:'safe'},
-            {type:'road', dir:-1, speed:2.0, carW:80},
-            {type:'road', dir:1,  speed:3.5, carW:55},
-            {type:'road', dir:-1, speed:2.5, carW:75},
+            {type:'road', dir:-1, speed:1.0, carW:85},
+            {type:'road', dir:1,  speed:1.7, carW:60},
+            {type:'road', dir:-1, speed:1.2, carW:75},
             {type:'safe'},
         ];
 
@@ -3229,12 +3278,12 @@
             frogCars = [];
             for (let r=0; r<FR_ROWS; r++) {
                 const lane = FR_LANES[r]; if (lane.type!=='road') continue;
-                for (let i=0; i<4; i++) {
-                    frogCars.push({ row:r, x: (i/4)*canvas.width + Math.random()*FR_CW,
+                for (let i=0; i<3; i++) {
+                    frogCars.push({ row:r, x: (i/3)*canvas.width + Math.random()*FR_CW*2,
                         w:lane.carW, dir:lane.dir, speed:lane.speed });
                 }
             }
-            frogScore=0; frogDead=false; frogWin=false; froggerLastTS=0;
+            frogDead=false; frogWin=false; froggerLastTS=0;
             gameOver=false; victory=false;
         }
 
@@ -3258,180 +3307,187 @@
                 ctx.fillStyle='#fff'; ctx.font='22px "IBM Plex Mono"'; ctx.textAlign='center';
                 ctx.fillText(victory ? 'HOME SAFE !' : 'GAME OVER', canvas.width/2, canvas.height/2);
                 ctx.font='13px "IBM Plex Mono"';
-                ctx.fillText('Arrow keys to restart', canvas.width/2, canvas.height/2+28);
+                ctx.fillText('Arrow key to restart', canvas.width/2, canvas.height/2+28);
                 gameAnimFrame = requestAnimationFrame(froggerLoop); return;
             }
 
-            // Move cars
             for (const car of frogCars) {
                 car.x += car.dir * car.speed * dt;
                 if (car.dir>0 && car.x > canvas.width+10) car.x = -car.w-10;
                 if (car.dir<0 && car.x < -car.w-10) car.x = canvas.width+10;
             }
 
-            // Draw lanes
             for (let r=0; r<FR_ROWS; r++) {
-                const y = r*FR_CH;
-                const lane = FR_LANES[r];
-                ctx.fillStyle = r===0 ? '#0f3' : lane.type==='safe' ? '#0f2018' : '#1a1128';
-                ctx.fillRect(0, y, canvas.width, FR_CH);
+                const y=r*FR_CH, lane=FR_LANES[r];
+                ctx.fillStyle = r===0 ? '#0f2018' : lane.type==='safe' ? '#0d1a10' : '#110d1e';
+                ctx.fillRect(0,y,canvas.width,FR_CH);
                 if (lane.type==='road') {
-                    ctx.strokeStyle='#2a2040'; ctx.setLineDash([20,20]);
+                    ctx.strokeStyle='#251d40'; ctx.setLineDash([18,18]);
                     ctx.beginPath(); ctx.moveTo(0,y+FR_CH/2); ctx.lineTo(canvas.width,y+FR_CH/2); ctx.stroke();
                     ctx.setLineDash([]);
                 }
             }
-
-            // Draw goal row markers
-            for (let c=0; c<FR_COLS; c++) {
-                ctx.fillStyle='#0a3018';
-                ctx.fillRect(c*FR_CW+5, 5, FR_CW-10, FR_CH-10);
+            // Goal row markers
+            for (let cc=0;cc<FR_COLS;cc++) {
+                ctx.fillStyle='#0a2014'; ctx.fillRect(cc*FR_CW+4,4,FR_CW-8,FR_CH-8);
             }
             ctx.fillStyle='#00ff88'; ctx.font='10px "IBM Plex Mono"'; ctx.textAlign='center';
             ctx.fillText('HOME', canvas.width/2, FR_CH/2+4);
 
-            // Draw cars
             for (const car of frogCars) {
-                const y = car.row*FR_CH;
-                ctx.fillStyle='#e11d48';
-                ctx.fillRect(car.x, y+5, car.w, FR_CH-10);
-                ctx.fillStyle='#fbbf24';
-                ctx.fillRect(car.x+(car.dir>0?car.w-8:4), y+8, 6, 6);
+                const cy=car.row*FR_CH;
+                ctx.fillStyle='#e11d48'; ctx.fillRect(car.x,cy+5,car.w,FR_CH-10);
+                ctx.fillStyle='#fbbf24'; ctx.fillRect(car.x+(car.dir>0?car.w-8:4),cy+8,6,6);
             }
 
-            // Collision
-            const fx = frog.col*FR_CW, fy = frog.row*FR_CH;
+            const fx=frog.col*FR_CW, fy=frog.row*FR_CH;
             for (const car of frogCars) {
-                if (car.row===frog.row && !(fx+FR_CW-8 < car.x || fx+8 > car.x+car.w)) { frogDead=true; gameOver=true; }
+                if (car.row===frog.row && !(fx+FR_CW-8<car.x || fx+8>car.x+car.w)) { frogDead=true; gameOver=true; }
             }
 
-            // Draw frog
-            ctx.fillStyle = frogDead ? '#f43f5e' : '#a855f7';
-            ctx.fillRect(fx+8, fy+6, FR_CW-16, FR_CH-12);
+            ctx.fillStyle=frogDead?'#f43f5e':'#a855f7';
+            ctx.fillRect(fx+8,fy+6,FR_CW-16,FR_CH-12);
             ctx.fillStyle='#22d3ee';
-            ctx.fillRect(fx+10, fy+8, 6, 5); ctx.fillRect(fx+FR_CW-16, fy+8, 6, 5); // eyes
-            // legs
+            ctx.fillRect(fx+10,fy+8,6,5); ctx.fillRect(fx+FR_CW-16,fy+8,6,5);
             ctx.fillStyle='#7c3aed';
-            ctx.fillRect(fx+6, fy+FR_CH-10, 8, 6);
-            ctx.fillRect(fx+FR_CW-14, fy+FR_CH-10, 8, 6);
-
-            frogScore++;
-            ctx.fillStyle='var(--dim)'; ctx.font='13px "IBM Plex Mono"'; ctx.textAlign='right';
-            ctx.fillText('SCORE: '+Math.floor(frogScore/60), canvas.width-10, 20);
+            ctx.fillRect(fx+6,fy+FR_CH-10,8,6); ctx.fillRect(fx+FR_CW-14,fy+FR_CH-10,8,6);
 
             gameAnimFrame = requestAnimationFrame(froggerLoop);
         }
 
+        //  PACMAN — Classic layout (28×31)
         // ═══════════════════════════════════════════════════
-        //  PACMAN
-        // ═══════════════════════════════════════════════════
-        const PM_C=20, PM_R=13, PM_S=30;
+        // '#'=wall  '.'=dot  'O'=power pellet  ' '=open  'P'=start
         const PM_DEF=[
-            '####################',
-            '#........##........#',
-            '#.##.###.##.###.##.#',
-            '#O..................O#',
-            '#.##.#.######.#.##.#',
-            '#....#....##....#..#',
-            '####.###..##..###.####',
-            '   #.#....##....#.#   ',
-            '####.#.##GG##.#.####',
-            '#.........##.......#',
-            '#.##.###.##.###.##.#',
-            '#O.#.....P......#.O#',
-            '####################',
+            '############################',
+            '#............##............#',
+            '#.####.#####.##.#####.####.#',
+            '#O####.#####.##.#####.####O#',
+            '#.####.#####.##.#####.####.#',
+            '#..........................#',
+            '#.####.##.########.##.####.#',
+            '#.####.##.########.##.####.#',
+            '#......##....##....##......#',
+            '######.#####.##.#####.######',
+            '     #.#####.##.#####.#     ',
+            '     #.##          ##.#     ',
+            '     #.## ###  ### ##.#     ',
+            '######.## #      # ##.######',
+            '      .   #      #   .      ',
+            '######.## #      # ##.######',
+            '     #.## ######## ##.#     ',
+            '     #.##          ##.#     ',
+            '     #.## ######## ##.#     ',
+            '######.## ######## ##.######',
+            '#............##............#',
+            '#.####.#####.##.#####.####.#',
+            '#O..##.................##..O#',
+            '###.##.##.########.##.##.###',
+            '###.##.##.########.##.##.###',
+            '#......##....##....##......#',
+            '#.##########.##.##########.#',
+            '#.##########.##.##########.#',
+            '#..........................#',
+            '#.####.#####P##.#####.####.#',
+            '############################',
         ];
-        let pmMap, pmPac, pmGhosts, pmDir, pmNextDir, pmDots, pmTimer, pmLastTS, pmScore;
+        const PM_C=28, PM_R=31, PM_S=13;
+        const PM_OX=Math.floor((600-PM_C*PM_S)/2); // center horizontally
+        let pmMap, pmPac, pmDir, pmNextDir, pmDots, pmMoveTimer, pmLastTS, pmScore;
 
-        function pmCell(r,c) { return pmMap[r] && pmMap[r][c] !== undefined ? pmMap[r][c] : 1; }
-        function pmWall(r,c) { return pmCell(r,c) === 1; }
+        function pmOpen(r,c) {
+            r=(r+PM_R)%PM_R; c=(c+PM_C)%PM_C;
+            return pmMap[r] && pmMap[r][c] !== 1;
+        }
 
         function initPacman() {
             pmMap = PM_DEF.map(row => {
-                const arr = [];
-                for (let i=0; i<PM_C; i++) arr.push(row[i]==='#'?1 : row[i]==='.'?0 : row[i]==='O'?2 : 3);
+                const arr=[];
+                for (let i=0;i<PM_C;i++) {
+                    const ch=row[i]||' ';
+                    arr.push(ch==='#'?1 : ch==='.'?0 : ch==='O'?2 : 3);
+                }
                 return arr;
             });
-            // Find player and ghost starts
-            let pRow=11, pCol=9;
-            const ghostStarts=[];
-            for (let r=0;r<PM_R;r++) for (let c=0;c<PM_C;c++) {
-                const ch = PM_DEF[r][c];
-                if (ch==='P') { pRow=r; pCol=c; pmMap[r][c]=0; }
-                if (ch==='G') { ghostStarts.push({r,c}); pmMap[r][c]=3; }
-            }
-            pmPac = { r:pRow, c:pCol, dr:0, dc:0, px:pCol*PM_S+PM_S/2, py:pRow*PM_S+PM_S/2, step:0 };
-            pmGhosts = ghostStarts.map((s,i)=>({
-                r:s.r, c:s.c, px:s.c*PM_S+PM_S/2, py:s.r*PM_S+PM_S/2,
-                color:['#f43f5e','#fb923c','#22d3ee','#a78bfa'][i%4],
-                dr:0,dc:1, timer:0, scatter:i*20
-            }));
+            let pRow=29, pCol=13;
+            for (let r=0;r<PM_R;r++) for (let c=0;c<PM_C;c++) if (PM_DEF[r][c]==='P') { pRow=r; pCol=c; pmMap[r][c]=3; }
+            pmPac={r:pRow, c:pCol};
             pmDir={r:0,c:0}; pmNextDir={r:0,c:0};
-            pmGhosts = []; // no ghosts
-            pmDots = 0;
+            pmDots=0;
             for (let r=0;r<PM_R;r++) for (let c=0;c<PM_C;c++) if (pmMap[r][c]===0||pmMap[r][c]===2) pmDots++;
             pmScore=0; pmMoveTimer=0; pmLastTS=0;
             gameOver=false; victory=false;
         }
 
         function pacmanLoop(ts) {
-            if (!gameActive || currentGame!=='pacman') return;
-            const dt = pmLastTS ? Math.min((ts-pmLastTS)/16.667,3) : 1;
-            pmLastTS = ts;
+            if (!gameActive||currentGame!=='pacman') return;
+            const dt=pmLastTS?Math.min((ts-pmLastTS)/16.667,3):1;
+            pmLastTS=ts;
             ctx.clearRect(0,0,canvas.width,canvas.height);
 
-            if (gameOver || victory) {
-                ctx.fillStyle='#fff'; ctx.font='22px "IBM Plex Mono"'; ctx.textAlign='center';
-                ctx.fillText(victory ? 'YOU WIN !' : 'GAME OVER', canvas.width/2, canvas.height/2);
-                ctx.font='13px "IBM Plex Mono"';
-                ctx.fillText('Press arrow key to restart', canvas.width/2, canvas.height/2+28);
+            if (gameOver||victory) {
+                ctx.fillStyle='#fff'; ctx.font='20px "IBM Plex Mono"'; ctx.textAlign='center';
+                ctx.fillText(victory?'YOU WIN !':'GAME OVER', canvas.width/2, canvas.height/2);
+                ctx.font='12px "IBM Plex Mono"'; ctx.fillStyle='#4a5070';
+                ctx.fillText('Arrow key to restart', canvas.width/2, canvas.height/2+24);
                 if (pmNextDir.r||pmNextDir.c) initPacman();
-                gameAnimFrame = requestAnimationFrame(pacmanLoop); return;
+                gameAnimFrame=requestAnimationFrame(pacmanLoop); return;
             }
 
-            const SPEED = 16; // frames per cell (slower = ~4 cells/sec at 60fps)
-            pmMoveTimer -= dt;
-
-            // Move pacman when timer hits 0
-            if (pmMoveTimer <= 0) {
-                pmMoveTimer = SPEED;
-                // Try next direction first
-                const nr = pmPac.r + pmNextDir.r, nc = pmPac.c + pmNextDir.c;
-                if (!pmWall(nr,nc) && (pmNextDir.r||pmNextDir.c)) { pmDir=pmNextDir; }
-                const mr = pmPac.r + pmDir.r, mc = pmPac.c + pmDir.c;
-                if (!pmWall(mr,mc)) {
-                    pmPac.r = (mr+PM_R)%PM_R; pmPac.c = (mc+PM_C)%PM_C;
-                }
-                // Eat dot
-                const cell = pmMap[pmPac.r][pmPac.c];
-                if (cell===0||cell===2) { pmMap[pmPac.r][pmPac.c]=3; pmScore+=10*(cell===2?5:1); pmDots--; }
+            // Move pacman
+            pmMoveTimer-=dt;
+            if (pmMoveTimer<=0) {
+                pmMoveTimer=16;
+                const nr=pmPac.r+pmNextDir.r, nc=(pmPac.c+pmNextDir.c+PM_C)%PM_C;
+                if (pmOpen(nr,nc)&&(pmNextDir.r||pmNextDir.c)) pmDir={...pmNextDir};
+                const mr=(pmPac.r+pmDir.r+PM_R)%PM_R, mc=(pmPac.c+pmDir.c+PM_C)%PM_C;
+                if (pmOpen(mr,mc)) { pmPac.r=mr; pmPac.c=mc; }
+                const cell=pmMap[pmPac.r][pmPac.c];
+                if (cell===0){pmMap[pmPac.r][pmPac.c]=3; pmScore+=10; pmDots--;}
+                if (cell===2){pmMap[pmPac.r][pmPac.c]=3; pmScore+=50; pmDots--;}
                 if (pmDots<=0) victory=true;
             }
 
             // Draw maze
-            for (let r=0;r<PM_R;r++) for (let c=0;c<PM_C;c++) {
-                const x=c*PM_S, y=r*PM_S, cell=pmMap[r][c];
-                if (cell===1) { ctx.fillStyle='#1c2040'; ctx.fillRect(x,y,PM_S,PM_S); ctx.strokeStyle='#3730a3'; ctx.strokeRect(x+1,y+1,PM_S-2,PM_S-2); }
-                else {
-                    ctx.fillStyle='#06070d'; ctx.fillRect(x,y,PM_S,PM_S);
-                    if (cell===0) { ctx.fillStyle='#4a5070'; ctx.beginPath(); ctx.arc(x+PM_S/2,y+PM_S/2,3,0,Math.PI*2); ctx.fill(); }
-                    if (cell===2) { ctx.fillStyle='#fbbf24'; ctx.beginPath(); ctx.arc(x+PM_S/2,y+PM_S/2,6,0,Math.PI*2); ctx.fill(); }
+            ctx.fillStyle='#06070d'; ctx.fillRect(0,0,canvas.width,canvas.height);
+            for (let r=0;r<PM_R;r++) {
+                for (let c=0;c<PM_C;c++) {
+                    const x=PM_OX+c*PM_S, y=r*PM_S, cell=pmMap[r][c];
+                    if (cell===1) {
+                        // Wall — draw with inner border for classic look
+                        ctx.fillStyle='#1e1b6e'; ctx.fillRect(x,y,PM_S,PM_S);
+                        ctx.strokeStyle='#3730c4'; ctx.lineWidth=1;
+                        ctx.strokeRect(x+1.5,y+1.5,PM_S-3,PM_S-3);
+                    } else if (cell===0) {
+                        ctx.fillStyle='#d1d5f0'; ctx.beginPath();
+                        ctx.arc(x+PM_S/2,y+PM_S/2,1.5,0,Math.PI*2); ctx.fill();
+                    } else if (cell===2) {
+                        ctx.fillStyle='#fbbf24';
+                        ctx.shadowColor='#fbbf24'; ctx.shadowBlur=4;
+                        ctx.beginPath(); ctx.arc(x+PM_S/2,y+PM_S/2,4,0,Math.PI*2); ctx.fill();
+                        ctx.shadowBlur=0;
+                    }
                 }
             }
 
             // Draw pacman
-            const angle = pmDir.c!==0 ? 0 : pmDir.r<0 ? Math.PI*1.5 : Math.PI*0.5;
-            const mouth = 0.25 + 0.15*Math.sin(ts*0.004);
+            const px=PM_OX+pmPac.c*PM_S+PM_S/2, py=pmPac.r*PM_S+PM_S/2;
+            let ang=pmDir.c>0?0:pmDir.c<0?Math.PI:pmDir.r>0?Math.PI*.5:pmDir.r<0?Math.PI*1.5:0;
+            const mth=0.22+0.18*Math.abs(Math.sin(ts*0.007));
             ctx.fillStyle='#fbbf24';
-            ctx.beginPath();
-            ctx.moveTo(pmPac.c*PM_S+PM_S/2, pmPac.r*PM_S+PM_S/2);
-            ctx.arc(pmPac.c*PM_S+PM_S/2, pmPac.r*PM_S+PM_S/2, PM_S/2-3, angle+mouth, angle+Math.PI*2-mouth);
-            ctx.closePath(); ctx.fill();
+            ctx.shadowColor='#fbbf24'; ctx.shadowBlur=3;
+            ctx.beginPath(); ctx.moveTo(px,py);
+            ctx.arc(px,py,PM_S/2-1,ang+mth,ang+Math.PI*2-mth); ctx.closePath(); ctx.fill();
+            ctx.shadowBlur=0;
 
-            ctx.fillStyle='var(--dim)'; ctx.font='13px "IBM Plex Mono"'; ctx.textAlign='right';
-            ctx.fillText('SCORE: '+pmScore+'  DOTS: '+pmDots, canvas.width-10, canvas.height-8);
+            //
+            // HUD
+            ctx.fillStyle='#4a5070'; ctx.font='11px "IBM Plex Mono"'; ctx.textAlign='left';
+            ctx.fillText('SCORE '+pmScore, PM_OX, canvas.height-4);
+            ctx.textAlign='right';
+            ctx.fillText('DOTS '+pmDots, PM_OX+PM_C*PM_S, canvas.height-4);
 
-            gameAnimFrame = requestAnimationFrame(pacmanLoop);
+            gameAnimFrame=requestAnimationFrame(pacmanLoop);
         }
 
     </script>
