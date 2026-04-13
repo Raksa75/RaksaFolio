@@ -1863,24 +1863,53 @@
 
 
         /* Tool logos grid */
-        .tool-grid { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px }
+        .tool-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px
+        }
+
         .tool-item {
-            display:flex; flex-direction:column; align-items:center; gap:5px;
-            padding:10px 8px; border:1px solid var(--b); border-radius:var(--r);
-            background:var(--surf); transition:border-color .2s,background .2s;
-            width:68px; cursor:default;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 8px;
+            border: 1px solid var(--b);
+            border-radius: var(--r);
+            background: var(--surf);
+            transition: border-color .2s,background .2s;
+            width: 68px;
+            cursor: default;
         }
-        .tool-item:hover { border-color:var(--v); background:var(--vg) }
-        .tool-item img {
-            width:26px; height:26px;
-            filter:brightness(0) invert(1) opacity(.55);
-            transition:opacity .2s,filter .2s;
-        }
-        .tool-item:hover img { opacity:1; filter:brightness(0) invert(1) }
-        .tool-item span {
-            font-family:var(--mono); font-size:.48rem; color:var(--dim);
-            text-align:center; letter-spacing:.06em; text-transform:uppercase; line-height:1.2;
-        }
+
+            .tool-item:hover {
+                border-color: var(--v);
+                background: var(--vg)
+            }
+
+            .tool-item img {
+                width: 26px;
+                height: 26px;
+                filter: brightness(0) invert(1) opacity(.55);
+                transition: opacity .2s,filter .2s;
+            }
+
+            .tool-item:hover img {
+                opacity: 1;
+                filter: brightness(0) invert(1)
+            }
+
+            .tool-item span {
+                font-family: var(--mono);
+                font-size: .48rem;
+                color: var(--dim);
+                text-align: center;
+                letter-spacing: .06em;
+                text-transform: uppercase;
+                line-height: 1.2;
+            }
 
         /* meta chips */
         .meta-chips {
@@ -2279,7 +2308,7 @@
                     <div>NICOLAS</div>
                     <div><span class="g">ZIMMERMANN</span></div>
                 </h1>
-                <p class="hero-sub">Étudiant en Game Design à <strong>LISAA Paris</strong>. Créateur de mécaniques de jeu, board games et interfaces jouables.</p>
+                <p class="hero-sub">Étudiant en Game Design à <strong>LISAA Paris</strong>. Passionné par les <strong>systems</strong>, <strong>mécaniques</strong> et <strong>techniques</strong> autours du medium vidéoludique.</p>
                 <div class="hero-cta">
                     <a class="btn bp ripple-wrap" href="#" onclick="go('docs');return false;">[ VOIR LES PROJETS ]</a>
                     <a class="btn bg2 ripple-wrap" href="#" onclick="go('about');return false;">[ À PROPOS ]</a>
@@ -2486,7 +2515,7 @@
                     <h2>NICOLAS<br><span class="g">ZIMMERMANN</span></h2>
                     <div class="abi">
                         <p>Je suis <strong>Nicolas "Raksakoreko" Zimmermann</strong>, étudiant en Game Design à la <strong>LISAA Paris</strong>. Ma passion pour le game design découle de mon background compétitif.</p>
-                        <p>J'ai joué professionnellement <strong>CS:GO</strong> entre 2014 et 2016, puis à <strong>League of Legends</strong> où j'ai atteint le rang <strong>GrandMaster+ EUW</strong> depuis 2023. Je travaille avec la <strong>Whatoubance</strong> (ex Fnatic, Aegis, Solary, Mihos Esports, GentleMates) sur <strong>TFT</strong>.</p>
+                        <p>J'ai joué professionnellement <strong>CS:GO</strong> entre 2014 et 2016, puis à <strong>League of Legends</strong> où j'ai atteint le rang <strong>GrandMaster+ EUW</strong> depuis 2023. Aujourd'hui je travaille avec la <strong>Whatoubance</strong> (ex Fnatic, Aegis, Solary, Mihos Esports, GentleMates) sur <strong>TFT</strong>.</p>
                         <p>Vous trouverez ici des créations & concepts de jeux <strong>physiques</strong> (jeux de plateau, CCG, TCG..etc) et <strong>"numériques"</strong> (Unreal, Unity, HTML/JS/CSS voir Godot).</p>
                     </div>
                     <div class="sks">
@@ -2495,24 +2524,27 @@
                             <span class="sp">Game Design</span><span class="sp">Board Game</span><span class="sp">HTML/CSS/JS</span><span class="sp">Unity</span><span class="sp">Unreal Engine</span><span class="sp">Balancing</span><span class="sp">UI Design</span><span class="sp">GDD</span><span class="sp">Level Design</span><span class="sp">Prototyping</span><span class="sp">UX Design</span><span class="sp">QA</span>
                         </div>
 
-                    <div class="sks" style="margin-top:28px">
-                        <div class="skt">TOOLS</div>
-                        <div class="tool-grid">
-                            <div class="tool-item"><img src="https://cdn.simpleicons.org/unity/ffffff" alt="Unity" loading="lazy"><span>Unity</span></div>
-                            <div class="tool-item"><img src="https://cdn.simpleicons.org/unrealengine/ffffff" alt="Unreal" loading="lazy"><span>Unreal</span></div>
-                            <div class="tool-item"><img src="https://cdn.simpleicons.org/godotengine/ffffff" alt="Godot" loading="lazy"><span>Godot</span></div>
-                            <div class="tool-item"><img src="https://cdn.simpleicons.org/autodesk/ffffff" alt="3DS Max" loading="lazy"><span>3DS Max</span></div>
-                            <div class="tool-item"><img src="https://cdn.simpleicons.org/adobephotoshop/ffffff" alt="Photoshop" loading="lazy"><span>Photoshop</span></div>
-                            <div class="tool-item"><img src="https://cdn.simpleicons.org/adobepremierepro/ffffff" alt="Premiere" loading="lazy"><span>Premiere</span></div>
-                            <div class="tool-item"><img src="https://cdn.simpleicons.org/miro/ffffff" alt="Miro" loading="lazy"><span>Miro</span></div>
-                            <div class="tool-item"><img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" loading="lazy"><span>GitHub</span></div>
-                            <div class="tool-item"><img src="https://cdn.simpleicons.org/google/ffffff" alt="G. Suite" loading="lazy"><span>G. Suite</span></div>
-                            <div class="tool-item"><img src="https://cdn.simpleicons.org/googledocs/ffffff" alt="G. Docs" loading="lazy"><span>G. Docs</span></div>
-                            <div class="tool-item"><img src="https://cdn.simpleicons.org/googleslides/ffffff" alt="G. Slides" loading="lazy"><span>G. Slides</span></div>
-                            <div class="tool-item"><img src="https://cdn.simpleicons.org/figma/ffffff" alt="Figma" loading="lazy"><span>Figma</span></div>
-                            <div class="tool-item"><img src="https://cdn.simpleicons.org/trello/ffffff" alt="Trello" loading="lazy"><span>Trello</span></div>
+                        <div class="sks" style="margin-top:28px">
+                            <div class="skt">TOOLS</div>
+                            <div class="tool-grid">
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/unity/ffffff" alt="Unity" loading="lazy"><span>Unity</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/unrealengine/ffffff" alt="Unreal" loading="lazy"><span>Unreal</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/godotengine/ffffff" alt="Godot" loading="lazy"><span>Godot</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/html5/ffffff" alt="HTML5" loading="lazy"><span>HTML</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/css3/ffffff" alt="CSS3" loading="lazy"><span>CSS</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/javascript/ffffff" alt="JavaScript" loading="lazy"><span>JS</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/autodesk/ffffff" alt="3DS Max" loading="lazy"><span>3DS Max</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/adobephotoshop/ffffff" alt="Photoshop" loading="lazy"><span>Photoshop</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/adobepremierepro/ffffff" alt="Premiere" loading="lazy"><span>Premiere</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/figma/ffffff" alt="Figma" loading="lazy"><span>Figma</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/miro/ffffff" alt="Miro" loading="lazy"><span>Miro</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/notion/ffffff" alt="Notion" loading="lazy"><span>Notion</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/trello/ffffff" alt="Trello" loading="lazy"><span>Trello</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" loading="lazy"><span>GitHub</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/google/ffffff" alt="G. Suite" loading="lazy"><span>G. Suite</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/microsoftexcel/ffffff" alt="Excel" loading="lazy"><span>Excel</span></div>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
                 <div>
@@ -2520,8 +2552,8 @@
                         <div class="cch">// CONTACT</div>
                         <div class="ccb">
                             <a href="mailto:Pro.Nicolas.Zimmermann@gmail.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 7 10 6 10-6" /></svg>Pro.Nicolas.Zimmermann@gmail.com</a>
-                            
-                            
+
+
                         </div>
                     </div>
                     <div class="gb">
@@ -2552,7 +2584,7 @@
                     </div>
 
                     <canvas id="game-canvas" width="600" height="400"></canvas>
-                    
+
                 </div>
 
                 <div class="game-controls" id="g-controls">
@@ -2698,7 +2730,7 @@
             { id: 'tt', thumb: ftj('874a1faf5118467b8f49d6ea47767b45'), type: 'GD · Concept', title: 'TIC-TAC TAC-TIC', sub: 'Concept complet · Hiver 2025', desc: 'Concept réalisé fin 2025 détaillant mes 3C et systèmes : Mécaniques, Progression, Économique, Social, Meta et boucles rétroactives.', meta: [{ k: 'Date', v: 'Hiver 2025' }, { k: 'Contenu', v: '3C, Systèmes, Boucles rétroactives' }], imgs: [fj('733c24a134fa409bb483b307f35aeeec'), fj('810d43449fc541a18fb1fabddb9dff97'), fj('13954240cdf44cf8ad15ccc46435e47b'), fj('2dd0ac4d3f68446ebe418cd4b7cf797c'), fj('3bb27740b2074a5d8237279def1d3c20'), fj('556c1263fa8240a9856456d9a0b8f016'), fj('4c04b9bcfac84ef5b94ec256b883cdba'), fj('cc732430b6d34000b5bd5cf82617adcf'), fj('d84d0fbd272f458fa1bbfc8dc14761f1'), fj('96b33e6a840441b4be217626549f4380'), fj('a4a4768f76014405a9da13ddf8f8c38e'), fj('ef2c16f95dc94abd8a4e0657f14d447e')] },
             { id: 'nb', thumb: ftj('1d18a45d9f6c4e0db96c63cc615b8f2f'), type: 'GD · Pitch', title: 'SAVE YOUR NEIGHBOR', sub: 'Projet de fin d\'année 2025–2026 · Pitch accepté', desc: 'Second pitch retenu par l\'administration. Réalisé entièrement seul.', meta: [{ k: 'Auteur', v: 'Solo' }, { k: 'Type', v: 'Pitch end-of-year' }], imgs: [fj('4e22af9f92bd4139be96a2fd75322327'), fj('1a5a00e18e52406f83e5c3f0bfbf6ef2'), fj('2f3fd653520e4ff782bd3818a8237025'), fj('772d448d3b7044679ac2c0f583ad31b0'), fj('4e5a07a2ef78448dbfd6e4471d56e5b3'), fj('60ab860d05c24aebab076f94880c4396'), fj('5f1ea2683f0c4852ac84b162dd10069d'), fj('528d0701ce6c41ef899b66de74ed3d5f')] },
             { id: 'lv', thumb: `${W}45ed80_30773ad239074feab05780d50dea060f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_30773ad239074feab05780d50dea060f~mv2.jpg`, type: 'LD', title: 'COUR NAPOLÉON DU LOUVRE', sub: 'Level Design · FPS Capture the Flag', desc: 'Level design basé sur la Cour Napoléon du Louvre pour un FPS en équipe capture-the-flag.', meta: [{ k: 'Type', v: 'Level Design' }, { k: 'Mode', v: 'Capture the Flag' }, { k: 'Genre', v: 'FPS équipe' }], imgs: [`${W}45ed80_3290c277bfd54ab1b768b273934e018f~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_3290c277bfd54ab1b768b273934e018f~mv2.jpg`, `${W}45ed80_a5f7b8fc88d4437985c4d97202ed238b~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_a5f7b8fc88d4437985c4d97202ed238b~mv2.jpg`, `${W}45ed80_26368fa1e619405998947f8d5a08b744~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_26368fa1e619405998947f8d5a08b744~mv2.jpg`, `${W}45ed80_e6609d615e484ab1bb4096d80f012c4b~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_e6609d615e484ab1bb4096d80f012c4b~mv2.jpg`, `${W}45ed80_fac035e22a1d4ee693528dc2a78d6910~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_fac035e22a1d4ee693528dc2a78d6910~mv2.jpg`] },
-            { id: 'pk', thumb: `${W}45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg`, type: 'GD · Concept', title: 'POKÉMON FREEDOM', sub: 'Concept 30 min · Thème : La Squirtle de Sacha', desc: 'Concept réalisé en 30 minutes sur le thème : la Squirtle de Sacha (Pokémon).', meta: [{ k: 'Type', v: 'GD Concept' }, { k: 'Durée', v: '30 minutes' }, { k: 'Thème', v: 'Squirtle de Sacha' }], imgs: [`${W}45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg`, `${W}45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg`, `${W}45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg`, `${W}45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg`, `${W}45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg`] },
+            { id: 'pk', thumb: `${W}45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg`, type: 'GD · Concept', title: 'POKÉMON FREEDOM', sub: 'Concept 30 min · Thème : Le Carapuce de Sacha', desc: 'Concept réalisé en 30 minutes sur le thème :  Le Carapuce de Sacha (Pokémon).', meta: [{ k: 'Type', v: 'GD Concept' }, { k: 'Durée', v: '30 minutes' }, { k: 'Thème', v: 'Carapuce de Sacha' }], imgs: [`${W}45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg`, `${W}45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg`, `${W}45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg`, `${W}45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg`, `${W}45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg`] },
             { id: 'ud', thumb: ftj('62494ecf77694d02a523e077e00cd7ae'), type: 'GD/LD · Concept', title: 'UPDEE & DOWNDEE', sub: 'Concept 1 jour · 2024–2025', desc: 'Concept réalisé en 1 jour (3C, USP, LD explicatif). Mon rôle : Level Design de la mécanique de levier.', meta: [{ k: 'Date', v: '2024–2025' }, { k: 'Durée', v: '1 journée' }, { k: 'Rôle', v: 'Level Design' }], imgs: [fj('9d4ce0de51804d7f9d7e4311f7e01cd8'), fj('f4e0a38eb2364d37ac1475a99ab7655d'), fj('813aab6adce4408c89f12345dea45d6d'), fj('4d16eb765f5b44878c9a89c31c5be36f'), fj('6e2da79637cf42828c38bdb5cc514d77'), fj('75023383ca6547d18befe6ee5f6f8724'), fj('acd221cb4bb5487a9a65d4ff31e76fa7'), fj('8d002f3b76fb4da79e8dfd29291cf163'), fj('2ce2c42502c54a4a9a2ade921ec4ca91'), fj('63046b2fcbe7429d8add8821384e0750'), fj('792731b0f9bf4f23b88c5a8f2f80fdab'), fj('8130c16a5dfd41178465ceace1b74356'), fj('daf571fc1c2d4656882c5ed4edb14d37')] },
             { id: 'nf', thumb: f('9fa605fc01e044aaaf17b4c4520d46b7'), type: 'GD · Gamification', title: 'NETFLIX GAMIFICATION', sub: 'Concept 30 min · Thème imposé', desc: 'Concept réalisé en 30 minutes sur le thème : Gamification de Netflix.', meta: [{ k: 'Durée', v: '30 minutes' }, { k: 'Thème', v: 'Gamification Netflix' }], imgs: [fj('487dc86c854e4308ad447e353564fa4e')] },
             { id: 'es', thumb: ftj('861ebaafc26b4ac4a3543b6eee01dc1a'), type: 'UI Design', title: 'UI DESIGN — ESPORTS MANAGER', sub: 'Mockup Photoshop · 2021–2022', desc: 'Maquette de concept UI pour "ESPORT MANAGER".', meta: [{ k: 'Type', v: 'UI Design' }, { k: 'Date', v: '2021–2022' }, { k: 'Outil', v: 'Photoshop' }], imgs: [fj('861ebaafc26b4ac4a3543b6eee01dc1a')] },
@@ -2860,7 +2892,7 @@
         const cHistory = document.getElementById('c-history');
         const cInputRow = document.getElementById('c-input-row');
         const canvas = document.getElementById('game-canvas');
-        
+
         const gControls = document.getElementById('g-controls');
         const ctx = canvas.getContext('2d');
 
@@ -2898,11 +2930,11 @@
             cLog('> ' + val, 'var(--dim)');
             const v = val.toLowerCase();
 
-            if (v === 'play spaceinvader')  startGame('spaceinvader');
-            else if (v === 'play pacman')   startGame('pacman');
-            else if (v === 'play frogger')  startGame('frogger');
+            if (v === 'play spaceinvader') startGame('spaceinvader');
+            else if (v === 'play pacman') startGame('pacman');
+            else if (v === 'play frogger') startGame('frogger');
             else if (v === 'play trex' || v === 'play t-rex') startGame('trex');
-            else if (v === 'play doom')     cLog('// DOOM cannot run embedded — browser blocks iframe injection from external hosts. Not available.', 'var(--console-err, #f43f5e)');
+            else if (v === 'play doom') cLog('// DOOM cannot run embedded — browser blocks iframe injection from external hosts. Not available.', 'var(--console-err, #f43f5e)');
             else if (v === 'help') {
                 cLog('// COMMANDS ──────────────────────────────────', 'var(--dim)');
                 cLog('  <span style="color:var(--v2)">play spaceinvader</span>  — Space Invaders : défends-toi contre les aliens');
@@ -2916,11 +2948,11 @@
                 cLog('  <span style="color:var(--v2)">raksa</span>              — qui suis-je ?');
                 cLog('  <span style="color:var(--v2)">lisa</span> / <span style="color:var(--v2)">akira</span> / <span style="color:var(--v2)">akipouette</span>  — les gens importants');
             }
-            else if (v === 'goat')          cLog('// OPESANEC — <a href="https://www.twitch.tv/opesanec" target="_blank" style="color:var(--v2);text-decoration:underline">twitch.tv/opesanec</a>', 'var(--cyan)');
-            else if (v === 'lol')           cLog('// pire jeu all time');
-            else if (v === 'yuumi')         cLog('// mérite une total destruction et disparition du jeu', '#f43f5e');
-            else if (v === 'raksa')         cLog('// moi');
-            else if (v === 'lisa')          cLog('// ADMV', '#f472b6');
+            else if (v === 'goat') cLog('// OPESANEC — <a href="https://www.twitch.tv/opesanec" target="_blank" style="color:var(--v2);text-decoration:underline">twitch.tv/opesanec</a>', 'var(--cyan)');
+            else if (v === 'lol') cLog('// pire jeu all time');
+            else if (v === 'yuumi') cLog('// mérite une total destruction et disparition du jeu', '#f43f5e');
+            else if (v === 'raksa') cLog('// moi');
+            else if (v === 'lisa') cLog('// ADMV', '#f472b6');
             else if (v === 'akira' || v === 'akipouette') cLog('// la fifille', '#fbbf24');
             else { cLog(`'${val}' : commande inconnue`, '#f43f5e'); }
 
@@ -2936,30 +2968,30 @@
         window.addEventListener('keydown', e => {
             if (!gameActive) return;
             if (currentGame === 'spaceinvader') {
-                if (e.key === 'ArrowLeft')  { keys.left = true; e.preventDefault(); }
+                if (e.key === 'ArrowLeft') { keys.left = true; e.preventDefault(); }
                 if (e.key === 'ArrowRight') { keys.right = true; e.preventDefault(); }
-                if (e.key === ' ')          { keys.space = true; e.preventDefault(); }
+                if (e.key === ' ') { keys.space = true; e.preventDefault(); }
             }
             if (currentGame === 'trex') {
                 if (e.key === ' ' || e.key === 'ArrowUp') { keys.up = true; e.preventDefault(); }
             }
             if (currentGame === 'frogger') {
-                const moves = { ArrowUp:'up', ArrowDown:'down', ArrowLeft:'left', ArrowRight:'right' };
+                const moves = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right' };
                 if (moves[e.key]) { froggerMove(moves[e.key]); e.preventDefault(); }
             }
             if (currentGame === 'pacman') {
-                if (e.key === 'ArrowUp')    { pmNextDir = {r:-1,c:0}; e.preventDefault(); }
-                if (e.key === 'ArrowDown')  { pmNextDir = {r:1, c:0}; e.preventDefault(); }
-                if (e.key === 'ArrowLeft')  { pmNextDir = {r:0, c:-1}; e.preventDefault(); }
-                if (e.key === 'ArrowRight') { pmNextDir = {r:0, c:1}; e.preventDefault(); }
+                if (e.key === 'ArrowUp') { pmNextDir = { r: -1, c: 0 }; e.preventDefault(); }
+                if (e.key === 'ArrowDown') { pmNextDir = { r: 1, c: 0 }; e.preventDefault(); }
+                if (e.key === 'ArrowLeft') { pmNextDir = { r: 0, c: -1 }; e.preventDefault(); }
+                if (e.key === 'ArrowRight') { pmNextDir = { r: 0, c: 1 }; e.preventDefault(); }
             }
         });
         window.addEventListener('keyup', e => {
             if (!gameActive) return;
             if (currentGame === 'spaceinvader') {
-                if (e.key === 'ArrowLeft')  keys.left = false;
+                if (e.key === 'ArrowLeft') keys.left = false;
                 if (e.key === 'ArrowRight') keys.right = false;
-                if (e.key === ' ')          keys.space = false;
+                if (e.key === ' ') keys.space = false;
             }
             if (currentGame === 'trex') {
                 if (e.key === ' ' || e.key === 'ArrowUp') keys.up = false;
@@ -2977,20 +3009,20 @@
 
         function bindKey(btn, down, up) {
             const si = () => currentGame === 'spaceinvader';
-            btn.addEventListener('mousedown',  () => { if (gameActive) down(); });
-            btn.addEventListener('mouseup',    () => { if (gameActive) up(); });
-            btn.addEventListener('touchstart', e => { if (gameActive) { down(); e.preventDefault(); } }, { passive:false });
-            btn.addEventListener('touchend',   e => { if (gameActive) { up();   e.preventDefault(); } }, { passive:false });
+            btn.addEventListener('mousedown', () => { if (gameActive) down(); });
+            btn.addEventListener('mouseup', () => { if (gameActive) up(); });
+            btn.addEventListener('touchstart', e => { if (gameActive) { down(); e.preventDefault(); } }, { passive: false });
+            btn.addEventListener('touchend', e => { if (gameActive) { up(); e.preventDefault(); } }, { passive: false });
         }
         // Space invader directional
-        bindKey(btnL, ()=>{ if(currentGame==='spaceinvader') keys.left=true; }, ()=>keys.left=false);
-        bindKey(btnR, ()=>{ if(currentGame==='spaceinvader') keys.right=true; }, ()=>keys.right=false);
-        bindKey(btnF, ()=>{ if(currentGame==='spaceinvader') keys.space=true; if(currentGame==='trex') keys.up=true; }, ()=>{ keys.space=false; keys.up=false; });
-        bindKey(btnU, ()=>{ if(currentGame==='trex') keys.up=true; if(currentGame==='frogger') froggerMove('up'); if(currentGame==='pacman') pmNextDir={r:-1,c:0}; }, ()=>keys.up=false);
-        bindKey(btnD, ()=>{ if(currentGame==='frogger') froggerMove('down'); if(currentGame==='pacman') pmNextDir={r:1,c:0}; }, ()=>{});
+        bindKey(btnL, () => { if (currentGame === 'spaceinvader') keys.left = true; }, () => keys.left = false);
+        bindKey(btnR, () => { if (currentGame === 'spaceinvader') keys.right = true; }, () => keys.right = false);
+        bindKey(btnF, () => { if (currentGame === 'spaceinvader') keys.space = true; if (currentGame === 'trex') keys.up = true; }, () => { keys.space = false; keys.up = false; });
+        bindKey(btnU, () => { if (currentGame === 'trex') keys.up = true; if (currentGame === 'frogger') froggerMove('up'); if (currentGame === 'pacman') pmNextDir = { r: -1, c: 0 }; }, () => keys.up = false);
+        bindKey(btnD, () => { if (currentGame === 'frogger') froggerMove('down'); if (currentGame === 'pacman') pmNextDir = { r: 1, c: 0 }; }, () => { });
         // Extra left/right for frogger/pacman
-        btnL.addEventListener('touchstart', e=>{ if(currentGame==='frogger'){froggerMove('left');e.preventDefault();} if(currentGame==='pacman'){pmNextDir={r:0,c:-1};e.preventDefault();} },{passive:false});
-        btnR.addEventListener('touchstart', e=>{ if(currentGame==='frogger'){froggerMove('right');e.preventDefault();} if(currentGame==='pacman'){pmNextDir={r:0,c:1};e.preventDefault();} },{passive:false});
+        btnL.addEventListener('touchstart', e => { if (currentGame === 'frogger') { froggerMove('left'); e.preventDefault(); } if (currentGame === 'pacman') { pmNextDir = { r: 0, c: -1 }; e.preventDefault(); } }, { passive: false });
+        btnR.addEventListener('touchstart', e => { if (currentGame === 'frogger') { froggerMove('right'); e.preventDefault(); } if (currentGame === 'pacman') { pmNextDir = { r: 0, c: 1 }; e.preventDefault(); } }, { passive: false });
         btnE.addEventListener('click', stopGame);
         btnE.addEventListener('touchstart', e => { e.preventDefault(); stopGame(); }, { passive: false });
 
@@ -3014,12 +3046,12 @@
             }
         }
 
-        function showBtns(l,r,f,u,d) {
-            btnL.style.display = l ? 'block':'none';
-            btnR.style.display = r ? 'block':'none';
-            btnF.style.display = f ? 'block':'none';
-            btnU.style.display = u ? 'block':'none';
-            btnD.style.display = d ? 'block':'none';
+        function showBtns(l, r, f, u, d) {
+            btnL.style.display = l ? 'block' : 'none';
+            btnR.style.display = r ? 'block' : 'none';
+            btnF.style.display = f ? 'block' : 'none';
+            btnU.style.display = u ? 'block' : 'none';
+            btnD.style.display = d ? 'block' : 'none';
         }
 
         function startGame(gameType) {
@@ -3032,26 +3064,26 @@
             gameOver = false; victory = false;
 
             if (gameType === 'spaceinvader') {
-                showBtns(1,1,1,0,0);
+                showBtns(1, 1, 1, 0, 0);
                 btnF.textContent = 'FIRE';
                 initSpaceInvaders();
                 gameAnimFrame = requestAnimationFrame(gameLoop);
             } else if (gameType === 'trex') {
-                showBtns(0,0,1,1,0);
+                showBtns(0, 0, 1, 1, 0);
                 btnF.textContent = '▲ JUMP';
                 initTrex();
                 gameAnimFrame = requestAnimationFrame(trexLoop);
             } else if (gameType === 'frogger') {
-                showBtns(1,1,0,1,1);
+                showBtns(1, 1, 0, 1, 1);
                 initFrogger();
                 gameAnimFrame = requestAnimationFrame(froggerLoop);
             } else if (gameType === 'pacman') {
-                showBtns(1,1,0,1,1);
+                showBtns(1, 1, 0, 1, 1);
                 initPacman();
                 gameAnimFrame = requestAnimationFrame(pacmanLoop);
             }
 
-            setTimeout(() => canvas.scrollIntoView({ behavior:'smooth', block:'center' }), 100);
+            setTimeout(() => canvas.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
         }
 
         function stopGame() {
@@ -3061,7 +3093,7 @@
 
             cancelAnimationFrame(gameAnimFrame);
             canvas.style.display = 'none';
-            
+
 
             gControls.classList.remove('active');
             cHistory.style.display = 'block';
@@ -3180,7 +3212,7 @@
         const GROUND = canvas.height - 55;
 
         function initTrex() {
-            trex = { x:80, y:GROUND-45, w:28, h:45, vy:0, onGround:true, legPhase:0 };
+            trex = { x: 80, y: GROUND - 45, w: 28, h: 45, vy: 0, onGround: true, legPhase: 0 };
             trexObs = [];
             trexScore = 0; trexSpeed = 4; trexSpawn = 90; trexLastTS = 0;
             gameOver = false; victory = false; keys.up = false;
@@ -3188,15 +3220,15 @@
 
         function trexLoop(ts) {
             if (!gameActive || currentGame !== 'trex') return;
-            const dt = trexLastTS ? Math.min((ts - trexLastTS)/16.667, 3) : 1;
+            const dt = trexLastTS ? Math.min((ts - trexLastTS) / 16.667, 3) : 1;
             trexLastTS = ts;
-            ctx.clearRect(0,0,canvas.width,canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             if (gameOver || victory) {
-                ctx.fillStyle='#fff'; ctx.font='22px "IBM Plex Mono"'; ctx.textAlign='center';
-                ctx.fillText(victory ? 'YOU WIN' : 'GAME OVER', canvas.width/2, canvas.height/2);
-                ctx.font='13px "IBM Plex Mono"';
-                ctx.fillText('Press SPACE / JUMP to restart', canvas.width/2, canvas.height/2+28);
+                ctx.fillStyle = '#fff'; ctx.font = '22px "IBM Plex Mono"'; ctx.textAlign = 'center';
+                ctx.fillText(victory ? 'YOU WIN' : 'GAME OVER', canvas.width / 2, canvas.height / 2);
+                ctx.font = '13px "IBM Plex Mono"';
+                ctx.fillText('Press SPACE / JUMP to restart', canvas.width / 2, canvas.height / 2 + 28);
                 if (keys.up || keys.space) { initTrex(); }
                 gameAnimFrame = requestAnimationFrame(trexLoop); return;
             }
@@ -3204,7 +3236,7 @@
             // Jump
             if ((keys.up || keys.space) && trex.onGround) { trex.vy = -13; trex.onGround = false; }
             trex.vy += 0.55 * dt;
-            trex.y  += trex.vy * dt;
+            trex.y += trex.vy * dt;
             if (trex.y >= GROUND - trex.h) { trex.y = GROUND - trex.h; trex.vy = 0; trex.onGround = true; }
             if (trex.onGround) trex.legPhase += 0.25 * dt;
 
@@ -3212,46 +3244,46 @@
             trexSpawn -= dt;
             if (trexSpawn <= 0) {
                 const h = 30 + Math.random() * 40;
-                trexObs.push({ x: canvas.width+10, y: GROUND-h, w: 18+Math.random()*14, h });
-                trexSpawn = 55 + Math.random()*55 - trexScore*0.03;
+                trexObs.push({ x: canvas.width + 10, y: GROUND - h, w: 18 + Math.random() * 14, h });
+                trexSpawn = 55 + Math.random() * 55 - trexScore * 0.03;
             }
-            for (let i=trexObs.length-1; i>=0; i--) {
+            for (let i = trexObs.length - 1; i >= 0; i--) {
                 trexObs[i].x -= trexSpeed * dt;
-                if (trexObs[i].x + trexObs[i].w < 0) { trexObs.splice(i,1); continue; }
-                if (rectIntersect({x:trex.x+4,y:trex.y+4,w:trex.w-8,h:trex.h-4}, trexObs[i])) gameOver = true;
+                if (trexObs[i].x + trexObs[i].w < 0) { trexObs.splice(i, 1); continue; }
+                if (rectIntersect({ x: trex.x + 4, y: trex.y + 4, w: trex.w - 8, h: trex.h - 4 }, trexObs[i])) gameOver = true;
             }
             trexScore += dt * 0.2;
             trexSpeed = 4 + trexScore * 0.012;
 
             // Draw ground
-            ctx.fillStyle='#1c2040'; ctx.fillRect(0, GROUND, canvas.width, 3);
-            ctx.fillStyle='#252850'; ctx.fillRect(0, GROUND+3, canvas.width, canvas.height-GROUND-3);
+            ctx.fillStyle = '#1c2040'; ctx.fillRect(0, GROUND, canvas.width, 3);
+            ctx.fillStyle = '#252850'; ctx.fillRect(0, GROUND + 3, canvas.width, canvas.height - GROUND - 3);
 
             // Draw dino (pixel art style)
-            ctx.fillStyle='#a855f7';
+            ctx.fillStyle = '#a855f7';
             ctx.fillRect(trex.x, trex.y, trex.w, trex.h);            // body
-            ctx.fillStyle='#c084fc';
-            ctx.fillRect(trex.x+trex.w, trex.y, 12, 16);              // head
-            ctx.fillStyle='#22d3ee';
-            ctx.fillRect(trex.x+trex.w+8, trex.y+4, 4, 4);           // eye
+            ctx.fillStyle = '#c084fc';
+            ctx.fillRect(trex.x + trex.w, trex.y, 12, 16);              // head
+            ctx.fillStyle = '#22d3ee';
+            ctx.fillRect(trex.x + trex.w + 8, trex.y + 4, 4, 4);           // eye
             // legs
-            ctx.fillStyle='#7c3aed';
-            const lp = Math.sin(trex.legPhase)*6;
-            ctx.fillRect(trex.x+4, trex.y+trex.h, 8, trex.onGround ? 8+lp : 12);
-            ctx.fillRect(trex.x+16, trex.y+trex.h, 8, trex.onGround ? 8-lp : 8);
+            ctx.fillStyle = '#7c3aed';
+            const lp = Math.sin(trex.legPhase) * 6;
+            ctx.fillRect(trex.x + 4, trex.y + trex.h, 8, trex.onGround ? 8 + lp : 12);
+            ctx.fillRect(trex.x + 16, trex.y + trex.h, 8, trex.onGround ? 8 - lp : 8);
 
             // Draw obstacles
-            ctx.fillStyle='#22d3ee';
+            ctx.fillStyle = '#22d3ee';
             for (const o of trexObs) {
                 ctx.fillRect(o.x, o.y, o.w, o.h);
-                ctx.fillStyle='#0891b2';
-                ctx.fillRect(o.x+o.w/2-3, o.y-8, 6, 10);
-                ctx.fillStyle='#22d3ee';
+                ctx.fillStyle = '#0891b2';
+                ctx.fillRect(o.x + o.w / 2 - 3, o.y - 8, 6, 10);
+                ctx.fillStyle = '#22d3ee';
             }
 
             // Score
-            ctx.fillStyle='var(--dim)'; ctx.font='13px "IBM Plex Mono"'; ctx.textAlign='right';
-            ctx.fillText('SCORE: '+Math.floor(trexScore), canvas.width-10, 20);
+            ctx.fillStyle = 'var(--dim)'; ctx.font = '13px "IBM Plex Mono"'; ctx.textAlign = 'right';
+            ctx.fillText('SCORE: ' + Math.floor(trexScore), canvas.width - 10, 20);
 
             gameAnimFrame = requestAnimationFrame(trexLoop);
         }
@@ -3260,97 +3292,99 @@
         //  FROGGER
         // ═══════════════════════════════════════════════════
         let frog, frogCars, froggerLastTS, frogDead, frogWin;
-        const FR_ROWS=9, FR_COLS=12, FR_CW=50, FR_CH=Math.floor(canvas.height/FR_ROWS);
-        const FR_LANES=[
-            {type:'safe'},
-            {type:'road', dir:1,  speed:1.1, carW:70},
-            {type:'road', dir:-1, speed:1.5, carW:80},
-            {type:'road', dir:1,  speed:1.3, carW:65},
-            {type:'safe'},
-            {type:'road', dir:-1, speed:1.0, carW:85},
-            {type:'road', dir:1,  speed:1.7, carW:60},
-            {type:'road', dir:-1, speed:1.2, carW:75},
-            {type:'safe'},
+        const FR_ROWS = 9, FR_COLS = 12, FR_CW = 50, FR_CH = Math.floor(canvas.height / FR_ROWS);
+        const FR_LANES = [
+            { type: 'safe' },
+            { type: 'road', dir: 1, speed: 1.1, carW: 70 },
+            { type: 'road', dir: -1, speed: 1.5, carW: 80 },
+            { type: 'road', dir: 1, speed: 1.3, carW: 65 },
+            { type: 'safe' },
+            { type: 'road', dir: -1, speed: 1.0, carW: 85 },
+            { type: 'road', dir: 1, speed: 1.7, carW: 60 },
+            { type: 'road', dir: -1, speed: 1.2, carW: 75 },
+            { type: 'safe' },
         ];
 
         function initFrogger() {
-            frog = { col:5, row:FR_ROWS-1 };
+            frog = { col: 5, row: FR_ROWS - 1 };
             frogCars = [];
-            for (let r=0; r<FR_ROWS; r++) {
-                const lane = FR_LANES[r]; if (lane.type!=='road') continue;
-                for (let i=0; i<3; i++) {
-                    frogCars.push({ row:r, x: (i/3)*canvas.width + Math.random()*FR_CW*2,
-                        w:lane.carW, dir:lane.dir, speed:lane.speed });
+            for (let r = 0; r < FR_ROWS; r++) {
+                const lane = FR_LANES[r]; if (lane.type !== 'road') continue;
+                for (let i = 0; i < 3; i++) {
+                    frogCars.push({
+                        row: r, x: (i / 3) * canvas.width + Math.random() * FR_CW * 2,
+                        w: lane.carW, dir: lane.dir, speed: lane.speed
+                    });
                 }
             }
-            frogDead=false; frogWin=false; froggerLastTS=0;
-            gameOver=false; victory=false;
+            frogDead = false; frogWin = false; froggerLastTS = 0;
+            gameOver = false; victory = false;
         }
 
         function froggerMove(dir) {
-            if (!gameActive || currentGame!=='frogger') return;
+            if (!gameActive || currentGame !== 'frogger') return;
             if (frogDead || frogWin) { initFrogger(); return; }
-            if (dir==='up'    && frog.row>0)           frog.row--;
-            if (dir==='down'  && frog.row<FR_ROWS-1)   frog.row++;
-            if (dir==='left'  && frog.col>0)           frog.col--;
-            if (dir==='right' && frog.col<FR_COLS-1)   frog.col++;
-            if (frog.row===0) { frogWin=true; victory=true; }
+            if (dir === 'up' && frog.row > 0) frog.row--;
+            if (dir === 'down' && frog.row < FR_ROWS - 1) frog.row++;
+            if (dir === 'left' && frog.col > 0) frog.col--;
+            if (dir === 'right' && frog.col < FR_COLS - 1) frog.col++;
+            if (frog.row === 0) { frogWin = true; victory = true; }
         }
 
         function froggerLoop(ts) {
-            if (!gameActive || currentGame!=='frogger') return;
-            const dt = froggerLastTS ? Math.min((ts-froggerLastTS)/16.667,3) : 1;
+            if (!gameActive || currentGame !== 'frogger') return;
+            const dt = froggerLastTS ? Math.min((ts - froggerLastTS) / 16.667, 3) : 1;
             froggerLastTS = ts;
-            ctx.clearRect(0,0,canvas.width,canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             if (gameOver || victory) {
-                ctx.fillStyle='#fff'; ctx.font='22px "IBM Plex Mono"'; ctx.textAlign='center';
-                ctx.fillText(victory ? 'HOME SAFE !' : 'GAME OVER', canvas.width/2, canvas.height/2);
-                ctx.font='13px "IBM Plex Mono"';
-                ctx.fillText('Arrow key to restart', canvas.width/2, canvas.height/2+28);
+                ctx.fillStyle = '#fff'; ctx.font = '22px "IBM Plex Mono"'; ctx.textAlign = 'center';
+                ctx.fillText(victory ? 'HOME SAFE !' : 'GAME OVER', canvas.width / 2, canvas.height / 2);
+                ctx.font = '13px "IBM Plex Mono"';
+                ctx.fillText('Arrow key to restart', canvas.width / 2, canvas.height / 2 + 28);
                 gameAnimFrame = requestAnimationFrame(froggerLoop); return;
             }
 
             for (const car of frogCars) {
                 car.x += car.dir * car.speed * dt;
-                if (car.dir>0 && car.x > canvas.width+10) car.x = -car.w-10;
-                if (car.dir<0 && car.x < -car.w-10) car.x = canvas.width+10;
+                if (car.dir > 0 && car.x > canvas.width + 10) car.x = -car.w - 10;
+                if (car.dir < 0 && car.x < -car.w - 10) car.x = canvas.width + 10;
             }
 
-            for (let r=0; r<FR_ROWS; r++) {
-                const y=r*FR_CH, lane=FR_LANES[r];
-                ctx.fillStyle = r===0 ? '#0f2018' : lane.type==='safe' ? '#0d1a10' : '#110d1e';
-                ctx.fillRect(0,y,canvas.width,FR_CH);
-                if (lane.type==='road') {
-                    ctx.strokeStyle='#251d40'; ctx.setLineDash([18,18]);
-                    ctx.beginPath(); ctx.moveTo(0,y+FR_CH/2); ctx.lineTo(canvas.width,y+FR_CH/2); ctx.stroke();
+            for (let r = 0; r < FR_ROWS; r++) {
+                const y = r * FR_CH, lane = FR_LANES[r];
+                ctx.fillStyle = r === 0 ? '#0f2018' : lane.type === 'safe' ? '#0d1a10' : '#110d1e';
+                ctx.fillRect(0, y, canvas.width, FR_CH);
+                if (lane.type === 'road') {
+                    ctx.strokeStyle = '#251d40'; ctx.setLineDash([18, 18]);
+                    ctx.beginPath(); ctx.moveTo(0, y + FR_CH / 2); ctx.lineTo(canvas.width, y + FR_CH / 2); ctx.stroke();
                     ctx.setLineDash([]);
                 }
             }
             // Goal row markers
-            for (let cc=0;cc<FR_COLS;cc++) {
-                ctx.fillStyle='#0a2014'; ctx.fillRect(cc*FR_CW+4,4,FR_CW-8,FR_CH-8);
+            for (let cc = 0; cc < FR_COLS; cc++) {
+                ctx.fillStyle = '#0a2014'; ctx.fillRect(cc * FR_CW + 4, 4, FR_CW - 8, FR_CH - 8);
             }
-            ctx.fillStyle='#00ff88'; ctx.font='10px "IBM Plex Mono"'; ctx.textAlign='center';
-            ctx.fillText('HOME', canvas.width/2, FR_CH/2+4);
+            ctx.fillStyle = '#00ff88'; ctx.font = '10px "IBM Plex Mono"'; ctx.textAlign = 'center';
+            ctx.fillText('HOME', canvas.width / 2, FR_CH / 2 + 4);
 
             for (const car of frogCars) {
-                const cy=car.row*FR_CH;
-                ctx.fillStyle='#e11d48'; ctx.fillRect(car.x,cy+5,car.w,FR_CH-10);
-                ctx.fillStyle='#fbbf24'; ctx.fillRect(car.x+(car.dir>0?car.w-8:4),cy+8,6,6);
+                const cy = car.row * FR_CH;
+                ctx.fillStyle = '#e11d48'; ctx.fillRect(car.x, cy + 5, car.w, FR_CH - 10);
+                ctx.fillStyle = '#fbbf24'; ctx.fillRect(car.x + (car.dir > 0 ? car.w - 8 : 4), cy + 8, 6, 6);
             }
 
-            const fx=frog.col*FR_CW, fy=frog.row*FR_CH;
+            const fx = frog.col * FR_CW, fy = frog.row * FR_CH;
             for (const car of frogCars) {
-                if (car.row===frog.row && !(fx+FR_CW-8<car.x || fx+8>car.x+car.w)) { frogDead=true; gameOver=true; }
+                if (car.row === frog.row && !(fx + FR_CW - 8 < car.x || fx + 8 > car.x + car.w)) { frogDead = true; gameOver = true; }
             }
 
-            ctx.fillStyle=frogDead?'#f43f5e':'#a855f7';
-            ctx.fillRect(fx+8,fy+6,FR_CW-16,FR_CH-12);
-            ctx.fillStyle='#22d3ee';
-            ctx.fillRect(fx+10,fy+8,6,5); ctx.fillRect(fx+FR_CW-16,fy+8,6,5);
-            ctx.fillStyle='#7c3aed';
-            ctx.fillRect(fx+6,fy+FR_CH-10,8,6); ctx.fillRect(fx+FR_CW-14,fy+FR_CH-10,8,6);
+            ctx.fillStyle = frogDead ? '#f43f5e' : '#a855f7';
+            ctx.fillRect(fx + 8, fy + 6, FR_CW - 16, FR_CH - 12);
+            ctx.fillStyle = '#22d3ee';
+            ctx.fillRect(fx + 10, fy + 8, 6, 5); ctx.fillRect(fx + FR_CW - 16, fy + 8, 6, 5);
+            ctx.fillStyle = '#7c3aed';
+            ctx.fillRect(fx + 6, fy + FR_CH - 10, 8, 6); ctx.fillRect(fx + FR_CW - 14, fy + FR_CH - 10, 8, 6);
 
             gameAnimFrame = requestAnimationFrame(froggerLoop);
         }
@@ -3358,7 +3392,7 @@
         //  PACMAN — Classic layout (28×31)
         // ═══════════════════════════════════════════════════
         // '#'=wall  '.'=dot  'O'=power pellet  ' '=open  'P'=start
-        const PM_DEF=[
+        const PM_DEF = [
             '############################',
             '#............##............#',
             '#.####.#####.##.#####.####.#',
@@ -3391,103 +3425,103 @@
             '#.####.#####P##.#####.####.#',
             '############################',
         ];
-        const PM_C=28, PM_R=31, PM_S=13;
-        const PM_OX=Math.floor((600-PM_C*PM_S)/2); // center horizontally
+        const PM_C = 28, PM_R = 31, PM_S = 13;
+        const PM_OX = Math.floor((600 - PM_C * PM_S) / 2); // center horizontally
         let pmMap, pmPac, pmDir, pmNextDir, pmDots, pmMoveTimer, pmLastTS, pmScore;
 
-        function pmOpen(r,c) {
-            r=(r+PM_R)%PM_R; c=(c+PM_C)%PM_C;
+        function pmOpen(r, c) {
+            r = (r + PM_R) % PM_R; c = (c + PM_C) % PM_C;
             return pmMap[r] && pmMap[r][c] !== 1;
         }
 
         function initPacman() {
             pmMap = PM_DEF.map(row => {
-                const arr=[];
-                for (let i=0;i<PM_C;i++) {
-                    const ch=row[i]||' ';
-                    arr.push(ch==='#'?1 : ch==='.'?0 : ch==='O'?2 : 3);
+                const arr = [];
+                for (let i = 0; i < PM_C; i++) {
+                    const ch = row[i] || ' ';
+                    arr.push(ch === '#' ? 1 : ch === '.' ? 0 : ch === 'O' ? 2 : 3);
                 }
                 return arr;
             });
-            let pRow=29, pCol=13;
-            for (let r=0;r<PM_R;r++) for (let c=0;c<PM_C;c++) if (PM_DEF[r][c]==='P') { pRow=r; pCol=c; pmMap[r][c]=3; }
-            pmPac={r:pRow, c:pCol};
-            pmDir={r:0,c:0}; pmNextDir={r:0,c:0};
-            pmDots=0;
-            for (let r=0;r<PM_R;r++) for (let c=0;c<PM_C;c++) if (pmMap[r][c]===0||pmMap[r][c]===2) pmDots++;
-            pmScore=0; pmMoveTimer=0; pmLastTS=0;
-            gameOver=false; victory=false;
+            let pRow = 29, pCol = 13;
+            for (let r = 0; r < PM_R; r++) for (let c = 0; c < PM_C; c++) if (PM_DEF[r][c] === 'P') { pRow = r; pCol = c; pmMap[r][c] = 3; }
+            pmPac = { r: pRow, c: pCol };
+            pmDir = { r: 0, c: 0 }; pmNextDir = { r: 0, c: 0 };
+            pmDots = 0;
+            for (let r = 0; r < PM_R; r++) for (let c = 0; c < PM_C; c++) if (pmMap[r][c] === 0 || pmMap[r][c] === 2) pmDots++;
+            pmScore = 0; pmMoveTimer = 0; pmLastTS = 0;
+            gameOver = false; victory = false;
         }
 
         function pacmanLoop(ts) {
-            if (!gameActive||currentGame!=='pacman') return;
-            const dt=pmLastTS?Math.min((ts-pmLastTS)/16.667,3):1;
-            pmLastTS=ts;
-            ctx.clearRect(0,0,canvas.width,canvas.height);
+            if (!gameActive || currentGame !== 'pacman') return;
+            const dt = pmLastTS ? Math.min((ts - pmLastTS) / 16.667, 3) : 1;
+            pmLastTS = ts;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            if (gameOver||victory) {
-                ctx.fillStyle='#fff'; ctx.font='20px "IBM Plex Mono"'; ctx.textAlign='center';
-                ctx.fillText(victory?'YOU WIN !':'GAME OVER', canvas.width/2, canvas.height/2);
-                ctx.font='12px "IBM Plex Mono"'; ctx.fillStyle='#4a5070';
-                ctx.fillText('Arrow key to restart', canvas.width/2, canvas.height/2+24);
-                if (pmNextDir.r||pmNextDir.c) initPacman();
-                gameAnimFrame=requestAnimationFrame(pacmanLoop); return;
+            if (gameOver || victory) {
+                ctx.fillStyle = '#fff'; ctx.font = '20px "IBM Plex Mono"'; ctx.textAlign = 'center';
+                ctx.fillText(victory ? 'YOU WIN !' : 'GAME OVER', canvas.width / 2, canvas.height / 2);
+                ctx.font = '12px "IBM Plex Mono"'; ctx.fillStyle = '#4a5070';
+                ctx.fillText('Arrow key to restart', canvas.width / 2, canvas.height / 2 + 24);
+                if (pmNextDir.r || pmNextDir.c) initPacman();
+                gameAnimFrame = requestAnimationFrame(pacmanLoop); return;
             }
 
             // Move pacman
-            pmMoveTimer-=dt;
-            if (pmMoveTimer<=0) {
-                pmMoveTimer=16;
-                const nr=pmPac.r+pmNextDir.r, nc=(pmPac.c+pmNextDir.c+PM_C)%PM_C;
-                if (pmOpen(nr,nc)&&(pmNextDir.r||pmNextDir.c)) pmDir={...pmNextDir};
-                const mr=(pmPac.r+pmDir.r+PM_R)%PM_R, mc=(pmPac.c+pmDir.c+PM_C)%PM_C;
-                if (pmOpen(mr,mc)) { pmPac.r=mr; pmPac.c=mc; }
-                const cell=pmMap[pmPac.r][pmPac.c];
-                if (cell===0){pmMap[pmPac.r][pmPac.c]=3; pmScore+=10; pmDots--;}
-                if (cell===2){pmMap[pmPac.r][pmPac.c]=3; pmScore+=50; pmDots--;}
-                if (pmDots<=0) victory=true;
+            pmMoveTimer -= dt;
+            if (pmMoveTimer <= 0) {
+                pmMoveTimer = 16;
+                const nr = pmPac.r + pmNextDir.r, nc = (pmPac.c + pmNextDir.c + PM_C) % PM_C;
+                if (pmOpen(nr, nc) && (pmNextDir.r || pmNextDir.c)) pmDir = { ...pmNextDir };
+                const mr = (pmPac.r + pmDir.r + PM_R) % PM_R, mc = (pmPac.c + pmDir.c + PM_C) % PM_C;
+                if (pmOpen(mr, mc)) { pmPac.r = mr; pmPac.c = mc; }
+                const cell = pmMap[pmPac.r][pmPac.c];
+                if (cell === 0) { pmMap[pmPac.r][pmPac.c] = 3; pmScore += 10; pmDots--; }
+                if (cell === 2) { pmMap[pmPac.r][pmPac.c] = 3; pmScore += 50; pmDots--; }
+                if (pmDots <= 0) victory = true;
             }
 
             // Draw maze
-            ctx.fillStyle='#06070d'; ctx.fillRect(0,0,canvas.width,canvas.height);
-            for (let r=0;r<PM_R;r++) {
-                for (let c=0;c<PM_C;c++) {
-                    const x=PM_OX+c*PM_S, y=r*PM_S, cell=pmMap[r][c];
-                    if (cell===1) {
+            ctx.fillStyle = '#06070d'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            for (let r = 0; r < PM_R; r++) {
+                for (let c = 0; c < PM_C; c++) {
+                    const x = PM_OX + c * PM_S, y = r * PM_S, cell = pmMap[r][c];
+                    if (cell === 1) {
                         // Wall — draw with inner border for classic look
-                        ctx.fillStyle='#1e1b6e'; ctx.fillRect(x,y,PM_S,PM_S);
-                        ctx.strokeStyle='#3730c4'; ctx.lineWidth=1;
-                        ctx.strokeRect(x+1.5,y+1.5,PM_S-3,PM_S-3);
-                    } else if (cell===0) {
-                        ctx.fillStyle='#d1d5f0'; ctx.beginPath();
-                        ctx.arc(x+PM_S/2,y+PM_S/2,1.5,0,Math.PI*2); ctx.fill();
-                    } else if (cell===2) {
-                        ctx.fillStyle='#fbbf24';
-                        ctx.shadowColor='#fbbf24'; ctx.shadowBlur=4;
-                        ctx.beginPath(); ctx.arc(x+PM_S/2,y+PM_S/2,4,0,Math.PI*2); ctx.fill();
-                        ctx.shadowBlur=0;
+                        ctx.fillStyle = '#1e1b6e'; ctx.fillRect(x, y, PM_S, PM_S);
+                        ctx.strokeStyle = '#3730c4'; ctx.lineWidth = 1;
+                        ctx.strokeRect(x + 1.5, y + 1.5, PM_S - 3, PM_S - 3);
+                    } else if (cell === 0) {
+                        ctx.fillStyle = '#d1d5f0'; ctx.beginPath();
+                        ctx.arc(x + PM_S / 2, y + PM_S / 2, 1.5, 0, Math.PI * 2); ctx.fill();
+                    } else if (cell === 2) {
+                        ctx.fillStyle = '#fbbf24';
+                        ctx.shadowColor = '#fbbf24'; ctx.shadowBlur = 4;
+                        ctx.beginPath(); ctx.arc(x + PM_S / 2, y + PM_S / 2, 4, 0, Math.PI * 2); ctx.fill();
+                        ctx.shadowBlur = 0;
                     }
                 }
             }
 
             // Draw pacman
-            const px=PM_OX+pmPac.c*PM_S+PM_S/2, py=pmPac.r*PM_S+PM_S/2;
-            let ang=pmDir.c>0?0:pmDir.c<0?Math.PI:pmDir.r>0?Math.PI*.5:pmDir.r<0?Math.PI*1.5:0;
-            const mth=0.22+0.18*Math.abs(Math.sin(ts*0.007));
-            ctx.fillStyle='#fbbf24';
-            ctx.shadowColor='#fbbf24'; ctx.shadowBlur=3;
-            ctx.beginPath(); ctx.moveTo(px,py);
-            ctx.arc(px,py,PM_S/2-1,ang+mth,ang+Math.PI*2-mth); ctx.closePath(); ctx.fill();
-            ctx.shadowBlur=0;
+            const px = PM_OX + pmPac.c * PM_S + PM_S / 2, py = pmPac.r * PM_S + PM_S / 2;
+            let ang = pmDir.c > 0 ? 0 : pmDir.c < 0 ? Math.PI : pmDir.r > 0 ? Math.PI * .5 : pmDir.r < 0 ? Math.PI * 1.5 : 0;
+            const mth = 0.22 + 0.18 * Math.abs(Math.sin(ts * 0.007));
+            ctx.fillStyle = '#fbbf24';
+            ctx.shadowColor = '#fbbf24'; ctx.shadowBlur = 3;
+            ctx.beginPath(); ctx.moveTo(px, py);
+            ctx.arc(px, py, PM_S / 2 - 1, ang + mth, ang + Math.PI * 2 - mth); ctx.closePath(); ctx.fill();
+            ctx.shadowBlur = 0;
 
             //
             // HUD
-            ctx.fillStyle='#4a5070'; ctx.font='11px "IBM Plex Mono"'; ctx.textAlign='left';
-            ctx.fillText('SCORE '+pmScore, PM_OX, canvas.height-4);
-            ctx.textAlign='right';
-            ctx.fillText('DOTS '+pmDots, PM_OX+PM_C*PM_S, canvas.height-4);
+            ctx.fillStyle = '#4a5070'; ctx.font = '11px "IBM Plex Mono"'; ctx.textAlign = 'left';
+            ctx.fillText('SCORE ' + pmScore, PM_OX, canvas.height - 4);
+            ctx.textAlign = 'right';
+            ctx.fillText('DOTS ' + pmDots, PM_OX + PM_C * PM_S, canvas.height - 4);
 
-            gameAnimFrame=requestAnimationFrame(pacmanLoop);
+            gameAnimFrame = requestAnimationFrame(pacmanLoop);
         }
 
     </script>
