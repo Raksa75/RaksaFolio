@@ -1948,6 +1948,146 @@
         }
 
         /* ══════════════════════════════════════════════════
+           CONSOLE & GAMES (Space Invaders / Doom)
+        ══════════════════════════════════════════════════ */
+        .console-wrap {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            background: var(--surf);
+            border: 1px solid var(--b);
+            border-radius: var(--r);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .console-header {
+            padding: 8px 16px;
+            background: var(--muted);
+            border-bottom: 1px solid var(--b);
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .console-body {
+            padding: 16px;
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--v2);
+            min-height: 500px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .console-line {
+            margin-bottom: 6px;
+            word-break: break-all;
+        }
+
+        .console-err {
+            color: #f43f5e;
+        }
+
+        .console-input-row {
+            display: flex;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .console-prompt {
+            margin-right: 8px;
+            color: var(--dim);
+        }
+
+        .console-input {
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            flex: 1;
+            outline: none;
+        }
+
+        #game-canvas {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg);
+            border: 1px solid var(--b);
+            border-radius: var(--r);
+            image-rendering: pixelated;
+        }
+
+        /* Crop iframe to hide extra web text and beige panel */
+        .doom-crop-container {
+            display: none;
+            width: 640px;
+            height: 400px;
+            max-width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--b);
+            border-radius: var(--r);
+            background: #000;
+        }
+
+            .doom-crop-container iframe {
+                position: absolute;
+                top: -115px;
+                left: -8px;
+                width: 1000px;
+                height: 800px;
+                border: none;
+                transform-origin: top left;
+            }
+
+        .game-controls {
+            display: none;
+            justify-content: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--surf2);
+            border-top: 1px solid var(--b);
+        }
+
+        .game-btn {
+            background: var(--v);
+            color: #fff;
+            padding: 10px 20px;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            border-radius: var(--r);
+            font-weight: bold;
+        }
+
+            .game-btn:active {
+                background: var(--v2);
+                transform: scale(0.95);
+            }
+
+        .btn-exit {
+            background: transparent;
+            border: 1px solid var(--b);
+            color: var(--dim);
+        }
+
+            .btn-exit:hover {
+                border-color: var(--v);
+                color: var(--v2);
+            }
+
+        /* ══════════════════════════════════════════════════
            RESPONSIVE
         ══════════════════════════════════════════════════ */
         @media(max-width:960px) {
@@ -2001,6 +2141,33 @@
             }
         }
 
+        @media(max-width:768px) {
+            .game-controls.active {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .game-btn {
+                padding: 12px;
+                flex: 1;
+                text-align: center;
+            }
+
+            .btn-exit {
+                flex-basis: 100%;
+            }
+
+            .doom-crop-container {
+                height: 300px;
+            }
+
+                .doom-crop-container iframe {
+                    transform: scale(0.7);
+                    top: -80px;
+                    left: -5px;
+                }
+        }
+
         @media(max-width:580px) {
             :root {
                 --nav-h: 56px
@@ -2033,6 +2200,16 @@
             .hud-panel {
                 display: block
             }
+
+            .doom-crop-container {
+                height: 220px;
+            }
+
+                .doom-crop-container iframe {
+                    transform: scale(0.5);
+                    top: -57px;
+                    left: -4px;
+                }
         }
     </style>
 </head>
@@ -2357,6 +2534,39 @@
                     <a href="https://267554c8-a000-4c76-9360-fb37bc7ceb88.filesusr.com/ugd/45ed80_0d9227c519b440f99bb76f984973899e.pdf" target="_blank" class="btn bp ripple-wrap" style="width:100%;justify-content:center;margin-top:14px">[ TÉLÉCHARGER CV ]</a>
                 </div>
             </div>
+
+            <div class="console-wrap">
+                <div class="console-header">
+                    <span>// TERMINAL</span>
+                    <div style="display:flex; align-items:center;">
+                        <span style="text-transform:none; font-family:var(--body); font-size:0.75rem; color:var(--dim); letter-spacing:0; margin-right:15px;">(Appuyez sur F8 ou sur EXIT pour quitter le jeu en cours)</span>
+                        <span>GUEST_ACCESS</span>
+                    </div>
+                </div>
+                <div class="console-body" id="c-body">
+                    <div id="c-history">
+                        <div class="console-line" style="color:var(--dim)">[System] Terminal initialized. Awaiting commands...</div>
+                    </div>
+                    <div class="console-input-row" id="c-input-row">
+                        <span class="console-prompt">&gt;</span>
+                        <input type="text" id="c-input" class="console-input" autocomplete="off" spellcheck="false" autofocus>
+                    </div>
+
+                    <canvas id="game-canvas" width="600" height="400"></canvas>
+
+                    <div id="doom-wrapper" class="doom-crop-container">
+                        <iframe id="doom-canvas" src="about:blank" scrolling="no"></iframe>
+                    </div>
+                </div>
+
+                <div class="game-controls" id="g-controls">
+                    <button class="game-btn" id="btn-left">◀ LEFT</button>
+                    <button class="game-btn" id="btn-fire">FIRE</button>
+                    <button class="game-btn" id="btn-right">RIGHT ▶</button>
+                    <button class="game-btn btn-exit" id="btn-exit">EXIT (F8)</button>
+                </div>
+            </div>
+
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="https://www.instagram.com/raksakoreko/" target="_blank">INSTAGRAM</a><a href="https://x.com/RaksakorekoPro" target="_blank">TWITTER</a><a href="mailto:Pro.Nicolas.Zimmermann@gmail.com">MAIL</a></div></footer>
     </div>
@@ -2372,7 +2582,6 @@
         if (!sessionStorage.getItem('introPlayed')) {
             sessionStorage.setItem('introPlayed', 'true');
 
-            // On cache la vraie fiche sur le site le temps que l'animation s'y place
             const realPanel = document.querySelector('.hero .hud-panel');
             realPanel.style.opacity = '0';
 
@@ -2410,12 +2619,11 @@
                     setTimeout(() => {
                         document.getElementById('intro-body').style.display = 'none';
                         document.getElementById('intro-success').style.display = 'flex';
-                        setTimeout(startCharacterSheet, 1000); // Attente avant d'afficher la fiche
+                        setTimeout(startCharacterSheet, 1000);
                     }, 300);
                 }
             }
 
-            // Phase 2 : On tape la fiche personnage
             function startCharacterSheet() {
                 document.getElementById('intro-step-1').style.display = 'none';
                 document.getElementById('intro-step-2').style.display = 'block';
@@ -2430,7 +2638,7 @@
 
                 function processQueue(index) {
                     if (index >= queue.length) {
-                        setTimeout(flyToPosition, 600); // Une fois terminé, on lance le vol vers sa place
+                        setTimeout(flyToPosition, 600);
                         return;
                     }
                     let current = queue[index];
@@ -2441,7 +2649,7 @@
                         if (cIdx < str.length) {
                             current.el.textContent += str.charAt(cIdx);
                             cIdx++;
-                            setTimeout(tChar, 35); // Vitesse de frappe de la fiche
+                            setTimeout(tChar, 35);
                         } else {
                             setTimeout(() => processQueue(index + 1), 150);
                         }
@@ -2451,39 +2659,31 @@
                 processQueue(0);
             }
 
-            // Phase 3 : On fait voler la boite à sa place exacte sur le site
             function flyToPosition() {
                 const box = document.getElementById('intro-box');
 
-                // On enlève le fond noir de l'overlay pour révéler le vrai site derrière
                 introOverlay.style.transition = 'background-color 0.5s ease';
                 introOverlay.style.backgroundColor = 'transparent';
                 introOverlay.style.backgroundImage = 'none';
 
-                // On calcule la distance entre le centre (intro) et sa vraie place (hud-panel)
                 const realRect = realPanel.getBoundingClientRect();
                 const boxRect = box.getBoundingClientRect();
                 const dx = realRect.left - boxRect.left;
                 const dy = realRect.top - boxRect.top;
 
-                // L'animation de vol
                 box.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), width 0.6s ease';
                 box.style.transform = `translate(${dx}px, ${dy}px)`;
                 box.style.width = realRect.width + 'px';
 
-                // Quand le vol est fini, on switch avec le vrai panneau
                 setTimeout(() => {
                     introOverlay.style.display = 'none';
                     realPanel.style.opacity = '1';
-                    // On relance l'animation des nombres du panneau d'origine pour être parfait
                     realPanel.querySelectorAll('[data-count]').forEach(countUp);
                 }, 600);
             }
 
-            // Début du script
             setTimeout(typeLogin, 600);
         } else {
-            // Si l'intro a déjà été jouée (rafraichissement etc), on cache tout
             introOverlay.style.display = 'none';
         }
 
@@ -2656,11 +2856,266 @@
             }, 140);
         }
         document.getElementById('lb').addEventListener('click', e => { if (e.target === document.getElementById('lb')) cLB(); });
+
+
+        /* ── TERMINAL & GAMES (DOOM / SPACE INVADERS) ───── */
+        const cInput = document.getElementById('c-input');
+        const cHistory = document.getElementById('c-history');
+        const cInputRow = document.getElementById('c-input-row');
+        const canvas = document.getElementById('game-canvas');
+        const doomCanvas = document.getElementById('doom-canvas');
+        const gControls = document.getElementById('g-controls');
+        const doomWrapper = document.getElementById('doom-wrapper');
+        const ctx = canvas.getContext('2d');
+
+        let gameAnimFrame;
+        let gameActive = false;
+        let currentGame = null;
+
+        // Ecoute de la touche F8 globale pour quitter les jeux
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') cLB();
-            if (e.key === 'ArrowRight') lbN(1);
-            if (e.key === 'ArrowLeft') lbN(-1);
+            if (e.key === 'F8' && gameActive) {
+                stopGame();
+                e.preventDefault();
+            }
         });
+
+        // Lightbox hotkeys
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && document.getElementById('lb').classList.contains('op')) cLB();
+            if (e.key === 'ArrowRight' && document.getElementById('lb').classList.contains('op')) lbN(1);
+            if (e.key === 'ArrowLeft' && document.getElementById('lb').classList.contains('op')) lbN(-1);
+        });
+
+        cInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const val = cInput.value.trim();
+                if (!val) return;
+
+                const lineCmd = document.createElement('div');
+                lineCmd.className = 'console-line';
+                lineCmd.textContent = '> ' + val;
+                cHistory.appendChild(lineCmd);
+
+                if (val.toLowerCase() === 'play spaceinvader') {
+                    startGame('spaceinvader');
+                } else if (val.toLowerCase() === 'play doom') {
+                    startGame('doom');
+                } else {
+                    const lineErr = document.createElement('div');
+                    lineErr.className = 'console-line console-err';
+                    lineErr.textContent = 'command console inconnue';
+                    cHistory.appendChild(lineErr);
+                }
+
+                cInput.value = '';
+                const cBody = document.getElementById('c-body');
+                cBody.scrollTop = cBody.scrollHeight;
+            }
+        });
+
+        // SPACE INVADERS ENGINE
+        let keys = { left: false, right: false, space: false };
+        let player, bullets, aliens, alienDir, alienSpeed, gameOver, victory;
+
+        window.addEventListener('keydown', e => {
+            if (!gameActive || currentGame !== 'spaceinvader') return;
+            if (e.key === 'ArrowLeft') keys.left = true;
+            if (e.key === 'ArrowRight') keys.right = true;
+            if (e.key === ' ') { keys.space = true; e.preventDefault(); }
+        });
+        window.addEventListener('keyup', e => {
+            if (!gameActive || currentGame !== 'spaceinvader') return;
+            if (e.key === 'ArrowLeft') keys.left = false;
+            if (e.key === 'ArrowRight') keys.right = false;
+            if (e.key === ' ') keys.space = false;
+        });
+
+        // Mobile Controls
+        const btnL = document.getElementById('btn-left');
+        const btnR = document.getElementById('btn-right');
+        const btnF = document.getElementById('btn-fire');
+        const btnE = document.getElementById('btn-exit');
+
+        const bindBtn = (btn, keyProp) => {
+            btn.addEventListener('mousedown', e => { if (gameActive && currentGame === 'spaceinvader') keys[keyProp] = true; });
+            btn.addEventListener('mouseup', e => { if (gameActive && currentGame === 'spaceinvader') keys[keyProp] = false; });
+            btn.addEventListener('touchstart', e => { if (gameActive && currentGame === 'spaceinvader') { keys[keyProp] = true; e.preventDefault(); } });
+            btn.addEventListener('touchend', e => { if (gameActive && currentGame === 'spaceinvader') { keys[keyProp] = false; e.preventDefault(); } });
+        };
+        bindBtn(btnL, 'left');
+        bindBtn(btnR, 'right');
+        bindBtn(btnF, 'space');
+
+        btnE.addEventListener('click', stopGame);
+        btnE.addEventListener('touchstart', (e) => { e.preventDefault(); stopGame(); });
+
+        function initSpaceInvaders() {
+            player = { x: canvas.width / 2 - 15, y: canvas.height - 30, w: 30, h: 10, speed: 5, cooldown: 0 };
+            bullets = [];
+            aliens = [];
+            alienDir = 1;
+            alienSpeed = 1;
+            gameOver = false;
+            victory = false;
+            keys.space = false;
+
+            const rows = 4, cols = 8;
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    aliens.push({ x: 50 + c * 50, y: 30 + r * 40, w: 24, h: 16 });
+                }
+            }
+        }
+
+        function startGame(gameType) {
+            cHistory.style.display = 'none';
+            cInputRow.style.display = 'none';
+            gControls.classList.add('active');
+            gameActive = true;
+            currentGame = gameType;
+
+            if (gameType === 'spaceinvader') {
+                canvas.style.display = 'block';
+                doomWrapper.style.display = 'none';
+                btnL.style.display = 'block';
+                btnR.style.display = 'block';
+                btnF.style.display = 'block';
+                initSpaceInvaders();
+                gameLoop();
+            } else if (gameType === 'doom') {
+                canvas.style.display = 'none';
+                doomWrapper.style.display = 'block';
+                // Masque les contrôles Space Invaders pour Doom
+                btnL.style.display = 'none';
+                btnR.style.display = 'none';
+                btnF.style.display = 'none';
+                // Charge Doom
+                doomCanvas.src = 'https://diekmann.github.io/wasm-fizzbuzz/doom/';
+            }
+
+            setTimeout(() => {
+                const gameView = gameType === 'doom' ? doomWrapper : canvas;
+                gameView.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if (gameType === 'doom') {
+                    doomCanvas.focus();
+                }
+            }, 100);
+        }
+
+        function stopGame() {
+            if (!gameActive) return;
+            gameActive = false;
+            currentGame = null;
+
+            cancelAnimationFrame(gameAnimFrame);
+            canvas.style.display = 'none';
+
+            doomWrapper.style.display = 'none';
+            doomCanvas.src = 'about:blank'; // Arrête l'audio et libère la mémoire de Doom
+
+            gControls.classList.remove('active');
+            cHistory.style.display = 'block';
+            cInputRow.style.display = 'flex';
+            cInput.focus();
+
+            const cBody = document.getElementById('c-body');
+            cBody.scrollTop = cBody.scrollHeight;
+        }
+
+        function rectIntersect(r1, r2) {
+            return !(r2.x > r1.x + r1.w || r2.x + r2.w < r1.x || r2.y > r1.y + r1.h || r2.y + r2.h < r1.y);
+        }
+
+        function gameLoop() {
+            if (!gameActive || currentGame !== 'spaceinvader') return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (gameOver || victory) {
+                ctx.fillStyle = '#fff';
+                ctx.font = '24px "IBM Plex Mono"';
+                ctx.textAlign = 'center';
+                ctx.fillText(victory ? 'VICTORY !' : 'GAME OVER', canvas.width / 2, canvas.height / 2);
+                ctx.font = '14px "IBM Plex Mono"';
+                ctx.fillText('Press SPACE / FIRE to restart', canvas.width / 2, canvas.height / 2 + 30);
+
+                if (keys.space) initSpaceInvaders();
+                gameAnimFrame = requestAnimationFrame(gameLoop);
+                return;
+            }
+
+            // Player Update
+            if (keys.left && player.x > 0) player.x -= player.speed;
+            if (keys.right && player.x + player.w < canvas.width) player.x += player.speed;
+
+            if (keys.space && player.cooldown <= 0) {
+                bullets.push({ x: player.x + player.w / 2 - 2, y: player.y, w: 4, h: 10, dy: -7, type: 'p' });
+                player.cooldown = 15;
+            }
+            if (player.cooldown > 0) player.cooldown--;
+
+            // Bullets Update
+            for (let i = bullets.length - 1; i >= 0; i--) {
+                let b = bullets[i];
+                b.y += b.dy;
+
+                if (b.y < 0 || b.y > canvas.height) { bullets.splice(i, 1); continue; }
+
+                if (b.type === 'p') {
+                    for (let j = aliens.length - 1; j >= 0; j--) {
+                        let a = aliens[j];
+                        if (rectIntersect(b, a)) {
+                            aliens.splice(j, 1);
+                            bullets.splice(i, 1);
+                            alienSpeed += 0.05;
+                            break;
+                        }
+                    }
+                } else if (b.type === 'a') {
+                    if (rectIntersect(b, player)) {
+                        gameOver = true;
+                    }
+                }
+            }
+
+            // Aliens Update
+            let edgeHit = false;
+            for (let a of aliens) {
+                a.x += alienSpeed * alienDir;
+                if (a.x <= 10 || a.x + a.w >= canvas.width - 10) edgeHit = true;
+                if (Math.random() < 0.001) {
+                    bullets.push({ x: a.x + a.w / 2 - 2, y: a.y + a.h, w: 4, h: 10, dy: 4, type: 'a' });
+                }
+            }
+            if (edgeHit) {
+                alienDir *= -1;
+                for (let a of aliens) {
+                    a.x += alienSpeed * alienDir;
+                    a.y += 20;
+                    if (a.y + a.h >= player.y) gameOver = true;
+                }
+            }
+
+            if (aliens.length === 0) victory = true;
+
+            // Draw Player
+            ctx.fillStyle = '#a855f7'; // var(--v2)
+            ctx.fillRect(player.x, player.y, player.w, player.h);
+            ctx.fillRect(player.x + 10, player.y - 6, 10, 6);
+
+            // Draw Aliens
+            ctx.fillStyle = '#22d3ee'; // var(--cyan)
+            for (let a of aliens) ctx.fillRect(a.x, a.y, a.w, a.h);
+
+            // Draw Bullets
+            for (let b of bullets) {
+                ctx.fillStyle = b.type === 'p' ? '#fff' : '#f43f5e';
+                ctx.fillRect(b.x, b.y, b.w, b.h);
+            }
+
+            gameAnimFrame = requestAnimationFrame(gameLoop);
+        }
     </script>
 </body>
 </html>
