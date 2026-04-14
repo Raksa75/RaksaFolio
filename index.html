@@ -2601,7 +2601,7 @@
                     </div>
 
                     <canvas id="game-canvas" width="600" height="400"></canvas>
-
+                    <iframe id="game-iframe" width="100%" height="400" src="" frameborder="0" allowfullscreen style="display:none; border: 1px solid var(--b); border-radius: var(--r); background: #000;"></iframe>
                 </div>
 
                 <div class="game-controls" id="g-controls">
@@ -3441,14 +3441,16 @@ const ASSET_MAP = {
             else if (v === 'play pacman') startGame('pacman');
             else if (v === 'play frogger') startGame('frogger');
             else if (v === 'play trex' || v === 'play t-rex') startGame('trex');
-            else if (v === 'play doom') cLog('// DOOM cannot run embedded — browser blocks iframe injection from external hosts. Not available.', 'var(--console-err, #f43f5e)');
+            else if (v === 'play doom') startGame('doom');
             else if (v === 'help') {
                 cLog('// COMMANDS ──────────────────────────────────', 'var(--dim)');
+                cLog('  <span style="color:var(--v2)">play doom</span>          — DOOM : le classique FPS (attention au volume)');
                 cLog('  <span style="color:var(--v2)">play spaceinvader</span>  — Space Invaders : défends-toi contre les aliens');
                 cLog('  <span style="color:var(--v2)">play pacman</span>        — Pac-Man : mange tous les dots du labyrinthe classique');
                 cLog('  <span style="color:var(--v2)">play frogger</span>       — Frogger : traverse les routes et rentre chez toi');
                 cLog('  <span style="color:var(--v2)">play trex</span>          — T-Rex : saute par-dessus les obstacles sans fin');
-                cLog('  <span style="color:var(--v2)">certaines commandes sont cachés</span>          — essaye de les trouver');
+                cLog('// ─────────────────────────────────────────────', 'var(--dim)');
+                cLog('  <span style="color:#00ff41">Certaines commandes sont cachées — essaie de les trouver</span>');
                 cLog('// ─────────────────────────────────────────────', 'var(--dim)');
             }
             else if (v === 'goat') cLog('// OPESANEC — <a href="https://www.twitch.tv/opesanec" target="_blank" style="color:var(--v2);text-decoration:underline">twitch.tv/opesanec</a>', 'var(--cyan)');
@@ -3588,6 +3590,14 @@ const ASSET_MAP = {
                 btnF.textContent = 'FIRE';
                 initSpaceInvaders();
                 gameAnimFrame = requestAnimationFrame(gameLoop);
+            } else if (gameType === 'doom') {
+                showBtns(0, 0, 0, 0, 0); // Cache les contrôles mobiles
+                gControls.style.display = 'flex'; // AJOUT : Force l'affichage de la barre pour le bouton EXIT
+
+                const ifr = document.getElementById('game-iframe');
+                ifr.src = "https://ustymukhman.github.io/webDOOM/public/";
+                ifr.style.display = 'block';
+                canvas.style.display = 'none';
             } else if (gameType === 'trex') {
                 showBtns(0, 0, 1, 1, 0);
                 btnF.textContent = '▲ JUMP';
@@ -3614,7 +3624,12 @@ const ASSET_MAP = {
             cancelAnimationFrame(gameAnimFrame);
             canvas.style.display = 'none';
 
-
+            const ifr = document.getElementById('game-iframe');
+            if (ifr) {
+                ifr.style.display = 'none';
+                ifr.src = "";
+            }
+            gControls.style.display = ''; // AJOUT : Retire l'affichage forcé
             gControls.classList.remove('active');
             cHistory.style.display = 'block';
             cInputRow.style.display = 'flex';
