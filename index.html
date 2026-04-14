@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -1854,8 +1854,65 @@
             border: 1px solid var(--vb);
             color: var(--v2);
             border-radius: var(--r);
-            letter-spacing: .06em
+            letter-spacing: .04em;
+            white-space: normal;
+            max-width: 140px;
+            text-align: center;
+            line-height: 1.35;
         }
+
+
+        /* Tool logos grid */
+        .tool-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px
+        }
+
+        .tool-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 8px;
+            border: 1px solid var(--b);
+            border-radius: var(--r);
+            background: var(--surf);
+            transition: border-color .2s,background .2s;
+            width: 68px;
+            cursor: default;
+        }
+
+            .tool-item:hover {
+                border-color: var(--v);
+                background: var(--vg)
+            }
+
+            .tool-item img {
+                width: 26px;
+                height: 26px;
+                filter: brightness(0) invert(1) opacity(.55);
+                transition: opacity .2s,filter .2s;
+            }
+
+            .tool-item:hover img {
+                opacity: 1;
+                filter: brightness(0) invert(1)
+            }
+            .tool-item:hover svg { fill: rgba(255,255,255,1) !important; color: rgba(255,255,255,1); }
+            .tool-item:hover svg text { fill: rgba(255,255,255,1); }
+            .tool-item:hover svg rect { stroke: rgba(255,255,255,1); }
+
+            .tool-item span {
+                font-family: var(--mono);
+                font-size: .48rem;
+                color: var(--dim);
+                text-align: center;
+                letter-spacing: .06em;
+                text-transform: uppercase;
+                line-height: 1.2;
+            }
 
         /* meta chips */
         .meta-chips {
@@ -1948,7 +2005,7 @@
         }
 
         /* ══════════════════════════════════════════════════
-           CONSOLE & GAMES (Space Invaders / Doom)
+           CONSOLE & SPACE INVADERS
         ══════════════════════════════════════════════════ */
         .console-wrap {
             margin-top: 40px;
@@ -1980,7 +2037,8 @@
             font-family: var(--mono);
             font-size: 0.85rem;
             color: var(--v2);
-            min-height: 500px;
+            min-height: 200px;
+            max-height: 500px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
@@ -2027,30 +2085,6 @@
             border-radius: var(--r);
             image-rendering: pixelated;
         }
-
-        /* Crop iframe to hide extra web text and beige panel */
-        .doom-crop-container {
-            display: none;
-            width: 640px;
-            height: 400px;
-            max-width: 100%;
-            margin: 0 auto;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid var(--b);
-            border-radius: var(--r);
-            background: #000;
-        }
-
-            .doom-crop-container iframe {
-                position: absolute;
-                top: -115px;
-                left: -8px;
-                width: 1000px;
-                height: 800px;
-                border: none;
-                transform-origin: top left;
-            }
 
         .game-controls {
             display: none;
@@ -2141,7 +2175,7 @@
             }
         }
 
-        @media(max-width:768px) {
+        @media(max-width: 768px) {
             .game-controls.active {
                 display: flex;
                 flex-wrap: wrap;
@@ -2156,16 +2190,6 @@
             .btn-exit {
                 flex-basis: 100%;
             }
-
-            .doom-crop-container {
-                height: 300px;
-            }
-
-                .doom-crop-container iframe {
-                    transform: scale(0.7);
-                    top: -80px;
-                    left: -5px;
-                }
         }
 
         @media(max-width:580px) {
@@ -2200,17 +2224,20 @@
             .hud-panel {
                 display: block
             }
-
-            .doom-crop-container {
-                height: 220px;
-            }
-
-                .doom-crop-container iframe {
-                    transform: scale(0.5);
-                    top: -57px;
-                    left: -4px;
-                }
         }
+
+        /* LANG BUTTON */
+        #lang-btn {
+            font-size: 1.1rem;
+            padding: 4px 6px;
+            border-radius: var(--r);
+            margin-left: 8px;
+            background: var(--surf);
+            border: 1px solid var(--b);
+            transition: background .2s, border-color .2s;
+            line-height: 1;
+        }
+        #lang-btn:hover { background: var(--surf2); border-color: var(--v); }
     </style>
 </head>
 <body>
@@ -2244,8 +2271,7 @@
                     <div class="hud-dots"><div class="hud-dot"></div><div class="hud-dot"></div><div class="hud-dot"></div></div>
                 </div>
                 <div class="hud-stat"><span class="hs-key">NAME</span><span class="hs-val intro-type" id="type-name" style="font-size:1.1rem; letter-spacing:0.05em;"></span></div>
-                <div class="hud-stat"><span class="hs-key">LVL</span><span class="hs-val intro-type" id="type-lvl"></span></div>
-                <div class="hud-stat"><span class="hs-key">DOCS</span><span class="hs-val intro-type" id="type-docs"></span></div>
+                <div class="hud-stat"><span class="hs-key">AGE</span><span class="hs-val intro-type" id="type-age"></span></div>
                 <div class="hud-stat"><span class="hs-key">SCHOOL</span><span class="hs-val intro-type" id="type-school" style="font-size:1.1rem"></span></div>
                 <div class="hud-stat"><span class="hs-key">STATUS</span><span class="hs-val intro-type" id="type-status" style="color:var(--cyan);font-size:.85rem;font-family:var(--mono)"></span></div>
             </div>
@@ -2269,7 +2295,7 @@
     <nav id="nb">
         <a class="logo" href="#" onclick="go('home');return false;">NZ<em>_</em><span class="blink">▋</span></a>
         <ul class="nl">
-            <li><a href="#" onclick="go('home');return false;" data-p="home">Welcome</a></li>
+            <li><a href="#" onclick="go('home');return false;" data-p="home" data-i18n="nav.welcome">Welcome</a></li>
             <li class="drop">
                 <button>// Projets</button>
                 <div class="dm">
@@ -2278,32 +2304,33 @@
                     <a href="#" onclick="go('html');return false;" data-p="html">HTML Project</a>
                 </div>
             </li>
-            <li><a href="#" onclick="go('about');return false;" data-p="about">À propos</a></li>
+            <li><a href="#" onclick="go('about');return false;" data-p="about" data-i18n="nav.about">À propos</a></li>
         </ul>
-        <button class="ham" id="ham" onclick="tM()"><span></span><span></span><span></span></button>
+        <button id="lang-btn" onclick="toggleLang()" title="Switch language"><img id="lang-flag" src="https://flagcdn.com/w40/gb.png" width="22" height="15" alt="EN" style="display:block;border-radius:2px;"></button>
+    <button class="ham" id="ham" onclick="tM()"><span></span><span></span><span></span></button>
     </nav>
     <div class="mob" id="mob">
-        <a href="#" onclick="go('home');tM();return false;">Welcome</a>
+        <a href="#" onclick="go('home');tM();return false;" data-i18n="nav.welcome">Welcome</a>
         <a href="#" class="ms" onclick="go('docs');tM();return false;">↳ Documentations</a>
         <a href="#" class="ms" onclick="go('incanta');tM();return false;">↳ IN CANTA — Board Game</a>
         <a href="#" class="ms" onclick="go('html');tM();return false;">↳ HTML Project</a>
-        <a href="#" onclick="go('about');tM();return false;">À propos</a>
+        <a href="#" onclick="go('about');tM();return false;" data-i18n="nav.about">À propos</a>
     </div>
 
     <div class="page active" id="page-home">
         <div class="hero">
             <div class="hero-left">
-                <div class="hero-eyebrow"><span class="hud-label">Game Design Portfolio</span></div>
+                <div class="hero-eyebrow"><span class="hud-label" data-i18n="hero.eyebrow">Game Design Portfolio</span></div>
                 <h1 class="glitch" data-text="NICOLAS ZIMMERMANN">
                     <div>NICOLAS</div>
-                    <div><span class="ou">ZIMMER</span><span class="g">MANN</span></div>
+                    <div><span class="g">ZIMMERMANN</span></div>
                 </h1>
-                <p class="hero-sub">Étudiant en Game Design à <strong>LISAA Paris</strong>. Créateur de mécaniques de jeu, board games et interfaces jouables.</p>
+                <p class="hero-sub" data-i18n-html="hero.sub">Étudiant en Game Design à <strong>LISAA Paris</strong>. Passionné par les <strong>systems</strong>, <strong>mécaniques</strong> et <strong>techniques</strong> autours du medium vidéoludique.</p>
                 <div class="hero-cta">
-                    <a class="btn bp ripple-wrap" href="#" onclick="go('docs');return false;">[ VOIR LES PROJETS ]</a>
-                    <a class="btn bg2 ripple-wrap" href="#" onclick="go('about');return false;">[ À PROPOS ]</a>
+                    <a class="btn bp ripple-wrap" href="#" onclick="go('docs');return false;" data-i18n="hero.cta1">[ VOIR LES PROJETS ]</a>
+                    <a class="btn bg2 ripple-wrap" href="#" onclick="go('about');return false;" data-i18n="hero.cta2">[ À PROPOS ]</a>
                 </div>
-                <div class="hero-scroll">SCROLL_DOWN</div>
+                <div class="hero-scroll" data-i18n="hero.scroll">SCROLL_DOWN</div>
             </div>
             <div class="hud-panel">
                 <div class="hud-panel-header">
@@ -2311,33 +2338,32 @@
                     <div class="hud-dots"><div class="hud-dot"></div><div class="hud-dot"></div><div class="hud-dot"></div></div>
                 </div>
                 <div class="hud-stat"><span class="hs-key">NAME</span><span class="hs-val" style="font-size:1.1rem; letter-spacing:0.05em;">N. ZIMMERMANN</span></div>
-                <div class="hud-stat"><span class="hs-key">LVL</span><span class="hs-val" data-count="25">25</span></div>
-                <div class="hud-stat"><span class="hs-key">DOCS</span><span class="hs-val" data-count="9">9</span></div>
+                <div class="hud-stat"><span class="hs-key">AGE</span><span class="hs-val">25</span></div>
                 <div class="hud-stat"><span class="hs-key">SCHOOL</span><span class="hs-val" style="font-size:1.1rem">LISAA</span></div>
                 <div class="hud-stat"><span class="hs-key">STATUS</span><span class="hs-val" style="color:var(--cyan);font-size:.85rem;font-family:var(--mono)">ONLINE</span></div>
             </div>
         </div>
         <div class="cnt sec">
-            <div class="sep">// PROJETS RÉCENTS</div>
+            <div class="sep" data-i18n="home.sep">// PROJETS RÉCENTS</div>
             <div class="pg stagger">
                 <div class="pc ripple-wrap" onclick="go('incanta')">
                     <img src="./assets/289b8dc0d966.png" alt="IN CANTA" loading="lazy">
-                    <div class="pci"><div class="pct">Board Game · MOBA</div><h3>IN CANTA</h3><p class="pcd">Jeu de plateau produit IRL par une équipe de 5. Cartes, tokens, plateau, règles.</p></div>
+                    <div class="pci"><div class="pct">Board Game · MOBA</div><h3>IN CANTA</h3><p class="pcd" data-i18n="home.card.incanta">Jeu de plateau produit IRL par une équipe de 5. Cartes, tokens, plateau, règles.</p></div>
                     <div class="pca">→</div>
                 </div>
                 <div class="pc ripple-wrap" onclick="go('docs')">
                     <img src="./assets/48328049d76b.png" alt="Docs" loading="lazy">
-                    <div class="pci"><div class="pct">Concept · Analyse · UI</div><h3>DOCUMENTATIONS</h3><p class="pcd">9 projets : analyses, concepts, UI design, level design.</p></div>
+                    <div class="pci"><div class="pct">Concept · Analyse · UI</div><h3>DOCUMENTATIONS</h3><p class="pcd" data-i18n="home.card.docs">9 projets : analyses, concepts, UI design, level design.</p></div>
                     <div class="pca">→</div>
                 </div>
                 <div class="pc ripple-wrap" onclick="go('html')">
                     <img src="./assets/79a95f412eeb.jpg" alt="HTML" loading="lazy">
-                    <div class="pci"><div class="pct">HTML · CSS · JS</div><h3>HTML PROJECT</h3><p class="pcd">Projets web interactifs. Clicker games, interfaces de jeu.</p></div>
+                    <div class="pci"><div class="pct">HTML · CSS · JS</div><h3>HTML PROJECT</h3><p class="pcd" data-i18n="home.card.html">Projets web interactifs. Clicker games, interfaces de jeu.</p></div>
                     <div class="pca">→</div>
                 </div>
             </div>
         </div>
-        <footer><div class="fc">© 2025 NZ_ // GAME DESIGN PORTFOLIO</div><div class="fl"><a href="https://www.instagram.com/raksakoreko/" target="_blank">INSTAGRAM</a><a href="https://x.com/RaksakorekoPro" target="_blank">TWITTER</a><a href="mailto:Pro.Nicolas.Zimmermann@gmail.com">MAIL</a></div></footer>
+        <footer><div class="fc">© 2025 NZ_ // GAME DESIGN PORTFOLIO</div><div class="fl"><a href="mailto:Pro.Nicolas.Zimmermann@gmail.com">MAIL</a></div></footer>
     </div>
 
     <div class="page" id="page-docs">
@@ -2345,7 +2371,7 @@
             <div class="ph2">
                 <span class="hud-label" style="margin-bottom:12px;display:flex">GDD · Analyse · UI · LD</span>
                 <h2>DOCUMENTATIONS</h2>
-                <p>Dossiers de conception, analyses, concepts GD/LD et UI. Cliquez pour explorer.</p>
+                <p data-i18n="docs.desc">Dossiers de conception, analyses, concepts GD/LD et UI. Cliquez pour explorer.</p>
             </div>
             <div class="dcg stagger" id="dg"></div>
         </div>
@@ -2372,13 +2398,13 @@
                 <div>
                     <span class="hud-label" style="margin-bottom:14px;display:flex">Board Game · MOBA</span>
                     <h2>IN CANTA<br><span class="g">BOARD GAME</span></h2>
-                    <p>Projet de jeu de plateau réalisé sur plusieurs mois par une équipe de cinq personnes. Thème : <strong style="color:var(--text)">M.O.B.A.</strong><br><br>Le jeu a été produit physiquement — tokens, cartes, livret, marqueurs, dés, plateau et boîtes. Initialement appelé <em style="color:var(--text)">Cryostail</em>, il a évolué pour résoudre des problèmes de game design.</p>
+                    <p data-i18n-html="incanta.desc">Projet de jeu de plateau réalisé sur plusieurs mois par une équipe de cinq personnes. Thème : <strong style="color:var(--text)">M.O.B.A.</strong><br><br>Le jeu a été produit physiquement — tokens, cartes, livret, marqueurs, dés, plateau et boîtes. Initialement appelé <em style="color:var(--text)">Cryostail</em>, il a évolué pour résoudre des problèmes de game design.</p>
                 </div>
                 <div class="mb">
-                    <div class="mi"><div class="mk">TYPE</div><div class="mv">Board Game physique</div></div>
-                    <div class="mi"><div class="mk">THÈME</div><div class="mv">M.O.B.A.</div></div>
-                    <div class="mi"><div class="mk">ÉQUIPE</div><div class="mv">5 personnes</div></div>
-                    <div class="mi"><div class="mk">BUILD</div><div class="mv">Cartes, tokens, plateau, dés</div></div>
+                    <div class="mi"><div class="mk">TYPE</div><div class="mv" data-i18n="incanta.meta.type">Board Game physique</div></div>
+                    <div class="mi"><div class="mk" data-i18n="meta.theme">THÈME</div><div class="mv">M.O.B.A.</div></div>
+                    <div class="mi"><div class="mk" data-i18n="meta.team">ÉQUIPE</div><div class="mv" data-i18n="incanta.meta.team">5 personnes</div></div>
+                    <div class="mi"><div class="mk" data-i18n="meta.build">BUILD</div><div class="mv" data-i18n="incanta.meta.build">Cartes, tokens, plateau, dés</div></div>
                 </div>
             </div>
             <div class="sgrd stagger">
@@ -2395,7 +2421,7 @@
     <div class="page" id="page-concept">
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('incanta');return false;">IN CANTA</a><span>/</span>CONCEPT</div>
-            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>CONCEPT</h2><p>Concept de base d'"IN CANTA". Initialement Cryostail, évolué pour résoudre des problèmes de game design.</p></div>
+            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>CONCEPT</h2><p data-i18n="concept.desc">Concept de base d'"IN CANTA". Initialement Cryostail, évolué pour résoudre des problèmes de game design.</p></div>
             <div class="gg stagger" id="cg-gallery"></div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('incanta');return false;">← IN CANTA</a></div></footer>
@@ -2404,7 +2430,7 @@
     <div class="page" id="page-rulebook">
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('incanta');return false;">IN CANTA</a><span>/</span>RULEBOOK</div>
-            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>RULEBOOK</h2><p>Livret de règles complet — mécaniques, tours de jeu et conditions de victoire.</p></div>
+            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>RULEBOOK</h2><p data-i18n="rulebook.desc">Livret de règles complet — mécaniques, tours de jeu et conditions de victoire.</p></div>
             <div class="gg stagger" id="rbg"></div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('incanta');return false;">← IN CANTA</a></div></footer>
@@ -2413,7 +2439,7 @@
     <div class="page" id="page-cards">
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('incanta');return false;">IN CANTA</a><span>/</span>CARDS</div>
-            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>CARDS</h2><p>Toutes les cartes — illustrées, équilibrées et produites physiquement.</p></div>
+            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>CARDS</h2><p data-i18n="cards.desc">Toutes les cartes — illustrées, équilibrées et produites physiquement.</p></div>
             <div class="gg stagger" id="cardsg"></div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('incanta');return false;">← IN CANTA</a></div></footer>
@@ -2422,7 +2448,7 @@
     <div class="page" id="page-board">
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('incanta');return false;">IN CANTA</a><span>/</span>BOARD</div>
-            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>BOARD</h2><p>Le plateau de jeu — inspiré des arènes MOBA, conçu et produit physiquement.</p></div>
+            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>BOARD</h2><p data-i18n="board.desc">Le plateau de jeu — inspiré des arènes MOBA, conçu et produit physiquement.</p></div>
             <div class="gg stagger">
                 <div class="gi" onclick="oLB(['./assets/734303d05da7.png'],0)">
                     <img src="./assets/734303d05da7.png" alt="" loading="lazy">
@@ -2435,7 +2461,7 @@
     <div class="page" id="page-balancing">
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('incanta');return false;">IN CANTA</a><span>/</span>BALANCING</div>
-            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>BALANCING<br><span class="g">& DATA EFFECT</span></h2><p>Équilibrage du jeu — analyse des données, effets des cartes et ajustements.</p></div>
+            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>BALANCING<br><span class="g">& DATA EFFECT</span></h2><p data-i18n="balancing.desc">Équilibrage du jeu — analyse des données, effets des cartes et ajustements.</p></div>
             <div class="gg stagger" id="balg"></div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('incanta');return false;">← IN CANTA</a></div></footer>
@@ -2443,19 +2469,19 @@
 
     <div class="page" id="page-html">
         <div class="cnt">
-            <div class="ph2"><span class="hud-label" style="margin-bottom:12px;display:flex">Code · UI · Game</span><h2>HTML PROJECT</h2><p>Projets HTML/CSS/JS en Game Design et UI.</p></div>
+            <div class="ph2"><span class="hud-label" style="margin-bottom:12px;display:flex">Code · UI · Game</span><h2>HTML PROJECT</h2><p data-i18n="html.desc">Projets HTML/CSS/JS en Game Design et UI.</p></div>
             <div class="hg stagger">
                 <div class="hc" onclick="go('html-feedback')">
                     <img src="./assets/ae25bfc72ca0.jpg" alt="Feedback Card">
-                    <div class="hcb"><div class="hct">FEEDBACK CARD</div><div class="hcs">Rendre une carte web plus "juicy" — micro-interactions</div><span class="htg">HTML · CSS</span></div>
+                    <div class="hcb"><div class="hct">FEEDBACK CARD</div><div class="hcs" data-i18n="html.feedback.desc">Rendre une carte web plus "juicy" — micro-interactions</div><span class="htg">HTML · CSS</span></div>
                 </div>
                 <div class="hc" onclick="go('html-veigar')">
                     <img src="./assets/638ce13f4c7d.jpg" alt="Veigar Clicker">
-                    <div class="hcb"><div class="hct">VEIGAR CLICKER</div><div class="hcs">Clicker game Veigar (LoL) — stack de dégâts</div><span class="htg">HTML · CSS · JS</span></div>
+                    <div class="hcb"><div class="hct">VEIGAR CLICKER</div><div class="hcs" data-i18n="html.veigar.desc">Clicker game Veigar (LoL) — stack de dégâts</div><span class="htg">HTML · CSS · JS</span></div>
                 </div>
                 <div class="hc" onclick="go('html-akira')">
                     <img src="./assets/bd4a8508937e.jpg" alt="Akira Clicker">
-                    <div class="hcb"><div class="hct">AKIRA CLICKER</div><div class="hcs">Clicker game fait en une soirée pour ma petite amie</div><span class="htg">HTML · CSS · JS</span></div>
+                    <div class="hcb"><div class="hct">AKIRA CLICKER</div><div class="hcs" data-i18n="html.akira.desc">Clicker game fait en une soirée pour ma petite amie</div><span class="htg">HTML · CSS · JS</span></div>
                 </div>
             </div>
         </div>
@@ -2466,8 +2492,8 @@
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('html');return false;">HTML</a><span>/</span>FEEDBACK CARD</div>
             <div class="pdb">
-                <div><span class="hud-label" style="margin-bottom:14px;display:flex">HTML · CSS</span><h2>FEEDBACK CARD</h2><p>Projet personnel : explorer comment rendre une simple carte web plus <em style="color:var(--text)">"juicy"</em> via des effets visuels et micro-interactions. Les données affichées sont fictives.</p></div>
-                <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv">Perso</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS</div></div><div class="mi"><div class="mk">OBJ</div><div class="mv">Micro-interactions</div></div></div>
+                <div><span class="hud-label" style="margin-bottom:14px;display:flex">HTML · CSS</span><h2>FEEDBACK CARD</h2><p data-i18n-html="feedback.longdesc">Projet personnel : explorer comment rendre une simple carte web plus <em style="color:var(--text)">"juicy"</em> via des effets visuels et micro-interactions. Les données affichées sont fictives.</p></div>
+                <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv" data-i18n="meta.perso">Perso</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS</div></div><div class="mi"><div class="mk" data-i18n="meta.obj">OBJ</div><div class="mv" data-i18n="meta.microinteractions">Micro-interactions</div></div></div>
             </div>
             <div class="gg"><div class="gi"><img src="./assets/53224cf4e5ec.jpg" alt="" loading="lazy"></div></div>
         </div>
@@ -2478,8 +2504,8 @@
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('html');return false;">HTML</a><span>/</span>VEIGAR CLICKER</div>
             <div class="pdb">
-                <div><span class="hud-label" style="margin-bottom:14px;display:flex">HTML · CSS · JS</span><h2>VEIGAR CLICKER</h2><p>Démarré sur Unity puis GODOT, retravaillé en HTML/CSS/JS. USP : clicker game Veigar (LoL), mécanique de stack de dégâts. En développement, usage privé.</p></div>
-                <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv">Clicker Game</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS · JS</div></div><div class="mi"><div class="mk">USP</div><div class="mv">Stack de dégâts</div></div><div class="mi"><div class="mk">STATUS</div><div class="mv">EN DEV</div></div></div>
+                <div><span class="hud-label" style="margin-bottom:14px;display:flex">HTML · CSS · JS</span><h2>VEIGAR CLICKER</h2><p data-i18n="veigar.longdesc">Démarré sur Unity puis GODOT, retravaillé en HTML/CSS/JS. USP : clicker game Veigar (LoL), mécanique de stack de dégâts. En développement, usage privé.</p></div>
+                <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv">Clicker Game</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS · JS</div></div><div class="mi"><div class="mk">USP</div><div class="mv">Stack de dégâts</div></div><div class="mi"><div class="mk">STATUS</div><div class="mv" data-i18n="meta.indev">EN DEV</div></div></div>
             </div>
             <div class="gg"><div class="gi"><img src="./assets/386b9c04f42d.jpg" alt="" loading="lazy"></div></div>
         </div>
@@ -2490,8 +2516,8 @@
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('html');return false;">HTML</a><span>/</span>AKIRA CLICKER</div>
             <div class="pdb">
-                <div><span class="hud-label" style="margin-bottom:14px;display:flex">HTML · CSS · JS</span><h2>AKIRA CLICKER</h2><p>Réalisé en une soirée pour ma petite amie, à l'image de son chat Akira.</p></div>
-                <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv">Clicker Game</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS · JS</div></div><div class="mi"><div class="mk">DURÉE</div><div class="mv">1 soirée</div></div></div>
+                <div><span class="hud-label" style="margin-bottom:14px;display:flex">HTML · CSS · JS</span><h2>AKIRA CLICKER</h2><p data-i18n="akira.longdesc">Réalisé en une soirée pour ma petite amie, à l'image de son chat Akira.</p></div>
+                <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv">Clicker Game</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS · JS</div></div><div class="mi"><div class="mk" data-i18n="meta.duration">DURÉE</div><div class="mv" data-i18n="meta.onevening">1 soirée</div></div></div>
             </div>
             <div class="gg"><div class="gi"><img src="./assets/0fb3c4f35a01.jpg" alt="" loading="lazy"></div></div>
         </div>
@@ -2502,36 +2528,58 @@
         <div class="cnt">
             <div class="abl">
                 <div>
-                    <span class="hud-label" style="margin-bottom:18px;display:flex">À PROPOS</span>
+                    <span class="hud-label" style="margin-bottom:18px;display:flex" data-i18n="about.label">À PROPOS</span>
                     <h2>NICOLAS<br><span class="g">ZIMMERMANN</span></h2>
-                    <div class="abi">
+                    <div class="abi" id="about-bio">
                         <p>Je suis <strong>Nicolas "Raksakoreko" Zimmermann</strong>, étudiant en Game Design à la <strong>LISAA Paris</strong>. Ma passion pour le game design découle de mon background compétitif.</p>
-                        <p>J'ai joué professionnellement <strong>CS:GO</strong> entre 2014 et 2016, puis à <strong>League of Legends</strong> où j'ai atteint le rang <strong>GrandMaster+ EUW</strong> depuis 2023. Je travaille avec la <strong>Whatoubance</strong> (ex Fnatic, Aegis, Solary, Mihos Esports, GentleMates) sur <strong>TFT</strong>.</p>
+                        <p>J'ai joué professionnellement <strong>CS:GO</strong> entre 2014 et 2016, puis à <strong>League of Legends</strong> où j'ai atteint le rang <strong>GrandMaster+ EUW</strong> depuis 2023. Aujourd'hui je travaille avec la <strong>Whatoubance</strong> (ex Fnatic, Aegis, Solary, Mihos Esports, GentleMates) sur <strong>TFT</strong>.</p>
                         <p>Vous trouverez ici des créations & concepts de jeux <strong>physiques</strong> (jeux de plateau, CCG, TCG..etc) et <strong>"numériques"</strong> (Unreal, Unity, HTML/JS/CSS voir Godot).</p>
                     </div>
                     <div class="sks">
-                        <div class="skt">SKILLS</div>
+                        <div class="skt" data-i18n="about.skills">SKILLS</div>
                         <div class="skl">
                             <span class="sp">Game Design</span><span class="sp">Board Game</span><span class="sp">HTML/CSS/JS</span><span class="sp">Unity</span><span class="sp">Unreal Engine</span><span class="sp">Balancing</span><span class="sp">UI Design</span><span class="sp">GDD</span><span class="sp">Level Design</span><span class="sp">Prototyping</span><span class="sp">UX Design</span><span class="sp">QA</span>
+                        </div>
+
+                        <div class="sks" style="margin-top:28px">
+                            <div class="skt">TOOLS</div>
+                            <div class="tool-grid">
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/unity/ffffff" alt="Unity" loading="lazy"><span>Unity</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/unrealengine/ffffff" alt="Unreal" loading="lazy"><span>Unreal</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/godotengine/ffffff" alt="Godot" loading="lazy"><span>Godot</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/html5/ffffff" alt="HTML5" loading="lazy"><span>HTML</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/css/ffffff" alt="CSS3" loading="lazy"><span>CSS</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/javascript/ffffff" alt="JavaScript" loading="lazy"><span>JS</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/autodesk/ffffff" alt="3DS Max" loading="lazy"><span>3DS Max</span></div>
+                                <div class="tool-item"><svg viewBox="0 0 24 24" width="26" height="26" fill="rgba(255,255,255,.55)" style="transition:fill .2s"><rect x="1" y="1" width="22" height="22" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="16.5" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="9.5" fill="rgba(255,255,255,.55)">Ps</text></svg><span>Photoshop</span></div>
+                                <div class="tool-item"><svg viewBox="0 0 24 24" width="26" height="26" fill="rgba(255,255,255,.55)" style="transition:fill .2s"><rect x="1" y="1" width="22" height="22" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="16.5" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="9.5" fill="rgba(255,255,255,.55)">Pr</text></svg><span>Premiere</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/figma/ffffff" alt="Figma" loading="lazy"><span>Figma</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/miro/ffffff" alt="Miro" loading="lazy"><span>Miro</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/notion/ffffff" alt="Notion" loading="lazy"><span>Notion</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/trello/ffffff" alt="Trello" loading="lazy"><span>Trello</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" loading="lazy"><span>GitHub</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/google/ffffff" alt="G. Suite" loading="lazy"><span>G. Suite</span></div>
+                                <div class="tool-item"><svg viewBox="0 0 24 24" width="26" height="26" fill="rgba(255,255,255,.55)" style="transition:fill .2s"><path d="M23 1.5q.41 0 .7.3.3.29.3.7v19q0 .41-.3.7-.29.3-.7.3H7q-.41 0-.7-.3-.3-.29-.3-.7v-3.5H1q-.41 0-.7-.3-.3-.29-.3-.7V7q0-.41.3-.7Q.58 6 1 6h5V2.5q0-.41.3-.7.29-.3.7-.3zM6 13.28l1.42 2.66h2.14l-2.38-3.87 2.34-3.8H7.46l-1.3 2.35-.1.21-.11.32q-.29-.75-.56-1.25l-1.3-1.63H1.95l2.39 3.74-2.45 3.93h2.14zM14.25 21v-3H7.5v3zm0-4.5v-3.75H12v3.75zm0-5.25V7.5H12v3.75zm0-5.25V3H7.5v3zm8.25 14.25v-3h-6.75v3zm0-4.5v-3.75h-6.75v3.75zm0-5.25V7.5h-6.75v3.75zm0-5.25V3h-6.75v3z"/></svg><span>Excel</span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div>
                     <div class="cc">
-                        <div class="cch">// CONTACT</div>
+                        <div class="cch" data-i18n="about.contact">// CONTACT</div>
                         <div class="ccb">
                             <a href="mailto:Pro.Nicolas.Zimmermann@gmail.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 7 10 6 10-6" /></svg>Pro.Nicolas.Zimmermann@gmail.com</a>
-                            <a href="https://www.instagram.com/raksakoreko/" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" /></svg>@raksakoreko</a>
-                            <a href="https://x.com/RaksakorekoPro" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>@RaksakorekoPro</a>
+
+
                         </div>
                     </div>
                     <div class="gb">
-                        <div class="gbt">// COMPETITIVE</div>
+                        <div class="gbt" data-i18n="about.competitive">// COMPETITIVE</div>
                         <div class="gst"><span class="gnm">League of Legends</span><span class="grk">GRANDMASTER+</span></div>
                         <div class="gst"><span class="gnm">Teamfight Tactics</span><span class="grk">"ORGANISATEUR D'EVENEMENTS"</span></div>
                         <div class="gst"><span class="gnm">CS:GO</span><span class="grk">PRO 2014–2016</span></div>
                     </div>
-                    <a href="https://267554c8-a000-4c76-9360-fb37bc7ceb88.filesusr.com/ugd/45ed80_0d9227c519b440f99bb76f984973899e.pdf" target="_blank" class="btn bp ripple-wrap" style="width:100%;justify-content:center;margin-top:14px">[ TÉLÉCHARGER CV ]</a>
+                    <a href="https://267554c8-a000-4c76-9360-fb37bc7ceb88.filesusr.com/ugd/45ed80_0d9227c519b440f99bb76f984973899e.pdf" target="_blank" class="btn bp ripple-wrap" style="width:100%;justify-content:center;margin-top:14px" data-i18n="about.cv">[ TÉLÉCHARGER CV ]</a>
                 </div>
             </div>
 
@@ -2545,7 +2593,7 @@
                 </div>
                 <div class="console-body" id="c-body">
                     <div id="c-history">
-                        <div class="console-line" style="color:var(--dim)">[System] Terminal initialized. Awaiting commands...</div>
+                        <div class="console-line" style="color:var(--dim)">[System] Terminal initialized. Type <span style="color:var(--v2)">help</span> for commands.</div>
                     </div>
                     <div class="console-input-row" id="c-input-row">
                         <span class="console-prompt">&gt;</span>
@@ -2554,21 +2602,20 @@
 
                     <canvas id="game-canvas" width="600" height="400"></canvas>
 
-                    <div id="doom-wrapper" class="doom-crop-container">
-                        <iframe id="doom-canvas" src="about:blank" scrolling="no"></iframe>
-                    </div>
                 </div>
 
                 <div class="game-controls" id="g-controls">
+                    <button class="game-btn" id="btn-up">▲ UP</button>
                     <button class="game-btn" id="btn-left">◀ LEFT</button>
                     <button class="game-btn" id="btn-fire">FIRE</button>
                     <button class="game-btn" id="btn-right">RIGHT ▶</button>
+                    <button class="game-btn" id="btn-down">▼ DOWN</button>
                     <button class="game-btn btn-exit" id="btn-exit">EXIT (F8)</button>
                 </div>
             </div>
 
         </div>
-        <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="https://www.instagram.com/raksakoreko/" target="_blank">INSTAGRAM</a><a href="https://x.com/RaksakorekoPro" target="_blank">TWITTER</a><a href="mailto:Pro.Nicolas.Zimmermann@gmail.com">MAIL</a></div></footer>
+        <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="mailto:Pro.Nicolas.Zimmermann@gmail.com">MAIL</a></div></footer>
     </div>
 
     <script>
@@ -2576,6 +2623,137 @@
         window.ondragstart = function () { return false; };
         document.addEventListener('dragstart', e => e.preventDefault());
         document.addEventListener('drop', e => e.preventDefault());
+
+
+        /* ── LANG SYSTEM ────────────────────────────────── */
+        let currentLang = localStorage.getItem('nz_lang') || 'fr';
+
+        const T = {
+            fr: {
+                'nav.welcome':       'Welcome',
+                'nav.about':         'À propos',
+                'hero.eyebrow':      'Game Design Portfolio',
+                'hero.sub':          'Étudiant en Game Design à <strong>LISAA Paris</strong>. Passionné par les <strong>systems</strong>, <strong>mécaniques</strong> et <strong>techniques</strong> autours du medium vidéoludique.',
+                'hero.cta1':         '[ VOIR LES PROJETS ]',
+                'hero.cta2':         '[ À PROPOS ]',
+                'hero.scroll':       'SCROLL_DOWN',
+                'home.sep':          '// PROJETS RÉCENTS',
+                'home.card.incanta': 'Jeu de plateau produit IRL par une équipe de 5. Cartes, tokens, plateau, règles.',
+                'home.card.docs':    '9 projets : analyses, concepts, UI design, level design.',
+                'home.card.html':    'Projets web interactifs. Clicker games, interfaces de jeu.',
+                'docs.desc':         'Dossiers de conception, analyses, concepts GD/LD et UI. Cliquez pour explorer.',
+                'incanta.desc':      'Projet de jeu de plateau réalisé sur plusieurs mois par une équipe de cinq personnes. Thème : <strong style="color:var(--text)">M.O.B.A.</strong><br><br>Le jeu a été produit physiquement — tokens, cartes, livret, marqueurs, dés, plateau et boîtes. Initialement appelé <em style="color:var(--text)">Cryostail</em>, il a évolué pour résoudre des problèmes de game design.',
+                'incanta.meta.type': 'Board Game physique',
+                'meta.theme':        'THÈME',
+                'meta.team':         'ÉQUIPE',
+                'incanta.meta.team': '5 personnes',
+                'meta.build':        'BUILD',
+                'incanta.meta.build':'Cartes, tokens, plateau, dés',
+                'concept.desc':      "Concept de base d'IN CANTA. Initialement Cryostail, évolué pour résoudre des problèmes de game design.",
+                'rulebook.desc':     'Livret de règles complet — mécaniques, tours de jeu et conditions de victoire.',
+                'cards.desc':        'Toutes les cartes — illustrées, équilibrées et produites physiquement.',
+                'board.desc':        'Le plateau de jeu — inspiré des arènes MOBA, conçu et produit physiquement.',
+                'balancing.desc':    'Équilibrage du jeu — analyse des données, effets des cartes et ajustements.',
+                'html.desc':         'Projets HTML/CSS/JS en Game Design et UI.',
+                'html.feedback.desc':'Rendre une carte web plus "juicy" — micro-interactions',
+                'html.veigar.desc':  'Clicker game Veigar (LoL) — stack de dégâts',
+                'html.akira.desc':   'Clicker game fait en une soirée pour ma petite amie',
+                'feedback.longdesc': 'Projet personnel : explorer comment rendre une simple carte web plus <em style="color:var(--text)">"juicy"</em> via des effets visuels et micro-interactions. Les données affichées sont fictives.',
+                'meta.perso':        'Perso',
+                'meta.obj':          'OBJ',
+                'meta.microinteractions': 'Micro-interactions',
+                'veigar.longdesc':   'Démarré sur Unity puis GODOT, retravaillé en HTML/CSS/JS. USP : clicker game Veigar (LoL), mécanique de stack de dégâts. En développement, usage privé.',
+                'meta.indev':        'EN DEV',
+                'akira.longdesc':    "Réalisé en une soirée pour ma petite amie, à l'image de son chat Akira.",
+                'meta.duration':     'DURÉE',
+                'meta.onevening':    '1 soirée',
+                'about.label':       'À PROPOS',
+                'about.skills':      'SKILLS',
+                'about.contact':     '// CONTACT',
+                'about.competitive': '// COMPETITIVE',
+                'about.cv':          '[ TÉLÉCHARGER CV ]',
+                'about.bio': `<p>Je suis <strong>Nicolas "Raksakoreko" Zimmermann</strong>, étudiant en Game Design à la <strong>LISAA Paris</strong>. Ma passion pour le game design découle de mon background compétitif.</p><p>J'ai joué professionnellement <strong>CS:GO</strong> entre 2014 et 2016, puis à <strong>League of Legends</strong> où j'ai atteint le rang <strong>GrandMaster+ EUW</strong> depuis 2023. Aujourd'hui je travaille avec la <strong>Whatoubance</strong> (ex Fnatic, Aegis, Solary, Mihos Esports, GentleMates) sur <strong>TFT</strong>.</p><p>Vous trouverez ici des créations & concepts de jeux <strong>physiques</strong> (jeux de plateau, CCG, TCG..etc) et <strong>"numériques"</strong> (Unreal, Unity, HTML/JS/CSS voir Godot).</p>`,
+            },
+            en: {
+                'nav.welcome':       'Welcome',
+                'nav.about':         'About',
+                'hero.eyebrow':      'Game Design Portfolio',
+                'hero.sub':          'Game Design student at <strong>LISAA Paris</strong>. Passionate about <strong>systems</strong>, <strong>mechanics</strong> and <strong>techniques</strong> around the video game medium.',
+                'hero.cta1':         '[ SEE PROJECTS ]',
+                'hero.cta2':         '[ ABOUT ]',
+                'hero.scroll':       'SCROLL_DOWN',
+                'home.sep':          '// RECENT PROJECTS',
+                'home.card.incanta': 'Physical board game produced by a team of 5. Cards, tokens, board, rulebook.',
+                'home.card.docs':    '9 projects: analyses, concepts, UI design, level design.',
+                'home.card.html':    'Interactive web projects. Clicker games, game interfaces.',
+                'docs.desc':         'Design documents, analyses, GD/LD concepts and UI. Click to explore.',
+                'incanta.desc':      'Board game project developed over several months by a team of five. Theme: <strong style="color:var(--text)">M.O.B.A.</strong><br><br>The game was produced physically — tokens, cards, rulebook, markers, dice, board and boxes. Originally called <em style="color:var(--text)">Cryostail</em>, it evolved to solve game design issues.',
+                'incanta.meta.type': 'Physical Board Game',
+                'meta.theme':        'THEME',
+                'meta.team':         'TEAM',
+                'incanta.meta.team': '5 people',
+                'meta.build':        'BUILD',
+                'incanta.meta.build':'Cards, tokens, board, dice',
+                'concept.desc':      'Base concept of "IN CANTA". Originally Cryostail, evolved to solve game design problems.',
+                'rulebook.desc':     'Full rulebook — mechanics, game turns and victory conditions.',
+                'cards.desc':        'All cards — illustrated, balanced and physically produced.',
+                'board.desc':        'The game board — inspired by MOBA arenas, designed and physically produced.',
+                'balancing.desc':    'Game balancing — data analysis, card effects and adjustments.',
+                'html.desc':         'HTML/CSS/JS projects in Game Design and UI.',
+                'html.feedback.desc':'Making a web card more "juicy" — micro-interactions',
+                'html.veigar.desc':  'Veigar (LoL) clicker game — damage stack mechanic',
+                'html.akira.desc':   'Clicker game made in one evening for my girlfriend',
+                'feedback.longdesc': 'Personal project: explore how to make a simple web card more <em style="color:var(--text)">"juicy"</em> through visual effects and micro-interactions. Displayed data is fictional.',
+                'meta.perso':        'Personal',
+                'meta.obj':          'GOAL',
+                'meta.microinteractions': 'Micro-interactions',
+                'veigar.longdesc':   'Started on Unity then GODOT, reworked in HTML/CSS/JS. USP: Veigar (LoL) clicker game, damage stack mechanic. In development, private use.',
+                'meta.indev':        'IN DEV',
+                'akira.longdesc':    'Made in one evening for my girlfriend, inspired by her cat Akira.',
+                'meta.duration':     'DURATION',
+                'meta.onevening':    '1 evening',
+                'about.label':       'ABOUT',
+                'about.skills':      'SKILLS',
+                'about.contact':     '// CONTACT',
+                'about.competitive': '// COMPETITIVE',
+                'about.cv':          '[ DOWNLOAD CV ]',
+                'about.bio': `<p>I am <strong>Nicolas "Raksakoreko" Zimmermann</strong>, a Game Design student at <strong>LISAA Paris</strong>. My passion for game design stems from my competitive background.</p><p>I played professionally in <strong>CS:GO</strong> from 2014 to 2016, then in <strong>League of Legends</strong> where I reached <strong>GrandMaster+ EUW</strong> since 2023. Today I work with <strong>Whatoubance</strong> (ex Fnatic, Aegis, Solary, Mihos Esports, GentleMates) on <strong>TFT</strong>.</p><p>Here you will find <strong>physical</strong> game creations &amp; concepts (board games, CCG, TCG, etc.) and <strong>"digital"</strong> ones (Unreal, Unity, HTML/JS/CSS or Godot).</p>`,
+            }
+        };
+
+        function applyLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('nz_lang', lang);
+            const t = T[lang];
+
+            // Simple text nodes
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (t[key] !== undefined) el.textContent = t[key];
+            });
+            // HTML content
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                const key = el.dataset.i18nHtml;
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+
+            // About bio (special block with multiple paragraphs)
+            const bio = document.getElementById('about-bio');
+            if (bio && t['about.bio']) bio.innerHTML = t['about.bio'];
+
+            // DOCS array descriptions (translated dynamically when openDoc is called)
+            // Flag button: shows flag you'll switch TO
+            const flag = document.getElementById('lang-flag');
+            if (flag) { flag.src = lang === 'fr' ? 'https://flagcdn.com/w40/gb.png' : 'https://flagcdn.com/w40/fr.png'; flag.alt = lang === 'fr' ? 'EN' : 'FR'; }
+
+            // Nav dropdown "// Projets" label
+            const projBtn = document.querySelector('.drop > button');
+            if (projBtn) projBtn.textContent = lang === 'fr' ? '// Projets' : '// Projects';
+        }
+
+        function toggleLang() {
+            applyLang(currentLang === 'fr' ? 'en' : 'fr');
+        }
 
         /* ── INTRO SEQUENCE ─────────────────────────────── */
         const introOverlay = document.getElementById('intro-overlay');
@@ -2630,8 +2808,7 @@
 
                 const queue = [
                     { el: document.getElementById('type-name'), text: "N. ZIMMERMANN" },
-                    { el: document.getElementById('type-lvl'), text: "25" },
-                    { el: document.getElementById('type-docs'), text: "9" },
+                    { el: document.getElementById('type-age'), text: "25" },
                     { el: document.getElementById('type-school'), text: "LISAA" },
                     { el: document.getElementById('type-status'), text: "ONLINE" }
                 ];
@@ -2688,23 +2865,370 @@
         }
 
         /* ── DATA ───────────────────────────────────────── */
+const ASSET_MAP = {
+  "https://static.wixstatic.com/media/1d4c57a128494063263ab6f729596843.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/1d4c57a128494063263ab6f729596843.jpg": "./assets/54f9129e7ad7.jpg",
+  "https://static.wixstatic.com/media/45ed80_000ba25e2cfe4fdf887672682002d444~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_000ba25e2cfe4fdf887672682002d444~mv2.jpg": "./assets/b663441b576a.jpg",
+  "https://static.wixstatic.com/media/45ed80_0ae79a9bfc764dcb902473562c4abb83~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_0ae79a9bfc764dcb902473562c4abb83~mv2.jpg": "./assets/827296d31505.jpg",
+  "https://static.wixstatic.com/media/45ed80_0ae79a9bfc764dcb902473562c4abb83~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_0ae79a9bfc764dcb902473562c4abb83~mv2.jpg": "./assets/65e7c8320b30.jpg",
+  "https://static.wixstatic.com/media/45ed80_0ebca3610e184ad9a647eaf01e10e80e~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_0ebca3610e184ad9a647eaf01e10e80e~mv2.jpg": "./assets/26e70c2a5245.jpg",
+  "https://static.wixstatic.com/media/45ed80_0ebca3610e184ad9a647eaf01e10e80e~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_0ebca3610e184ad9a647eaf01e10e80e~mv2.jpg": "./assets/ab30e1eb272f.jpg",
+  "https://static.wixstatic.com/media/45ed80_11951bdb3cca4dbb8c4b55f00c31e782~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_11951bdb3cca4dbb8c4b55f00c31e782~mv2.jpg": "./assets/af6f2e641fec.jpg",
+  "https://static.wixstatic.com/media/45ed80_12c40c01d6ee4a939670633e3ea0258a~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_12c40c01d6ee4a939670633e3ea0258a~mv2.jpg": "./assets/5968dbe9d789.jpg",
+  "https://static.wixstatic.com/media/45ed80_13804af545bf4a258e8e0e98c16ee72f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_13804af545bf4a258e8e0e98c16ee72f~mv2.jpg": "./assets/71584b5ae4d2.jpg",
+  "https://static.wixstatic.com/media/45ed80_13804af545bf4a258e8e0e98c16ee72f~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_13804af545bf4a258e8e0e98c16ee72f~mv2.jpg": "./assets/55d3ec7d061d.jpg",
+  "https://static.wixstatic.com/media/45ed80_13954240cdf44cf8ad15ccc46435e47b~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_13954240cdf44cf8ad15ccc46435e47b~mv2.jpg": "./assets/b7eca637d6fd.jpg",
+  "https://static.wixstatic.com/media/45ed80_13954240cdf44cf8ad15ccc46435e47b~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_13954240cdf44cf8ad15ccc46435e47b~mv2.jpg": "./assets/e5d06fa5ade3.jpg",
+  "https://static.wixstatic.com/media/45ed80_15de3731aa0d4c3bb46611bd4e45e813~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_15de3731aa0d4c3bb46611bd4e45e813~mv2.jpg": "./assets/f4af1a468445.jpg",
+  "https://static.wixstatic.com/media/45ed80_15de3731aa0d4c3bb46611bd4e45e813~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_15de3731aa0d4c3bb46611bd4e45e813~mv2.jpg": "./assets/3b16e4f7129c.jpg",
+  "https://static.wixstatic.com/media/45ed80_18ecd44895514babb7a2950f31b04989~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_18ecd44895514babb7a2950f31b04989~mv2.jpg": "./assets/ad8f6430534e.jpg",
+  "https://static.wixstatic.com/media/45ed80_18ecd44895514babb7a2950f31b04989~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_18ecd44895514babb7a2950f31b04989~mv2.jpg": "./assets/945b442bdee3.jpg",
+  "https://static.wixstatic.com/media/45ed80_193505164aba4f5ba371d10a6ae96ce7~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_193505164aba4f5ba371d10a6ae96ce7~mv2.jpg": "./assets/640d6a50e6f6.jpg",
+  "https://static.wixstatic.com/media/45ed80_193505164aba4f5ba371d10a6ae96ce7~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_193505164aba4f5ba371d10a6ae96ce7~mv2.jpg": "./assets/133d440bca74.jpg",
+  "https://static.wixstatic.com/media/45ed80_193505164aba4f5ba371d10a6ae96ce7~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_193505164aba4f5ba371d10a6ae96ce7~mv2.png": "./assets/4e7e1f13365b.png",
+  "https://static.wixstatic.com/media/45ed80_193505164aba4f5ba371d10a6ae96ce7~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_193505164aba4f5ba371d10a6ae96ce7~mv2.png": "./assets/2c236816b3fb.png",
+  "https://static.wixstatic.com/media/45ed80_1a5a00e18e52406f83e5c3f0bfbf6ef2~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_1a5a00e18e52406f83e5c3f0bfbf6ef2~mv2.jpg": "./assets/f111cd02ae0f.jpg",
+  "https://static.wixstatic.com/media/45ed80_1a5a00e18e52406f83e5c3f0bfbf6ef2~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_1a5a00e18e52406f83e5c3f0bfbf6ef2~mv2.jpg": "./assets/654661898f0a.jpg",
+  "https://static.wixstatic.com/media/45ed80_1b66491ea81145d5ada82e77a60794f6~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_1b66491ea81145d5ada82e77a60794f6~mv2.jpg": "./assets/ef19dfc57724.jpg",
+  "https://static.wixstatic.com/media/45ed80_1b66491ea81145d5ada82e77a60794f6~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_1b66491ea81145d5ada82e77a60794f6~mv2.jpg": "./assets/580bbe2f8baf.jpg",
+  "https://static.wixstatic.com/media/45ed80_1b66491ea81145d5ada82e77a60794f6~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_1b66491ea81145d5ada82e77a60794f6~mv2.png": "./assets/fa8c296945e9.png",
+  "https://static.wixstatic.com/media/45ed80_1b66491ea81145d5ada82e77a60794f6~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_1b66491ea81145d5ada82e77a60794f6~mv2.png": "./assets/f0f4db6dc82c.png",
+  "https://static.wixstatic.com/media/45ed80_1d18a45d9f6c4e0db96c63cc615b8f2f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_1d18a45d9f6c4e0db96c63cc615b8f2f~mv2.jpg": "./assets/536a8b0bcc25.jpg",
+  "https://static.wixstatic.com/media/45ed80_1d18a45d9f6c4e0db96c63cc615b8f2f~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_1d18a45d9f6c4e0db96c63cc615b8f2f~mv2.jpg": "./assets/ee57f2968437.jpg",
+  "https://static.wixstatic.com/media/45ed80_1e57b3b0ad584c348dc6b8a52757d393~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_1e57b3b0ad584c348dc6b8a52757d393~mv2.jpg": "./assets/2debb79bda5c.jpg",
+  "https://static.wixstatic.com/media/45ed80_1f42cb214c744669aae67a1dd47350ee~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_1f42cb214c744669aae67a1dd47350ee~mv2.jpg": "./assets/fe29bd2634d0.jpg",
+  "https://static.wixstatic.com/media/45ed80_213b00dec41b432f9c6555b8a6b2d5e7~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_213b00dec41b432f9c6555b8a6b2d5e7~mv2.jpg": "./assets/83a2cc979587.jpg",
+  "https://static.wixstatic.com/media/45ed80_2361165d97bb4a3eb604045c6cc26ef0~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_2361165d97bb4a3eb604045c6cc26ef0~mv2.jpg": "./assets/58d1a5d2fd4e.jpg",
+  "https://static.wixstatic.com/media/45ed80_2361165d97bb4a3eb604045c6cc26ef0~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_2361165d97bb4a3eb604045c6cc26ef0~mv2.jpg": "./assets/42c227fb98ed.jpg",
+  "https://static.wixstatic.com/media/45ed80_2361165d97bb4a3eb604045c6cc26ef0~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_2361165d97bb4a3eb604045c6cc26ef0~mv2.png": "./assets/76c4685dab85.png",
+  "https://static.wixstatic.com/media/45ed80_2361165d97bb4a3eb604045c6cc26ef0~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_2361165d97bb4a3eb604045c6cc26ef0~mv2.png": "./assets/0e200981aae3.png",
+  "https://static.wixstatic.com/media/45ed80_24d787895a354c2fbb1dec0fb5dd91b3~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_24d787895a354c2fbb1dec0fb5dd91b3~mv2.jpg": "./assets/dcc5f8cee3ba.jpg",
+  "https://static.wixstatic.com/media/45ed80_2532fc563dc342f8bba4d160d4f14a0a~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_2532fc563dc342f8bba4d160d4f14a0a~mv2.jpg": "./assets/9229611a24ae.jpg",
+  "https://static.wixstatic.com/media/45ed80_26368fa1e619405998947f8d5a08b744~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_26368fa1e619405998947f8d5a08b744~mv2.jpg": "./assets/23daacdbd80e.jpg",
+  "https://static.wixstatic.com/media/45ed80_26368fa1e619405998947f8d5a08b744~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_26368fa1e619405998947f8d5a08b744~mv2.jpg": "./assets/a9a01945e491.jpg",
+  "https://static.wixstatic.com/media/45ed80_2a7165d6621b44a5a5c9f887b6cacdbff000.jpg/v1/fill/w_600,h_450,q_90,enc_avif,quality_auto/45ed80_2a7165d6621b44a5a5c9f887b6cacdbff000.jpg": "./assets/ae25bfc72ca0.jpg",
+  "https://static.wixstatic.com/media/45ed80_2a7165d6621b44a5a5c9f887b6cacdbff000.jpg/v1/fill/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_2a7165d6621b44a5a5c9f887b6cacdbff000.jpg": "./assets/53224cf4e5ec.jpg",
+  "https://static.wixstatic.com/media/45ed80_2a7165d6621b44a5a5c9f887b6cacdbff000~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_2a7165d6621b44a5a5c9f887b6cacdbff000~mv2.jpg": "./assets/c81b2df585ed.jpg",
+  "https://static.wixstatic.com/media/45ed80_2a7165d6621b44a5a5c9f887b6cacdbff000~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_2a7165d6621b44a5a5c9f887b6cacdbff000~mv2.jpg": "./assets/6eb4e51f82de.jpg",
+  "https://static.wixstatic.com/media/45ed80_2aa50b52cebe47279944713b096747ce~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_2aa50b52cebe47279944713b096747ce~mv2.jpg": "./assets/966babc05600.jpg",
+  "https://static.wixstatic.com/media/45ed80_2ae34e76bf374ccea638e4902a840ec6~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_2ae34e76bf374ccea638e4902a840ec6~mv2.jpg": "./assets/a214483939b8.jpg",
+  "https://static.wixstatic.com/media/45ed80_2ae34e76bf374ccea638e4902a840ec6~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_2ae34e76bf374ccea638e4902a840ec6~mv2.jpg": "./assets/34c2ec894364.jpg",
+  "https://static.wixstatic.com/media/45ed80_2ae34e76bf374ccea638e4902a840ec6~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_2ae34e76bf374ccea638e4902a840ec6~mv2.png": "./assets/0708c4e8075e.png",
+  "https://static.wixstatic.com/media/45ed80_2ae34e76bf374ccea638e4902a840ec6~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_2ae34e76bf374ccea638e4902a840ec6~mv2.png": "./assets/614f29266de3.png",
+  "https://static.wixstatic.com/media/45ed80_2c6f7cd5d4334dce90fc5b53180c3e5d~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_2c6f7cd5d4334dce90fc5b53180c3e5d~mv2.jpg": "./assets/e74aa942514d.jpg",
+  "https://static.wixstatic.com/media/45ed80_2ce2c42502c54a4a9a2ade921ec4ca91~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_2ce2c42502c54a4a9a2ade921ec4ca91~mv2.jpg": "./assets/10e5084b32c1.jpg",
+  "https://static.wixstatic.com/media/45ed80_2ce2c42502c54a4a9a2ade921ec4ca91~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_2ce2c42502c54a4a9a2ade921ec4ca91~mv2.jpg": "./assets/db78ff7da5a0.jpg",
+  "https://static.wixstatic.com/media/45ed80_2d6fc8959c874b33a0248a5e1b1dc74e~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_2d6fc8959c874b33a0248a5e1b1dc74e~mv2.jpg": "./assets/ca77b2cfe8b3.jpg",
+  "https://static.wixstatic.com/media/45ed80_2d6fc8959c874b33a0248a5e1b1dc74e~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_2d6fc8959c874b33a0248a5e1b1dc74e~mv2.jpg": "./assets/a4be579cb0b0.jpg",
+  "https://static.wixstatic.com/media/45ed80_2d6fc8959c874b33a0248a5e1b1dc74e~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_2d6fc8959c874b33a0248a5e1b1dc74e~mv2.png": "./assets/5dcc27b9d5a5.png",
+  "https://static.wixstatic.com/media/45ed80_2d6fc8959c874b33a0248a5e1b1dc74e~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_2d6fc8959c874b33a0248a5e1b1dc74e~mv2.png": "./assets/bfc877b2aa93.png",
+  "https://static.wixstatic.com/media/45ed80_2dd0ac4d3f68446ebe418cd4b7cf797c~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_2dd0ac4d3f68446ebe418cd4b7cf797c~mv2.jpg": "./assets/3dec3cf4383e.jpg",
+  "https://static.wixstatic.com/media/45ed80_2dd0ac4d3f68446ebe418cd4b7cf797c~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_2dd0ac4d3f68446ebe418cd4b7cf797c~mv2.jpg": "./assets/031bb50f1dbd.jpg",
+  "https://static.wixstatic.com/media/45ed80_2f3fd653520e4ff782bd3818a8237025~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_2f3fd653520e4ff782bd3818a8237025~mv2.jpg": "./assets/676b2c370217.jpg",
+  "https://static.wixstatic.com/media/45ed80_2f3fd653520e4ff782bd3818a8237025~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_2f3fd653520e4ff782bd3818a8237025~mv2.jpg": "./assets/4989daa84c32.jpg",
+  "https://static.wixstatic.com/media/45ed80_30773ad239074feab05780d50dea060f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_30773ad239074feab05780d50dea060f~mv2.jpg": "./assets/cb4c6e6c6a47.jpg",
+  "https://static.wixstatic.com/media/45ed80_30773ad239074feab05780d50dea060f~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_30773ad239074feab05780d50dea060f~mv2.jpg": "./assets/ac5d4d0139a2.jpg",
+  "https://static.wixstatic.com/media/45ed80_3130139f82a54e1f81d7adb6e0e1123a~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_3130139f82a54e1f81d7adb6e0e1123a~mv2.jpg": "./assets/42a8bb849ee1.jpg",
+  "https://static.wixstatic.com/media/45ed80_3130139f82a54e1f81d7adb6e0e1123a~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_3130139f82a54e1f81d7adb6e0e1123a~mv2.jpg": "./assets/2c1b70079954.jpg",
+  "https://static.wixstatic.com/media/45ed80_3290c277bfd54ab1b768b273934e018f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_3290c277bfd54ab1b768b273934e018f~mv2.jpg": "./assets/311b4f9c3e39.jpg",
+  "https://static.wixstatic.com/media/45ed80_3290c277bfd54ab1b768b273934e018f~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_3290c277bfd54ab1b768b273934e018f~mv2.jpg": "./assets/cb38c47dee10.jpg",
+  "https://static.wixstatic.com/media/45ed80_33ce9b26a0714fcf95b0d6af2a3cfe89~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_33ce9b26a0714fcf95b0d6af2a3cfe89~mv2.jpg": "./assets/d83b78c6e905.jpg",
+  "https://static.wixstatic.com/media/45ed80_33ce9b26a0714fcf95b0d6af2a3cfe89~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_33ce9b26a0714fcf95b0d6af2a3cfe89~mv2.jpg": "./assets/9f32e033e735.jpg",
+  "https://static.wixstatic.com/media/45ed80_33ce9b26a0714fcf95b0d6af2a3cfe89~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_33ce9b26a0714fcf95b0d6af2a3cfe89~mv2.png": "./assets/a254834f36b1.png",
+  "https://static.wixstatic.com/media/45ed80_33ce9b26a0714fcf95b0d6af2a3cfe89~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_33ce9b26a0714fcf95b0d6af2a3cfe89~mv2.png": "./assets/dd558246ce08.png",
+  "https://static.wixstatic.com/media/45ed80_34e833d849f74c368ae80ab39a3518de~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_34e833d849f74c368ae80ab39a3518de~mv2.jpg": "./assets/baa890b11512.jpg",
+  "https://static.wixstatic.com/media/45ed80_34e833d849f74c368ae80ab39a3518de~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_34e833d849f74c368ae80ab39a3518de~mv2.jpg": "./assets/db7fc297b7b8.jpg",
+  "https://static.wixstatic.com/media/45ed80_34e833d849f74c368ae80ab39a3518de~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_34e833d849f74c368ae80ab39a3518de~mv2.png": "./assets/5901a5d9f4d3.png",
+  "https://static.wixstatic.com/media/45ed80_34e833d849f74c368ae80ab39a3518de~mv2.png/v1/fill/w_900,h_675,q_90,enc_avif,quality_auto/45ed80_34e833d849f74c368ae80ab39a3518de~mv2.png": "./assets/48328049d76b.png",
+  "https://static.wixstatic.com/media/45ed80_34e833d849f74c368ae80ab39a3518de~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_34e833d849f74c368ae80ab39a3518de~mv2.png": "./assets/5c823905e7b6.png",
+  "https://static.wixstatic.com/media/45ed80_358de47c4bb547f3b3cac3393ad73bc4~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_358de47c4bb547f3b3cac3393ad73bc4~mv2.jpg": "./assets/6fee607aaaf8.jpg",
+  "https://static.wixstatic.com/media/45ed80_384e787153be4d44adbea2abf4c76088~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_384e787153be4d44adbea2abf4c76088~mv2.jpg": "./assets/fcfe771d5a72.jpg",
+  "https://static.wixstatic.com/media/45ed80_3bb27740b2074a5d8237279def1d3c20~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_3bb27740b2074a5d8237279def1d3c20~mv2.jpg": "./assets/47c7c1c2db3b.jpg",
+  "https://static.wixstatic.com/media/45ed80_3bb27740b2074a5d8237279def1d3c20~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_3bb27740b2074a5d8237279def1d3c20~mv2.jpg": "./assets/8df95425491e.jpg",
+  "https://static.wixstatic.com/media/45ed80_3c4218bb82c1421198b5edbdbbfeeea0~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_3c4218bb82c1421198b5edbdbbfeeea0~mv2.jpg": "./assets/b9935845b884.jpg",
+  "https://static.wixstatic.com/media/45ed80_3c4218bb82c1421198b5edbdbbfeeea0~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_3c4218bb82c1421198b5edbdbbfeeea0~mv2.jpg": "./assets/2614181e7451.jpg",
+  "https://static.wixstatic.com/media/45ed80_3c60cba961974fc6bb2587fbd6e69471~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_3c60cba961974fc6bb2587fbd6e69471~mv2.jpg": "./assets/510efc28bac1.jpg",
+  "https://static.wixstatic.com/media/45ed80_3c60cba961974fc6bb2587fbd6e69471~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_3c60cba961974fc6bb2587fbd6e69471~mv2.jpg": "./assets/f9c5303ef2c6.jpg",
+  "https://static.wixstatic.com/media/45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg": "./assets/f46a8d14a539.jpg",
+  "https://static.wixstatic.com/media/45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg": "./assets/52d7d5c7b2a2.jpg",
+  "https://static.wixstatic.com/media/45ed80_426933102a9d487d825c37c271426ff5~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_426933102a9d487d825c37c271426ff5~mv2.jpg": "./assets/d02b46ce65b5.jpg",
+  "https://static.wixstatic.com/media/45ed80_426933102a9d487d825c37c271426ff5~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_426933102a9d487d825c37c271426ff5~mv2.jpg": "./assets/42e265fe691c.jpg",
+  "https://static.wixstatic.com/media/45ed80_476fbad358834c588854e675652595d1~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_476fbad358834c588854e675652595d1~mv2.jpg": "./assets/3163274ad561.jpg",
+  "https://static.wixstatic.com/media/45ed80_476fbad358834c588854e675652595d1~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_476fbad358834c588854e675652595d1~mv2.jpg": "./assets/76ca019a4bb5.jpg",
+  "https://static.wixstatic.com/media/45ed80_476fbad358834c588854e675652595d1~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_476fbad358834c588854e675652595d1~mv2.png": "./assets/d0807eecb76d.png",
+  "https://static.wixstatic.com/media/45ed80_476fbad358834c588854e675652595d1~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_476fbad358834c588854e675652595d1~mv2.png": "./assets/c475dc0491c9.png",
+  "https://static.wixstatic.com/media/45ed80_487dc86c854e4308ad447e353564fa4e~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_487dc86c854e4308ad447e353564fa4e~mv2.jpg": "./assets/23d1e183212f.jpg",
+  "https://static.wixstatic.com/media/45ed80_487dc86c854e4308ad447e353564fa4e~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_487dc86c854e4308ad447e353564fa4e~mv2.jpg": "./assets/755962fe778e.jpg",
+  "https://static.wixstatic.com/media/45ed80_497aadf275734d188162c129e0e247cf~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_497aadf275734d188162c129e0e247cf~mv2.jpg": "./assets/a6912fa9d5d2.jpg",
+  "https://static.wixstatic.com/media/45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg": "./assets/a72a62d5ec7c.jpg",
+  "https://static.wixstatic.com/media/45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg": "./assets/872c04c87b84.jpg",
+  "https://static.wixstatic.com/media/45ed80_4c04b9bcfac84ef5b94ec256b883cdba~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_4c04b9bcfac84ef5b94ec256b883cdba~mv2.jpg": "./assets/2ee6d40c390a.jpg",
+  "https://static.wixstatic.com/media/45ed80_4c04b9bcfac84ef5b94ec256b883cdba~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_4c04b9bcfac84ef5b94ec256b883cdba~mv2.jpg": "./assets/1d12f2d5c145.jpg",
+  "https://static.wixstatic.com/media/45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg": "./assets/d344b3d5da02.jpg",
+  "https://static.wixstatic.com/media/45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg": "./assets/fee77880a1dd.jpg",
+  "https://static.wixstatic.com/media/45ed80_4c2b9ce90c0e48089e74d344da20d412~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_4c2b9ce90c0e48089e74d344da20d412~mv2.jpg": "./assets/7a3ddca7a6d8.jpg",
+  "https://static.wixstatic.com/media/45ed80_4c2b9ce90c0e48089e74d344da20d412~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_4c2b9ce90c0e48089e74d344da20d412~mv2.jpg": "./assets/ec5edb67d347.jpg",
+  "https://static.wixstatic.com/media/45ed80_4c8e3917135041d28dc7170fc55af6e8~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_4c8e3917135041d28dc7170fc55af6e8~mv2.jpg": "./assets/01db157b6230.jpg",
+  "https://static.wixstatic.com/media/45ed80_4c8e3917135041d28dc7170fc55af6e8~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_4c8e3917135041d28dc7170fc55af6e8~mv2.jpg": "./assets/95c7d858a316.jpg",
+  "https://static.wixstatic.com/media/45ed80_4c8e3917135041d28dc7170fc55af6e8~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_4c8e3917135041d28dc7170fc55af6e8~mv2.png": "./assets/97e75e4c3d01.png",
+  "https://static.wixstatic.com/media/45ed80_4c8e3917135041d28dc7170fc55af6e8~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_4c8e3917135041d28dc7170fc55af6e8~mv2.png": "./assets/bb06d7aa88e3.png",
+  "https://static.wixstatic.com/media/45ed80_4d16eb765f5b44878c9a89c31c5be36f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_4d16eb765f5b44878c9a89c31c5be36f~mv2.jpg": "./assets/c59f79b47401.jpg",
+  "https://static.wixstatic.com/media/45ed80_4d16eb765f5b44878c9a89c31c5be36f~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_4d16eb765f5b44878c9a89c31c5be36f~mv2.jpg": "./assets/fac361ddefbf.jpg",
+  "https://static.wixstatic.com/media/45ed80_4e22af9f92bd4139be96a2fd75322327~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_4e22af9f92bd4139be96a2fd75322327~mv2.jpg": "./assets/54d8063ddc33.jpg",
+  "https://static.wixstatic.com/media/45ed80_4e22af9f92bd4139be96a2fd75322327~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_4e22af9f92bd4139be96a2fd75322327~mv2.jpg": "./assets/54b8a2177f80.jpg",
+  "https://static.wixstatic.com/media/45ed80_4e5a07a2ef78448dbfd6e4471d56e5b3~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_4e5a07a2ef78448dbfd6e4471d56e5b3~mv2.jpg": "./assets/1e054263ead0.jpg",
+  "https://static.wixstatic.com/media/45ed80_4e5a07a2ef78448dbfd6e4471d56e5b3~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_4e5a07a2ef78448dbfd6e4471d56e5b3~mv2.jpg": "./assets/9a8eac63cada.jpg",
+  "https://static.wixstatic.com/media/45ed80_51e9114fe2604a3e9fefc56080a3168b~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_51e9114fe2604a3e9fefc56080a3168b~mv2.jpg": "./assets/6f195f5efec8.jpg",
+  "https://static.wixstatic.com/media/45ed80_528d0701ce6c41ef899b66de74ed3d5f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_528d0701ce6c41ef899b66de74ed3d5f~mv2.jpg": "./assets/31630e5e80bd.jpg",
+  "https://static.wixstatic.com/media/45ed80_528d0701ce6c41ef899b66de74ed3d5f~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_528d0701ce6c41ef899b66de74ed3d5f~mv2.jpg": "./assets/72b6ee06262c.jpg",
+  "https://static.wixstatic.com/media/45ed80_53a534d7e32e44c18135430660362001~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_53a534d7e32e44c18135430660362001~mv2.jpg": "./assets/8035202b9b88.jpg",
+  "https://static.wixstatic.com/media/45ed80_53a534d7e32e44c18135430660362001~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_53a534d7e32e44c18135430660362001~mv2.jpg": "./assets/946aa94735cf.jpg",
+  "https://static.wixstatic.com/media/45ed80_556c1263fa8240a9856456d9a0b8f016~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_556c1263fa8240a9856456d9a0b8f016~mv2.jpg": "./assets/35b96cea3a5e.jpg",
+  "https://static.wixstatic.com/media/45ed80_556c1263fa8240a9856456d9a0b8f016~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_556c1263fa8240a9856456d9a0b8f016~mv2.jpg": "./assets/c1ccdfef3fe0.jpg",
+  "https://static.wixstatic.com/media/45ed80_56100b50d90d43cc9b57997ee2bb90ff~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_56100b50d90d43cc9b57997ee2bb90ff~mv2.jpg": "./assets/bcdb7e3cb99f.jpg",
+  "https://static.wixstatic.com/media/45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg": "./assets/980a889295a0.jpg",
+  "https://static.wixstatic.com/media/45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg": "./assets/dbcdda8e46de.jpg",
+  "https://static.wixstatic.com/media/45ed80_58827df8ff0148748fd5a3be2e30ec48~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_58827df8ff0148748fd5a3be2e30ec48~mv2.jpg": "./assets/911d8c8f765d.jpg",
+  "https://static.wixstatic.com/media/45ed80_58827df8ff0148748fd5a3be2e30ec48~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_58827df8ff0148748fd5a3be2e30ec48~mv2.jpg": "./assets/2bef2466986a.jpg",
+  "https://static.wixstatic.com/media/45ed80_58969c6fcabc41d0a107257d3eaf2976~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_58969c6fcabc41d0a107257d3eaf2976~mv2.jpg": "./assets/114e53718bcd.jpg",
+  "https://static.wixstatic.com/media/45ed80_59836668310148309fde71b6b0135544~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_59836668310148309fde71b6b0135544~mv2.jpg": "./assets/3e6fd4cc56b0.jpg",
+  "https://static.wixstatic.com/media/45ed80_59836668310148309fde71b6b0135544~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_59836668310148309fde71b6b0135544~mv2.jpg": "./assets/e34d0c5822b7.jpg",
+  "https://static.wixstatic.com/media/45ed80_59836668310148309fde71b6b0135544~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_59836668310148309fde71b6b0135544~mv2.png": "./assets/7c558acfcab7.png",
+  "https://static.wixstatic.com/media/45ed80_59836668310148309fde71b6b0135544~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_59836668310148309fde71b6b0135544~mv2.png": "./assets/00a2207400c4.png",
+  "https://static.wixstatic.com/media/45ed80_59a6b608bde5454c9c2dc31f35335fe0~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_59a6b608bde5454c9c2dc31f35335fe0~mv2.jpg": "./assets/32eb57331a0b.jpg",
+  "https://static.wixstatic.com/media/45ed80_5f1ea2683f0c4852ac84b162dd10069d~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_5f1ea2683f0c4852ac84b162dd10069d~mv2.jpg": "./assets/14cd1a4a8ba2.jpg",
+  "https://static.wixstatic.com/media/45ed80_5f1ea2683f0c4852ac84b162dd10069d~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_5f1ea2683f0c4852ac84b162dd10069d~mv2.jpg": "./assets/20d0a6b4db92.jpg",
+  "https://static.wixstatic.com/media/45ed80_5f413ec8fdb6493aa864aabaea3983e6~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_5f413ec8fdb6493aa864aabaea3983e6~mv2.jpg": "./assets/f4c942ef9343.jpg",
+  "https://static.wixstatic.com/media/45ed80_60ab860d05c24aebab076f94880c4396~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_60ab860d05c24aebab076f94880c4396~mv2.jpg": "./assets/8ed30621f5ba.jpg",
+  "https://static.wixstatic.com/media/45ed80_60ab860d05c24aebab076f94880c4396~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_60ab860d05c24aebab076f94880c4396~mv2.jpg": "./assets/e313d647c6e1.jpg",
+  "https://static.wixstatic.com/media/45ed80_62494ecf77694d02a523e077e00cd7ae~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_62494ecf77694d02a523e077e00cd7ae~mv2.jpg": "./assets/644bc3fa3ce6.jpg",
+  "https://static.wixstatic.com/media/45ed80_62494ecf77694d02a523e077e00cd7ae~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_62494ecf77694d02a523e077e00cd7ae~mv2.jpg": "./assets/a622660ee816.jpg",
+  "https://static.wixstatic.com/media/45ed80_63046b2fcbe7429d8add8821384e0750~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_63046b2fcbe7429d8add8821384e0750~mv2.jpg": "./assets/1211469e0df0.jpg",
+  "https://static.wixstatic.com/media/45ed80_63046b2fcbe7429d8add8821384e0750~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_63046b2fcbe7429d8add8821384e0750~mv2.jpg": "./assets/a171e3cf0cb8.jpg",
+  "https://static.wixstatic.com/media/45ed80_6776652b8c944036a23dc18e901a7882~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_6776652b8c944036a23dc18e901a7882~mv2.jpg": "./assets/c57d00eed444.jpg",
+  "https://static.wixstatic.com/media/45ed80_6776652b8c944036a23dc18e901a7882~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_6776652b8c944036a23dc18e901a7882~mv2.jpg": "./assets/2fefb9c329b0.jpg",
+  "https://static.wixstatic.com/media/45ed80_6776652b8c944036a23dc18e901a7882~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_6776652b8c944036a23dc18e901a7882~mv2.png": "./assets/86451ecaabf1.png",
+  "https://static.wixstatic.com/media/45ed80_6776652b8c944036a23dc18e901a7882~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_6776652b8c944036a23dc18e901a7882~mv2.png": "./assets/dbd522b1adfe.png",
+  "https://static.wixstatic.com/media/45ed80_6a7ef3e3ea1b40e8939f4c546dbbf9bf~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_6a7ef3e3ea1b40e8939f4c546dbbf9bf~mv2.jpg": "./assets/67e3655fff17.jpg",
+  "https://static.wixstatic.com/media/45ed80_6a7ef3e3ea1b40e8939f4c546dbbf9bf~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_6a7ef3e3ea1b40e8939f4c546dbbf9bf~mv2.jpg": "./assets/c63720bf2b46.jpg",
+  "https://static.wixstatic.com/media/45ed80_6a7ef3e3ea1b40e8939f4c546dbbf9bf~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_6a7ef3e3ea1b40e8939f4c546dbbf9bf~mv2.png": "./assets/83a79bc3fcc9.png",
+  "https://static.wixstatic.com/media/45ed80_6a7ef3e3ea1b40e8939f4c546dbbf9bf~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_6a7ef3e3ea1b40e8939f4c546dbbf9bf~mv2.png": "./assets/d0b6a7aa996a.png",
+  "https://static.wixstatic.com/media/45ed80_6c132527a9554361bd915a1fe6921cb5~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_6c132527a9554361bd915a1fe6921cb5~mv2.jpg": "./assets/52c60b04860d.jpg",
+  "https://static.wixstatic.com/media/45ed80_6c20d64d6f904c5bbb5769c02b7c4783~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_6c20d64d6f904c5bbb5769c02b7c4783~mv2.jpg": "./assets/9da73a62161b.jpg",
+  "https://static.wixstatic.com/media/45ed80_6c20d64d6f904c5bbb5769c02b7c4783~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_6c20d64d6f904c5bbb5769c02b7c4783~mv2.jpg": "./assets/c8aed76eddf7.jpg",
+  "https://static.wixstatic.com/media/45ed80_6c20d64d6f904c5bbb5769c02b7c4783~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_6c20d64d6f904c5bbb5769c02b7c4783~mv2.png": "./assets/07dae3d7bf1f.png",
+  "https://static.wixstatic.com/media/45ed80_6c20d64d6f904c5bbb5769c02b7c4783~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_6c20d64d6f904c5bbb5769c02b7c4783~mv2.png": "./assets/88ed9ee55cbf.png",
+  "https://static.wixstatic.com/media/45ed80_6c2f3eb6a32245adb7458ce9b3757713~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_6c2f3eb6a32245adb7458ce9b3757713~mv2.jpg": "./assets/5c586c5863f4.jpg",
+  "https://static.wixstatic.com/media/45ed80_6c2f3eb6a32245adb7458ce9b3757713~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_6c2f3eb6a32245adb7458ce9b3757713~mv2.jpg": "./assets/a0f49c14817e.jpg",
+  "https://static.wixstatic.com/media/45ed80_6c8a599751654b8da426da7e93e25427~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_6c8a599751654b8da426da7e93e25427~mv2.jpg": "./assets/c86bd30c7ea3.jpg",
+  "https://static.wixstatic.com/media/45ed80_6e2da79637cf42828c38bdb5cc514d77~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_6e2da79637cf42828c38bdb5cc514d77~mv2.jpg": "./assets/b36866fd486d.jpg",
+  "https://static.wixstatic.com/media/45ed80_6e2da79637cf42828c38bdb5cc514d77~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_6e2da79637cf42828c38bdb5cc514d77~mv2.jpg": "./assets/88ab3ce4e096.jpg",
+  "https://static.wixstatic.com/media/45ed80_70313901246f4acaa681d983668ce523~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_70313901246f4acaa681d983668ce523~mv2.jpg": "./assets/fde7b349f49f.jpg",
+  "https://static.wixstatic.com/media/45ed80_70f4cc8da65246a7ad31f2152abf6523~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_70f4cc8da65246a7ad31f2152abf6523~mv2.jpg": "./assets/3415ecc6fc8c.jpg",
+  "https://static.wixstatic.com/media/45ed80_7104afe7046f451c818d68a526067a88~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_7104afe7046f451c818d68a526067a88~mv2.jpg": "./assets/f8c267c0b517.jpg",
+  "https://static.wixstatic.com/media/45ed80_72d46ceeb2a6418ebcd28fdf984b37eb~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_72d46ceeb2a6418ebcd28fdf984b37eb~mv2.jpg": "./assets/29eee2012007.jpg",
+  "https://static.wixstatic.com/media/45ed80_7307dbf4ca2b4f9cb48b816e54ea2dc9~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_7307dbf4ca2b4f9cb48b816e54ea2dc9~mv2.jpg": "./assets/ef8a78e6603e.jpg",
+  "https://static.wixstatic.com/media/45ed80_733c24a134fa409bb483b307f35aeeec~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_733c24a134fa409bb483b307f35aeeec~mv2.jpg": "./assets/91bd10919f32.jpg",
+  "https://static.wixstatic.com/media/45ed80_733c24a134fa409bb483b307f35aeeec~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_733c24a134fa409bb483b307f35aeeec~mv2.jpg": "./assets/18c98d0a9784.jpg",
+  "https://static.wixstatic.com/media/45ed80_737d7a47df2a499f8b499f5636ec8cfef000.jpg/v1/fill/w_600,h_450,q_90,enc_avif,quality_auto/45ed80_737d7a47df2a499f8b499f5636ec8cfef000.jpg": "./assets/638ce13f4c7d.jpg",
+  "https://static.wixstatic.com/media/45ed80_737d7a47df2a499f8b499f5636ec8cfef000.jpg/v1/fill/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_737d7a47df2a499f8b499f5636ec8cfef000.jpg": "./assets/386b9c04f42d.jpg",
+  "https://static.wixstatic.com/media/45ed80_737d7a47df2a499f8b499f5636ec8cfef000~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_737d7a47df2a499f8b499f5636ec8cfef000~mv2.jpg": "./assets/809dcb3530b8.jpg",
+  "https://static.wixstatic.com/media/45ed80_737d7a47df2a499f8b499f5636ec8cfef000~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_737d7a47df2a499f8b499f5636ec8cfef000~mv2.jpg": "./assets/9d30be154e3a.jpg",
+  "https://static.wixstatic.com/media/45ed80_74549cf0f901417d89e609ff8f18507b~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_74549cf0f901417d89e609ff8f18507b~mv2.jpg": "./assets/7de77bb15039.jpg",
+  "https://static.wixstatic.com/media/45ed80_74549cf0f901417d89e609ff8f18507b~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_74549cf0f901417d89e609ff8f18507b~mv2.jpg": "./assets/c6db10cfac94.jpg",
+  "https://static.wixstatic.com/media/45ed80_74549cf0f901417d89e609ff8f18507b~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_74549cf0f901417d89e609ff8f18507b~mv2.png": "./assets/6239731481f7.png",
+  "https://static.wixstatic.com/media/45ed80_74549cf0f901417d89e609ff8f18507b~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_74549cf0f901417d89e609ff8f18507b~mv2.png": "./assets/ceee72bb3002.png",
+  "https://static.wixstatic.com/media/45ed80_74a3062fa7344ddfa381b29c730caeab~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_74a3062fa7344ddfa381b29c730caeab~mv2.jpg": "./assets/c8c3c50eb4e7.jpg",
+  "https://static.wixstatic.com/media/45ed80_74a3062fa7344ddfa381b29c730caeab~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_74a3062fa7344ddfa381b29c730caeab~mv2.jpg": "./assets/4caa7d0af4ca.jpg",
+  "https://static.wixstatic.com/media/45ed80_74a3062fa7344ddfa381b29c730caeab~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_74a3062fa7344ddfa381b29c730caeab~mv2.png": "./assets/ff9a9c12b25c.png",
+  "https://static.wixstatic.com/media/45ed80_74a3062fa7344ddfa381b29c730caeab~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_74a3062fa7344ddfa381b29c730caeab~mv2.png": "./assets/cbd7f63f33f2.png",
+  "https://static.wixstatic.com/media/45ed80_75023383ca6547d18befe6ee5f6f8724~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_75023383ca6547d18befe6ee5f6f8724~mv2.jpg": "./assets/04b57a3a7df9.jpg",
+  "https://static.wixstatic.com/media/45ed80_75023383ca6547d18befe6ee5f6f8724~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_75023383ca6547d18befe6ee5f6f8724~mv2.jpg": "./assets/15ec98bab9db.jpg",
+  "https://static.wixstatic.com/media/45ed80_75ef79efdc11431b8376eaf378c8e2eb~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_75ef79efdc11431b8376eaf378c8e2eb~mv2.jpg": "./assets/db6378bebf42.jpg",
+  "https://static.wixstatic.com/media/45ed80_75ef79efdc11431b8376eaf378c8e2eb~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_75ef79efdc11431b8376eaf378c8e2eb~mv2.jpg": "./assets/da8ed9fada17.jpg",
+  "https://static.wixstatic.com/media/45ed80_772d448d3b7044679ac2c0f583ad31b0~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_772d448d3b7044679ac2c0f583ad31b0~mv2.jpg": "./assets/e88ea5339110.jpg",
+  "https://static.wixstatic.com/media/45ed80_772d448d3b7044679ac2c0f583ad31b0~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_772d448d3b7044679ac2c0f583ad31b0~mv2.jpg": "./assets/e027814da9c1.jpg",
+  "https://static.wixstatic.com/media/45ed80_792731b0f9bf4f23b88c5a8f2f80fdab~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_792731b0f9bf4f23b88c5a8f2f80fdab~mv2.jpg": "./assets/4db6080a01f7.jpg",
+  "https://static.wixstatic.com/media/45ed80_792731b0f9bf4f23b88c5a8f2f80fdab~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_792731b0f9bf4f23b88c5a8f2f80fdab~mv2.jpg": "./assets/70a603c0a3ba.jpg",
+  "https://static.wixstatic.com/media/45ed80_79f217405afd413587b886c164adf07f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_79f217405afd413587b886c164adf07f~mv2.jpg": "./assets/2a5d9fbdf1ed.jpg",
+  "https://static.wixstatic.com/media/45ed80_79f217405afd413587b886c164adf07f~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_79f217405afd413587b886c164adf07f~mv2.jpg": "./assets/ea46136e5341.jpg",
+  "https://static.wixstatic.com/media/45ed80_7c1099d5899b42ecbc1f0201af909cf5~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_7c1099d5899b42ecbc1f0201af909cf5~mv2.jpg": "./assets/e937e2b66788.jpg",
+  "https://static.wixstatic.com/media/45ed80_8071f6b00c9c4adaa05746ba23298697~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_8071f6b00c9c4adaa05746ba23298697~mv2.jpg": "./assets/e59e29962502.jpg",
+  "https://static.wixstatic.com/media/45ed80_810d43449fc541a18fb1fabddb9dff97~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_810d43449fc541a18fb1fabddb9dff97~mv2.jpg": "./assets/0e15c938cbd8.jpg",
+  "https://static.wixstatic.com/media/45ed80_810d43449fc541a18fb1fabddb9dff97~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_810d43449fc541a18fb1fabddb9dff97~mv2.jpg": "./assets/cdca9add974e.jpg",
+  "https://static.wixstatic.com/media/45ed80_8130c16a5dfd41178465ceace1b74356~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_8130c16a5dfd41178465ceace1b74356~mv2.jpg": "./assets/b120a8419680.jpg",
+  "https://static.wixstatic.com/media/45ed80_8130c16a5dfd41178465ceace1b74356~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_8130c16a5dfd41178465ceace1b74356~mv2.jpg": "./assets/48801cdb3ce3.jpg",
+  "https://static.wixstatic.com/media/45ed80_813aab6adce4408c89f12345dea45d6d~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_813aab6adce4408c89f12345dea45d6d~mv2.jpg": "./assets/a9e8619b0756.jpg",
+  "https://static.wixstatic.com/media/45ed80_813aab6adce4408c89f12345dea45d6d~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_813aab6adce4408c89f12345dea45d6d~mv2.jpg": "./assets/af86376bf728.jpg",
+  "https://static.wixstatic.com/media/45ed80_8148383563ab48999a8c2818b287ed0b~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_8148383563ab48999a8c2818b287ed0b~mv2.jpg": "./assets/f37c9f5b0584.jpg",
+  "https://static.wixstatic.com/media/45ed80_8405e4b0254e423a86712679730a6815~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_8405e4b0254e423a86712679730a6815~mv2.jpg": "./assets/4029489c9d18.jpg",
+  "https://static.wixstatic.com/media/45ed80_861ebaafc26b4ac4a3543b6eee01dc1a~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_861ebaafc26b4ac4a3543b6eee01dc1a~mv2.jpg": "./assets/d3b12daa5151.jpg",
+  "https://static.wixstatic.com/media/45ed80_861ebaafc26b4ac4a3543b6eee01dc1a~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_861ebaafc26b4ac4a3543b6eee01dc1a~mv2.jpg": "./assets/371bdda3405b.jpg",
+  "https://static.wixstatic.com/media/45ed80_874a1faf5118467b8f49d6ea47767b45~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_874a1faf5118467b8f49d6ea47767b45~mv2.jpg": "./assets/462881341e17.jpg",
+  "https://static.wixstatic.com/media/45ed80_874a1faf5118467b8f49d6ea47767b45~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_874a1faf5118467b8f49d6ea47767b45~mv2.jpg": "./assets/710f841065ba.jpg",
+  "https://static.wixstatic.com/media/45ed80_87d257f3c6dd4e4187478d464ec1f79d~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_87d257f3c6dd4e4187478d464ec1f79d~mv2.jpg": "./assets/f78c72fd69fe.jpg",
+  "https://static.wixstatic.com/media/45ed80_8a5f4a4f44b043dcbcf6a62c0882c6da~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_8a5f4a4f44b043dcbcf6a62c0882c6da~mv2.jpg": "./assets/2d04ece93582.jpg",
+  "https://static.wixstatic.com/media/45ed80_8a5f4a4f44b043dcbcf6a62c0882c6da~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_8a5f4a4f44b043dcbcf6a62c0882c6da~mv2.jpg": "./assets/4cd766afa01a.jpg",
+  "https://static.wixstatic.com/media/45ed80_8a5f4a4f44b043dcbcf6a62c0882c6da~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_8a5f4a4f44b043dcbcf6a62c0882c6da~mv2.png": "./assets/3e2ace7be3f3.png",
+  "https://static.wixstatic.com/media/45ed80_8a5f4a4f44b043dcbcf6a62c0882c6da~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_8a5f4a4f44b043dcbcf6a62c0882c6da~mv2.png": "./assets/f4c4b421a591.png",
+  "https://static.wixstatic.com/media/45ed80_8b259b0b239446e091a1d1f8b2271be1~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_8b259b0b239446e091a1d1f8b2271be1~mv2.jpg": "./assets/4ee39ad3f572.jpg",
+  "https://static.wixstatic.com/media/45ed80_8d002f3b76fb4da79e8dfd29291cf163~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_8d002f3b76fb4da79e8dfd29291cf163~mv2.jpg": "./assets/237358f9d566.jpg",
+  "https://static.wixstatic.com/media/45ed80_8d002f3b76fb4da79e8dfd29291cf163~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_8d002f3b76fb4da79e8dfd29291cf163~mv2.jpg": "./assets/0858528349b5.jpg",
+  "https://static.wixstatic.com/media/45ed80_8d0cd4936d54441a869ffeb3955b9db5~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_8d0cd4936d54441a869ffeb3955b9db5~mv2.jpg": "./assets/275dc6152b42.jpg",
+  "https://static.wixstatic.com/media/45ed80_8d0cd4936d54441a869ffeb3955b9db5~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_8d0cd4936d54441a869ffeb3955b9db5~mv2.jpg": "./assets/d7734632f0dd.jpg",
+  "https://static.wixstatic.com/media/45ed80_8daf1d937973436297169e801e70f998~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_8daf1d937973436297169e801e70f998~mv2.jpg": "./assets/f89185e7b8ba.jpg",
+  "https://static.wixstatic.com/media/45ed80_92549a86ddee4d4da354786c360a2e06~mv2.gif": "./assets/904b57b1b7c8.gif",
+  "https://static.wixstatic.com/media/45ed80_95e7da4cfc884a89a122d1d0f755c1b6~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_95e7da4cfc884a89a122d1d0f755c1b6~mv2.jpg": "./assets/917a864255fb.jpg",
+  "https://static.wixstatic.com/media/45ed80_95e7da4cfc884a89a122d1d0f755c1b6~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_95e7da4cfc884a89a122d1d0f755c1b6~mv2.jpg": "./assets/65c613f96baf.jpg",
+  "https://static.wixstatic.com/media/45ed80_96b33e6a840441b4be217626549f4380~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_96b33e6a840441b4be217626549f4380~mv2.jpg": "./assets/491064471e8c.jpg",
+  "https://static.wixstatic.com/media/45ed80_96b33e6a840441b4be217626549f4380~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_96b33e6a840441b4be217626549f4380~mv2.jpg": "./assets/3a6dfeeed3d9.jpg",
+  "https://static.wixstatic.com/media/45ed80_97439a61f8224d9dabdde80c000527f2~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_97439a61f8224d9dabdde80c000527f2~mv2.jpg": "./assets/7e41b515df97.jpg",
+  "https://static.wixstatic.com/media/45ed80_97c035997e8645b2ae44a001c0d87021~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_97c035997e8645b2ae44a001c0d87021~mv2.jpg": "./assets/ce5a878cfef8.jpg",
+  "https://static.wixstatic.com/media/45ed80_984b3bdecbf446cf9d2b8b22aa59b348~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_984b3bdecbf446cf9d2b8b22aa59b348~mv2.jpg": "./assets/eb38b7037c2c.jpg",
+  "https://static.wixstatic.com/media/45ed80_984b3bdecbf446cf9d2b8b22aa59b348~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_984b3bdecbf446cf9d2b8b22aa59b348~mv2.jpg": "./assets/19ce37dc95bf.jpg",
+  "https://static.wixstatic.com/media/45ed80_984b3bdecbf446cf9d2b8b22aa59b348~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_984b3bdecbf446cf9d2b8b22aa59b348~mv2.png": "./assets/bdc140fc83fa.png",
+  "https://static.wixstatic.com/media/45ed80_984b3bdecbf446cf9d2b8b22aa59b348~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_984b3bdecbf446cf9d2b8b22aa59b348~mv2.png": "./assets/c221fffb7f34.png",
+  "https://static.wixstatic.com/media/45ed80_9bccd927af474a749630a9312c55a629~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_9bccd927af474a749630a9312c55a629~mv2.jpg": "./assets/3de0cbf58498.jpg",
+  "https://static.wixstatic.com/media/45ed80_9bccd927af474a749630a9312c55a629~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_9bccd927af474a749630a9312c55a629~mv2.jpg": "./assets/4213292c7e10.jpg",
+  "https://static.wixstatic.com/media/45ed80_9bccd927af474a749630a9312c55a629~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_9bccd927af474a749630a9312c55a629~mv2.png": "./assets/02cd518cbd34.png",
+  "https://static.wixstatic.com/media/45ed80_9bccd927af474a749630a9312c55a629~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_9bccd927af474a749630a9312c55a629~mv2.png": "./assets/cfc58cb586d3.png",
+  "https://static.wixstatic.com/media/45ed80_9d4ce0de51804d7f9d7e4311f7e01cd8~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_9d4ce0de51804d7f9d7e4311f7e01cd8~mv2.jpg": "./assets/f50abab48b3a.jpg",
+  "https://static.wixstatic.com/media/45ed80_9d4ce0de51804d7f9d7e4311f7e01cd8~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_9d4ce0de51804d7f9d7e4311f7e01cd8~mv2.jpg": "./assets/fe56b349560b.jpg",
+  "https://static.wixstatic.com/media/45ed80_9dd886909dd64502a3ad673c3fa72790~mv2.png/v1/fill/w_900,h_675,q_90,enc_avif,quality_auto/45ed80_9dd886909dd64502a3ad673c3fa72790~mv2.png": "./assets/289b8dc0d966.png",
+  "https://static.wixstatic.com/media/45ed80_9dd886909dd64502a3ad673c3fa72790~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_9dd886909dd64502a3ad673c3fa72790~mv2.png": "./assets/734303d05da7.png",
+  "https://static.wixstatic.com/media/45ed80_9f1ba6b04e1746ceaf1e2c4defc75d71~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_9f1ba6b04e1746ceaf1e2c4defc75d71~mv2.jpg": "./assets/e42d1b68c71d.jpg",
+  "https://static.wixstatic.com/media/45ed80_9fa605fc01e044aaaf17b4c4520d46b7~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_9fa605fc01e044aaaf17b4c4520d46b7~mv2.jpg": "./assets/1109e306c7c8.jpg",
+  "https://static.wixstatic.com/media/45ed80_9fa605fc01e044aaaf17b4c4520d46b7~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_9fa605fc01e044aaaf17b4c4520d46b7~mv2.jpg": "./assets/d82a12f4b48c.jpg",
+  "https://static.wixstatic.com/media/45ed80_9fa605fc01e044aaaf17b4c4520d46b7~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_9fa605fc01e044aaaf17b4c4520d46b7~mv2.png": "./assets/1f8f067981ec.png",
+  "https://static.wixstatic.com/media/45ed80_9fa605fc01e044aaaf17b4c4520d46b7~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_9fa605fc01e044aaaf17b4c4520d46b7~mv2.png": "./assets/bde571f08806.png",
+  "https://static.wixstatic.com/media/45ed80_a0cd6bb0ce454a7b92f2482a436a0474~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_a0cd6bb0ce454a7b92f2482a436a0474~mv2.jpg": "./assets/774c5a3a9927.jpg",
+  "https://static.wixstatic.com/media/45ed80_a1058cd341d34345b993e286bbcdc068~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_a1058cd341d34345b993e286bbcdc068~mv2.jpg": "./assets/b799cbea21ef.jpg",
+  "https://static.wixstatic.com/media/45ed80_a1058cd341d34345b993e286bbcdc068~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_a1058cd341d34345b993e286bbcdc068~mv2.jpg": "./assets/c720e0876065.jpg",
+  "https://static.wixstatic.com/media/45ed80_a1058cd341d34345b993e286bbcdc068~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_a1058cd341d34345b993e286bbcdc068~mv2.png": "./assets/fe455221ac7b.png",
+  "https://static.wixstatic.com/media/45ed80_a1058cd341d34345b993e286bbcdc068~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_a1058cd341d34345b993e286bbcdc068~mv2.png": "./assets/23d445b5b29c.png",
+  "https://static.wixstatic.com/media/45ed80_a19337dfdeba49ce8e1e23a9c7a36f42~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_a19337dfdeba49ce8e1e23a9c7a36f42~mv2.jpg": "./assets/0c037154c487.jpg",
+  "https://static.wixstatic.com/media/45ed80_a19337dfdeba49ce8e1e23a9c7a36f42~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_a19337dfdeba49ce8e1e23a9c7a36f42~mv2.jpg": "./assets/d61c234d566f.jpg",
+  "https://static.wixstatic.com/media/45ed80_a19337dfdeba49ce8e1e23a9c7a36f42~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_a19337dfdeba49ce8e1e23a9c7a36f42~mv2.png": "./assets/96b173ce2297.png",
+  "https://static.wixstatic.com/media/45ed80_a19337dfdeba49ce8e1e23a9c7a36f42~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_a19337dfdeba49ce8e1e23a9c7a36f42~mv2.png": "./assets/e63c46bc8e13.png",
+  "https://static.wixstatic.com/media/45ed80_a2a9ea28970a4ac2923b4406cb89720d~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_a2a9ea28970a4ac2923b4406cb89720d~mv2.jpg": "./assets/b20582008155.jpg",
+  "https://static.wixstatic.com/media/45ed80_a2a9ea28970a4ac2923b4406cb89720d~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_a2a9ea28970a4ac2923b4406cb89720d~mv2.jpg": "./assets/4fb1387e7655.jpg",
+  "https://static.wixstatic.com/media/45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg": "./assets/34260addaa91.jpg",
+  "https://static.wixstatic.com/media/45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg": "./assets/58f5323a534a.jpg",
+  "https://static.wixstatic.com/media/45ed80_a3c7ee9aa3c44b10a2cacc286a295733~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_a3c7ee9aa3c44b10a2cacc286a295733~mv2.jpg": "./assets/29800d3c5b4c.jpg",
+  "https://static.wixstatic.com/media/45ed80_a3c7ee9aa3c44b10a2cacc286a295733~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_a3c7ee9aa3c44b10a2cacc286a295733~mv2.jpg": "./assets/63fd727e0193.jpg",
+  "https://static.wixstatic.com/media/45ed80_a4a4768f76014405a9da13ddf8f8c38e~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_a4a4768f76014405a9da13ddf8f8c38e~mv2.jpg": "./assets/501f54e4f5a1.jpg",
+  "https://static.wixstatic.com/media/45ed80_a4a4768f76014405a9da13ddf8f8c38e~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_a4a4768f76014405a9da13ddf8f8c38e~mv2.jpg": "./assets/8679cab665a5.jpg",
+  "https://static.wixstatic.com/media/45ed80_a5f7b8fc88d4437985c4d97202ed238b~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_a5f7b8fc88d4437985c4d97202ed238b~mv2.jpg": "./assets/f85d7e48ad79.jpg",
+  "https://static.wixstatic.com/media/45ed80_a5f7b8fc88d4437985c4d97202ed238b~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_a5f7b8fc88d4437985c4d97202ed238b~mv2.jpg": "./assets/3fa5c63b7dfe.jpg",
+  "https://static.wixstatic.com/media/45ed80_a86ed4d2283a42e3b9ac220aa6f9cd00~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_a86ed4d2283a42e3b9ac220aa6f9cd00~mv2.jpg": "./assets/7d9685b5ece5.jpg",
+  "https://static.wixstatic.com/media/45ed80_a86ed4d2283a42e3b9ac220aa6f9cd00~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_a86ed4d2283a42e3b9ac220aa6f9cd00~mv2.jpg": "./assets/aa8cf58c6fde.jpg",
+  "https://static.wixstatic.com/media/45ed80_a9a065db6362403a97dad8ce1dde58b2~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_a9a065db6362403a97dad8ce1dde58b2~mv2.jpg": "./assets/0fe30d257722.jpg",
+  "https://static.wixstatic.com/media/45ed80_ab4565b6b5344cfd8d077e6041283a73~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_ab4565b6b5344cfd8d077e6041283a73~mv2.jpg": "./assets/0e0418a88a29.jpg",
+  "https://static.wixstatic.com/media/45ed80_ab4565b6b5344cfd8d077e6041283a73~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_ab4565b6b5344cfd8d077e6041283a73~mv2.jpg": "./assets/b5946f954845.jpg",
+  "https://static.wixstatic.com/media/45ed80_acd221cb4bb5487a9a65d4ff31e76fa7~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_acd221cb4bb5487a9a65d4ff31e76fa7~mv2.jpg": "./assets/9a4134111c2c.jpg",
+  "https://static.wixstatic.com/media/45ed80_acd221cb4bb5487a9a65d4ff31e76fa7~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_acd221cb4bb5487a9a65d4ff31e76fa7~mv2.jpg": "./assets/1d669fbda633.jpg",
+  "https://static.wixstatic.com/media/45ed80_b1ded555a63e4fb08f121ededf6dd259~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_b1ded555a63e4fb08f121ededf6dd259~mv2.jpg": "./assets/654a51b0c04e.jpg",
+  "https://static.wixstatic.com/media/45ed80_b35162422c354baeb611073534c905a8~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_b35162422c354baeb611073534c905a8~mv2.jpg": "./assets/a07098341b8b.jpg",
+  "https://static.wixstatic.com/media/45ed80_b35162422c354baeb611073534c905a8~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_b35162422c354baeb611073534c905a8~mv2.jpg": "./assets/c1cbb061d9a6.jpg",
+  "https://static.wixstatic.com/media/45ed80_b35162422c354baeb611073534c905a8~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_b35162422c354baeb611073534c905a8~mv2.png": "./assets/e1b082d0c90e.png",
+  "https://static.wixstatic.com/media/45ed80_b35162422c354baeb611073534c905a8~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_b35162422c354baeb611073534c905a8~mv2.png": "./assets/e3d82337c24b.png",
+  "https://static.wixstatic.com/media/45ed80_b67bc897b3bc42f4b69cc4281ae78dd6~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_b67bc897b3bc42f4b69cc4281ae78dd6~mv2.jpg": "./assets/86d6e5c672b5.jpg",
+  "https://static.wixstatic.com/media/45ed80_b67bc897b3bc42f4b69cc4281ae78dd6~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_b67bc897b3bc42f4b69cc4281ae78dd6~mv2.jpg": "./assets/9871f3e3b19c.jpg",
+  "https://static.wixstatic.com/media/45ed80_b67bc897b3bc42f4b69cc4281ae78dd6~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_b67bc897b3bc42f4b69cc4281ae78dd6~mv2.png": "./assets/87ac61cfca16.png",
+  "https://static.wixstatic.com/media/45ed80_b67bc897b3bc42f4b69cc4281ae78dd6~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_b67bc897b3bc42f4b69cc4281ae78dd6~mv2.png": "./assets/c61dce47a124.png",
+  "https://static.wixstatic.com/media/45ed80_b7b3f0542b6a4b999a9a398e9c917d88~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_b7b3f0542b6a4b999a9a398e9c917d88~mv2.jpg": "./assets/8dff2e210490.jpg",
+  "https://static.wixstatic.com/media/45ed80_b7b3f0542b6a4b999a9a398e9c917d88~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_b7b3f0542b6a4b999a9a398e9c917d88~mv2.jpg": "./assets/41594302c7c2.jpg",
+  "https://static.wixstatic.com/media/45ed80_b82dd7de51ac4b4ab30a22e49c9daad5~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_b82dd7de51ac4b4ab30a22e49c9daad5~mv2.jpg": "./assets/de6ee1f2c2e9.jpg",
+  "https://static.wixstatic.com/media/45ed80_bf16d15d3d4847489bb01432fa27ca9c~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_bf16d15d3d4847489bb01432fa27ca9c~mv2.jpg": "./assets/d2ad38d45638.jpg",
+  "https://static.wixstatic.com/media/45ed80_bf16d15d3d4847489bb01432fa27ca9c~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_bf16d15d3d4847489bb01432fa27ca9c~mv2.jpg": "./assets/558da97e5529.jpg",
+  "https://static.wixstatic.com/media/45ed80_c1c5e7b80716439da9762c3ae354f473~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_c1c5e7b80716439da9762c3ae354f473~mv2.jpg": "./assets/2eebed9b66ab.jpg",
+  "https://static.wixstatic.com/media/45ed80_c1c5e7b80716439da9762c3ae354f473~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_c1c5e7b80716439da9762c3ae354f473~mv2.jpg": "./assets/36547fa901d1.jpg",
+  "https://static.wixstatic.com/media/45ed80_c1c5e7b80716439da9762c3ae354f473~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_c1c5e7b80716439da9762c3ae354f473~mv2.png": "./assets/4e7b48220da2.png",
+  "https://static.wixstatic.com/media/45ed80_c1c5e7b80716439da9762c3ae354f473~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_c1c5e7b80716439da9762c3ae354f473~mv2.png": "./assets/16c828407f54.png",
+  "https://static.wixstatic.com/media/45ed80_c48d99aebeec4521a66bf65a3a1067ab~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_c48d99aebeec4521a66bf65a3a1067ab~mv2.jpg": "./assets/4badd4c7d9c4.jpg",
+  "https://static.wixstatic.com/media/45ed80_c4931e5804b14c0c8a652fffc478e235~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_c4931e5804b14c0c8a652fffc478e235~mv2.jpg": "./assets/150cbcbd7cd4.jpg",
+  "https://static.wixstatic.com/media/45ed80_c4931e5804b14c0c8a652fffc478e235~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_c4931e5804b14c0c8a652fffc478e235~mv2.jpg": "./assets/17b0637e8193.jpg",
+  "https://static.wixstatic.com/media/45ed80_c4931e5804b14c0c8a652fffc478e235~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_c4931e5804b14c0c8a652fffc478e235~mv2.png": "./assets/8608090743e9.png",
+  "https://static.wixstatic.com/media/45ed80_c4931e5804b14c0c8a652fffc478e235~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_c4931e5804b14c0c8a652fffc478e235~mv2.png": "./assets/a31aacba66f7.png",
+  "https://static.wixstatic.com/media/45ed80_c6b9766bb27e4fa6a1527c7fff5cfe88~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_c6b9766bb27e4fa6a1527c7fff5cfe88~mv2.jpg": "./assets/f726a3d84920.jpg",
+  "https://static.wixstatic.com/media/45ed80_cbc7a943f1ec455ab0291cba5c578e59~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_cbc7a943f1ec455ab0291cba5c578e59~mv2.jpg": "./assets/dc0a35dae240.jpg",
+  "https://static.wixstatic.com/media/45ed80_cbc7a943f1ec455ab0291cba5c578e59~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_cbc7a943f1ec455ab0291cba5c578e59~mv2.jpg": "./assets/03ee86cadb02.jpg",
+  "https://static.wixstatic.com/media/45ed80_cbc7a943f1ec455ab0291cba5c578e59~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_cbc7a943f1ec455ab0291cba5c578e59~mv2.png": "./assets/9a39fcc1bcd2.png",
+  "https://static.wixstatic.com/media/45ed80_cbc7a943f1ec455ab0291cba5c578e59~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_cbc7a943f1ec455ab0291cba5c578e59~mv2.png": "./assets/d88f84da1900.png",
+  "https://static.wixstatic.com/media/45ed80_cc732430b6d34000b5bd5cf82617adcf~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_cc732430b6d34000b5bd5cf82617adcf~mv2.jpg": "./assets/2f3c0b3b288b.jpg",
+  "https://static.wixstatic.com/media/45ed80_cc732430b6d34000b5bd5cf82617adcf~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_cc732430b6d34000b5bd5cf82617adcf~mv2.jpg": "./assets/7e10c2f56790.jpg",
+  "https://static.wixstatic.com/media/45ed80_cd1f58101538433bb4bb3295874854dc~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_cd1f58101538433bb4bb3295874854dc~mv2.jpg": "./assets/ddec8086c20a.jpg",
+  "https://static.wixstatic.com/media/45ed80_cf4e8ff3eff9447b9014a70d84c29510~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_cf4e8ff3eff9447b9014a70d84c29510~mv2.jpg": "./assets/389867cb1e42.jpg",
+  "https://static.wixstatic.com/media/45ed80_cf4e8ff3eff9447b9014a70d84c29510~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_cf4e8ff3eff9447b9014a70d84c29510~mv2.jpg": "./assets/24ea3f11acdc.jpg",
+  "https://static.wixstatic.com/media/45ed80_d102fbeb2ccf42bd9c6c3f70018e8e5b~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_d102fbeb2ccf42bd9c6c3f70018e8e5b~mv2.jpg": "./assets/93c8b7f15589.jpg",
+  "https://static.wixstatic.com/media/45ed80_d102fbeb2ccf42bd9c6c3f70018e8e5b~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_d102fbeb2ccf42bd9c6c3f70018e8e5b~mv2.jpg": "./assets/e1c954780a7d.jpg",
+  "https://static.wixstatic.com/media/45ed80_d13cbedcb7e24ec9bbe605100101b47c~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_d13cbedcb7e24ec9bbe605100101b47c~mv2.jpg": "./assets/a7e4e0d88f26.jpg",
+  "https://static.wixstatic.com/media/45ed80_d13cbedcb7e24ec9bbe605100101b47c~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_d13cbedcb7e24ec9bbe605100101b47c~mv2.jpg": "./assets/f855ff189e02.jpg",
+  "https://static.wixstatic.com/media/45ed80_d13cbedcb7e24ec9bbe605100101b47c~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_d13cbedcb7e24ec9bbe605100101b47c~mv2.png": "./assets/e7fdc8ace11a.png",
+  "https://static.wixstatic.com/media/45ed80_d13cbedcb7e24ec9bbe605100101b47c~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_d13cbedcb7e24ec9bbe605100101b47c~mv2.png": "./assets/5a10503dd0b7.png",
+  "https://static.wixstatic.com/media/45ed80_d345ce72ebf143e0aeb984da92515bff~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_d345ce72ebf143e0aeb984da92515bff~mv2.jpg": "./assets/3659e2d3ce51.jpg",
+  "https://static.wixstatic.com/media/45ed80_d345ce72ebf143e0aeb984da92515bff~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_d345ce72ebf143e0aeb984da92515bff~mv2.jpg": "./assets/27d142cfa2d3.jpg",
+  "https://static.wixstatic.com/media/45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg": "./assets/a844fc47d2ce.jpg",
+  "https://static.wixstatic.com/media/45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg": "./assets/11a2327a5e83.jpg",
+  "https://static.wixstatic.com/media/45ed80_d84d0fbd272f458fa1bbfc8dc14761f1~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_d84d0fbd272f458fa1bbfc8dc14761f1~mv2.jpg": "./assets/df2d5272c125.jpg",
+  "https://static.wixstatic.com/media/45ed80_d84d0fbd272f458fa1bbfc8dc14761f1~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_d84d0fbd272f458fa1bbfc8dc14761f1~mv2.jpg": "./assets/f9e4215fbfed.jpg",
+  "https://static.wixstatic.com/media/45ed80_daf571fc1c2d4656882c5ed4edb14d37~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_daf571fc1c2d4656882c5ed4edb14d37~mv2.jpg": "./assets/3c281cde5825.jpg",
+  "https://static.wixstatic.com/media/45ed80_daf571fc1c2d4656882c5ed4edb14d37~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_daf571fc1c2d4656882c5ed4edb14d37~mv2.jpg": "./assets/6ea441e04569.jpg",
+  "https://static.wixstatic.com/media/45ed80_df87f329583142e09a7fcfb90a63fa01~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_df87f329583142e09a7fcfb90a63fa01~mv2.jpg": "./assets/8b721c6496bc.jpg",
+  "https://static.wixstatic.com/media/45ed80_df87f329583142e09a7fcfb90a63fa01~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_df87f329583142e09a7fcfb90a63fa01~mv2.jpg": "./assets/97a8c0f83410.jpg",
+  "https://static.wixstatic.com/media/45ed80_dfaa61606cec47ada753257d5724cdab~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_dfaa61606cec47ada753257d5724cdab~mv2.jpg": "./assets/1144e8188996.jpg",
+  "https://static.wixstatic.com/media/45ed80_e6609d615e484ab1bb4096d80f012c4b~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_e6609d615e484ab1bb4096d80f012c4b~mv2.jpg": "./assets/bbcfc00df2ee.jpg",
+  "https://static.wixstatic.com/media/45ed80_e6609d615e484ab1bb4096d80f012c4b~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_e6609d615e484ab1bb4096d80f012c4b~mv2.jpg": "./assets/8da6c9a95a21.jpg",
+  "https://static.wixstatic.com/media/45ed80_e88a2772b9c640c9a421854fb092182f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_e88a2772b9c640c9a421854fb092182f~mv2.jpg": "./assets/c1c19f990f3e.jpg",
+  "https://static.wixstatic.com/media/45ed80_e88a2772b9c640c9a421854fb092182f~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_e88a2772b9c640c9a421854fb092182f~mv2.jpg": "./assets/e71e3b50d7de.jpg",
+  "https://static.wixstatic.com/media/45ed80_e97a8c04404d4c199fa21ee31bdfa2ce~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_e97a8c04404d4c199fa21ee31bdfa2ce~mv2.jpg": "./assets/2c090d2f7e1b.jpg",
+  "https://static.wixstatic.com/media/45ed80_e9b485deecdb461ba0294b8c2bfcbcce~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_e9b485deecdb461ba0294b8c2bfcbcce~mv2.jpg": "./assets/8bfd4c141df2.jpg",
+  "https://static.wixstatic.com/media/45ed80_ecfb82adf4c44121bcc3473d66c6e915f000.jpg/v1/fill/w_600,h_450,q_90,enc_avif,quality_auto/45ed80_ecfb82adf4c44121bcc3473d66c6e915f000.jpg": "./assets/bd4a8508937e.jpg",
+  "https://static.wixstatic.com/media/45ed80_ecfb82adf4c44121bcc3473d66c6e915f000.jpg/v1/fill/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_ecfb82adf4c44121bcc3473d66c6e915f000.jpg": "./assets/0fb3c4f35a01.jpg",
+  "https://static.wixstatic.com/media/45ed80_ecfb82adf4c44121bcc3473d66c6e915f000~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_ecfb82adf4c44121bcc3473d66c6e915f000~mv2.jpg": "./assets/bedd1719bedf.jpg",
+  "https://static.wixstatic.com/media/45ed80_ecfb82adf4c44121bcc3473d66c6e915f000~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_ecfb82adf4c44121bcc3473d66c6e915f000~mv2.jpg": "./assets/7297c3b6fbe3.jpg",
+  "https://static.wixstatic.com/media/45ed80_eed9236d42994cf4bc7715c2c7875589~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_eed9236d42994cf4bc7715c2c7875589~mv2.jpg": "./assets/ce037a58d92d.jpg",
+  "https://static.wixstatic.com/media/45ed80_eed9236d42994cf4bc7715c2c7875589~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_eed9236d42994cf4bc7715c2c7875589~mv2.jpg": "./assets/2e6fd346bfd3.jpg",
+  "https://static.wixstatic.com/media/45ed80_eed9236d42994cf4bc7715c2c7875589~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_eed9236d42994cf4bc7715c2c7875589~mv2.png": "./assets/a60c24100d88.png",
+  "https://static.wixstatic.com/media/45ed80_eed9236d42994cf4bc7715c2c7875589~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_eed9236d42994cf4bc7715c2c7875589~mv2.png": "./assets/68c5fae3a041.png",
+  "https://static.wixstatic.com/media/45ed80_ef2c16f95dc94abd8a4e0657f14d447e~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_ef2c16f95dc94abd8a4e0657f14d447e~mv2.jpg": "./assets/5efcf487e05e.jpg",
+  "https://static.wixstatic.com/media/45ed80_ef2c16f95dc94abd8a4e0657f14d447e~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_ef2c16f95dc94abd8a4e0657f14d447e~mv2.jpg": "./assets/df559ec3d4d1.jpg",
+  "https://static.wixstatic.com/media/45ed80_f0cd9c17ba0d48bea443baa216c9d359~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_f0cd9c17ba0d48bea443baa216c9d359~mv2.jpg": "./assets/f7d9770e4071.jpg",
+  "https://static.wixstatic.com/media/45ed80_f0cd9c17ba0d48bea443baa216c9d359~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_f0cd9c17ba0d48bea443baa216c9d359~mv2.jpg": "./assets/b24c757a37a7.jpg",
+  "https://static.wixstatic.com/media/45ed80_f4600507799c4e2ab848b24bc6552576~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_f4600507799c4e2ab848b24bc6552576~mv2.jpg": "./assets/e26186db6954.jpg",
+  "https://static.wixstatic.com/media/45ed80_f4e0a38eb2364d37ac1475a99ab7655d~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_f4e0a38eb2364d37ac1475a99ab7655d~mv2.jpg": "./assets/545bce2594b5.jpg",
+  "https://static.wixstatic.com/media/45ed80_f4e0a38eb2364d37ac1475a99ab7655d~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_f4e0a38eb2364d37ac1475a99ab7655d~mv2.jpg": "./assets/77e65b9c9b9c.jpg",
+  "https://static.wixstatic.com/media/45ed80_f566c48869fb437b8c63f6cdf88c4aeb~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_f566c48869fb437b8c63f6cdf88c4aeb~mv2.jpg": "./assets/54a867ef0b87.jpg",
+  "https://static.wixstatic.com/media/45ed80_f60a91becf484b6ea0a5b6022b0927e0~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_f60a91becf484b6ea0a5b6022b0927e0~mv2.jpg": "./assets/2cf2a3045409.jpg",
+  "https://static.wixstatic.com/media/45ed80_f60a91becf484b6ea0a5b6022b0927e0~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_f60a91becf484b6ea0a5b6022b0927e0~mv2.jpg": "./assets/70eaf00801a5.jpg",
+  "https://static.wixstatic.com/media/45ed80_f72764d66a974be8a8a1305b5741507c~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_f72764d66a974be8a8a1305b5741507c~mv2.jpg": "./assets/58c12ec45dcd.jpg",
+  "https://static.wixstatic.com/media/45ed80_f72764d66a974be8a8a1305b5741507c~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_f72764d66a974be8a8a1305b5741507c~mv2.jpg": "./assets/39866827004c.jpg",
+  "https://static.wixstatic.com/media/45ed80_f9dabe04b8ab4cb49f0d104f590f3da6~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_f9dabe04b8ab4cb49f0d104f590f3da6~mv2.jpg": "./assets/88dcd0a032ce.jpg",
+  "https://static.wixstatic.com/media/45ed80_f9dabe04b8ab4cb49f0d104f590f3da6~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_f9dabe04b8ab4cb49f0d104f590f3da6~mv2.jpg": "./assets/c64c01ecd85a.jpg",
+  "https://static.wixstatic.com/media/45ed80_f9dabe04b8ab4cb49f0d104f590f3da6~mv2.png/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_f9dabe04b8ab4cb49f0d104f590f3da6~mv2.png": "./assets/9d9747543df8.png",
+  "https://static.wixstatic.com/media/45ed80_f9dabe04b8ab4cb49f0d104f590f3da6~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_f9dabe04b8ab4cb49f0d104f590f3da6~mv2.png": "./assets/86323618f8fb.png",
+  "https://static.wixstatic.com/media/45ed80_fac035e22a1d4ee693528dc2a78d6910~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_fac035e22a1d4ee693528dc2a78d6910~mv2.jpg": "./assets/2b1f088555b6.jpg",
+  "https://static.wixstatic.com/media/45ed80_fac035e22a1d4ee693528dc2a78d6910~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_fac035e22a1d4ee693528dc2a78d6910~mv2.jpg": "./assets/41fc47fb9de5.jpg",
+  "https://static.wixstatic.com/media/45ed80_fc7986d818634cb1bb0a0adbb7aa569c~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_fc7986d818634cb1bb0a0adbb7aa569c~mv2.jpg": "./assets/ed335fffc035.jpg",
+  "https://static.wixstatic.com/media/45ed80_fc7986d818634cb1bb0a0adbb7aa569c~mv2.jpg/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_fc7986d818634cb1bb0a0adbb7aa569c~mv2.jpg": "./assets/6741e3a2a9c0.jpg",
+  "https://static.wixstatic.com/media/704318ee9be94acabf28919a734951b8.jpg/v1/fill/w_900,h_675,q_90,enc_avif,quality_auto/704318ee9be94acabf28919a734951b8.jpg": "./assets/79a95f412eeb.jpg"
+};
         const W = 'https://static.wixstatic.com/media/';
-        const f = (h, e = 'png') => `${W}45ed80_${h}~mv2.${e}/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_${h}~mv2.${e}`;
-        const fj = h => f(h, 'jpg');
-        const ft = (h, e = 'png') => `${W}45ed80_${h}~mv2.${e}/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_${h}~mv2.${e}`;
-        const ftj = h => ft(h, 'jpg');
-        const fc2 = h => `${W}45ed80_${h}~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_${h}~mv2.jpg`;
+        const f   = (h, e='png') => { const u=`${W}45ed80_${h}~mv2.${e}/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_${h}~mv2.${e}`; return ASSET_MAP[u]||u; };
+        const fj  = h => f(h,'jpg');
+        const ft  = (h, e='png') => { const u=`${W}45ed80_${h}~mv2.${e}/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_${h}~mv2.${e}`; return ASSET_MAP[u]||u; };
+        const ftj = h => ft(h,'jpg');
+        const fc2 = h => { const u=`${W}45ed80_${h}~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_${h}~mv2.jpg`; return ASSET_MAP[u]||u; };
 
         const DOCS = [
-            { id: 'sf', thumb: ft('34e833d849f74c368ae80ab39a3518de'), type: 'GD', title: 'SILENT FRAME', sub: 'Projet de fin d\'année 2025–2026 · Pitch accepté', desc: 'Projet en cours pour l\'année 2025–2026 avec la même équipe qu\'IN CANTA. L\'un de mes pitchs accepté par l\'administration comme projet de fin d\'année.', meta: [{ k: 'Statut', v: 'En cours' }, { k: 'Équipe', v: 'Même équipe qu\'IN CANTA' }, { k: 'Année', v: '2025–2026' }], imgs: [f('f9dabe04b8ab4cb49f0d104f590f3da6'), f('c4931e5804b14c0c8a652fffc478e235'), f('74a3062fa7344ddfa381b29c730caeab'), f('9bccd927af474a749630a9312c55a629'), f('eed9236d42994cf4bc7715c2c7875589'), f('193505164aba4f5ba371d10a6ae96ce7'), f('cbc7a943f1ec455ab0291cba5c578e59'), f('2ae34e76bf374ccea638e4902a840ec6'), f('c1c5e7b80716439da9762c3ae354f473'), f('a19337dfdeba49ce8e1e23a9c7a36f42')] },
-            { id: 'tft', thumb: ftj('f60a91becf484b6ea0a5b6022b0927e0'), type: 'GD · Analyse', title: 'ANALYSE & DÉCONSTRUCTION : TFT', sub: 'Teamfight Tactics · 2024–2025', desc: 'Analyse et déconstruction du jeu TFT de Riot Games avec OPESANEC (Fnatic). Outils : 3C, Game Loops, ARM, Benchmark, FTUE, MetaGame, Correlation Chart, Layers of Gameplay, Emotional Triggers.', meta: [{ k: 'Type', v: 'Analyse & Déconstruction' }, { k: 'Date', v: '2024–2025' }, { k: 'Collaborateur', v: 'OPESANEC (Fnatic)' }], imgs: [fj('13804af545bf4a258e8e0e98c16ee72f'), fj('3c60cba961974fc6bb2587fbd6e69471'), fj('b7b3f0542b6a4b999a9a398e9c917d88'), fj('3130139f82a54e1f81d7adb6e0e1123a'), fj('bf16d15d3d4847489bb01432fa27ca9c'), fj('53a534d7e32e44c18135430660362001'), fj('0ae79a9bfc764dcb902473562c4abb83'), fj('d102fbeb2ccf42bd9c6c3f70018e8e5b'), fj('3c4218bb82c1421198b5edbdbbfeeea0'), fj('f0cd9c17ba0d48bea443baa216c9d359'), fj('a86ed4d2283a42e3b9ac220aa6f9cd00'), fj('0ebca3610e184ad9a647eaf01e10e80e'), fj('426933102a9d487d825c37c271426ff5'), fj('15de3731aa0d4c3bb46611bd4e45e813'), fj('18ecd44895514babb7a2950f31b04989'), fj('fc7986d818634cb1bb0a0adbb7aa569c'), fj('cf4e8ff3eff9447b9014a70d84c29510'), fj('4c2b9ce90c0e48089e74d344da20d412'), fj('d345ce72ebf143e0aeb984da92515bff'), fj('79f217405afd413587b886c164adf07f'), fj('95e7da4cfc884a89a122d1d0f755c1b6'), fj('df87f329583142e09a7fcfb90a63fa01'), fj('a3c7ee9aa3c44b10a2cacc286a295733'), fj('6c2f3eb6a32245adb7458ce9b3757713'), fj('75ef79efdc11431b8376eaf378c8e2eb'), fj('58827df8ff0148748fd5a3be2e30ec48'), fj('f72764d66a974be8a8a1305b5741507c')] },
-            { id: 'tt', thumb: ftj('874a1faf5118467b8f49d6ea47767b45'), type: 'GD · Concept', title: 'TIC-TAC TAC-TIC', sub: 'Concept complet · Hiver 2025', desc: 'Concept réalisé fin 2025 détaillant mes 3C et systèmes : Mécaniques, Progression, Économique, Social, Meta et boucles rétroactives.', meta: [{ k: 'Date', v: 'Hiver 2025' }, { k: 'Contenu', v: '3C, Systèmes, Boucles rétroactives' }], imgs: [fj('733c24a134fa409bb483b307f35aeeec'), fj('810d43449fc541a18fb1fabddb9dff97'), fj('13954240cdf44cf8ad15ccc46435e47b'), fj('2dd0ac4d3f68446ebe418cd4b7cf797c'), fj('3bb27740b2074a5d8237279def1d3c20'), fj('556c1263fa8240a9856456d9a0b8f016'), fj('4c04b9bcfac84ef5b94ec256b883cdba'), fj('cc732430b6d34000b5bd5cf82617adcf'), fj('d84d0fbd272f458fa1bbfc8dc14761f1'), fj('96b33e6a840441b4be217626549f4380'), fj('a4a4768f76014405a9da13ddf8f8c38e'), fj('ef2c16f95dc94abd8a4e0657f14d447e')] },
-            { id: 'nb', thumb: ftj('1d18a45d9f6c4e0db96c63cc615b8f2f'), type: 'GD · Pitch', title: 'SAVE YOUR NEIGHBOR', sub: 'Projet de fin d\'année 2025–2026 · Pitch accepté', desc: 'Second pitch retenu par l\'administration. Réalisé entièrement seul.', meta: [{ k: 'Auteur', v: 'Solo' }, { k: 'Type', v: 'Pitch end-of-year' }], imgs: [fj('4e22af9f92bd4139be96a2fd75322327'), fj('1a5a00e18e52406f83e5c3f0bfbf6ef2'), fj('2f3fd653520e4ff782bd3818a8237025'), fj('772d448d3b7044679ac2c0f583ad31b0'), fj('4e5a07a2ef78448dbfd6e4471d56e5b3'), fj('60ab860d05c24aebab076f94880c4396'), fj('5f1ea2683f0c4852ac84b162dd10069d'), fj('528d0701ce6c41ef899b66de74ed3d5f')] },
-            { id: 'lv', thumb: `${W}45ed80_30773ad239074feab05780d50dea060f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_30773ad239074feab05780d50dea060f~mv2.jpg`, type: 'LD', title: 'COUR NAPOLÉON DU LOUVRE', sub: 'Level Design · Paris', desc: 'Exercice de Level Design basé sur la Cour Napoléon du Louvre.', meta: [{ k: 'Type', v: 'Level Design' }], imgs: [`${W}45ed80_30773ad239074feab05780d50dea060f~mv2.jpg/v1/fill/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_30773ad239074feab05780d50dea060f~mv2.jpg`] },
-            { id: 'pk', thumb: `${W}45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg`, type: 'GD · Concept', title: 'POKÉMON FREEDOM', sub: 'Game Design Concept', desc: 'Concept de Game Design basé sur l\'univers Pokémon.', meta: [{ k: 'Type', v: 'GD Concept' }], imgs: [`${W}45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg/v1/fill/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg`] },
-            { id: 'ud', thumb: ftj('62494ecf77694d02a523e077e00cd7ae'), type: 'GD/LD · Concept', title: 'UPDEE & DOWNDEE', sub: 'Concept 1 jour · 2024–2025', desc: 'Concept réalisé en 1 jour (3C, USP, LD explicatif). Mon rôle : Level Design de la mécanique de levier.', meta: [{ k: 'Date', v: '2024–2025' }, { k: 'Durée', v: '1 journée' }, { k: 'Rôle', v: 'Level Design' }], imgs: [fj('9d4ce0de51804d7f9d7e4311f7e01cd8'), fj('f4e0a38eb2364d37ac1475a99ab7655d'), fj('813aab6adce4408c89f12345dea45d6d'), fj('4d16eb765f5b44878c9a89c31c5be36f'), fj('6e2da79637cf42828c38bdb5cc514d77'), fj('75023383ca6547d18befe6ee5f6f8724'), fj('acd221cb4bb5487a9a65d4ff31e76fa7'), fj('8d002f3b76fb4da79e8dfd29291cf163'), fj('2ce2c42502c54a4a9a2ade921ec4ca91'), fj('63046b2fcbe7429d8add8821384e0750'), fj('792731b0f9bf4f23b88c5a8f2f80fdab'), fj('8130c16a5dfd41178465ceace1b74356'), fj('daf571fc1c2d4656882c5ed4edb14d37')] },
-            { id: 'nf', thumb: f('9fa605fc01e044aaaf17b4c4520d46b7'), type: 'GD · Gamification', title: 'NETFLIX GAMIFICATION', sub: 'Concept 30 min · Thème imposé', desc: 'Concept réalisé en 30 minutes sur le thème : Gamification de Netflix.', meta: [{ k: 'Durée', v: '30 minutes' }, { k: 'Thème', v: 'Gamification Netflix' }], imgs: [fj('487dc86c854e4308ad447e353564fa4e')] },
-            { id: 'es', thumb: ftj('861ebaafc26b4ac4a3543b6eee01dc1a'), type: 'UI Design', title: 'UI DESIGN — ESPORTS MANAGER', sub: 'Mockup Photoshop · 2021–2022', desc: 'Maquette de concept UI pour "ESPORT MANAGER".', meta: [{ k: 'Type', v: 'UI Design' }, { k: 'Date', v: '2021–2022' }, { k: 'Outil', v: 'Photoshop' }], imgs: [fj('861ebaafc26b4ac4a3543b6eee01dc1a')] },
+            { id: 'sf', thumb: ft('34e833d849f74c368ae80ab39a3518de'), type: 'GD', title: 'SILENT FRAME', sub: 'Projet de fin d\'année 2025–2026 · Pitch accepté', desc: 'Projet en cours pour l\'année 2025–2026 avec la même équipe qu\'IN CANTA. L\'un de mes pitchs accepté par l\'administration comme projet de fin d\'année.', meta: [{ k: 'Statut', v: 'En cours' }, { k: 'Équipe', v: 'Même équipe qu\'IN CANTA' }, { k: 'Année', v: '2025–2026' }], type_en: 'GD', sub_en: 'Final year project 2025–2026 · Pitch accepted', desc_en: 'Ongoing project for 2025–2026 with the same team as IN CANTA. Pitch accepted as the final year project.', meta_en: [{"k":"Status","v":"Ongoing"},{"k":"Team","v":"Same team as IN CANTA"},{"k":"Year","v":"2025–2026"}], imgs: [f('f9dabe04b8ab4cb49f0d104f590f3da6'), f('c4931e5804b14c0c8a652fffc478e235'), f('74a3062fa7344ddfa381b29c730caeab'), f('9bccd927af474a749630a9312c55a629'), f('eed9236d42994cf4bc7715c2c7875589'), f('193505164aba4f5ba371d10a6ae96ce7'), f('cbc7a943f1ec455ab0291cba5c578e59'), f('2ae34e76bf374ccea638e4902a840ec6'), f('c1c5e7b80716439da9762c3ae354f473'), f('a19337dfdeba49ce8e1e23a9c7a36f42')] },
+            { id: 'tft', thumb: ftj('f60a91becf484b6ea0a5b6022b0927e0'), type: 'GD · Analyse', title: 'ANALYSE & DÉCONSTRUCTION : TFT', sub: 'Teamfight Tactics · 2024–2025', desc: 'Analyse et déconstruction du jeu TFT de Riot Games avec OPESANEC (Fnatic). Outils : 3C, Game Loops, ARM, Benchmark, FTUE, MetaGame, Correlation Chart, Layers of Gameplay, Emotional Triggers.', meta: [{ k: 'Type', v: 'Analyse & Déconstruction' }, { k: 'Date', v: '2024–2025' }, { k: 'Collaborateur', v: 'OPESANEC (Fnatic)' }], type_en: 'GD · Analysis', sub_en: "Teamfight Tactics · 2024–2025", desc_en: "Analysis and deconstruction of Riot Games TFT with OPESANEC (Fnatic). Tools: 3C, Game Loops, ARM, Benchmark, FTUE, MetaGame, Correlation Chart, Layers of Gameplay, Emotional Triggers.", meta_en: [{"k": "Type", "v": "Analysis & Deconstruction"}, {"k": "Date", "v": "2024–2025"}, {"k": "Collaborator", "v": "OPESANEC (Fnatic)"}], imgs: [fj('13804af545bf4a258e8e0e98c16ee72f'), fj('3c60cba961974fc6bb2587fbd6e69471'), fj('b7b3f0542b6a4b999a9a398e9c917d88'), fj('3130139f82a54e1f81d7adb6e0e1123a'), fj('bf16d15d3d4847489bb01432fa27ca9c'), fj('53a534d7e32e44c18135430660362001'), fj('0ae79a9bfc764dcb902473562c4abb83'), fj('d102fbeb2ccf42bd9c6c3f70018e8e5b'), fj('3c4218bb82c1421198b5edbdbbfeeea0'), fj('f0cd9c17ba0d48bea443baa216c9d359'), fj('a86ed4d2283a42e3b9ac220aa6f9cd00'), fj('0ebca3610e184ad9a647eaf01e10e80e'), fj('426933102a9d487d825c37c271426ff5'), fj('15de3731aa0d4c3bb46611bd4e45e813'), fj('18ecd44895514babb7a2950f31b04989'), fj('fc7986d818634cb1bb0a0adbb7aa569c'), fj('cf4e8ff3eff9447b9014a70d84c29510'), fj('4c2b9ce90c0e48089e74d344da20d412'), fj('d345ce72ebf143e0aeb984da92515bff'), fj('79f217405afd413587b886c164adf07f'), fj('95e7da4cfc884a89a122d1d0f755c1b6'), fj('df87f329583142e09a7fcfb90a63fa01'), fj('a3c7ee9aa3c44b10a2cacc286a295733'), fj('6c2f3eb6a32245adb7458ce9b3757713'), fj('75ef79efdc11431b8376eaf378c8e2eb'), fj('58827df8ff0148748fd5a3be2e30ec48'), fj('f72764d66a974be8a8a1305b5741507c')] },
+            { id: 'tt', thumb: ftj('874a1faf5118467b8f49d6ea47767b45'), type: 'GD · Concept', title: 'TIC-TAC TAC-TIC', sub: 'Concept complet · Hiver 2025', desc: 'Concept réalisé fin 2025 détaillant mes 3C et systèmes : Mécaniques, Progression, Économique, Social, Meta et boucles rétroactives.', meta: [{ k: 'Date', v: 'Hiver 2025' }, { k: 'Contenu', v: '3C, Systèmes, Boucles rétroactives' }], type_en: 'GD · Concept', sub_en: "Full concept · Winter 2025", desc_en: "Concept made in late 2025 detailing my 3C and systems: Mechanics, Progression, Economy, Social, Meta and feedback loops.", meta_en: [{"k": "Date", "v": "Winter 2025"}, {"k": "Content", "v": "3C, Systems, Feedback loops"}], imgs: [fj('733c24a134fa409bb483b307f35aeeec'), fj('810d43449fc541a18fb1fabddb9dff97'), fj('13954240cdf44cf8ad15ccc46435e47b'), fj('2dd0ac4d3f68446ebe418cd4b7cf797c'), fj('3bb27740b2074a5d8237279def1d3c20'), fj('556c1263fa8240a9856456d9a0b8f016'), fj('4c04b9bcfac84ef5b94ec256b883cdba'), fj('cc732430b6d34000b5bd5cf82617adcf'), fj('d84d0fbd272f458fa1bbfc8dc14761f1'), fj('96b33e6a840441b4be217626549f4380'), fj('a4a4768f76014405a9da13ddf8f8c38e'), fj('ef2c16f95dc94abd8a4e0657f14d447e')] },
+            { id: 'nb', thumb: ftj('1d18a45d9f6c4e0db96c63cc615b8f2f'), type: 'GD · Pitch', title: 'SAVE YOUR NEIGHBOR', sub: 'Projet de fin d\'année 2025–2026 · Pitch accepté', desc: 'Second pitch retenu par l\'administration. Réalisé entièrement seul.', meta: [{ k: 'Auteur', v: 'Solo' }, { k: 'Type', v: 'Pitch end-of-year' }], type_en: 'GD · Pitch', sub_en: "Final year project 2025–2026 · Pitch accepted", desc_en: "Second pitch accepted by the administration. Made entirely solo.", meta_en: [{"k": "Author", "v": "Solo"}, {"k": "Type", "v": "Pitch end-of-year"}], imgs: [fj('4e22af9f92bd4139be96a2fd75322327'), fj('1a5a00e18e52406f83e5c3f0bfbf6ef2'), fj('2f3fd653520e4ff782bd3818a8237025'), fj('772d448d3b7044679ac2c0f583ad31b0'), fj('4e5a07a2ef78448dbfd6e4471d56e5b3'), fj('60ab860d05c24aebab076f94880c4396'), fj('5f1ea2683f0c4852ac84b162dd10069d'), fj('528d0701ce6c41ef899b66de74ed3d5f')] },
+            { id: 'lv', thumb: `${W}45ed80_30773ad239074feab05780d50dea060f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_30773ad239074feab05780d50dea060f~mv2.jpg`, type: 'LD', title: 'COUR NAPOLÉON DU LOUVRE', sub: 'Level Design · FPS Capture the Flag', desc: 'Level design basé sur la Cour Napoléon du Louvre pour un FPS en équipe capture-the-flag.', meta: [{ k: 'Type', v: 'Level Design' }, { k: 'Mode', v: 'Capture the Flag' }, { k: 'Genre', v: 'FPS équipe' }], type_en: 'LD', sub_en: "Level Design · Paris", desc_en: "Level design based on the Cour Napoléon du Louvre for a team-based capture-the-flag FPS.", meta_en: [{"k": "Type", "v": "Level Design"}, {"k": "Mode", "v": "Capture the Flag"}, {"k": "Genre", "v": "Team FPS"}], imgs: [`${W}45ed80_3290c277bfd54ab1b768b273934e018f~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_3290c277bfd54ab1b768b273934e018f~mv2.jpg`, `${W}45ed80_a5f7b8fc88d4437985c4d97202ed238b~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_a5f7b8fc88d4437985c4d97202ed238b~mv2.jpg`, `${W}45ed80_26368fa1e619405998947f8d5a08b744~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_26368fa1e619405998947f8d5a08b744~mv2.jpg`, `${W}45ed80_e6609d615e484ab1bb4096d80f012c4b~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_e6609d615e484ab1bb4096d80f012c4b~mv2.jpg`, `${W}45ed80_fac035e22a1d4ee693528dc2a78d6910~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_fac035e22a1d4ee693528dc2a78d6910~mv2.jpg`] },
+            { id: 'pk', thumb: `${W}45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg`, type: 'GD · Concept', title: 'POKÉMON FREEDOM', sub: 'Concept 30 min · Thème : Le Carapuce de Sacha', desc: 'Concept réalisé en 30 minutes sur le thème :  Le Carapuce de Sacha (Pokémon).', meta: [{ k: 'Type', v: 'GD Concept' }, { k: 'Durée', v: '30 minutes' }, { k: 'Thème', v: 'Carapuce de Sacha' }], type_en: 'GD · Concept', sub_en: 'Concept 30 min · Theme: Ash\'s Squirtle', desc_en: 'Concept made in 30 minutes on the theme: Ash\'s Squirtle (Pokémon).', meta_en: [{"k":"Type","v":"GD Concept"},{"k":"Duration","v":"30 minutes"},{"k":"Theme","v":"Ash's Squirtle"}], imgs: [`${W}45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg`, `${W}45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg`, `${W}45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg`, `${W}45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg`, `${W}45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg`] },
+            { id: 'ud', thumb: ftj('62494ecf77694d02a523e077e00cd7ae'), type: 'GD/LD · Concept', title: 'UPDEE & DOWNDEE', sub: 'Concept 1 jour · 2024–2025', desc: 'Concept réalisé en 1 jour (3C, USP, LD explicatif). Mon rôle : Level Design de la mécanique de levier.', meta: [{ k: 'Date', v: '2024–2025' }, { k: 'Durée', v: '1 journée' }, { k: 'Rôle', v: 'Level Design' }], type_en: 'GD/LD · Concept', sub_en: "Concept 1 day · 2024–2025", desc_en: "Concept made in 1 day (3C, USP, explanatory LD). My role: Level Design of the lever mechanic.", meta_en: [{"k": "Date", "v": "2024–2025"}, {"k": "Duration", "v": "1 day"}, {"k": "Role", "v": "Level Design"}], imgs: [fj('9d4ce0de51804d7f9d7e4311f7e01cd8'), fj('f4e0a38eb2364d37ac1475a99ab7655d'), fj('813aab6adce4408c89f12345dea45d6d'), fj('4d16eb765f5b44878c9a89c31c5be36f'), fj('6e2da79637cf42828c38bdb5cc514d77'), fj('75023383ca6547d18befe6ee5f6f8724'), fj('acd221cb4bb5487a9a65d4ff31e76fa7'), fj('8d002f3b76fb4da79e8dfd29291cf163'), fj('2ce2c42502c54a4a9a2ade921ec4ca91'), fj('63046b2fcbe7429d8add8821384e0750'), fj('792731b0f9bf4f23b88c5a8f2f80fdab'), fj('8130c16a5dfd41178465ceace1b74356'), fj('daf571fc1c2d4656882c5ed4edb14d37')] },
+            { id: 'nf', thumb: f('9fa605fc01e044aaaf17b4c4520d46b7'), type: 'GD · Gamification', title: 'NETFLIX GAMIFICATION', sub: 'Concept 30 min · Thème imposé', desc: 'Concept réalisé en 30 minutes sur le thème : Gamification de Netflix.', meta: [{ k: 'Durée', v: '30 minutes' }, { k: 'Thème', v: 'Gamification Netflix' }], type_en: 'GD · Gamification', sub_en: "Concept 30 min · Assigned theme", desc_en: "30-minute concept on the theme: Netflix Gamification.", meta_en: [{"k": "Duration", "v": "30 minutes"}, {"k": "Theme", "v": "Netflix Gamification"}], imgs: [fj('487dc86c854e4308ad447e353564fa4e')] },
+            { id: 'es', thumb: ftj('861ebaafc26b4ac4a3543b6eee01dc1a'), type: 'UI Design', title: 'UI DESIGN — ESPORTS MANAGER', sub: 'Mockup Photoshop · 2021–2022', desc: 'Maquette de concept UI pour "ESPORT MANAGER".', meta: [{ k: 'Type', v: 'UI Design' }, { k: 'Date', v: '2021–2022' }, { k: 'Outil', v: 'Photoshop' }], type_en: 'UI Design', sub_en: "Photoshop Mockup · 2021–2022", desc_en: "UI concept mockup for \"ESPORT MANAGER\".", meta_en: [{"k": "Type", "v": "UI Design"}, {"k": "Date", "v": "2021–2022"}, {"k": "Tool", "v": "Photoshop"}], imgs: [fj('861ebaafc26b4ac4a3543b6eee01dc1a')] },
         ];
 
         /* ── GALLERY BUILDER ────────────────────────────── */
@@ -2728,11 +3252,13 @@
 
         function openDoc(i) {
             const d = DOCS[i];
+            const isEN = currentLang === 'en';
             document.getElementById('ddbc').textContent = d.title;
-            document.getElementById('ddt2').textContent = d.type;
+            document.getElementById('ddt2').textContent = isEN && d.type_en ? d.type_en : d.type;
             document.getElementById('ddt').textContent = d.title;
-            document.getElementById('ddd').textContent = d.desc;
-            document.getElementById('ddm').innerHTML = d.meta.map(m => `<div class="meta-chip"><b>${m.k}</b>${m.v}</div>`).join('');
+            document.getElementById('ddd').textContent = isEN && d.desc_en ? d.desc_en : d.desc;
+            const meta = isEN && d.meta_en ? d.meta_en : d.meta;
+            document.getElementById('ddm').innerHTML = meta.map(m => `<div class="meta-chip"><b>${m.k}</b>${m.v}</div>`).join('');
             const gg = document.getElementById('ddg'); gg.innerHTML = '';
             d.imgs.forEach((s, idx) => { const div = document.createElement('div'); div.className = 'gi'; div.innerHTML = `<img src="${s}" alt="" loading="lazy">`; div.onclick = () => oLB(d.imgs, idx); gg.appendChild(div); });
             go('dd');
@@ -2858,14 +3384,16 @@
         document.getElementById('lb').addEventListener('click', e => { if (e.target === document.getElementById('lb')) cLB(); });
 
 
-        /* ── TERMINAL & GAMES (DOOM / SPACE INVADERS) ───── */
+        // Apply saved language on load
+        applyLang(currentLang);
+
+        /* ── TERMINAL & GAMES ───────────────────────── */
         const cInput = document.getElementById('c-input');
         const cHistory = document.getElementById('c-history');
         const cInputRow = document.getElementById('c-input-row');
         const canvas = document.getElementById('game-canvas');
-        const doomCanvas = document.getElementById('doom-canvas');
+
         const gControls = document.getElementById('g-controls');
-        const doomWrapper = document.getElementById('doom-wrapper');
         const ctx = canvas.getContext('2d');
 
         let gameAnimFrame;
@@ -2887,48 +3415,87 @@
             if (e.key === 'ArrowLeft' && document.getElementById('lb').classList.contains('op')) lbN(-1);
         });
 
+        function cLog(txt, color) {
+            const d = document.createElement('div');
+            d.className = 'console-line';
+            d.style.color = color || 'var(--v2)';
+            d.innerHTML = txt;
+            cHistory.appendChild(d);
+            document.getElementById('c-body').scrollTop = 99999;
+        }
+
         cInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                const val = cInput.value.trim();
-                if (!val) return;
+            if (e.key !== 'Enter') return;
+            const val = cInput.value.trim(); if (!val) return;
+            cLog('> ' + val, 'var(--dim)');
+            const v = val.toLowerCase();
 
-                const lineCmd = document.createElement('div');
-                lineCmd.className = 'console-line';
-                lineCmd.textContent = '> ' + val;
-                cHistory.appendChild(lineCmd);
+            if (v === 'play spaceinvader') startGame('spaceinvader');
+            else if (v === 'play pacman') startGame('pacman');
+            else if (v === 'play frogger') startGame('frogger');
+            else if (v === 'play trex' || v === 'play t-rex') startGame('trex');
+            else if (v === 'play doom') cLog('// DOOM cannot run embedded — browser blocks iframe injection from external hosts. Not available.', 'var(--console-err, #f43f5e)');
+            else if (v === 'help') {
+                cLog('// COMMANDS ──────────────────────────────────', 'var(--dim)');
+                cLog('  <span style="color:var(--v2)">play spaceinvader</span>  — Space Invaders : défends-toi contre les aliens');
+                cLog('  <span style="color:var(--v2)">play pacman</span>        — Pac-Man : mange tous les dots du labyrinthe classique');
+                cLog('  <span style="color:var(--v2)">play frogger</span>       — Frogger : traverse les routes et rentre chez toi');
+                cLog('  <span style="color:var(--v2)">play trex</span>          — T-Rex : saute par-dessus les obstacles sans fin');
+                cLog('// ─────────────────────────────────────────────', 'var(--dim)');
+                cLog('  <span style="color:var(--v2)">goat</span>               — lien vers un streamer de qualité');
+                cLog('  <span style="color:var(--v2)">lol</span>                — opinion sur un certain jeu');
+                cLog('  <span style="color:var(--v2)">yuumi</span>              — opinion sur un certain champion');
+                cLog('  <span style="color:var(--v2)">raksa</span>              — qui suis-je ?');
+                cLog('  <span style="color:var(--v2)">lisa</span> / <span style="color:var(--v2)">akira</span> / <span style="color:var(--v2)">akipouette</span>  — les gens importants');
+            }
+            else if (v === 'goat') cLog('// OPESANEC — <a href="https://www.twitch.tv/opesanec" target="_blank" style="color:var(--v2);text-decoration:underline">twitch.tv/opesanec</a>', 'var(--cyan)');
+            else if (v === 'lol') cLog('// pire jeu all time');
+            else if (v === 'yuumi') cLog('// mérite une total destruction et disparition du jeu', '#f43f5e');
+            else if (v === 'raksa') cLog('// moi');
+            else if (v === 'lisa') cLog('// ADMV', '#f472b6');
+            else if (v === 'akira' || v === 'akipouette') cLog('// la fifille', '#fbbf24');
+            else { cLog(`'${val}' : commande inconnue`, '#f43f5e'); }
 
-                if (val.toLowerCase() === 'play spaceinvader') {
-                    startGame('spaceinvader');
-                } else if (val.toLowerCase() === 'play doom') {
-                    startGame('doom');
-                } else {
-                    const lineErr = document.createElement('div');
-                    lineErr.className = 'console-line console-err';
-                    lineErr.textContent = 'command console inconnue';
-                    cHistory.appendChild(lineErr);
-                }
+            cInput.value = '';
+        });
 
-                cInput.value = '';
-                const cBody = document.getElementById('c-body');
-                cBody.scrollTop = cBody.scrollHeight;
+        // GAME ENGINE — Delta Time
+        let keys = { left: false, right: false, space: false, up: false, down: false };
+        let player, bullets, aliens, alienDir, alienBaseSpeed, alienSpeed, gameOver, victory;
+        let siLastTS = 0;
+
+        // Global key handler for all games
+        window.addEventListener('keydown', e => {
+            if (!gameActive) return;
+            if (currentGame === 'spaceinvader') {
+                if (e.key === 'ArrowLeft') { keys.left = true; e.preventDefault(); }
+                if (e.key === 'ArrowRight') { keys.right = true; e.preventDefault(); }
+                if (e.key === ' ') { keys.space = true; e.preventDefault(); }
+            }
+            if (currentGame === 'trex') {
+                if (e.key === ' ' || e.key === 'ArrowUp') { keys.up = true; e.preventDefault(); }
+            }
+            if (currentGame === 'frogger') {
+                const moves = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right' };
+                if (moves[e.key]) { froggerMove(moves[e.key]); e.preventDefault(); }
+            }
+            if (currentGame === 'pacman') {
+                if (e.key === 'ArrowUp') { pmNextDir = { r: -1, c: 0 }; e.preventDefault(); }
+                if (e.key === 'ArrowDown') { pmNextDir = { r: 1, c: 0 }; e.preventDefault(); }
+                if (e.key === 'ArrowLeft') { pmNextDir = { r: 0, c: -1 }; e.preventDefault(); }
+                if (e.key === 'ArrowRight') { pmNextDir = { r: 0, c: 1 }; e.preventDefault(); }
             }
         });
-
-        // SPACE INVADERS ENGINE
-        let keys = { left: false, right: false, space: false };
-        let player, bullets, aliens, alienDir, alienSpeed, gameOver, victory;
-
-        window.addEventListener('keydown', e => {
-            if (!gameActive || currentGame !== 'spaceinvader') return;
-            if (e.key === 'ArrowLeft') keys.left = true;
-            if (e.key === 'ArrowRight') keys.right = true;
-            if (e.key === ' ') { keys.space = true; e.preventDefault(); }
-        });
         window.addEventListener('keyup', e => {
-            if (!gameActive || currentGame !== 'spaceinvader') return;
-            if (e.key === 'ArrowLeft') keys.left = false;
-            if (e.key === 'ArrowRight') keys.right = false;
-            if (e.key === ' ') keys.space = false;
+            if (!gameActive) return;
+            if (currentGame === 'spaceinvader') {
+                if (e.key === 'ArrowLeft') keys.left = false;
+                if (e.key === 'ArrowRight') keys.right = false;
+                if (e.key === ' ') keys.space = false;
+            }
+            if (currentGame === 'trex') {
+                if (e.key === ' ' || e.key === 'ArrowUp') keys.up = false;
+            }
         });
 
         // Mobile Controls
@@ -2937,28 +3504,39 @@
         const btnF = document.getElementById('btn-fire');
         const btnE = document.getElementById('btn-exit');
 
-        const bindBtn = (btn, keyProp) => {
-            btn.addEventListener('mousedown', e => { if (gameActive && currentGame === 'spaceinvader') keys[keyProp] = true; });
-            btn.addEventListener('mouseup', e => { if (gameActive && currentGame === 'spaceinvader') keys[keyProp] = false; });
-            btn.addEventListener('touchstart', e => { if (gameActive && currentGame === 'spaceinvader') { keys[keyProp] = true; e.preventDefault(); } });
-            btn.addEventListener('touchend', e => { if (gameActive && currentGame === 'spaceinvader') { keys[keyProp] = false; e.preventDefault(); } });
-        };
-        bindBtn(btnL, 'left');
-        bindBtn(btnR, 'right');
-        bindBtn(btnF, 'space');
+        const btnU = document.getElementById('btn-up');
+        const btnD = document.getElementById('btn-down');
 
+        function bindKey(btn, down, up) {
+            const si = () => currentGame === 'spaceinvader';
+            btn.addEventListener('mousedown', () => { if (gameActive) down(); });
+            btn.addEventListener('mouseup', () => { if (gameActive) up(); });
+            btn.addEventListener('touchstart', e => { if (gameActive) { down(); e.preventDefault(); } }, { passive: false });
+            btn.addEventListener('touchend', e => { if (gameActive) { up(); e.preventDefault(); } }, { passive: false });
+        }
+        // Space invader directional
+        bindKey(btnL, () => { if (currentGame === 'spaceinvader') keys.left = true; }, () => keys.left = false);
+        bindKey(btnR, () => { if (currentGame === 'spaceinvader') keys.right = true; }, () => keys.right = false);
+        bindKey(btnF, () => { if (currentGame === 'spaceinvader') keys.space = true; if (currentGame === 'trex') keys.up = true; }, () => { keys.space = false; keys.up = false; });
+        bindKey(btnU, () => { if (currentGame === 'trex') keys.up = true; if (currentGame === 'frogger') froggerMove('up'); if (currentGame === 'pacman') pmNextDir = { r: -1, c: 0 }; }, () => keys.up = false);
+        bindKey(btnD, () => { if (currentGame === 'frogger') froggerMove('down'); if (currentGame === 'pacman') pmNextDir = { r: 1, c: 0 }; }, () => { });
+        // Extra left/right for frogger/pacman
+        btnL.addEventListener('touchstart', e => { if (currentGame === 'frogger') { froggerMove('left'); e.preventDefault(); } if (currentGame === 'pacman') { pmNextDir = { r: 0, c: -1 }; e.preventDefault(); } }, { passive: false });
+        btnR.addEventListener('touchstart', e => { if (currentGame === 'frogger') { froggerMove('right'); e.preventDefault(); } if (currentGame === 'pacman') { pmNextDir = { r: 0, c: 1 }; e.preventDefault(); } }, { passive: false });
         btnE.addEventListener('click', stopGame);
-        btnE.addEventListener('touchstart', (e) => { e.preventDefault(); stopGame(); });
+        btnE.addEventListener('touchstart', e => { e.preventDefault(); stopGame(); }, { passive: false });
 
         function initSpaceInvaders() {
             player = { x: canvas.width / 2 - 15, y: canvas.height - 30, w: 30, h: 10, speed: 5, cooldown: 0 };
             bullets = [];
             aliens = [];
             alienDir = 1;
-            alienSpeed = 1;
+            alienBaseSpeed = 0.8;
+            alienSpeed = alienBaseSpeed;
             gameOver = false;
             victory = false;
             keys.space = false;
+            siLastTS = 0;
 
             const rows = 4, cols = 8;
             for (let r = 0; r < rows; r++) {
@@ -2968,39 +3546,44 @@
             }
         }
 
+        function showBtns(l, r, f, u, d) {
+            btnL.style.display = l ? 'block' : 'none';
+            btnR.style.display = r ? 'block' : 'none';
+            btnF.style.display = f ? 'block' : 'none';
+            btnU.style.display = u ? 'block' : 'none';
+            btnD.style.display = d ? 'block' : 'none';
+        }
+
         function startGame(gameType) {
             cHistory.style.display = 'none';
             cInputRow.style.display = 'none';
             gControls.classList.add('active');
             gameActive = true;
             currentGame = gameType;
+            canvas.style.display = 'block';
+            gameOver = false; victory = false;
 
             if (gameType === 'spaceinvader') {
-                canvas.style.display = 'block';
-                doomWrapper.style.display = 'none';
-                btnL.style.display = 'block';
-                btnR.style.display = 'block';
-                btnF.style.display = 'block';
+                showBtns(1, 1, 1, 0, 0);
+                btnF.textContent = 'FIRE';
                 initSpaceInvaders();
-                gameLoop();
-            } else if (gameType === 'doom') {
-                canvas.style.display = 'none';
-                doomWrapper.style.display = 'block';
-                // Masque les contrôles Space Invaders pour Doom
-                btnL.style.display = 'none';
-                btnR.style.display = 'none';
-                btnF.style.display = 'none';
-                // Charge Doom
-                doomCanvas.src = 'https://diekmann.github.io/wasm-fizzbuzz/doom/';
+                gameAnimFrame = requestAnimationFrame(gameLoop);
+            } else if (gameType === 'trex') {
+                showBtns(0, 0, 1, 1, 0);
+                btnF.textContent = '▲ JUMP';
+                initTrex();
+                gameAnimFrame = requestAnimationFrame(trexLoop);
+            } else if (gameType === 'frogger') {
+                showBtns(1, 1, 0, 1, 1);
+                initFrogger();
+                gameAnimFrame = requestAnimationFrame(froggerLoop);
+            } else if (gameType === 'pacman') {
+                showBtns(1, 1, 0, 1, 1);
+                initPacman();
+                gameAnimFrame = requestAnimationFrame(pacmanLoop);
             }
 
-            setTimeout(() => {
-                const gameView = gameType === 'doom' ? doomWrapper : canvas;
-                gameView.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                if (gameType === 'doom') {
-                    doomCanvas.focus();
-                }
-            }, 100);
+            setTimeout(() => canvas.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
         }
 
         function stopGame() {
@@ -3011,8 +3594,6 @@
             cancelAnimationFrame(gameAnimFrame);
             canvas.style.display = 'none';
 
-            doomWrapper.style.display = 'none';
-            doomCanvas.src = 'about:blank'; // Arrête l'audio et libère la mémoire de Doom
 
             gControls.classList.remove('active');
             cHistory.style.display = 'block';
@@ -3027,8 +3608,13 @@
             return !(r2.x > r1.x + r1.w || r2.x + r2.w < r1.x || r2.y > r1.y + r1.h || r2.y + r2.h < r1.y);
         }
 
-        function gameLoop() {
+        function gameLoop(timestamp) {
             if (!gameActive || currentGame !== 'spaceinvader') return;
+
+            // ── DELTA TIME (frame-rate independent) ──
+            if (!siLastTS) siLastTS = timestamp;
+            const delta = Math.min((timestamp - siLastTS) / 16.667, 3.5); // cap at 3.5× (avoids huge jumps on tab focus)
+            siLastTS = timestamp;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -3039,83 +3625,405 @@
                 ctx.fillText(victory ? 'VICTORY !' : 'GAME OVER', canvas.width / 2, canvas.height / 2);
                 ctx.font = '14px "IBM Plex Mono"';
                 ctx.fillText('Press SPACE / FIRE to restart', canvas.width / 2, canvas.height / 2 + 30);
-
                 if (keys.space) initSpaceInvaders();
                 gameAnimFrame = requestAnimationFrame(gameLoop);
                 return;
             }
 
             // Player Update
-            if (keys.left && player.x > 0) player.x -= player.speed;
-            if (keys.right && player.x + player.w < canvas.width) player.x += player.speed;
+            if (keys.left && player.x > 0) player.x -= player.speed * delta;
+            if (keys.right && player.x + player.w < canvas.width) player.x += player.speed * delta;
 
             if (keys.space && player.cooldown <= 0) {
                 bullets.push({ x: player.x + player.w / 2 - 2, y: player.y, w: 4, h: 10, dy: -7, type: 'p' });
                 player.cooldown = 15;
             }
-            if (player.cooldown > 0) player.cooldown--;
+            if (player.cooldown > 0) player.cooldown -= delta;
 
             // Bullets Update
             for (let i = bullets.length - 1; i >= 0; i--) {
-                let b = bullets[i];
-                b.y += b.dy;
-
+                const b = bullets[i];
+                b.y += b.dy * delta;
                 if (b.y < 0 || b.y > canvas.height) { bullets.splice(i, 1); continue; }
 
                 if (b.type === 'p') {
                     for (let j = aliens.length - 1; j >= 0; j--) {
-                        let a = aliens[j];
-                        if (rectIntersect(b, a)) {
+                        if (rectIntersect(b, aliens[j])) {
                             aliens.splice(j, 1);
                             bullets.splice(i, 1);
-                            alienSpeed += 0.05;
+                            alienSpeed += 0.03;
                             break;
                         }
                     }
                 } else if (b.type === 'a') {
-                    if (rectIntersect(b, player)) {
-                        gameOver = true;
-                    }
+                    if (rectIntersect(b, player)) gameOver = true;
                 }
             }
 
             // Aliens Update
             let edgeHit = false;
-            for (let a of aliens) {
-                a.x += alienSpeed * alienDir;
+            for (const a of aliens) {
+                a.x += alienSpeed * alienDir * delta;
                 if (a.x <= 10 || a.x + a.w >= canvas.width - 10) edgeHit = true;
-                if (Math.random() < 0.001) {
+                if (Math.random() < 0.0006 * delta) {
                     bullets.push({ x: a.x + a.w / 2 - 2, y: a.y + a.h, w: 4, h: 10, dy: 4, type: 'a' });
                 }
             }
             if (edgeHit) {
                 alienDir *= -1;
-                for (let a of aliens) {
-                    a.x += alienSpeed * alienDir;
-                    a.y += 20;
+                for (const a of aliens) {
+                    a.x += alienSpeed * alienDir * delta;
+                    a.y += 18;
                     if (a.y + a.h >= player.y) gameOver = true;
                 }
             }
 
             if (aliens.length === 0) victory = true;
 
-            // Draw Player
-            ctx.fillStyle = '#a855f7'; // var(--v2)
+            // ── DRAW ──
+            // Player (ship shape)
+            ctx.fillStyle = '#a855f7';
             ctx.fillRect(player.x, player.y, player.w, player.h);
             ctx.fillRect(player.x + 10, player.y - 6, 10, 6);
 
-            // Draw Aliens
-            ctx.fillStyle = '#22d3ee'; // var(--cyan)
-            for (let a of aliens) ctx.fillRect(a.x, a.y, a.w, a.h);
+            // Aliens
+            ctx.fillStyle = '#22d3ee';
+            for (const a of aliens) {
+                ctx.fillRect(a.x, a.y, a.w, a.h);
+                ctx.fillRect(a.x + 4, a.y + a.h, 4, 4);
+                ctx.fillRect(a.x + a.w - 8, a.y + a.h, 4, 4);
+            }
 
-            // Draw Bullets
-            for (let b of bullets) {
-                ctx.fillStyle = b.type === 'p' ? '#fff' : '#f43f5e';
+            // Bullets
+            for (const b of bullets) {
+                ctx.fillStyle = b.type === 'p' ? '#a855f7' : '#f43f5e';
                 ctx.fillRect(b.x, b.y, b.w, b.h);
             }
 
             gameAnimFrame = requestAnimationFrame(gameLoop);
         }
+
+
+
+        // ═══════════════════════════════════════════════════
+        //  T-REX RUNNER
+        // ═══════════════════════════════════════════════════
+        let trex, trexObs, trexScore, trexSpeed, trexSpawn, trexLastTS;
+        const GROUND = canvas.height - 55;
+
+        function initTrex() {
+            trex = { x: 80, y: GROUND - 45, w: 28, h: 45, vy: 0, onGround: true, legPhase: 0 };
+            trexObs = [];
+            trexScore = 0; trexSpeed = 4; trexSpawn = 90; trexLastTS = 0;
+            gameOver = false; victory = false; keys.up = false;
+        }
+
+        function trexLoop(ts) {
+            if (!gameActive || currentGame !== 'trex') return;
+            const dt = trexLastTS ? Math.min((ts - trexLastTS) / 16.667, 3) : 1;
+            trexLastTS = ts;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (gameOver || victory) {
+                ctx.fillStyle = '#fff'; ctx.font = '22px "IBM Plex Mono"'; ctx.textAlign = 'center';
+                ctx.fillText(victory ? 'YOU WIN' : 'GAME OVER', canvas.width / 2, canvas.height / 2);
+                ctx.font = '13px "IBM Plex Mono"';
+                ctx.fillText('Press SPACE / JUMP to restart', canvas.width / 2, canvas.height / 2 + 28);
+                if (keys.up || keys.space) { initTrex(); }
+                gameAnimFrame = requestAnimationFrame(trexLoop); return;
+            }
+
+            // Jump
+            if ((keys.up || keys.space) && trex.onGround) { trex.vy = -13; trex.onGround = false; }
+            trex.vy += 0.55 * dt;
+            trex.y += trex.vy * dt;
+            if (trex.y >= GROUND - trex.h) { trex.y = GROUND - trex.h; trex.vy = 0; trex.onGround = true; }
+            if (trex.onGround) trex.legPhase += 0.25 * dt;
+
+            // Obstacles
+            trexSpawn -= dt;
+            if (trexSpawn <= 0) {
+                const h = 30 + Math.random() * 40;
+                trexObs.push({ x: canvas.width + 10, y: GROUND - h, w: 18 + Math.random() * 14, h });
+                trexSpawn = 55 + Math.random() * 55 - trexScore * 0.03;
+            }
+            for (let i = trexObs.length - 1; i >= 0; i--) {
+                trexObs[i].x -= trexSpeed * dt;
+                if (trexObs[i].x + trexObs[i].w < 0) { trexObs.splice(i, 1); continue; }
+                if (rectIntersect({ x: trex.x + 4, y: trex.y + 4, w: trex.w - 8, h: trex.h - 4 }, trexObs[i])) gameOver = true;
+            }
+            trexScore += dt * 0.2;
+            trexSpeed = 4 + trexScore * 0.012;
+
+            // Draw ground
+            ctx.fillStyle = '#1c2040'; ctx.fillRect(0, GROUND, canvas.width, 3);
+            ctx.fillStyle = '#252850'; ctx.fillRect(0, GROUND + 3, canvas.width, canvas.height - GROUND - 3);
+
+            // Draw dino (pixel art style)
+            ctx.fillStyle = '#a855f7';
+            ctx.fillRect(trex.x, trex.y, trex.w, trex.h);            // body
+            ctx.fillStyle = '#c084fc';
+            ctx.fillRect(trex.x + trex.w, trex.y, 12, 16);              // head
+            ctx.fillStyle = '#22d3ee';
+            ctx.fillRect(trex.x + trex.w + 8, trex.y + 4, 4, 4);           // eye
+            // legs
+            ctx.fillStyle = '#7c3aed';
+            const lp = Math.sin(trex.legPhase) * 6;
+            ctx.fillRect(trex.x + 4, trex.y + trex.h, 8, trex.onGround ? 8 + lp : 12);
+            ctx.fillRect(trex.x + 16, trex.y + trex.h, 8, trex.onGround ? 8 - lp : 8);
+
+            // Draw obstacles
+            ctx.fillStyle = '#22d3ee';
+            for (const o of trexObs) {
+                ctx.fillRect(o.x, o.y, o.w, o.h);
+                ctx.fillStyle = '#0891b2';
+                ctx.fillRect(o.x + o.w / 2 - 3, o.y - 8, 6, 10);
+                ctx.fillStyle = '#22d3ee';
+            }
+
+            // Score
+            ctx.fillStyle = 'var(--dim)'; ctx.font = '13px "IBM Plex Mono"'; ctx.textAlign = 'right';
+            ctx.fillText('SCORE: ' + Math.floor(trexScore), canvas.width - 10, 20);
+
+            gameAnimFrame = requestAnimationFrame(trexLoop);
+        }
+
+        // ═══════════════════════════════════════════════════
+        //  FROGGER
+        // ═══════════════════════════════════════════════════
+        let frog, frogCars, froggerLastTS, frogDead, frogWin;
+        const FR_ROWS = 9, FR_COLS = 12, FR_CW = 50, FR_CH = Math.floor(canvas.height / FR_ROWS);
+        const FR_LANES = [
+            { type: 'safe' },
+            { type: 'road', dir: 1, speed: 1.1, carW: 70 },
+            { type: 'road', dir: -1, speed: 1.5, carW: 80 },
+            { type: 'road', dir: 1, speed: 1.3, carW: 65 },
+            { type: 'safe' },
+            { type: 'road', dir: -1, speed: 1.0, carW: 85 },
+            { type: 'road', dir: 1, speed: 1.7, carW: 60 },
+            { type: 'road', dir: -1, speed: 1.2, carW: 75 },
+            { type: 'safe' },
+        ];
+
+        function initFrogger() {
+            frog = { col: 5, row: FR_ROWS - 1 };
+            frogCars = [];
+            for (let r = 0; r < FR_ROWS; r++) {
+                const lane = FR_LANES[r]; if (lane.type !== 'road') continue;
+                for (let i = 0; i < 3; i++) {
+                    frogCars.push({
+                        row: r, x: (i / 3) * canvas.width + Math.random() * FR_CW * 2,
+                        w: lane.carW, dir: lane.dir, speed: lane.speed
+                    });
+                }
+            }
+            frogDead = false; frogWin = false; froggerLastTS = 0;
+            gameOver = false; victory = false;
+        }
+
+        function froggerMove(dir) {
+            if (!gameActive || currentGame !== 'frogger') return;
+            if (frogDead || frogWin) { initFrogger(); return; }
+            if (dir === 'up' && frog.row > 0) frog.row--;
+            if (dir === 'down' && frog.row < FR_ROWS - 1) frog.row++;
+            if (dir === 'left' && frog.col > 0) frog.col--;
+            if (dir === 'right' && frog.col < FR_COLS - 1) frog.col++;
+            if (frog.row === 0) { frogWin = true; victory = true; }
+        }
+
+        function froggerLoop(ts) {
+            if (!gameActive || currentGame !== 'frogger') return;
+            const dt = froggerLastTS ? Math.min((ts - froggerLastTS) / 16.667, 3) : 1;
+            froggerLastTS = ts;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (gameOver || victory) {
+                ctx.fillStyle = '#fff'; ctx.font = '22px "IBM Plex Mono"'; ctx.textAlign = 'center';
+                ctx.fillText(victory ? 'HOME SAFE !' : 'GAME OVER', canvas.width / 2, canvas.height / 2);
+                ctx.font = '13px "IBM Plex Mono"';
+                ctx.fillText('Arrow key to restart', canvas.width / 2, canvas.height / 2 + 28);
+                gameAnimFrame = requestAnimationFrame(froggerLoop); return;
+            }
+
+            for (const car of frogCars) {
+                car.x += car.dir * car.speed * dt;
+                if (car.dir > 0 && car.x > canvas.width + 10) car.x = -car.w - 10;
+                if (car.dir < 0 && car.x < -car.w - 10) car.x = canvas.width + 10;
+            }
+
+            for (let r = 0; r < FR_ROWS; r++) {
+                const y = r * FR_CH, lane = FR_LANES[r];
+                ctx.fillStyle = r === 0 ? '#0f2018' : lane.type === 'safe' ? '#0d1a10' : '#110d1e';
+                ctx.fillRect(0, y, canvas.width, FR_CH);
+                if (lane.type === 'road') {
+                    ctx.strokeStyle = '#251d40'; ctx.setLineDash([18, 18]);
+                    ctx.beginPath(); ctx.moveTo(0, y + FR_CH / 2); ctx.lineTo(canvas.width, y + FR_CH / 2); ctx.stroke();
+                    ctx.setLineDash([]);
+                }
+            }
+            // Goal row markers
+            for (let cc = 0; cc < FR_COLS; cc++) {
+                ctx.fillStyle = '#0a2014'; ctx.fillRect(cc * FR_CW + 4, 4, FR_CW - 8, FR_CH - 8);
+            }
+            ctx.fillStyle = '#00ff88'; ctx.font = '10px "IBM Plex Mono"'; ctx.textAlign = 'center';
+            ctx.fillText('HOME', canvas.width / 2, FR_CH / 2 + 4);
+
+            for (const car of frogCars) {
+                const cy = car.row * FR_CH;
+                ctx.fillStyle = '#e11d48'; ctx.fillRect(car.x, cy + 5, car.w, FR_CH - 10);
+                ctx.fillStyle = '#fbbf24'; ctx.fillRect(car.x + (car.dir > 0 ? car.w - 8 : 4), cy + 8, 6, 6);
+            }
+
+            const fx = frog.col * FR_CW, fy = frog.row * FR_CH;
+            for (const car of frogCars) {
+                if (car.row === frog.row && !(fx + FR_CW - 8 < car.x || fx + 8 > car.x + car.w)) { frogDead = true; gameOver = true; }
+            }
+
+            ctx.fillStyle = frogDead ? '#f43f5e' : '#a855f7';
+            ctx.fillRect(fx + 8, fy + 6, FR_CW - 16, FR_CH - 12);
+            ctx.fillStyle = '#22d3ee';
+            ctx.fillRect(fx + 10, fy + 8, 6, 5); ctx.fillRect(fx + FR_CW - 16, fy + 8, 6, 5);
+            ctx.fillStyle = '#7c3aed';
+            ctx.fillRect(fx + 6, fy + FR_CH - 10, 8, 6); ctx.fillRect(fx + FR_CW - 14, fy + FR_CH - 10, 8, 6);
+
+            gameAnimFrame = requestAnimationFrame(froggerLoop);
+        }
+
+        //  PACMAN — Classic layout (28×31)
+        // ═══════════════════════════════════════════════════
+        // '#'=wall  '.'=dot  'O'=power pellet  ' '=open  'P'=start
+        const PM_DEF = [
+            '############################',
+            '#............##............#',
+            '#.####.#####.##.#####.####.#',
+            '#O####.#####.##.#####.####O#',
+            '#.####.#####.##.#####.####.#',
+            '#..........................#',
+            '#.####.##.########.##.####.#',
+            '#.####.##.########.##.####.#',
+            '#......##....##....##......#',
+            '######.#####.##.#####.######',
+            '     #.#####.##.#####.#     ',
+            '     #.##          ##.#     ',
+            '     #.## ###  ### ##.#     ',
+            '######.## #      # ##.######',
+            '      .   #      #   .      ',
+            '######.## #      # ##.######',
+            '     #.## ######## ##.#     ',
+            '     #.##          ##.#     ',
+            '     #.## ######## ##.#     ',
+            '######.## ######## ##.######',
+            '#............##............#',
+            '#.####.#####.##.#####.####.#',
+            '#O..##.................##..O#',
+            '###.##.##.########.##.##.###',
+            '###.##.##.########.##.##.###',
+            '#......##....##....##......#',
+            '#.##########.##.##########.#',
+            '#.##########.##.##########.#',
+            '#..........................#',
+            '#.####.#####P##.#####.####.#',
+            '############################',
+        ];
+        const PM_C = 28, PM_R = 31, PM_S = 13;
+        const PM_OX = Math.floor((600 - PM_C * PM_S) / 2); // center horizontally
+        let pmMap, pmPac, pmDir, pmNextDir, pmDots, pmMoveTimer, pmLastTS, pmScore;
+
+        function pmOpen(r, c) {
+            r = (r + PM_R) % PM_R; c = (c + PM_C) % PM_C;
+            return pmMap[r] && pmMap[r][c] !== 1;
+        }
+
+        function initPacman() {
+            pmMap = PM_DEF.map(row => {
+                const arr = [];
+                for (let i = 0; i < PM_C; i++) {
+                    const ch = row[i] || ' ';
+                    arr.push(ch === '#' ? 1 : ch === '.' ? 0 : ch === 'O' ? 2 : 3);
+                }
+                return arr;
+            });
+            let pRow = 29, pCol = 13;
+            for (let r = 0; r < PM_R; r++) for (let c = 0; c < PM_C; c++) if (PM_DEF[r][c] === 'P') { pRow = r; pCol = c; pmMap[r][c] = 3; }
+            pmPac = { r: pRow, c: pCol };
+            pmDir = { r: 0, c: 0 }; pmNextDir = { r: 0, c: 0 };
+            pmDots = 0;
+            for (let r = 0; r < PM_R; r++) for (let c = 0; c < PM_C; c++) if (pmMap[r][c] === 0 || pmMap[r][c] === 2) pmDots++;
+            pmScore = 0; pmMoveTimer = 0; pmLastTS = 0;
+            gameOver = false; victory = false;
+        }
+
+        function pacmanLoop(ts) {
+            if (!gameActive || currentGame !== 'pacman') return;
+            const dt = pmLastTS ? Math.min((ts - pmLastTS) / 16.667, 3) : 1;
+            pmLastTS = ts;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (gameOver || victory) {
+                ctx.fillStyle = '#fff'; ctx.font = '20px "IBM Plex Mono"'; ctx.textAlign = 'center';
+                ctx.fillText(victory ? 'YOU WIN !' : 'GAME OVER', canvas.width / 2, canvas.height / 2);
+                ctx.font = '12px "IBM Plex Mono"'; ctx.fillStyle = '#4a5070';
+                ctx.fillText('Arrow key to restart', canvas.width / 2, canvas.height / 2 + 24);
+                if (pmNextDir.r || pmNextDir.c) initPacman();
+                gameAnimFrame = requestAnimationFrame(pacmanLoop); return;
+            }
+
+            // Move pacman
+            pmMoveTimer -= dt;
+            if (pmMoveTimer <= 0) {
+                pmMoveTimer = 16;
+                const nr = pmPac.r + pmNextDir.r, nc = (pmPac.c + pmNextDir.c + PM_C) % PM_C;
+                if (pmOpen(nr, nc) && (pmNextDir.r || pmNextDir.c)) pmDir = { ...pmNextDir };
+                const mr = (pmPac.r + pmDir.r + PM_R) % PM_R, mc = (pmPac.c + pmDir.c + PM_C) % PM_C;
+                if (pmOpen(mr, mc)) { pmPac.r = mr; pmPac.c = mc; }
+                const cell = pmMap[pmPac.r][pmPac.c];
+                if (cell === 0) { pmMap[pmPac.r][pmPac.c] = 3; pmScore += 10; pmDots--; }
+                if (cell === 2) { pmMap[pmPac.r][pmPac.c] = 3; pmScore += 50; pmDots--; }
+                if (pmDots <= 0) victory = true;
+            }
+
+            // Draw maze
+            ctx.fillStyle = '#06070d'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            for (let r = 0; r < PM_R; r++) {
+                for (let c = 0; c < PM_C; c++) {
+                    const x = PM_OX + c * PM_S, y = r * PM_S, cell = pmMap[r][c];
+                    if (cell === 1) {
+                        // Wall — draw with inner border for classic look
+                        ctx.fillStyle = '#1e1b6e'; ctx.fillRect(x, y, PM_S, PM_S);
+                        ctx.strokeStyle = '#3730c4'; ctx.lineWidth = 1;
+                        ctx.strokeRect(x + 1.5, y + 1.5, PM_S - 3, PM_S - 3);
+                    } else if (cell === 0) {
+                        ctx.fillStyle = '#d1d5f0'; ctx.beginPath();
+                        ctx.arc(x + PM_S / 2, y + PM_S / 2, 1.5, 0, Math.PI * 2); ctx.fill();
+                    } else if (cell === 2) {
+                        ctx.fillStyle = '#fbbf24';
+                        ctx.shadowColor = '#fbbf24'; ctx.shadowBlur = 4;
+                        ctx.beginPath(); ctx.arc(x + PM_S / 2, y + PM_S / 2, 4, 0, Math.PI * 2); ctx.fill();
+                        ctx.shadowBlur = 0;
+                    }
+                }
+            }
+
+            // Draw pacman
+            const px = PM_OX + pmPac.c * PM_S + PM_S / 2, py = pmPac.r * PM_S + PM_S / 2;
+            let ang = pmDir.c > 0 ? 0 : pmDir.c < 0 ? Math.PI : pmDir.r > 0 ? Math.PI * .5 : pmDir.r < 0 ? Math.PI * 1.5 : 0;
+            const mth = 0.22 + 0.18 * Math.abs(Math.sin(ts * 0.007));
+            ctx.fillStyle = '#fbbf24';
+            ctx.shadowColor = '#fbbf24'; ctx.shadowBlur = 3;
+            ctx.beginPath(); ctx.moveTo(px, py);
+            ctx.arc(px, py, PM_S / 2 - 1, ang + mth, ang + Math.PI * 2 - mth); ctx.closePath(); ctx.fill();
+            ctx.shadowBlur = 0;
+
+            //
+            // HUD
+            ctx.fillStyle = '#4a5070'; ctx.font = '11px "IBM Plex Mono"'; ctx.textAlign = 'left';
+            ctx.fillText('SCORE ' + pmScore, PM_OX, canvas.height - 4);
+            ctx.textAlign = 'right';
+            ctx.fillText('DOTS ' + pmDots, PM_OX + PM_C * PM_S, canvas.height - 4);
+
+            gameAnimFrame = requestAnimationFrame(pacmanLoop);
+        }
+
     </script>
 </body>
 </html>
