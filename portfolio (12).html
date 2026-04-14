@@ -1900,6 +1900,9 @@
                 opacity: 1;
                 filter: brightness(0) invert(1)
             }
+            .tool-item:hover svg { fill: rgba(255,255,255,1) !important; color: rgba(255,255,255,1); }
+            .tool-item:hover svg text { fill: rgba(255,255,255,1); }
+            .tool-item:hover svg rect { stroke: rgba(255,255,255,1); }
 
             .tool-item span {
                 font-family: var(--mono);
@@ -2222,6 +2225,19 @@
                 display: block
             }
         }
+
+        /* LANG BUTTON */
+        #lang-btn {
+            font-size: 1.1rem;
+            padding: 4px 6px;
+            border-radius: var(--r);
+            margin-left: 8px;
+            background: var(--surf);
+            border: 1px solid var(--b);
+            transition: background .2s, border-color .2s;
+            line-height: 1;
+        }
+        #lang-btn:hover { background: var(--surf2); border-color: var(--v); }
     </style>
 </head>
 <body>
@@ -2279,7 +2295,7 @@
     <nav id="nb">
         <a class="logo" href="#" onclick="go('home');return false;">NZ<em>_</em><span class="blink">▋</span></a>
         <ul class="nl">
-            <li><a href="#" onclick="go('home');return false;" data-p="home">Welcome</a></li>
+            <li><a href="#" onclick="go('home');return false;" data-p="home" data-i18n="nav.welcome">Welcome</a></li>
             <li class="drop">
                 <button>// Projets</button>
                 <div class="dm">
@@ -2288,32 +2304,33 @@
                     <a href="#" onclick="go('html');return false;" data-p="html">HTML Project</a>
                 </div>
             </li>
-            <li><a href="#" onclick="go('about');return false;" data-p="about">À propos</a></li>
+            <li><a href="#" onclick="go('about');return false;" data-p="about" data-i18n="nav.about">À propos</a></li>
         </ul>
-        <button class="ham" id="ham" onclick="tM()"><span></span><span></span><span></span></button>
+        <button id="lang-btn" onclick="toggleLang()" title="Switch language"><img id="lang-flag" src="https://flagcdn.com/w40/gb.png" width="22" height="15" alt="EN" style="display:block;border-radius:2px;"></button>
+    <button class="ham" id="ham" onclick="tM()"><span></span><span></span><span></span></button>
     </nav>
     <div class="mob" id="mob">
-        <a href="#" onclick="go('home');tM();return false;">Welcome</a>
+        <a href="#" onclick="go('home');tM();return false;" data-i18n="nav.welcome">Welcome</a>
         <a href="#" class="ms" onclick="go('docs');tM();return false;">↳ Documentations</a>
         <a href="#" class="ms" onclick="go('incanta');tM();return false;">↳ IN CANTA — Board Game</a>
         <a href="#" class="ms" onclick="go('html');tM();return false;">↳ HTML Project</a>
-        <a href="#" onclick="go('about');tM();return false;">À propos</a>
+        <a href="#" onclick="go('about');tM();return false;" data-i18n="nav.about">À propos</a>
     </div>
 
     <div class="page active" id="page-home">
         <div class="hero">
             <div class="hero-left">
-                <div class="hero-eyebrow"><span class="hud-label">Game Design Portfolio</span></div>
+                <div class="hero-eyebrow"><span class="hud-label" data-i18n="hero.eyebrow">Game Design Portfolio</span></div>
                 <h1 class="glitch" data-text="NICOLAS ZIMMERMANN">
                     <div>NICOLAS</div>
                     <div><span class="g">ZIMMERMANN</span></div>
                 </h1>
-                <p class="hero-sub">Étudiant en Game Design à <strong>LISAA Paris</strong>. Passionné par les <strong>systems</strong>, <strong>mécaniques</strong> et <strong>techniques</strong> autours du medium vidéoludique.</p>
+                <p class="hero-sub" data-i18n-html="hero.sub">Étudiant en Game Design à <strong>LISAA Paris</strong>. Passionné par les <strong>systems</strong>, <strong>mécaniques</strong> et <strong>techniques</strong> autours du medium vidéoludique.</p>
                 <div class="hero-cta">
-                    <a class="btn bp ripple-wrap" href="#" onclick="go('docs');return false;">[ VOIR LES PROJETS ]</a>
-                    <a class="btn bg2 ripple-wrap" href="#" onclick="go('about');return false;">[ À PROPOS ]</a>
+                    <a class="btn bp ripple-wrap" href="#" onclick="go('docs');return false;" data-i18n="hero.cta1">[ VOIR LES PROJETS ]</a>
+                    <a class="btn bg2 ripple-wrap" href="#" onclick="go('about');return false;" data-i18n="hero.cta2">[ À PROPOS ]</a>
                 </div>
-                <div class="hero-scroll">SCROLL_DOWN</div>
+                <div class="hero-scroll" data-i18n="hero.scroll">SCROLL_DOWN</div>
             </div>
             <div class="hud-panel">
                 <div class="hud-panel-header">
@@ -2327,21 +2344,21 @@
             </div>
         </div>
         <div class="cnt sec">
-            <div class="sep">// PROJETS RÉCENTS</div>
+            <div class="sep" data-i18n="home.sep">// PROJETS RÉCENTS</div>
             <div class="pg stagger">
                 <div class="pc ripple-wrap" onclick="go('incanta')">
                     <img src="https://static.wixstatic.com/media/45ed80_9dd886909dd64502a3ad673c3fa72790~mv2.png/v1/fill/w_900,h_675,q_90,enc_avif,quality_auto/45ed80_9dd886909dd64502a3ad673c3fa72790~mv2.png" alt="IN CANTA" loading="lazy">
-                    <div class="pci"><div class="pct">Board Game · MOBA</div><h3>IN CANTA</h3><p class="pcd">Jeu de plateau produit IRL par une équipe de 5. Cartes, tokens, plateau, règles.</p></div>
+                    <div class="pci"><div class="pct">Board Game · MOBA</div><h3>IN CANTA</h3><p class="pcd" data-i18n="home.card.incanta">Jeu de plateau produit IRL par une équipe de 5. Cartes, tokens, plateau, règles.</p></div>
                     <div class="pca">→</div>
                 </div>
                 <div class="pc ripple-wrap" onclick="go('docs')">
                     <img src="https://static.wixstatic.com/media/45ed80_34e833d849f74c368ae80ab39a3518de~mv2.png/v1/fill/w_900,h_675,q_90,enc_avif,quality_auto/45ed80_34e833d849f74c368ae80ab39a3518de~mv2.png" alt="Docs" loading="lazy">
-                    <div class="pci"><div class="pct">Concept · Analyse · UI</div><h3>DOCUMENTATIONS</h3><p class="pcd">9 projets : analyses, concepts, UI design, level design.</p></div>
+                    <div class="pci"><div class="pct">Concept · Analyse · UI</div><h3>DOCUMENTATIONS</h3><p class="pcd" data-i18n="home.card.docs">9 projets : analyses, concepts, UI design, level design.</p></div>
                     <div class="pca">→</div>
                 </div>
                 <div class="pc ripple-wrap" onclick="go('html')">
                     <img src="https://static.wixstatic.com/media/704318ee9be94acabf28919a734951b8.jpg/v1/fill/w_900,h_675,q_90,enc_avif,quality_auto/704318ee9be94acabf28919a734951b8.jpg" alt="HTML" loading="lazy">
-                    <div class="pci"><div class="pct">HTML · CSS · JS</div><h3>HTML PROJECT</h3><p class="pcd">Projets web interactifs. Clicker games, interfaces de jeu.</p></div>
+                    <div class="pci"><div class="pct">HTML · CSS · JS</div><h3>HTML PROJECT</h3><p class="pcd" data-i18n="home.card.html">Projets web interactifs. Clicker games, interfaces de jeu.</p></div>
                     <div class="pca">→</div>
                 </div>
             </div>
@@ -2354,7 +2371,7 @@
             <div class="ph2">
                 <span class="hud-label" style="margin-bottom:12px;display:flex">GDD · Analyse · UI · LD</span>
                 <h2>DOCUMENTATIONS</h2>
-                <p>Dossiers de conception, analyses, concepts GD/LD et UI. Cliquez pour explorer.</p>
+                <p data-i18n="docs.desc">Dossiers de conception, analyses, concepts GD/LD et UI. Cliquez pour explorer.</p>
             </div>
             <div class="dcg stagger" id="dg"></div>
         </div>
@@ -2381,13 +2398,13 @@
                 <div>
                     <span class="hud-label" style="margin-bottom:14px;display:flex">Board Game · MOBA</span>
                     <h2>IN CANTA<br><span class="g">BOARD GAME</span></h2>
-                    <p>Projet de jeu de plateau réalisé sur plusieurs mois par une équipe de cinq personnes. Thème : <strong style="color:var(--text)">M.O.B.A.</strong><br><br>Le jeu a été produit physiquement — tokens, cartes, livret, marqueurs, dés, plateau et boîtes. Initialement appelé <em style="color:var(--text)">Cryostail</em>, il a évolué pour résoudre des problèmes de game design.</p>
+                    <p data-i18n-html="incanta.desc">Projet de jeu de plateau réalisé sur plusieurs mois par une équipe de cinq personnes. Thème : <strong style="color:var(--text)">M.O.B.A.</strong><br><br>Le jeu a été produit physiquement — tokens, cartes, livret, marqueurs, dés, plateau et boîtes. Initialement appelé <em style="color:var(--text)">Cryostail</em>, il a évolué pour résoudre des problèmes de game design.</p>
                 </div>
                 <div class="mb">
-                    <div class="mi"><div class="mk">TYPE</div><div class="mv">Board Game physique</div></div>
-                    <div class="mi"><div class="mk">THÈME</div><div class="mv">M.O.B.A.</div></div>
-                    <div class="mi"><div class="mk">ÉQUIPE</div><div class="mv">5 personnes</div></div>
-                    <div class="mi"><div class="mk">BUILD</div><div class="mv">Cartes, tokens, plateau, dés</div></div>
+                    <div class="mi"><div class="mk">TYPE</div><div class="mv" data-i18n="incanta.meta.type">Board Game physique</div></div>
+                    <div class="mi"><div class="mk" data-i18n="meta.theme">THÈME</div><div class="mv">M.O.B.A.</div></div>
+                    <div class="mi"><div class="mk" data-i18n="meta.team">ÉQUIPE</div><div class="mv" data-i18n="incanta.meta.team">5 personnes</div></div>
+                    <div class="mi"><div class="mk" data-i18n="meta.build">BUILD</div><div class="mv" data-i18n="incanta.meta.build">Cartes, tokens, plateau, dés</div></div>
                 </div>
             </div>
             <div class="sgrd stagger">
@@ -2404,7 +2421,7 @@
     <div class="page" id="page-concept">
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('incanta');return false;">IN CANTA</a><span>/</span>CONCEPT</div>
-            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>CONCEPT</h2><p>Concept de base d'"IN CANTA". Initialement Cryostail, évolué pour résoudre des problèmes de game design.</p></div>
+            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>CONCEPT</h2><p data-i18n="concept.desc">Concept de base d'"IN CANTA". Initialement Cryostail, évolué pour résoudre des problèmes de game design.</p></div>
             <div class="gg stagger" id="cg-gallery"></div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('incanta');return false;">← IN CANTA</a></div></footer>
@@ -2413,7 +2430,7 @@
     <div class="page" id="page-rulebook">
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('incanta');return false;">IN CANTA</a><span>/</span>RULEBOOK</div>
-            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>RULEBOOK</h2><p>Livret de règles complet — mécaniques, tours de jeu et conditions de victoire.</p></div>
+            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>RULEBOOK</h2><p data-i18n="rulebook.desc">Livret de règles complet — mécaniques, tours de jeu et conditions de victoire.</p></div>
             <div class="gg stagger" id="rbg"></div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('incanta');return false;">← IN CANTA</a></div></footer>
@@ -2422,7 +2439,7 @@
     <div class="page" id="page-cards">
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('incanta');return false;">IN CANTA</a><span>/</span>CARDS</div>
-            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>CARDS</h2><p>Toutes les cartes — illustrées, équilibrées et produites physiquement.</p></div>
+            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>CARDS</h2><p data-i18n="cards.desc">Toutes les cartes — illustrées, équilibrées et produites physiquement.</p></div>
             <div class="gg stagger" id="cardsg"></div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('incanta');return false;">← IN CANTA</a></div></footer>
@@ -2431,7 +2448,7 @@
     <div class="page" id="page-board">
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('incanta');return false;">IN CANTA</a><span>/</span>BOARD</div>
-            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>BOARD</h2><p>Le plateau de jeu — inspiré des arènes MOBA, conçu et produit physiquement.</p></div>
+            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>BOARD</h2><p data-i18n="board.desc">Le plateau de jeu — inspiré des arènes MOBA, conçu et produit physiquement.</p></div>
             <div class="gg stagger">
                 <div class="gi" onclick="oLB(['https://static.wixstatic.com/media/45ed80_9dd886909dd64502a3ad673c3fa72790~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_9dd886909dd64502a3ad673c3fa72790~mv2.png'],0)">
                     <img src="https://static.wixstatic.com/media/45ed80_9dd886909dd64502a3ad673c3fa72790~mv2.png/v1/fit/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_9dd886909dd64502a3ad673c3fa72790~mv2.png" alt="" loading="lazy">
@@ -2444,7 +2461,7 @@
     <div class="page" id="page-balancing">
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('incanta');return false;">IN CANTA</a><span>/</span>BALANCING</div>
-            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>BALANCING<br><span class="g">& DATA EFFECT</span></h2><p>Équilibrage du jeu — analyse des données, effets des cartes et ajustements.</p></div>
+            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">IN CANTA</div><h2>BALANCING<br><span class="g">& DATA EFFECT</span></h2><p data-i18n="balancing.desc">Équilibrage du jeu — analyse des données, effets des cartes et ajustements.</p></div>
             <div class="gg stagger" id="balg"></div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('incanta');return false;">← IN CANTA</a></div></footer>
@@ -2452,19 +2469,19 @@
 
     <div class="page" id="page-html">
         <div class="cnt">
-            <div class="ph2"><span class="hud-label" style="margin-bottom:12px;display:flex">Code · UI · Game</span><h2>HTML PROJECT</h2><p>Projets HTML/CSS/JS en Game Design et UI.</p></div>
+            <div class="ph2"><span class="hud-label" style="margin-bottom:12px;display:flex">Code · UI · Game</span><h2>HTML PROJECT</h2><p data-i18n="html.desc">Projets HTML/CSS/JS en Game Design et UI.</p></div>
             <div class="hg stagger">
                 <div class="hc" onclick="go('html-feedback')">
                     <img src="https://static.wixstatic.com/media/45ed80_2a7165d6621b44a5a5c9f887b6cacdbff000.jpg/v1/fill/w_600,h_450,q_90,enc_avif,quality_auto/45ed80_2a7165d6621b44a5a5c9f887b6cacdbff000.jpg" alt="Feedback Card">
-                    <div class="hcb"><div class="hct">FEEDBACK CARD</div><div class="hcs">Rendre une carte web plus "juicy" — micro-interactions</div><span class="htg">HTML · CSS</span></div>
+                    <div class="hcb"><div class="hct">FEEDBACK CARD</div><div class="hcs" data-i18n="html.feedback.desc">Rendre une carte web plus "juicy" — micro-interactions</div><span class="htg">HTML · CSS</span></div>
                 </div>
                 <div class="hc" onclick="go('html-veigar')">
                     <img src="https://static.wixstatic.com/media/45ed80_737d7a47df2a499f8b499f5636ec8cfef000.jpg/v1/fill/w_600,h_450,q_90,enc_avif,quality_auto/45ed80_737d7a47df2a499f8b499f5636ec8cfef000.jpg" alt="Veigar Clicker">
-                    <div class="hcb"><div class="hct">VEIGAR CLICKER</div><div class="hcs">Clicker game Veigar (LoL) — stack de dégâts</div><span class="htg">HTML · CSS · JS</span></div>
+                    <div class="hcb"><div class="hct">VEIGAR CLICKER</div><div class="hcs" data-i18n="html.veigar.desc">Clicker game Veigar (LoL) — stack de dégâts</div><span class="htg">HTML · CSS · JS</span></div>
                 </div>
                 <div class="hc" onclick="go('html-akira')">
                     <img src="https://static.wixstatic.com/media/45ed80_ecfb82adf4c44121bcc3473d66c6e915f000.jpg/v1/fill/w_600,h_450,q_90,enc_avif,quality_auto/45ed80_ecfb82adf4c44121bcc3473d66c6e915f000.jpg" alt="Akira Clicker">
-                    <div class="hcb"><div class="hct">AKIRA CLICKER</div><div class="hcs">Clicker game fait en une soirée pour ma petite amie</div><span class="htg">HTML · CSS · JS</span></div>
+                    <div class="hcb"><div class="hct">AKIRA CLICKER</div><div class="hcs" data-i18n="html.akira.desc">Clicker game fait en une soirée pour ma petite amie</div><span class="htg">HTML · CSS · JS</span></div>
                 </div>
             </div>
         </div>
@@ -2475,8 +2492,8 @@
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('html');return false;">HTML</a><span>/</span>FEEDBACK CARD</div>
             <div class="pdb">
-                <div><span class="hud-label" style="margin-bottom:14px;display:flex">HTML · CSS</span><h2>FEEDBACK CARD</h2><p>Projet personnel : explorer comment rendre une simple carte web plus <em style="color:var(--text)">"juicy"</em> via des effets visuels et micro-interactions. Les données affichées sont fictives.</p></div>
-                <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv">Perso</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS</div></div><div class="mi"><div class="mk">OBJ</div><div class="mv">Micro-interactions</div></div></div>
+                <div><span class="hud-label" style="margin-bottom:14px;display:flex">HTML · CSS</span><h2>FEEDBACK CARD</h2><p data-i18n-html="feedback.longdesc">Projet personnel : explorer comment rendre une simple carte web plus <em style="color:var(--text)">"juicy"</em> via des effets visuels et micro-interactions. Les données affichées sont fictives.</p></div>
+                <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv" data-i18n="meta.perso">Perso</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS</div></div><div class="mi"><div class="mk" data-i18n="meta.obj">OBJ</div><div class="mv" data-i18n="meta.microinteractions">Micro-interactions</div></div></div>
             </div>
             <div class="gg"><div class="gi"><img src="https://static.wixstatic.com/media/45ed80_2a7165d6621b44a5a5c9f887b6cacdbff000.jpg/v1/fill/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_2a7165d6621b44a5a5c9f887b6cacdbff000.jpg" alt="" loading="lazy"></div></div>
         </div>
@@ -2487,8 +2504,8 @@
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('html');return false;">HTML</a><span>/</span>VEIGAR CLICKER</div>
             <div class="pdb">
-                <div><span class="hud-label" style="margin-bottom:14px;display:flex">HTML · CSS · JS</span><h2>VEIGAR CLICKER</h2><p>Démarré sur Unity puis GODOT, retravaillé en HTML/CSS/JS. USP : clicker game Veigar (LoL), mécanique de stack de dégâts. En développement, usage privé.</p></div>
-                <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv">Clicker Game</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS · JS</div></div><div class="mi"><div class="mk">USP</div><div class="mv">Stack de dégâts</div></div><div class="mi"><div class="mk">STATUS</div><div class="mv">EN DEV</div></div></div>
+                <div><span class="hud-label" style="margin-bottom:14px;display:flex">HTML · CSS · JS</span><h2>VEIGAR CLICKER</h2><p data-i18n="veigar.longdesc">Démarré sur Unity puis GODOT, retravaillé en HTML/CSS/JS. USP : clicker game Veigar (LoL), mécanique de stack de dégâts. En développement, usage privé.</p></div>
+                <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv">Clicker Game</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS · JS</div></div><div class="mi"><div class="mk">USP</div><div class="mv">Stack de dégâts</div></div><div class="mi"><div class="mk">STATUS</div><div class="mv" data-i18n="meta.indev">EN DEV</div></div></div>
             </div>
             <div class="gg"><div class="gi"><img src="https://static.wixstatic.com/media/45ed80_737d7a47df2a499f8b499f5636ec8cfef000.jpg/v1/fill/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_737d7a47df2a499f8b499f5636ec8cfef000.jpg" alt="" loading="lazy"></div></div>
         </div>
@@ -2499,8 +2516,8 @@
         <div class="cnt">
             <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('html');return false;">HTML</a><span>/</span>AKIRA CLICKER</div>
             <div class="pdb">
-                <div><span class="hud-label" style="margin-bottom:14px;display:flex">HTML · CSS · JS</span><h2>AKIRA CLICKER</h2><p>Réalisé en une soirée pour ma petite amie, à l'image de son chat Akira.</p></div>
-                <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv">Clicker Game</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS · JS</div></div><div class="mi"><div class="mk">DURÉE</div><div class="mv">1 soirée</div></div></div>
+                <div><span class="hud-label" style="margin-bottom:14px;display:flex">HTML · CSS · JS</span><h2>AKIRA CLICKER</h2><p data-i18n="akira.longdesc">Réalisé en une soirée pour ma petite amie, à l'image de son chat Akira.</p></div>
+                <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv">Clicker Game</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS · JS</div></div><div class="mi"><div class="mk" data-i18n="meta.duration">DURÉE</div><div class="mv" data-i18n="meta.onevening">1 soirée</div></div></div>
             </div>
             <div class="gg"><div class="gi"><img src="https://static.wixstatic.com/media/45ed80_ecfb82adf4c44121bcc3473d66c6e915f000.jpg/v1/fill/w_980,h_551,q_90,enc_avif,quality_auto/45ed80_ecfb82adf4c44121bcc3473d66c6e915f000.jpg" alt="" loading="lazy"></div></div>
         </div>
@@ -2511,15 +2528,15 @@
         <div class="cnt">
             <div class="abl">
                 <div>
-                    <span class="hud-label" style="margin-bottom:18px;display:flex">À PROPOS</span>
+                    <span class="hud-label" style="margin-bottom:18px;display:flex" data-i18n="about.label">À PROPOS</span>
                     <h2>NICOLAS<br><span class="g">ZIMMERMANN</span></h2>
-                    <div class="abi">
+                    <div class="abi" id="about-bio">
                         <p>Je suis <strong>Nicolas "Raksakoreko" Zimmermann</strong>, étudiant en Game Design à la <strong>LISAA Paris</strong>. Ma passion pour le game design découle de mon background compétitif.</p>
                         <p>J'ai joué professionnellement <strong>CS:GO</strong> entre 2014 et 2016, puis à <strong>League of Legends</strong> où j'ai atteint le rang <strong>GrandMaster+ EUW</strong> depuis 2023. Aujourd'hui je travaille avec la <strong>Whatoubance</strong> (ex Fnatic, Aegis, Solary, Mihos Esports, GentleMates) sur <strong>TFT</strong>.</p>
                         <p>Vous trouverez ici des créations & concepts de jeux <strong>physiques</strong> (jeux de plateau, CCG, TCG..etc) et <strong>"numériques"</strong> (Unreal, Unity, HTML/JS/CSS voir Godot).</p>
                     </div>
                     <div class="sks">
-                        <div class="skt">SKILLS</div>
+                        <div class="skt" data-i18n="about.skills">SKILLS</div>
                         <div class="skl">
                             <span class="sp">Game Design</span><span class="sp">Board Game</span><span class="sp">HTML/CSS/JS</span><span class="sp">Unity</span><span class="sp">Unreal Engine</span><span class="sp">Balancing</span><span class="sp">UI Design</span><span class="sp">GDD</span><span class="sp">Level Design</span><span class="sp">Prototyping</span><span class="sp">UX Design</span><span class="sp">QA</span>
                         </div>
@@ -2531,38 +2548,38 @@
                                 <div class="tool-item"><img src="https://cdn.simpleicons.org/unrealengine/ffffff" alt="Unreal" loading="lazy"><span>Unreal</span></div>
                                 <div class="tool-item"><img src="https://cdn.simpleicons.org/godotengine/ffffff" alt="Godot" loading="lazy"><span>Godot</span></div>
                                 <div class="tool-item"><img src="https://cdn.simpleicons.org/html5/ffffff" alt="HTML5" loading="lazy"><span>HTML</span></div>
-                                <div class="tool-item"><img src="https://cdn.simpleicons.org/css3/ffffff" alt="CSS3" loading="lazy"><span>CSS</span></div>
+                                <div class="tool-item"><img src="https://cdn.simpleicons.org/css/ffffff" alt="CSS3" loading="lazy"><span>CSS</span></div>
                                 <div class="tool-item"><img src="https://cdn.simpleicons.org/javascript/ffffff" alt="JavaScript" loading="lazy"><span>JS</span></div>
                                 <div class="tool-item"><img src="https://cdn.simpleicons.org/autodesk/ffffff" alt="3DS Max" loading="lazy"><span>3DS Max</span></div>
-                                <div class="tool-item"><img src="https://cdn.simpleicons.org/adobephotoshop/ffffff" alt="Photoshop" loading="lazy"><span>Photoshop</span></div>
-                                <div class="tool-item"><img src="https://cdn.simpleicons.org/adobepremierepro/ffffff" alt="Premiere" loading="lazy"><span>Premiere</span></div>
+                                <div class="tool-item"><svg viewBox="0 0 24 24" width="26" height="26" fill="rgba(255,255,255,.55)" style="transition:fill .2s"><rect x="1" y="1" width="22" height="22" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="16.5" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="9.5" fill="rgba(255,255,255,.55)">Ps</text></svg><span>Photoshop</span></div>
+                                <div class="tool-item"><svg viewBox="0 0 24 24" width="26" height="26" fill="rgba(255,255,255,.55)" style="transition:fill .2s"><rect x="1" y="1" width="22" height="22" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="16.5" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="9.5" fill="rgba(255,255,255,.55)">Pr</text></svg><span>Premiere</span></div>
                                 <div class="tool-item"><img src="https://cdn.simpleicons.org/figma/ffffff" alt="Figma" loading="lazy"><span>Figma</span></div>
                                 <div class="tool-item"><img src="https://cdn.simpleicons.org/miro/ffffff" alt="Miro" loading="lazy"><span>Miro</span></div>
                                 <div class="tool-item"><img src="https://cdn.simpleicons.org/notion/ffffff" alt="Notion" loading="lazy"><span>Notion</span></div>
                                 <div class="tool-item"><img src="https://cdn.simpleicons.org/trello/ffffff" alt="Trello" loading="lazy"><span>Trello</span></div>
                                 <div class="tool-item"><img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" loading="lazy"><span>GitHub</span></div>
                                 <div class="tool-item"><img src="https://cdn.simpleicons.org/google/ffffff" alt="G. Suite" loading="lazy"><span>G. Suite</span></div>
-                                <div class="tool-item"><img src="https://cdn.simpleicons.org/microsoftexcel/ffffff" alt="Excel" loading="lazy"><span>Excel</span></div>
+                                <div class="tool-item"><svg viewBox="0 0 24 24" width="26" height="26" fill="rgba(255,255,255,.55)" style="transition:fill .2s"><path d="M23 1.5q.41 0 .7.3.3.29.3.7v19q0 .41-.3.7-.29.3-.7.3H7q-.41 0-.7-.3-.3-.29-.3-.7v-3.5H1q-.41 0-.7-.3-.3-.29-.3-.7V7q0-.41.3-.7Q.58 6 1 6h5V2.5q0-.41.3-.7.29-.3.7-.3zM6 13.28l1.42 2.66h2.14l-2.38-3.87 2.34-3.8H7.46l-1.3 2.35-.1.21-.11.32q-.29-.75-.56-1.25l-1.3-1.63H1.95l2.39 3.74-2.45 3.93h2.14zM14.25 21v-3H7.5v3zm0-4.5v-3.75H12v3.75zm0-5.25V7.5H12v3.75zm0-5.25V3H7.5v3zm8.25 14.25v-3h-6.75v3zm0-4.5v-3.75h-6.75v3.75zm0-5.25V7.5h-6.75v3.75zm0-5.25V3h-6.75v3z"/></svg><span>Excel</span></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div>
                     <div class="cc">
-                        <div class="cch">// CONTACT</div>
+                        <div class="cch" data-i18n="about.contact">// CONTACT</div>
                         <div class="ccb">
-                            <a href="mailto:Pro.Nicolas.Zimmermann@gmail.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 7 10 6 10-6" /></svg>Pro.Nicolas.Zimmermann@gmail.com</a>
+                            <a href="mailto:Pro.Nicolas.Zimmermann@gmail.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 7 10 6 10-6" /></svg><span class="__cf_email__" data-cfemail="b2e2c0dd9cfcdbd1ddded3c19ce8dbdfdfd7c0dfd3dcdcf2d5dfd3dbde9cd1dddf">[email&#160;protected]</span></a>
 
 
                         </div>
                     </div>
                     <div class="gb">
-                        <div class="gbt">// COMPETITIVE</div>
+                        <div class="gbt" data-i18n="about.competitive">// COMPETITIVE</div>
                         <div class="gst"><span class="gnm">League of Legends</span><span class="grk">GRANDMASTER+</span></div>
                         <div class="gst"><span class="gnm">Teamfight Tactics</span><span class="grk">"ORGANISATEUR D'EVENEMENTS"</span></div>
                         <div class="gst"><span class="gnm">CS:GO</span><span class="grk">PRO 2014–2016</span></div>
                     </div>
-                    <a href="https://267554c8-a000-4c76-9360-fb37bc7ceb88.filesusr.com/ugd/45ed80_0d9227c519b440f99bb76f984973899e.pdf" target="_blank" class="btn bp ripple-wrap" style="width:100%;justify-content:center;margin-top:14px">[ TÉLÉCHARGER CV ]</a>
+                    <a href="https://267554c8-a000-4c76-9360-fb37bc7ceb88.filesusr.com/ugd/45ed80_0d9227c519b440f99bb76f984973899e.pdf" target="_blank" class="btn bp ripple-wrap" style="width:100%;justify-content:center;margin-top:14px" data-i18n="about.cv">[ TÉLÉCHARGER CV ]</a>
                 </div>
             </div>
 
@@ -2606,6 +2623,137 @@
         window.ondragstart = function () { return false; };
         document.addEventListener('dragstart', e => e.preventDefault());
         document.addEventListener('drop', e => e.preventDefault());
+
+
+        /* ── LANG SYSTEM ────────────────────────────────── */
+        let currentLang = localStorage.getItem('nz_lang') || 'fr';
+
+        const T = {
+            fr: {
+                'nav.welcome':       'Welcome',
+                'nav.about':         'À propos',
+                'hero.eyebrow':      'Game Design Portfolio',
+                'hero.sub':          'Étudiant en Game Design à <strong>LISAA Paris</strong>. Passionné par les <strong>systems</strong>, <strong>mécaniques</strong> et <strong>techniques</strong> autours du medium vidéoludique.',
+                'hero.cta1':         '[ VOIR LES PROJETS ]',
+                'hero.cta2':         '[ À PROPOS ]',
+                'hero.scroll':       'SCROLL_DOWN',
+                'home.sep':          '// PROJETS RÉCENTS',
+                'home.card.incanta': 'Jeu de plateau produit IRL par une équipe de 5. Cartes, tokens, plateau, règles.',
+                'home.card.docs':    '9 projets : analyses, concepts, UI design, level design.',
+                'home.card.html':    'Projets web interactifs. Clicker games, interfaces de jeu.',
+                'docs.desc':         'Dossiers de conception, analyses, concepts GD/LD et UI. Cliquez pour explorer.',
+                'incanta.desc':      'Projet de jeu de plateau réalisé sur plusieurs mois par une équipe de cinq personnes. Thème : <strong style="color:var(--text)">M.O.B.A.</strong><br><br>Le jeu a été produit physiquement — tokens, cartes, livret, marqueurs, dés, plateau et boîtes. Initialement appelé <em style="color:var(--text)">Cryostail</em>, il a évolué pour résoudre des problèmes de game design.',
+                'incanta.meta.type': 'Board Game physique',
+                'meta.theme':        'THÈME',
+                'meta.team':         'ÉQUIPE',
+                'incanta.meta.team': '5 personnes',
+                'meta.build':        'BUILD',
+                'incanta.meta.build':'Cartes, tokens, plateau, dés',
+                'concept.desc':      "Concept de base d'IN CANTA. Initialement Cryostail, évolué pour résoudre des problèmes de game design.",
+                'rulebook.desc':     'Livret de règles complet — mécaniques, tours de jeu et conditions de victoire.',
+                'cards.desc':        'Toutes les cartes — illustrées, équilibrées et produites physiquement.',
+                'board.desc':        'Le plateau de jeu — inspiré des arènes MOBA, conçu et produit physiquement.',
+                'balancing.desc':    'Équilibrage du jeu — analyse des données, effets des cartes et ajustements.',
+                'html.desc':         'Projets HTML/CSS/JS en Game Design et UI.',
+                'html.feedback.desc':'Rendre une carte web plus "juicy" — micro-interactions',
+                'html.veigar.desc':  'Clicker game Veigar (LoL) — stack de dégâts',
+                'html.akira.desc':   'Clicker game fait en une soirée pour ma petite amie',
+                'feedback.longdesc': 'Projet personnel : explorer comment rendre une simple carte web plus <em style="color:var(--text)">"juicy"</em> via des effets visuels et micro-interactions. Les données affichées sont fictives.',
+                'meta.perso':        'Perso',
+                'meta.obj':          'OBJ',
+                'meta.microinteractions': 'Micro-interactions',
+                'veigar.longdesc':   'Démarré sur Unity puis GODOT, retravaillé en HTML/CSS/JS. USP : clicker game Veigar (LoL), mécanique de stack de dégâts. En développement, usage privé.',
+                'meta.indev':        'EN DEV',
+                'akira.longdesc':    "Réalisé en une soirée pour ma petite amie, à l'image de son chat Akira.",
+                'meta.duration':     'DURÉE',
+                'meta.onevening':    '1 soirée',
+                'about.label':       'À PROPOS',
+                'about.skills':      'SKILLS',
+                'about.contact':     '// CONTACT',
+                'about.competitive': '// COMPETITIVE',
+                'about.cv':          '[ TÉLÉCHARGER CV ]',
+                'about.bio': `<p>Je suis <strong>Nicolas "Raksakoreko" Zimmermann</strong>, étudiant en Game Design à la <strong>LISAA Paris</strong>. Ma passion pour le game design découle de mon background compétitif.</p><p>J'ai joué professionnellement <strong>CS:GO</strong> entre 2014 et 2016, puis à <strong>League of Legends</strong> où j'ai atteint le rang <strong>GrandMaster+ EUW</strong> depuis 2023. Aujourd'hui je travaille avec la <strong>Whatoubance</strong> (ex Fnatic, Aegis, Solary, Mihos Esports, GentleMates) sur <strong>TFT</strong>.</p><p>Vous trouverez ici des créations & concepts de jeux <strong>physiques</strong> (jeux de plateau, CCG, TCG..etc) et <strong>"numériques"</strong> (Unreal, Unity, HTML/JS/CSS voir Godot).</p>`,
+            },
+            en: {
+                'nav.welcome':       'Welcome',
+                'nav.about':         'About',
+                'hero.eyebrow':      'Game Design Portfolio',
+                'hero.sub':          'Game Design student at <strong>LISAA Paris</strong>. Passionate about <strong>systems</strong>, <strong>mechanics</strong> and <strong>techniques</strong> around the video game medium.',
+                'hero.cta1':         '[ SEE PROJECTS ]',
+                'hero.cta2':         '[ ABOUT ]',
+                'hero.scroll':       'SCROLL_DOWN',
+                'home.sep':          '// RECENT PROJECTS',
+                'home.card.incanta': 'Physical board game produced by a team of 5. Cards, tokens, board, rulebook.',
+                'home.card.docs':    '9 projects: analyses, concepts, UI design, level design.',
+                'home.card.html':    'Interactive web projects. Clicker games, game interfaces.',
+                'docs.desc':         'Design documents, analyses, GD/LD concepts and UI. Click to explore.',
+                'incanta.desc':      'Board game project developed over several months by a team of five. Theme: <strong style="color:var(--text)">M.O.B.A.</strong><br><br>The game was produced physically — tokens, cards, rulebook, markers, dice, board and boxes. Originally called <em style="color:var(--text)">Cryostail</em>, it evolved to solve game design issues.',
+                'incanta.meta.type': 'Physical Board Game',
+                'meta.theme':        'THEME',
+                'meta.team':         'TEAM',
+                'incanta.meta.team': '5 people',
+                'meta.build':        'BUILD',
+                'incanta.meta.build':'Cards, tokens, board, dice',
+                'concept.desc':      'Base concept of "IN CANTA". Originally Cryostail, evolved to solve game design problems.',
+                'rulebook.desc':     'Full rulebook — mechanics, game turns and victory conditions.',
+                'cards.desc':        'All cards — illustrated, balanced and physically produced.',
+                'board.desc':        'The game board — inspired by MOBA arenas, designed and physically produced.',
+                'balancing.desc':    'Game balancing — data analysis, card effects and adjustments.',
+                'html.desc':         'HTML/CSS/JS projects in Game Design and UI.',
+                'html.feedback.desc':'Making a web card more "juicy" — micro-interactions',
+                'html.veigar.desc':  'Veigar (LoL) clicker game — damage stack mechanic',
+                'html.akira.desc':   'Clicker game made in one evening for my girlfriend',
+                'feedback.longdesc': 'Personal project: explore how to make a simple web card more <em style="color:var(--text)">"juicy"</em> through visual effects and micro-interactions. Displayed data is fictional.',
+                'meta.perso':        'Personal',
+                'meta.obj':          'GOAL',
+                'meta.microinteractions': 'Micro-interactions',
+                'veigar.longdesc':   'Started on Unity then GODOT, reworked in HTML/CSS/JS. USP: Veigar (LoL) clicker game, damage stack mechanic. In development, private use.',
+                'meta.indev':        'IN DEV',
+                'akira.longdesc':    'Made in one evening for my girlfriend, inspired by her cat Akira.',
+                'meta.duration':     'DURATION',
+                'meta.onevening':    '1 evening',
+                'about.label':       'ABOUT',
+                'about.skills':      'SKILLS',
+                'about.contact':     '// CONTACT',
+                'about.competitive': '// COMPETITIVE',
+                'about.cv':          '[ DOWNLOAD CV ]',
+                'about.bio': `<p>I am <strong>Nicolas "Raksakoreko" Zimmermann</strong>, a Game Design student at <strong>LISAA Paris</strong>. My passion for game design stems from my competitive background.</p><p>I played professionally in <strong>CS:GO</strong> from 2014 to 2016, then in <strong>League of Legends</strong> where I reached <strong>GrandMaster+ EUW</strong> since 2023. Today I work with <strong>Whatoubance</strong> (ex Fnatic, Aegis, Solary, Mihos Esports, GentleMates) on <strong>TFT</strong>.</p><p>Here you will find <strong>physical</strong> game creations &amp; concepts (board games, CCG, TCG, etc.) and <strong>"digital"</strong> ones (Unreal, Unity, HTML/JS/CSS or Godot).</p>`,
+            }
+        };
+
+        function applyLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('nz_lang', lang);
+            const t = T[lang];
+
+            // Simple text nodes
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (t[key] !== undefined) el.textContent = t[key];
+            });
+            // HTML content
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                const key = el.dataset.i18nHtml;
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+
+            // About bio (special block with multiple paragraphs)
+            const bio = document.getElementById('about-bio');
+            if (bio && t['about.bio']) bio.innerHTML = t['about.bio'];
+
+            // DOCS array descriptions (translated dynamically when openDoc is called)
+            // Flag button: shows flag you'll switch TO
+            const flag = document.getElementById('lang-flag');
+            if (flag) { flag.src = lang === 'fr' ? 'https://flagcdn.com/w40/gb.png' : 'https://flagcdn.com/w40/fr.png'; flag.alt = lang === 'fr' ? 'EN' : 'FR'; }
+
+            // Nav dropdown "// Projets" label
+            const projBtn = document.querySelector('.drop > button');
+            if (projBtn) projBtn.textContent = lang === 'fr' ? '// Projets' : '// Projects';
+        }
+
+        function toggleLang() {
+            applyLang(currentLang === 'fr' ? 'en' : 'fr');
+        }
 
         /* ── INTRO SEQUENCE ─────────────────────────────── */
         const introOverlay = document.getElementById('intro-overlay');
@@ -2725,15 +2873,15 @@
         const fc2 = h => `${W}45ed80_${h}~mv2.jpg/v1/fit/w_710,h_551,q_90,enc_avif,quality_auto/45ed80_${h}~mv2.jpg`;
 
         const DOCS = [
-            { id: 'sf', thumb: ft('34e833d849f74c368ae80ab39a3518de'), type: 'GD', title: 'SILENT FRAME', sub: 'Projet de fin d\'année 2025–2026 · Pitch accepté', desc: 'Projet en cours pour l\'année 2025–2026 avec la même équipe qu\'IN CANTA. L\'un de mes pitchs accepté par l\'administration comme projet de fin d\'année.', meta: [{ k: 'Statut', v: 'En cours' }, { k: 'Équipe', v: 'Même équipe qu\'IN CANTA' }, { k: 'Année', v: '2025–2026' }], imgs: [f('f9dabe04b8ab4cb49f0d104f590f3da6'), f('c4931e5804b14c0c8a652fffc478e235'), f('74a3062fa7344ddfa381b29c730caeab'), f('9bccd927af474a749630a9312c55a629'), f('eed9236d42994cf4bc7715c2c7875589'), f('193505164aba4f5ba371d10a6ae96ce7'), f('cbc7a943f1ec455ab0291cba5c578e59'), f('2ae34e76bf374ccea638e4902a840ec6'), f('c1c5e7b80716439da9762c3ae354f473'), f('a19337dfdeba49ce8e1e23a9c7a36f42')] },
-            { id: 'tft', thumb: ftj('f60a91becf484b6ea0a5b6022b0927e0'), type: 'GD · Analyse', title: 'ANALYSE & DÉCONSTRUCTION : TFT', sub: 'Teamfight Tactics · 2024–2025', desc: 'Analyse et déconstruction du jeu TFT de Riot Games avec OPESANEC (Fnatic). Outils : 3C, Game Loops, ARM, Benchmark, FTUE, MetaGame, Correlation Chart, Layers of Gameplay, Emotional Triggers.', meta: [{ k: 'Type', v: 'Analyse & Déconstruction' }, { k: 'Date', v: '2024–2025' }, { k: 'Collaborateur', v: 'OPESANEC (Fnatic)' }], imgs: [fj('13804af545bf4a258e8e0e98c16ee72f'), fj('3c60cba961974fc6bb2587fbd6e69471'), fj('b7b3f0542b6a4b999a9a398e9c917d88'), fj('3130139f82a54e1f81d7adb6e0e1123a'), fj('bf16d15d3d4847489bb01432fa27ca9c'), fj('53a534d7e32e44c18135430660362001'), fj('0ae79a9bfc764dcb902473562c4abb83'), fj('d102fbeb2ccf42bd9c6c3f70018e8e5b'), fj('3c4218bb82c1421198b5edbdbbfeeea0'), fj('f0cd9c17ba0d48bea443baa216c9d359'), fj('a86ed4d2283a42e3b9ac220aa6f9cd00'), fj('0ebca3610e184ad9a647eaf01e10e80e'), fj('426933102a9d487d825c37c271426ff5'), fj('15de3731aa0d4c3bb46611bd4e45e813'), fj('18ecd44895514babb7a2950f31b04989'), fj('fc7986d818634cb1bb0a0adbb7aa569c'), fj('cf4e8ff3eff9447b9014a70d84c29510'), fj('4c2b9ce90c0e48089e74d344da20d412'), fj('d345ce72ebf143e0aeb984da92515bff'), fj('79f217405afd413587b886c164adf07f'), fj('95e7da4cfc884a89a122d1d0f755c1b6'), fj('df87f329583142e09a7fcfb90a63fa01'), fj('a3c7ee9aa3c44b10a2cacc286a295733'), fj('6c2f3eb6a32245adb7458ce9b3757713'), fj('75ef79efdc11431b8376eaf378c8e2eb'), fj('58827df8ff0148748fd5a3be2e30ec48'), fj('f72764d66a974be8a8a1305b5741507c')] },
-            { id: 'tt', thumb: ftj('874a1faf5118467b8f49d6ea47767b45'), type: 'GD · Concept', title: 'TIC-TAC TAC-TIC', sub: 'Concept complet · Hiver 2025', desc: 'Concept réalisé fin 2025 détaillant mes 3C et systèmes : Mécaniques, Progression, Économique, Social, Meta et boucles rétroactives.', meta: [{ k: 'Date', v: 'Hiver 2025' }, { k: 'Contenu', v: '3C, Systèmes, Boucles rétroactives' }], imgs: [fj('733c24a134fa409bb483b307f35aeeec'), fj('810d43449fc541a18fb1fabddb9dff97'), fj('13954240cdf44cf8ad15ccc46435e47b'), fj('2dd0ac4d3f68446ebe418cd4b7cf797c'), fj('3bb27740b2074a5d8237279def1d3c20'), fj('556c1263fa8240a9856456d9a0b8f016'), fj('4c04b9bcfac84ef5b94ec256b883cdba'), fj('cc732430b6d34000b5bd5cf82617adcf'), fj('d84d0fbd272f458fa1bbfc8dc14761f1'), fj('96b33e6a840441b4be217626549f4380'), fj('a4a4768f76014405a9da13ddf8f8c38e'), fj('ef2c16f95dc94abd8a4e0657f14d447e')] },
-            { id: 'nb', thumb: ftj('1d18a45d9f6c4e0db96c63cc615b8f2f'), type: 'GD · Pitch', title: 'SAVE YOUR NEIGHBOR', sub: 'Projet de fin d\'année 2025–2026 · Pitch accepté', desc: 'Second pitch retenu par l\'administration. Réalisé entièrement seul.', meta: [{ k: 'Auteur', v: 'Solo' }, { k: 'Type', v: 'Pitch end-of-year' }], imgs: [fj('4e22af9f92bd4139be96a2fd75322327'), fj('1a5a00e18e52406f83e5c3f0bfbf6ef2'), fj('2f3fd653520e4ff782bd3818a8237025'), fj('772d448d3b7044679ac2c0f583ad31b0'), fj('4e5a07a2ef78448dbfd6e4471d56e5b3'), fj('60ab860d05c24aebab076f94880c4396'), fj('5f1ea2683f0c4852ac84b162dd10069d'), fj('528d0701ce6c41ef899b66de74ed3d5f')] },
-            { id: 'lv', thumb: `${W}45ed80_30773ad239074feab05780d50dea060f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_30773ad239074feab05780d50dea060f~mv2.jpg`, type: 'LD', title: 'COUR NAPOLÉON DU LOUVRE', sub: 'Level Design · FPS Capture the Flag', desc: 'Level design basé sur la Cour Napoléon du Louvre pour un FPS en équipe capture-the-flag.', meta: [{ k: 'Type', v: 'Level Design' }, { k: 'Mode', v: 'Capture the Flag' }, { k: 'Genre', v: 'FPS équipe' }], imgs: [`${W}45ed80_3290c277bfd54ab1b768b273934e018f~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_3290c277bfd54ab1b768b273934e018f~mv2.jpg`, `${W}45ed80_a5f7b8fc88d4437985c4d97202ed238b~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_a5f7b8fc88d4437985c4d97202ed238b~mv2.jpg`, `${W}45ed80_26368fa1e619405998947f8d5a08b744~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_26368fa1e619405998947f8d5a08b744~mv2.jpg`, `${W}45ed80_e6609d615e484ab1bb4096d80f012c4b~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_e6609d615e484ab1bb4096d80f012c4b~mv2.jpg`, `${W}45ed80_fac035e22a1d4ee693528dc2a78d6910~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_fac035e22a1d4ee693528dc2a78d6910~mv2.jpg`] },
-            { id: 'pk', thumb: `${W}45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg`, type: 'GD · Concept', title: 'POKÉMON FREEDOM', sub: 'Concept 30 min · Thème : Le Carapuce de Sacha', desc: 'Concept réalisé en 30 minutes sur le thème :  Le Carapuce de Sacha (Pokémon).', meta: [{ k: 'Type', v: 'GD Concept' }, { k: 'Durée', v: '30 minutes' }, { k: 'Thème', v: 'Carapuce de Sacha' }], imgs: [`${W}45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg`, `${W}45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg`, `${W}45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg`, `${W}45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg`, `${W}45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg`] },
-            { id: 'ud', thumb: ftj('62494ecf77694d02a523e077e00cd7ae'), type: 'GD/LD · Concept', title: 'UPDEE & DOWNDEE', sub: 'Concept 1 jour · 2024–2025', desc: 'Concept réalisé en 1 jour (3C, USP, LD explicatif). Mon rôle : Level Design de la mécanique de levier.', meta: [{ k: 'Date', v: '2024–2025' }, { k: 'Durée', v: '1 journée' }, { k: 'Rôle', v: 'Level Design' }], imgs: [fj('9d4ce0de51804d7f9d7e4311f7e01cd8'), fj('f4e0a38eb2364d37ac1475a99ab7655d'), fj('813aab6adce4408c89f12345dea45d6d'), fj('4d16eb765f5b44878c9a89c31c5be36f'), fj('6e2da79637cf42828c38bdb5cc514d77'), fj('75023383ca6547d18befe6ee5f6f8724'), fj('acd221cb4bb5487a9a65d4ff31e76fa7'), fj('8d002f3b76fb4da79e8dfd29291cf163'), fj('2ce2c42502c54a4a9a2ade921ec4ca91'), fj('63046b2fcbe7429d8add8821384e0750'), fj('792731b0f9bf4f23b88c5a8f2f80fdab'), fj('8130c16a5dfd41178465ceace1b74356'), fj('daf571fc1c2d4656882c5ed4edb14d37')] },
-            { id: 'nf', thumb: f('9fa605fc01e044aaaf17b4c4520d46b7'), type: 'GD · Gamification', title: 'NETFLIX GAMIFICATION', sub: 'Concept 30 min · Thème imposé', desc: 'Concept réalisé en 30 minutes sur le thème : Gamification de Netflix.', meta: [{ k: 'Durée', v: '30 minutes' }, { k: 'Thème', v: 'Gamification Netflix' }], imgs: [fj('487dc86c854e4308ad447e353564fa4e')] },
-            { id: 'es', thumb: ftj('861ebaafc26b4ac4a3543b6eee01dc1a'), type: 'UI Design', title: 'UI DESIGN — ESPORTS MANAGER', sub: 'Mockup Photoshop · 2021–2022', desc: 'Maquette de concept UI pour "ESPORT MANAGER".', meta: [{ k: 'Type', v: 'UI Design' }, { k: 'Date', v: '2021–2022' }, { k: 'Outil', v: 'Photoshop' }], imgs: [fj('861ebaafc26b4ac4a3543b6eee01dc1a')] },
+            { id: 'sf', thumb: ft('34e833d849f74c368ae80ab39a3518de'), type: 'GD', title: 'SILENT FRAME', sub: 'Projet de fin d\'année 2025–2026 · Pitch accepté', desc: 'Projet en cours pour l\'année 2025–2026 avec la même équipe qu\'IN CANTA. L\'un de mes pitchs accepté par l\'administration comme projet de fin d\'année.', meta: [{ k: 'Statut', v: 'En cours' }, { k: 'Équipe', v: 'Même équipe qu\'IN CANTA' }, { k: 'Année', v: '2025–2026' }], type_en: 'GD', sub_en: 'Final year project 2025–2026 · Pitch accepted', desc_en: 'Ongoing project for 2025–2026 with the same team as IN CANTA. Pitch accepted as the final year project.', meta_en: [{"k":"Status","v":"Ongoing"},{"k":"Team","v":"Same team as IN CANTA"},{"k":"Year","v":"2025–2026"}], imgs: [f('f9dabe04b8ab4cb49f0d104f590f3da6'), f('c4931e5804b14c0c8a652fffc478e235'), f('74a3062fa7344ddfa381b29c730caeab'), f('9bccd927af474a749630a9312c55a629'), f('eed9236d42994cf4bc7715c2c7875589'), f('193505164aba4f5ba371d10a6ae96ce7'), f('cbc7a943f1ec455ab0291cba5c578e59'), f('2ae34e76bf374ccea638e4902a840ec6'), f('c1c5e7b80716439da9762c3ae354f473'), f('a19337dfdeba49ce8e1e23a9c7a36f42')] },
+            { id: 'tft', thumb: ftj('f60a91becf484b6ea0a5b6022b0927e0'), type: 'GD · Analyse', title: 'ANALYSE & DÉCONSTRUCTION : TFT', sub: 'Teamfight Tactics · 2024–2025', desc: 'Analyse et déconstruction du jeu TFT de Riot Games avec OPESANEC (Fnatic). Outils : 3C, Game Loops, ARM, Benchmark, FTUE, MetaGame, Correlation Chart, Layers of Gameplay, Emotional Triggers.', meta: [{ k: 'Type', v: 'Analyse & Déconstruction' }, { k: 'Date', v: '2024–2025' }, { k: 'Collaborateur', v: 'OPESANEC (Fnatic)' }], type_en: 'GD · Analysis', sub_en: "Teamfight Tactics · 2024–2025", desc_en: "Analysis and deconstruction of Riot Games TFT with OPESANEC (Fnatic). Tools: 3C, Game Loops, ARM, Benchmark, FTUE, MetaGame, Correlation Chart, Layers of Gameplay, Emotional Triggers.", meta_en: [{"k": "Type", "v": "Analysis & Deconstruction"}, {"k": "Date", "v": "2024–2025"}, {"k": "Collaborator", "v": "OPESANEC (Fnatic)"}], imgs: [fj('13804af545bf4a258e8e0e98c16ee72f'), fj('3c60cba961974fc6bb2587fbd6e69471'), fj('b7b3f0542b6a4b999a9a398e9c917d88'), fj('3130139f82a54e1f81d7adb6e0e1123a'), fj('bf16d15d3d4847489bb01432fa27ca9c'), fj('53a534d7e32e44c18135430660362001'), fj('0ae79a9bfc764dcb902473562c4abb83'), fj('d102fbeb2ccf42bd9c6c3f70018e8e5b'), fj('3c4218bb82c1421198b5edbdbbfeeea0'), fj('f0cd9c17ba0d48bea443baa216c9d359'), fj('a86ed4d2283a42e3b9ac220aa6f9cd00'), fj('0ebca3610e184ad9a647eaf01e10e80e'), fj('426933102a9d487d825c37c271426ff5'), fj('15de3731aa0d4c3bb46611bd4e45e813'), fj('18ecd44895514babb7a2950f31b04989'), fj('fc7986d818634cb1bb0a0adbb7aa569c'), fj('cf4e8ff3eff9447b9014a70d84c29510'), fj('4c2b9ce90c0e48089e74d344da20d412'), fj('d345ce72ebf143e0aeb984da92515bff'), fj('79f217405afd413587b886c164adf07f'), fj('95e7da4cfc884a89a122d1d0f755c1b6'), fj('df87f329583142e09a7fcfb90a63fa01'), fj('a3c7ee9aa3c44b10a2cacc286a295733'), fj('6c2f3eb6a32245adb7458ce9b3757713'), fj('75ef79efdc11431b8376eaf378c8e2eb'), fj('58827df8ff0148748fd5a3be2e30ec48'), fj('f72764d66a974be8a8a1305b5741507c')] },
+            { id: 'tt', thumb: ftj('874a1faf5118467b8f49d6ea47767b45'), type: 'GD · Concept', title: 'TIC-TAC TAC-TIC', sub: 'Concept complet · Hiver 2025', desc: 'Concept réalisé fin 2025 détaillant mes 3C et systèmes : Mécaniques, Progression, Économique, Social, Meta et boucles rétroactives.', meta: [{ k: 'Date', v: 'Hiver 2025' }, { k: 'Contenu', v: '3C, Systèmes, Boucles rétroactives' }], type_en: 'GD · Concept', sub_en: "Full concept · Winter 2025", desc_en: "Concept made in late 2025 detailing my 3C and systems: Mechanics, Progression, Economy, Social, Meta and feedback loops.", meta_en: [{"k": "Date", "v": "Winter 2025"}, {"k": "Content", "v": "3C, Systems, Feedback loops"}], imgs: [fj('733c24a134fa409bb483b307f35aeeec'), fj('810d43449fc541a18fb1fabddb9dff97'), fj('13954240cdf44cf8ad15ccc46435e47b'), fj('2dd0ac4d3f68446ebe418cd4b7cf797c'), fj('3bb27740b2074a5d8237279def1d3c20'), fj('556c1263fa8240a9856456d9a0b8f016'), fj('4c04b9bcfac84ef5b94ec256b883cdba'), fj('cc732430b6d34000b5bd5cf82617adcf'), fj('d84d0fbd272f458fa1bbfc8dc14761f1'), fj('96b33e6a840441b4be217626549f4380'), fj('a4a4768f76014405a9da13ddf8f8c38e'), fj('ef2c16f95dc94abd8a4e0657f14d447e')] },
+            { id: 'nb', thumb: ftj('1d18a45d9f6c4e0db96c63cc615b8f2f'), type: 'GD · Pitch', title: 'SAVE YOUR NEIGHBOR', sub: 'Projet de fin d\'année 2025–2026 · Pitch accepté', desc: 'Second pitch retenu par l\'administration. Réalisé entièrement seul.', meta: [{ k: 'Auteur', v: 'Solo' }, { k: 'Type', v: 'Pitch end-of-year' }], type_en: 'GD · Pitch', sub_en: "Final year project 2025–2026 · Pitch accepted", desc_en: "Second pitch accepted by the administration. Made entirely solo.", meta_en: [{"k": "Author", "v": "Solo"}, {"k": "Type", "v": "Pitch end-of-year"}], imgs: [fj('4e22af9f92bd4139be96a2fd75322327'), fj('1a5a00e18e52406f83e5c3f0bfbf6ef2'), fj('2f3fd653520e4ff782bd3818a8237025'), fj('772d448d3b7044679ac2c0f583ad31b0'), fj('4e5a07a2ef78448dbfd6e4471d56e5b3'), fj('60ab860d05c24aebab076f94880c4396'), fj('5f1ea2683f0c4852ac84b162dd10069d'), fj('528d0701ce6c41ef899b66de74ed3d5f')] },
+            { id: 'lv', thumb: `${W}45ed80_30773ad239074feab05780d50dea060f~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_30773ad239074feab05780d50dea060f~mv2.jpg`, type: 'LD', title: 'COUR NAPOLÉON DU LOUVRE', sub: 'Level Design · FPS Capture the Flag', desc: 'Level design basé sur la Cour Napoléon du Louvre pour un FPS en équipe capture-the-flag.', meta: [{ k: 'Type', v: 'Level Design' }, { k: 'Mode', v: 'Capture the Flag' }, { k: 'Genre', v: 'FPS équipe' }], type_en: 'LD', sub_en: "Level Design · Paris", desc_en: "Level design based on the Cour Napoléon du Louvre for a team-based capture-the-flag FPS.", meta_en: [{"k": "Type", "v": "Level Design"}, {"k": "Mode", "v": "Capture the Flag"}, {"k": "Genre", "v": "Team FPS"}], imgs: [`${W}45ed80_3290c277bfd54ab1b768b273934e018f~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_3290c277bfd54ab1b768b273934e018f~mv2.jpg`, `${W}45ed80_a5f7b8fc88d4437985c4d97202ed238b~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_a5f7b8fc88d4437985c4d97202ed238b~mv2.jpg`, `${W}45ed80_26368fa1e619405998947f8d5a08b744~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_26368fa1e619405998947f8d5a08b744~mv2.jpg`, `${W}45ed80_e6609d615e484ab1bb4096d80f012c4b~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_e6609d615e484ab1bb4096d80f012c4b~mv2.jpg`, `${W}45ed80_fac035e22a1d4ee693528dc2a78d6910~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_fac035e22a1d4ee693528dc2a78d6910~mv2.jpg`] },
+            { id: 'pk', thumb: `${W}45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/45ed80_d52d7f21a0ba4f8b8b892e9684c39fd5~mv2.jpg`, type: 'GD · Concept', title: 'POKÉMON FREEDOM', sub: 'Concept 30 min · Thème : Le Carapuce de Sacha', desc: 'Concept réalisé en 30 minutes sur le thème :  Le Carapuce de Sacha (Pokémon).', meta: [{ k: 'Type', v: 'GD Concept' }, { k: 'Durée', v: '30 minutes' }, { k: 'Thème', v: 'Carapuce de Sacha' }], type_en: 'GD · Concept', sub_en: 'Concept 30 min · Theme: Ash\'s Squirtle', desc_en: 'Concept made in 30 minutes on the theme: Ash\'s Squirtle (Pokémon).', meta_en: [{"k":"Type","v":"GD Concept"},{"k":"Duration","v":"30 minutes"},{"k":"Theme","v":"Ash's Squirtle"}], imgs: [`${W}45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_56a4ac6d96aa43078055f39fa76a4158~mv2.jpg`, `${W}45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_3ee4a699675b4a66bfe44c7ac5420143~mv2.jpg`, `${W}45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_4b87e38f20734e449512d8f38667076f~mv2.jpg`, `${W}45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_a2c8e34ca52b427c89aef305a8d854cb~mv2.jpg`, `${W}45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/45ed80_4c07828ca276427a82834d1858dda3b3~mv2.jpg`] },
+            { id: 'ud', thumb: ftj('62494ecf77694d02a523e077e00cd7ae'), type: 'GD/LD · Concept', title: 'UPDEE & DOWNDEE', sub: 'Concept 1 jour · 2024–2025', desc: 'Concept réalisé en 1 jour (3C, USP, LD explicatif). Mon rôle : Level Design de la mécanique de levier.', meta: [{ k: 'Date', v: '2024–2025' }, { k: 'Durée', v: '1 journée' }, { k: 'Rôle', v: 'Level Design' }], type_en: 'GD/LD · Concept', sub_en: "Concept 1 day · 2024–2025", desc_en: "Concept made in 1 day (3C, USP, explanatory LD). My role: Level Design of the lever mechanic.", meta_en: [{"k": "Date", "v": "2024–2025"}, {"k": "Duration", "v": "1 day"}, {"k": "Role", "v": "Level Design"}], imgs: [fj('9d4ce0de51804d7f9d7e4311f7e01cd8'), fj('f4e0a38eb2364d37ac1475a99ab7655d'), fj('813aab6adce4408c89f12345dea45d6d'), fj('4d16eb765f5b44878c9a89c31c5be36f'), fj('6e2da79637cf42828c38bdb5cc514d77'), fj('75023383ca6547d18befe6ee5f6f8724'), fj('acd221cb4bb5487a9a65d4ff31e76fa7'), fj('8d002f3b76fb4da79e8dfd29291cf163'), fj('2ce2c42502c54a4a9a2ade921ec4ca91'), fj('63046b2fcbe7429d8add8821384e0750'), fj('792731b0f9bf4f23b88c5a8f2f80fdab'), fj('8130c16a5dfd41178465ceace1b74356'), fj('daf571fc1c2d4656882c5ed4edb14d37')] },
+            { id: 'nf', thumb: f('9fa605fc01e044aaaf17b4c4520d46b7'), type: 'GD · Gamification', title: 'NETFLIX GAMIFICATION', sub: 'Concept 30 min · Thème imposé', desc: 'Concept réalisé en 30 minutes sur le thème : Gamification de Netflix.', meta: [{ k: 'Durée', v: '30 minutes' }, { k: 'Thème', v: 'Gamification Netflix' }], type_en: 'GD · Gamification', sub_en: "Concept 30 min · Assigned theme", desc_en: "30-minute concept on the theme: Netflix Gamification.", meta_en: [{"k": "Duration", "v": "30 minutes"}, {"k": "Theme", "v": "Netflix Gamification"}], imgs: [fj('487dc86c854e4308ad447e353564fa4e')] },
+            { id: 'es', thumb: ftj('861ebaafc26b4ac4a3543b6eee01dc1a'), type: 'UI Design', title: 'UI DESIGN — ESPORTS MANAGER', sub: 'Mockup Photoshop · 2021–2022', desc: 'Maquette de concept UI pour "ESPORT MANAGER".', meta: [{ k: 'Type', v: 'UI Design' }, { k: 'Date', v: '2021–2022' }, { k: 'Outil', v: 'Photoshop' }], type_en: 'UI Design', sub_en: "Photoshop Mockup · 2021–2022", desc_en: "UI concept mockup for \"ESPORT MANAGER\".", meta_en: [{"k": "Type", "v": "UI Design"}, {"k": "Date", "v": "2021–2022"}, {"k": "Tool", "v": "Photoshop"}], imgs: [fj('861ebaafc26b4ac4a3543b6eee01dc1a')] },
         ];
 
         /* ── GALLERY BUILDER ────────────────────────────── */
@@ -2757,11 +2905,13 @@
 
         function openDoc(i) {
             const d = DOCS[i];
+            const isEN = currentLang === 'en';
             document.getElementById('ddbc').textContent = d.title;
-            document.getElementById('ddt2').textContent = d.type;
+            document.getElementById('ddt2').textContent = isEN && d.type_en ? d.type_en : d.type;
             document.getElementById('ddt').textContent = d.title;
-            document.getElementById('ddd').textContent = d.desc;
-            document.getElementById('ddm').innerHTML = d.meta.map(m => `<div class="meta-chip"><b>${m.k}</b>${m.v}</div>`).join('');
+            document.getElementById('ddd').textContent = isEN && d.desc_en ? d.desc_en : d.desc;
+            const meta = isEN && d.meta_en ? d.meta_en : d.meta;
+            document.getElementById('ddm').innerHTML = meta.map(m => `<div class="meta-chip"><b>${m.k}</b>${m.v}</div>`).join('');
             const gg = document.getElementById('ddg'); gg.innerHTML = '';
             d.imgs.forEach((s, idx) => { const div = document.createElement('div'); div.className = 'gi'; div.innerHTML = `<img src="${s}" alt="" loading="lazy">`; div.onclick = () => oLB(d.imgs, idx); gg.appendChild(div); });
             go('dd');
@@ -2886,6 +3036,9 @@
         }
         document.getElementById('lb').addEventListener('click', e => { if (e.target === document.getElementById('lb')) cLB(); });
 
+
+        // Apply saved language on load
+        applyLang(currentLang);
 
         /* ── TERMINAL & GAMES ───────────────────────── */
         const cInput = document.getElementById('c-input');
