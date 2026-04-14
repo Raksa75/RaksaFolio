@@ -3393,6 +3393,13 @@ const ASSET_MAP = {
         const cInputRow = document.getElementById('c-input-row');
         const canvas = document.getElementById('game-canvas');
 
+        // AJOUT : Focus l'input au clic n'importe où dans la console
+        document.getElementById('c-body').addEventListener('click', () => {
+            if (!gameActive) {
+                cInput.focus();
+            }
+        });
+
         const gControls = document.getElementById('g-controls');
         const ctx = canvas.getContext('2d');
 
@@ -3441,12 +3448,8 @@ const ASSET_MAP = {
                 cLog('  <span style="color:var(--v2)">play pacman</span>        — Pac-Man : mange tous les dots du labyrinthe classique');
                 cLog('  <span style="color:var(--v2)">play frogger</span>       — Frogger : traverse les routes et rentre chez toi');
                 cLog('  <span style="color:var(--v2)">play trex</span>          — T-Rex : saute par-dessus les obstacles sans fin');
+                cLog('  <span style="color:var(--v2)">certaines commandes sont cachés</span>          — essaye de les trouver');
                 cLog('// ─────────────────────────────────────────────', 'var(--dim)');
-                cLog('  <span style="color:var(--v2)">goat</span>               — lien vers un streamer de qualité');
-                cLog('  <span style="color:var(--v2)">lol</span>                — opinion sur un certain jeu');
-                cLog('  <span style="color:var(--v2)">yuumi</span>              — opinion sur un certain champion');
-                cLog('  <span style="color:var(--v2)">raksa</span>              — qui suis-je ?');
-                cLog('  <span style="color:var(--v2)">lisa</span> / <span style="color:var(--v2)">akira</span> / <span style="color:var(--v2)">akipouette</span>  — les gens importants');
             }
             else if (v === 'goat') cLog('// OPESANEC — <a href="https://www.twitch.tv/opesanec" target="_blank" style="color:var(--v2);text-decoration:underline">twitch.tv/opesanec</a>', 'var(--cyan)');
             else if (v === 'lol') cLog('// pire jeu all time');
@@ -3454,8 +3457,25 @@ const ASSET_MAP = {
             else if (v === 'raksa') cLog('// moi');
             else if (v === 'lisa') cLog('// ADMV', '#f472b6');
             else if (v === 'akira' || v === 'akipouette') cLog('// la fifille', '#fbbf24');
-            else { cLog(`'${val}' : commande inconnue`, '#f43f5e'); }
+            else if (v === 'reine') cLog('// lisa', '#f472b6');
+            else if (v === 'remy') cLog('// giraffe');
+            else if (v === 'opgg') cLog('// OP.GG — <a href="https://www.op.gg/summoners/euw/raksa-euw" target="_blank" style="color:var(--v2);text-decoration:underline">raksa#euw</a>', 'var(--cyan)');
+            else if (v === 'zlan') cLog('// ZLAN 2022 — <a href="https://fr.wikipedia.org/wiki/ZLAN_2022" target="_blank" style="color:var(--v2);text-decoration:underline">Wikipedia</a>', 'var(--cyan)');
+            else if (v === '67') cLog('// 67');
+            else if (v === 'whatoubance') cLog('// Discord — <a href="https://discord.gg/TFERvKQSyr" target="_blank" style="color:var(--v2);text-decoration:underline">discord.gg/TFERvKQSyr</a>', 'var(--cyan)');
+            else if (v === 'csgo') cLog('// mon enfance');
+            else if (v === 'vakarm') cLog('// Profil Vakarm — <a href="https://www.vakarm.net/membre/fiche/Raksakoreko/34311" target="_blank" style="color:var(--v2);text-decoration:underline">Raksakoreko</a>', 'var(--cyan)');
+            else if (v === 'fnatic') cLog('// les frères', '#f97316'); 
+            else if (v === 'sona') cLog('// sexy sona');
+            else if (v === 'yohann') cLog('// space mountain');
+            else if (v === 'blueprint') cLog('// ça marche jamais'); 
+            else if (v === 'bp') cLog('// ça marche jamais'); 
+            else if (v === 'blueprints') cLog('// ça marche jamais'); 
+            else if (v === 'html') cLog('// best prototypage'); 
+            else if (v === 'css') cLog('// best prototypage'); 
+            else if (v === 'js') cLog('// best prototypage'); 
 
+            else { cLog(`'${val}' : commande inconnue`, '#f43f5e'); }
             cInput.value = '';
         });
 
