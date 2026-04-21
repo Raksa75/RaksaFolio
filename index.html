@@ -4005,6 +4005,10 @@
             if (document.getElementById('page-dd').classList.contains('active') && currentDocIdx >= 0) {
                 renderDocContent(currentDocIdx);
             }
+            // Rebuild balancing sheets if on balancing page
+            if (document.getElementById('page-balancing').classList.contains('active')) {
+                buildBalancingSheets(lang);
+            }
             // Rebuild GDD gallery if on ascend-gdd page
             if (document.getElementById('page-ascend-gdd').classList.contains('active')) {
                 const gddGal = document.getElementById('gdd-gallery');
@@ -4502,15 +4506,18 @@ const ASSET_MAP = {
         buildPdfJsGallery('cg-gallery', './assets/PDF/Groupe-Top_JdP-Concept.pdf');
         buildPdfJsGallery('rbg', './assets/PDF/Livret%20de%20r%C3%A8gles.pdf');
         buildG('cardsg', [fc2('72d46ceeb2a6418ebcd28fdf984b37eb'), fc2('6c132527a9554361bd915a1fe6921cb5'), fc2('c6b9766bb27e4fa6a1527c7fff5cfe88'), fc2('51e9114fe2604a3e9fefc56080a3168b'), fc2('2aa50b52cebe47279944713b096747ce'), fc2('213b00dec41b432f9c6555b8a6b2d5e7'), fc2('000ba25e2cfe4fdf887672682002d444'), fc2('b82dd7de51ac4b4ab30a22e49c9daad5'), fc2('cd1f58101538433bb4bb3295874854dc'), fc2('f566c48869fb437b8c63f6cdf88c4aeb'), fc2('384e787153be4d44adbea2abf4c76088'), fc2('24d787895a354c2fbb1dec0fb5dd91b3'), fc2('87d257f3c6dd4e4187478d464ec1f79d'), fc2('56100b50d90d43cc9b57997ee2bb90ff'), fc2('7104afe7046f451c818d68a526067a88'), fc2('8148383563ab48999a8c2818b287ed0b'), fc2('59a6b608bde5454c9c2dc31f35335fe0'), fc2('58969c6fcabc41d0a107257d3eaf2976'), fc2('a0cd6bb0ce454a7b92f2482a436a0474'), fc2('8071f6b00c9c4adaa05746ba23298697'), fc2('a9a065db6362403a97dad8ce1dde58b2'), fc2('2532fc563dc342f8bba4d160d4f14a0a'), fc2('1e57b3b0ad584c348dc6b8a52757d393'), fc2('70f4cc8da65246a7ad31f2152abf6523'), fc2('7c1099d5899b42ecbc1f0201af909cf5'), fc2('9f1ba6b04e1746ceaf1e2c4defc75d71'), fc2('c48d99aebeec4521a66bf65a3a1067ab'), fc2('e9b485deecdb461ba0294b8c2bfcbcce'), fc2('70313901246f4acaa681d983668ce523'), fc2('6c8a599751654b8da426da7e93e25427'), fc2('97439a61f8224d9dabdde80c000527f2'), fc2('358de47c4bb547f3b3cac3393ad73bc4'), fc2('dfaa61606cec47ada753257d5724cdab'), fc2('f4600507799c4e2ab848b24bc6552576'), fc2('5f413ec8fdb6493aa864aabaea3983e6'), fc2('7307dbf4ca2b4f9cb48b816e54ea2dc9'), fc2('8405e4b0254e423a86712679730a6815'), fc2('2c6f7cd5d4334dce90fc5b53180c3e5d'), fc2('12c40c01d6ee4a939670633e3ea0258a'), fc2('8daf1d937973436297169e801e70f998'), fc2('497aadf275734d188162c129e0e247cf'), fc2('97c035997e8645b2ae44a001c0d87021'), fc2('11951bdb3cca4dbb8c4b55f00c31e782'), fc2('e97a8c04404d4c199fa21ee31bdfa2ce'), fc2('b1ded555a63e4fb08f121ededf6dd259'), fc2('1f42cb214c744669aae67a1dd47350ee'), fc2('8b259b0b239446e091a1d1f8b2271be1')]);
-        (function() {
+        function buildBalancingSheets(lang) {
             const g = document.getElementById('balg');
             if (!g) return;
             g.className = 'stagger';
-            const sheetStyle = 'width:100%;height:80vh;border:1px solid var(--b);border-radius:var(--r);background:#111;display:block;margin-bottom:32px;';
+            const s = 'width:100%;height:80vh;border:1px solid var(--b);border-radius:var(--r);background:#111;display:block;margin-bottom:32px;';
+            const id1 = lang === 'en' ? '1BCRQkP0YL_5t8xqq1jvHrUkhplVf6LkD' : '1S05KEK-O3p0sZMExI70HD2HJ3Jznhwx2s9zg3LS44zw';
+            const id2 = lang === 'en' ? '105LepbLEIrRwgw1EpVoVHjJnS3XeehPJ' : '1DlD7uyCqT0SalSiegxjyF-rV48V6dJ2BSXUPO2E_lxE';
             g.innerHTML =
-                '<iframe src="https://docs.google.com/spreadsheets/d/1S05KEK-O3p0sZMExI70HD2HJ3Jznhwx2s9zg3LS44zw/htmlview?embedded=true" style="' + sheetStyle + '" title="Balancing Sheet 1" loading="lazy"></iframe>' +
-                '<iframe src="https://docs.google.com/spreadsheets/d/1DlD7uyCqT0SalSiegxjyF-rV48V6dJ2BSXUPO2E_lxE/htmlview?embedded=true" style="' + sheetStyle + '" title="Balancing Sheet 2" loading="lazy"></iframe>';
-        })();
+                '<iframe src="https://docs.google.com/spreadsheets/d/' + id1 + '/htmlview?embedded=true" style="' + s + '" title="Balancing Sheet 1" loading="lazy"></iframe>' +
+                '<iframe src="https://docs.google.com/spreadsheets/d/' + id2 + '/htmlview?embedded=true" style="' + s + '" title="Balancing Sheet 2" loading="lazy"></iframe>';
+        }
+        buildBalancingSheets(currentLang);
 
 
         /* ── PDF GALLERIES INIT ─────────────────────── */
