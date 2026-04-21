@@ -3630,7 +3630,6 @@
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="mailto:Pro.Nicolas.Zimmermann@gmail.com">MAIL</a></div></footer>
     </div>
 
-    <script src="./assets/pdf.min.js"></script>
     <script>
         /* ── INTRO SEQUENCE ─────────────────────────────── */
         const introOverlay = document.getElementById('intro-overlay');
@@ -3822,9 +3821,7 @@
         let currentLang = localStorage.getItem('nz_lang') || 'fr';
         let currentDocIdx = -1;
 
-        if (typeof pdfjsLib !== 'undefined') {
-            pdfjsLib.GlobalWorkerOptions.workerSrc = './assets/pdf.worker.min.js';
-        }
+
 
         const T = {
             fr: {
@@ -4510,38 +4507,11 @@ const ASSET_MAP = {
             });
         }
 
-        async function buildPdfJsGallery(galleryId, pdfPath) {
+        function buildPdfJsGallery(galleryId, pdfPath) {
             const g = document.getElementById(galleryId);
             if (!g) return;
-            if (typeof pdfjsLib === 'undefined') {
-                g.innerHTML = '<div style="padding:60px;text-align:center;color:var(--muted);width:100%;grid-column:1/-1">PDF viewer unavailable</div>';
-                return;
-            }
-            g.innerHTML = '<div style="padding:60px;text-align:center;color:var(--muted);width:100%;grid-column:1/-1">LOADING...</div>';
-            try {
-                const pdf = await pdfjsLib.getDocument(pdfPath).promise;
-                const pages = [];
-                for (let i = 1; i <= pdf.numPages; i++) {
-                    const page = await pdf.getPage(i);
-                    const viewport = page.getViewport({ scale: 2.0 });
-                    const canvas = document.createElement('canvas');
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
-                    await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
-                    pages.push(canvas.toDataURL('image/jpeg', 0.92));
-                }
-                g.innerHTML = '';
-                pages.forEach((src, i) => {
-                    const d = document.createElement('div');
-                    d.className = 'gi';
-                    d.innerHTML = '<img src="' + src + '" alt="Page ' + (i+1) + '" loading="lazy">';
-                    d.onclick = () => oLB(pages, i);
-                    g.appendChild(d);
-                });
-            } catch (err) {
-                g.innerHTML = '<div style="padding:60px;text-align:center;color:var(--muted);width:100%;grid-column:1/-1">PDF loading error</div>';
-                console.error('PDF error:', err);
-            }
+            g.style.display = 'block';
+            g.innerHTML = '<iframe src="' + pdfPath + '" style="width:100%;height:85vh;border:1px solid var(--b);border-radius:var(--r);background:#111;" title="Document PDF" loading="lazy"></iframe>';
         }
 
 
