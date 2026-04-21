@@ -1231,16 +1231,20 @@
         .pcd {
             font-size: .82rem;
             color: var(--dim);
-            margin-top: 7px;
+            margin-top: 0;
+            max-height: 0;
+            overflow: hidden;
             line-height: 1.55;
             opacity: 0;
             transform: translateY(6px);
-            transition: opacity .3s .04s,transform .3s .04s
+            transition: opacity .3s .04s, transform .3s .04s, max-height .3s .04s, margin-top .3s .04s
         }
 
         .pc:hover .pcd {
             opacity: 1;
-            transform: translateY(0)
+            transform: translateY(0);
+            max-height: 120px;
+            margin-top: 7px;
         }
 
         .pca {
