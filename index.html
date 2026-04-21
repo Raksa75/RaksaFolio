@@ -4005,6 +4005,13 @@
             if (document.getElementById('page-dd').classList.contains('active') && currentDocIdx >= 0) {
                 renderDocContent(currentDocIdx);
             }
+            // Rebuild GDD gallery if on ascend-gdd page
+            if (document.getElementById('page-ascend-gdd').classList.contains('active')) {
+                const gddGal = document.getElementById('gdd-gallery');
+                if (gddGal) gddGal.innerHTML = '';
+                if (lang === 'en') buildPdfJsGallery('gdd-gallery', './assets/PDF/Ascend_Rush_GDD_EN.pdf');
+                else buildPdfJsGallery('gdd-gallery', './assets/PDF/Ascend_Rush_GDD_FR.pdf');
+            }
             // Rebuild GCD gallery if on ascend-gcd page
             if (document.getElementById('page-ascend-gcd').classList.contains('active')) {
                 const gcdGal = document.getElementById('gcd-gallery');
@@ -4530,7 +4537,14 @@ const ASSET_MAP = {
                 const t = document.getElementById('page-' + id);
                 if (t) {
                     t.classList.add('active'); window.scrollTo({ top: 0 });
-                    if (id === 'ascend-gdd') setTimeout(() => buildPdfGallery('gdd-gallery', GDD_PAGES), 50);
+                    if (id === 'ascend-gdd') {
+                        const gddGal = document.getElementById('gdd-gallery');
+                        if (gddGal) gddGal.innerHTML = '';
+                        setTimeout(() => {
+                            if (currentLang === 'en') buildPdfJsGallery('gdd-gallery', './assets/PDF/Ascend_Rush_GDD_EN.pdf');
+                            else buildPdfJsGallery('gdd-gallery', './assets/PDF/Ascend_Rush_GDD_FR.pdf');
+                        }, 50);
+                    }
                     if (id === 'parastin-sf') setTimeout(() => {
                         const g = document.getElementById('parastin-sf-gallery');
                         if (!g || g.children.length > 0) return;
