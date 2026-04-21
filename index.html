@@ -2467,7 +2467,7 @@
             <li><a href="#" onclick="go('about');return false;" data-p="about" data-i18n="nav.about">À propos</a></li>
         </ul>
         <button id="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀</button>
-        <button id="lang-btn" onclick="toggleLang()" title="Switch language"><img id="lang-flag" src="https://flagcdn.com/w40/gb.png" width="22" height="15" alt="EN" style="display:block;border-radius:2px;"></button>
+        <button id="lang-btn" onclick="toggleLang()" title="Switch language"><img id="lang-flag" src="https://flagcdn.com/w40/fr.png" width="22" height="15" alt="FR" style="display:block;border-radius:2px;"></button>
     <button class="ham" id="ham" onclick="tM()"><span></span><span></span><span></span></button>
     </nav>
     <div class="mob" id="mob">
@@ -4033,7 +4033,7 @@
             // DOCS array descriptions (translated dynamically when openDoc is called)
             // Flag button: shows flag you'll switch TO
             const flag = document.getElementById('lang-flag');
-            if (flag) { flag.src = lang === 'fr' ? 'https://flagcdn.com/w40/gb.png' : 'https://flagcdn.com/w40/fr.png'; flag.alt = lang === 'fr' ? 'EN' : 'FR'; }
+            if (flag) { flag.src = lang === 'fr' ? 'https://flagcdn.com/w40/fr.png' : 'https://flagcdn.com/w40/gb.png'; flag.alt = lang === 'fr' ? 'FR' : 'EN'; }
 
             // Nav dropdown "// Projets" label
             const projBtn = document.querySelector('.drop > button');
