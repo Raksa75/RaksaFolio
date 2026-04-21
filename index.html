@@ -4513,8 +4513,11 @@ const ASSET_MAP = {
 
         /* ── ROUTING ────────────────────────────────────── */
         const PAGES = ['home', 'docs', 'dd', 'incanta', 'concept', 'rulebook', 'cards', 'board', 'balancing', 'html', 'html-feedback', 'html-veigar', 'html-akira', 'html-league-fantasy', 'parastin', 'parastin-proto', 'parastin-sf', 'ascend', 'ascend-gdd', 'ascend-gcd', 'about'];
+        let _poppingState = false;
 
         function go(id) {
+            if (!_poppingState) history.pushState({p: id}, '', '#' + id);
+            _poppingState = false;
             const wipe = document.getElementById('wipe');
             wipe.style.transition = 'clip-path .16s cubic-bezier(.4,0,1,1)';
             wipe.style.clipPath = 'inset(0 0% 0 0)';
@@ -4558,6 +4561,17 @@ const ASSET_MAP = {
                 wipe.style.clipPath = 'inset(0 100% 0 0)';
             }, 170);
         }
+        window.addEventListener('popstate', e => {
+            const id = (e.state && e.state.p) || window.location.hash.slice(1) || 'home';
+            _poppingState = true;
+            go(PAGES.includes(id) ? id : 'home');
+        });
+        (function initHash() {
+            const h = window.location.hash.slice(1);
+            if (h && PAGES.includes(h)) { _poppingState = true; go(h); }
+            else history.replaceState({p: 'home'}, '', '#home');
+        })();
+
         function tM() { document.getElementById('ham').classList.toggle('op'); document.getElementById('mob').classList.toggle('op'); }
 
         /* ── SCROLL ─────────────────────────────────────── */
