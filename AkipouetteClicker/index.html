@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akipouette Clicker - Ultimate</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="game-layout">
+        
+        <section class="cat-zone">
+            <div class="titles">
+                <h2>Pour la reine Lisa</h2>
+                <h3>et sa princesse Akipouette 👑</h3>
+            </div>
+
+            <div class="score-board">
+                <div id="score">0</div>
+                <div class="label">Ronrons</div>
+            </div>
+
+            <div class="combo-container">
+                <div class="combo-bar">
+                    <div id="combo-fill" class="combo-fill"></div>
+                </div>
+                <div id="combo-text" class="combo-text">x1</div>
+            </div>
+
+            <div class="cat-wrapper">
+                <img id="cat-image" src="akipouette.png" alt="Akipouette">
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat">⚡ <span id="click-val">1</span> /clic</div>
+                <div class="stat">⏳ <span id="rps-val">0</span> /sec</div>
+            </div>
+        </section>
+
+        <section class="shop-zone">
+            
+            <div class="upgrades-wrapper">
+                <div id="upgrades-container" class="upgrades-grid">
+                    </div>
+            </div>
+
+            <div class="shop-title">Boutique</div>
+            
+            <div class="multiplier-bar" id="multiplier-controls">
+                <button class="mult-btn active" data-val="1">x1</button>
+                <button class="mult-btn" data-val="5">x5</button>
+                <button class="mult-btn" data-val="25">x25</button>
+                <button class="mult-btn" data-val="100">x100</button>
+                <button class="mult-btn" data-val="next">NEXT</button>
+            </div>
+
+            <div id="shop-list">
+                </div>
+        </section>
+
+    </div>
+
+    <div id="click-feedback-zone"></div>
+
+    <div id="game-tooltip" class="tooltip hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
