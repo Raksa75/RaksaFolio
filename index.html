@@ -318,25 +318,6 @@
         /* ══════════════════════════════════════════════════
            CURSOR GLOW
         ══════════════════════════════════════════════════ */
-        #cd {
-            position: fixed;
-            z-index: 9997;
-            pointer-events: none;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--v2);
-            transform: translate(-50%,-50%);
-            box-shadow: 0 0 8px var(--v2);
-            transition: left .04s ease-out, top .04s ease-out, transform .2s, opacity .2s;
-            will-change: left, top, transform;
-        }
-
-        body.hov #cd {
-            transform: translate(-50%,-50%) scale(2.5);
-            opacity: .6
-        }
-
         /* ══════════════════════════════════════════════════
            PROGRESS BAR
         ══════════════════════════════════════════════════ */
@@ -2333,10 +2314,6 @@
                 cursor: auto
             }
 
-            #cd {
-                display: none
-            }
-
             .hero h1 {
                 font-size: clamp(3rem,15vw,5.5rem)
             }
@@ -2423,7 +2400,6 @@
         </div>
     </div>
 
-    <div id="cd"></div>
     <div id="prog"></div>
     <div id="wipe"></div>
     <button id="stb" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
@@ -4587,18 +4563,7 @@ const ASSET_MAP = {
             prog.style.width = ((d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100) + '%';
         }, { passive: true });
 
-        /* ── CURSOR DOT ─────────────────────────────────── */
-        const cd = document.getElementById('cd');
-        if (cd) {
-            document.addEventListener('mousemove', e => {
-                requestAnimationFrame(() => {
-                    cd.style.left = e.clientX + 'px'; cd.style.top = e.clientY + 'px';
-                });
-            });
-            document.addEventListener('mouseover', e => {
-                document.body.classList.toggle('hov', !!e.target.closest('a, button, [onclick], .pc, .sc2, .gi, .dc, .hc'));
-            });
-        }
+
 
         /* ── 3D TILT ────────────────────────────────────── */
         document.querySelectorAll('.pc,.sc2').forEach(el => {
