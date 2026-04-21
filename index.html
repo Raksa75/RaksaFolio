@@ -2629,6 +2629,10 @@
                     <img src="./assets/bd4a8508937e.jpg" alt="Akira Clicker">
                     <div class="hcb"><div class="hct">AKIRA CLICKER</div><div class="hcs" data-i18n="html.akira.desc">Clicker game fait en une soirée pour ma petite amie</div><span class="htg">HTML · CSS · JS</span></div>
                 </div>
+                <div class="hc" onclick="go('html-akipouette')">
+                    <img src="./AkipouetteClicker/akipouette.png" alt="Akipouette Clicker">
+                    <div class="hcb"><div class="hct">AKIPOUETTE CLICKER</div><div class="hcs" data-i18n="html.akipouette.desc">Clicker game fait pour Lisa et sa chatte Akipouette</div><span class="htg">HTML · CSS · JS</span></div>
+                </div>
             </div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('home');return false;">← HOME</a></div></footer>
@@ -2865,6 +2869,25 @@
                 <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv">Clicker Game</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS · JS</div></div><div class="mi"><div class="mk" data-i18n="meta.duration">DURÉE</div><div class="mv" data-i18n="meta.onevening">1 soirée</div></div></div>
             </div>
             <div class="gg"><div class="gi"><img src="./assets/0fb3c4f35a01.jpg" alt="" loading="lazy"></div></div>
+        </div>
+        <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('html');return false;">← HTML</a></div></footer>
+    </div>
+
+    <div class="page" id="page-html-akipouette">
+        <div class="cnt">
+            <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('html');return false;">HTML</a><span>/</span>AKIPOUETTE CLICKER</div>
+            <div class="pdb">
+                <div><span class="hud-label" style="margin-bottom:14px;display:flex">HTML · CSS · JS</span><h2>AKIPOUETTE<br><span class="g">CLICKER</span></h2><p data-i18n="html.akipouette.longdesc">Clicker game réalisé pour Lisa et sa chatte Akipouette. Shop d'améliorations, combo, ronrons.</p></div>
+                <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv">Clicker Game</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS · JS</div></div><div class="mi"><div class="mk" data-i18n="meta.duration">DURÉE</div><div class="mv" data-i18n="meta.onevening">1 soirée</div></div></div>
+            </div>
+            <div style="width:100%;margin-bottom:64px;border:1px solid var(--b);border-radius:var(--r);overflow:hidden;background:#fff;position:relative" class="stagger">
+                <iframe
+                    src="./AkipouetteClicker/index.html"
+                    style="width:100%;height:680px;border:none;display:block"
+                    title="Akipouette Clicker"
+                    sandbox="allow-scripts allow-same-origin"
+                ></iframe>
+            </div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('html');return false;">← HTML</a></div></footer>
     </div>
@@ -3814,7 +3837,9 @@
                 'html.desc':         'Projets HTML/CSS/JS en Game Design et UI.',
                 'html.feedback.desc':'Rendre une carte web plus "juicy" - micro-interactions',
                 'html.veigar.desc':  'Clicker game Veigar (LoL) - stack de dégâts',
-                'html.akira.desc':   'Clicker game fait en une soirée pour ma petite amie',
+                'html.akira.desc':       'Clicker game fait en une soirée pour ma petite amie',
+                'html.akipouette.desc':  'Clicker game fait pour Lisa et sa chatte Akipouette',
+                'html.akipouette.longdesc': 'Clicker game réalisé pour Lisa et sa chatte Akipouette. Shop d\'améliorations, système de combo, et des ronrons à accumuler.',
                 'feedback.longdesc': 'Projet personnel : explorer comment rendre une simple carte web plus <em style="color:var(--text)">"juicy"</em> via des effets visuels et micro-interactions. Les données affichées sont fictives. La version test ci joint =/ la dernière version à jour.',
                 'meta.perso':        'Perso',
                 'meta.obj':          'OBJ',
@@ -3898,7 +3923,9 @@
                 'html.desc':         'HTML/CSS/JS projects in Game Design and UI.',
                 'html.feedback.desc':'Making a web card more "juicy" - micro-interactions',
                 'html.veigar.desc':  'Veigar (LoL) clicker game - damage stack mechanic',
-                'html.akira.desc':   'Clicker game made in one evening for my girlfriend',
+                'html.akira.desc':       'Clicker game made in one evening for my girlfriend',
+                'html.akipouette.desc':  'Clicker game made for Lisa and her cat Akipouette',
+                'html.akipouette.longdesc': 'Clicker game made for Lisa and her cat Akipouette. Upgrade shop, combo system, and purrs to collect.',
                 'feedback.longdesc': 'Personal project: explore how to make a simple web card more <em style="color:var(--text)">"juicy"</em> through visual effects and micro-interactions. Displayed data is fictional.',
                 'meta.perso':        'Personal',
                 'meta.obj':          'GOAL',
@@ -4505,7 +4532,7 @@ const ASSET_MAP = {
 
 
         /* ── ROUTING ────────────────────────────────────── */
-        const PAGES = ['home', 'docs', 'dd', 'incanta', 'concept', 'rulebook', 'cards', 'board', 'balancing', 'html', 'html-feedback', 'html-veigar', 'html-akira', 'html-league-fantasy', 'parastin', 'parastin-proto', 'parastin-sf', 'ascend', 'ascend-gdd', 'ascend-gcd', 'about'];
+        const PAGES = ['home', 'docs', 'dd', 'incanta', 'concept', 'rulebook', 'cards', 'board', 'balancing', 'html', 'html-feedback', 'html-veigar', 'html-akira', 'html-akipouette', 'html-league-fantasy', 'parastin', 'parastin-proto', 'parastin-sf', 'ascend', 'ascend-gdd', 'ascend-gcd', 'about'];
 
         function go(id) {
             const wipe = document.getElementById('wipe');
