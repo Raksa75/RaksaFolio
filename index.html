@@ -318,19 +318,6 @@
         /* ══════════════════════════════════════════════════
            CURSOR GLOW
         ══════════════════════════════════════════════════ */
-        #cg {
-            position: fixed;
-            z-index: 9997;
-            pointer-events: none;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(124,58,237,.07) 0%, transparent 70%);
-            transform: translate(-50%,-50%);
-            transition: left .08s ease-out, top .08s ease-out;
-            will-change: left, top;
-        }
-
         #cd {
             position: fixed;
             z-index: 9997;
@@ -2346,7 +2333,7 @@
                 cursor: auto
             }
 
-            #cg, #cd {
+            #cd {
                 display: none
             }
 
@@ -2436,7 +2423,6 @@
         </div>
     </div>
 
-    <div id="cg"></div>
     <div id="cd"></div>
     <div id="prog"></div>
     <div id="wipe"></div>
@@ -4601,13 +4587,11 @@ const ASSET_MAP = {
             prog.style.width = ((d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100) + '%';
         }, { passive: true });
 
-        /* ── CURSOR GLOW ────────────────────────────────── */
-        const cg = document.getElementById('cg');
+        /* ── CURSOR DOT ─────────────────────────────────── */
         const cd = document.getElementById('cd');
-        if (cg && cd) {
+        if (cd) {
             document.addEventListener('mousemove', e => {
                 requestAnimationFrame(() => {
-                    cg.style.left = e.clientX + 'px'; cg.style.top = e.clientY + 'px';
                     cd.style.left = e.clientX + 'px'; cd.style.top = e.clientY + 'px';
                 });
             });
