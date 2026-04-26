@@ -2632,6 +2632,10 @@
                     <img src="./assets/bd4a8508937e.jpg" alt="Akira Clicker">
                     <div class="hcb"><div class="hct">AKIRA CLICKER</div><div class="hcs" data-i18n="html.akira.desc">Clicker game fait en une soirée pour ma petite amie</div><span class="htg">HTML · CSS · JS</span></div>
                 </div>
+                <div class="hc" onclick="go('html-echochase')">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='534' viewBox='0 0 800 534'><rect width='800' height='534' fill='%23050508'/><rect x='60' y='40' width='680' height='454' fill='%23070712' rx='8'/><line x1='60' y1='40' x2='740' y2='40' stroke='%2300ccff' stroke-width='1.5' opacity='.5'/><line x1='60' y1='494' x2='740' y2='494' stroke='%2300ccff' stroke-width='1.5' opacity='.5'/><line x1='60' y1='40' x2='60' y2='494' stroke='%2300ccff' stroke-width='1.5' opacity='.5'/><line x1='740' y1='40' x2='740' y2='494' stroke='%2300ccff' stroke-width='1.5' opacity='.5'/><rect x='180' y='220' width='20' height='20' fill='%2300ff88'/><rect x='360' y='160' width='20' height='20' fill='%23ff3333' opacity='.9'/><rect x='500' y='300' width='20' height='20' fill='%23ff8800' opacity='.9'/><text x='400' y='290' font-family='monospace' font-size='52' font-weight='bold' fill='%2300eeff' text-anchor='middle' opacity='.9'>ECHOCHASE</text><text x='400' y='330' font-family='monospace' font-size='13' fill='%234a5070' text-anchor='middle'>ZQSD / WASD / FLÈCHES</text></svg>" alt="EchoChase">
+                    <div class="hcb"><div class="hct">ECHOCHASE</div><div class="hcs" data-i18n="html.echochase.desc">Jeu de jam LISAA — éviter ses clones, ramasser des fruits</div><span class="htg">HTML · CSS · JS</span></div>
+                </div>
             </div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('home');return false;">← HOME</a></div></footer>
@@ -2867,6 +2871,34 @@
                     style="width:100%;height:680px;border:none;display:block"
                     title="Akipouette Clicker"
                     sandbox="allow-scripts allow-same-origin"
+                ></iframe>
+            </div>
+        </div>
+        <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('html');return false;">← HTML</a></div></footer>
+    </div>
+
+    <div class="page" id="page-html-echochase">
+        <div class="cnt">
+            <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('html');return false;">HTML</a><span>/</span>ECHOCHASE</div>
+            <div class="pdb">
+                <div>
+                    <span class="hud-label" style="margin-bottom:14px;display:flex">HTML · CSS · JS</span>
+                    <h2>ECHO<span class="g">CHASE</span></h2>
+                    <p data-i18n="html.echochase.longdesc">Jeu de jam réalisé en solo du 24 au 26 avril 2026 sur le thème "Poursuite". Inspiré des jeux d'arcade des années 80. Évite tes clones qui rejouent ton trajet, ramasse des fruits, survie.</p>
+                </div>
+                <div class="mb">
+                    <div class="mi"><div class="mk">TYPE</div><div class="mv">Arcade · Jam</div></div>
+                    <div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS · JS</div></div>
+                    <div class="mi"><div class="mk" data-i18n="meta.duration">DURÉE</div><div class="mv">3 jours</div></div>
+                    <div class="mi"><div class="mk" data-i18n="meta.role">RÔLE</div><div class="mv" data-i18n="meta.solo">Solo</div></div>
+                </div>
+            </div>
+            <div style="width:100%;margin-bottom:64px;border:1px solid var(--b);border-radius:var(--r);overflow:hidden;background:#000;position:relative" class="stagger">
+                <iframe
+                    src="./EchoChase/index.html"
+                    style="width:100%;height:700px;border:none;display:block"
+                    title="EchoChase"
+                    sandbox="allow-scripts"
                 ></iframe>
             </div>
         </div>
@@ -3819,6 +3851,9 @@
                 'html.feedback.desc':'Rendre une carte web plus "juicy" - micro-interactions',
                 'html.veigar.desc':  'Clicker game Veigar (LoL) - stack de dégâts',
                 'html.akira.desc':       'Clicker game fait en une soirée pour ma petite amie',
+                'html.echochase.desc':   'Jeu de jam LISAA — éviter ses clones, ramasser des fruits',
+                'html.echochase.longdesc': 'Jeu de jam réalisé en solo du 24 au 26 avril 2026 sur le thème "Poursuite". Inspiré des jeux d\'arcade des années 80. Évite tes clones qui rejouent ton trajet, ramasse des fruits, survie.',
+                'meta.solo':         'Solo',
                 'feedback.longdesc': 'Projet personnel : explorer comment rendre une simple carte web plus <em style="color:var(--text)">"juicy"</em> via des effets visuels et micro-interactions. Les données affichées sont fictives. La version test ci joint =/ la dernière version à jour.',
                 'meta.perso':        'Perso',
                 'meta.obj':          'OBJ',
@@ -3903,6 +3938,9 @@
                 'html.feedback.desc':'Making a web card more "juicy" - micro-interactions',
                 'html.veigar.desc':  'Veigar (LoL) clicker game - damage stack mechanic',
                 'html.akira.desc':       'Clicker game made in one evening for my girlfriend',
+                'html.echochase.desc':   'LISAA game jam — dodge your clones, collect fruits',
+                'html.echochase.longdesc': 'Game jam project made solo from April 24–26, 2026 on the theme "Chase". Inspired by 80s arcade games. Dodge clones that replay your exact path, collect fruits, survive.',
+                'meta.solo':         'Solo',
                 'feedback.longdesc': 'Personal project: explore how to make a simple web card more <em style="color:var(--text)">"juicy"</em> through visual effects and micro-interactions. Displayed data is fictional.',
                 'meta.perso':        'Personal',
                 'meta.obj':          'GOAL',
@@ -4509,7 +4547,7 @@ const ASSET_MAP = {
 
 
         /* ── ROUTING ────────────────────────────────────── */
-        const PAGES = ['home', 'docs', 'dd', 'incanta', 'concept', 'rulebook', 'cards', 'board', 'balancing', 'html', 'html-feedback', 'html-veigar', 'html-akira', 'html-league-fantasy', 'parastin', 'parastin-proto', 'parastin-sf', 'ascend', 'ascend-gdd', 'ascend-gcd', 'about'];
+        const PAGES = ['home', 'docs', 'dd', 'incanta', 'concept', 'rulebook', 'cards', 'board', 'balancing', 'html', 'html-feedback', 'html-veigar', 'html-akira', 'html-echochase', 'html-league-fantasy', 'parastin', 'parastin-proto', 'parastin-sf', 'ascend', 'ascend-gdd', 'ascend-gcd', 'about'];
         let _poppingState = false;
 
         function go(id) {
