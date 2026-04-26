@@ -2507,7 +2507,7 @@
                 </div>
                 <div class="pc ripple-wrap" onclick="go('art')">
                     <img src="./assets/lisa-export.png" alt="Autres Art" loading="lazy">
-                    <div class="pci"><div class="pct" data-i18n="art.label">Pixel Art · Illustration</div><h3 data-i18n="nav.art">AUTRES ART</h3><p class="pcd" data-i18n="home.card.art">Créations visuelles hors projets — pixel art, illustrations.</p></div>
+                    <div class="pci"><div class="pct" data-i18n="art.label">Pixel Art · Illustration</div><h3 data-i18n="nav.art">AUTRES ART</h3><p class="pcd" data-i18n="home.card.art">Créations visuelles hors projets : pixel art, illustrations.</p></div>
                     <div class="pca">→</div>
                 </div>
             </div>
@@ -2641,7 +2641,7 @@
                 </div>
                 <div class="hc" onclick="go('html-echochase')">
                     <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='534' viewBox='0 0 800 534'><rect width='800' height='534' fill='%23050508'/><rect x='60' y='40' width='680' height='454' fill='%23070712' rx='8'/><line x1='60' y1='40' x2='740' y2='40' stroke='%2300ccff' stroke-width='1.5' opacity='.5'/><line x1='60' y1='494' x2='740' y2='494' stroke='%2300ccff' stroke-width='1.5' opacity='.5'/><line x1='60' y1='40' x2='60' y2='494' stroke='%2300ccff' stroke-width='1.5' opacity='.5'/><line x1='740' y1='40' x2='740' y2='494' stroke='%2300ccff' stroke-width='1.5' opacity='.5'/><rect x='180' y='220' width='20' height='20' fill='%2300ff88'/><rect x='360' y='160' width='20' height='20' fill='%23ff3333' opacity='.9'/><rect x='500' y='300' width='20' height='20' fill='%23ff8800' opacity='.9'/><text x='400' y='290' font-family='monospace' font-size='52' font-weight='bold' fill='%2300eeff' text-anchor='middle' opacity='.9'>ECHOCHASE</text><text x='400' y='330' font-family='monospace' font-size='13' fill='%234a5070' text-anchor='middle'>ZQSD / WASD / FLÈCHES</text></svg>" alt="EchoChase">
-                    <div class="hcb"><div class="hct">ECHOCHASE</div><div class="hcs" data-i18n="html.echochase.desc">Jeu de jam LISAA — éviter ses clones, ramasser des fruits</div><span class="htg">HTML · CSS · JS</span></div>
+                    <div class="hcb"><div class="hct">ECHOCHASE</div><div class="hcs" data-i18n="html.echochase.desc">Jeu de jam LISAA : éviter ses clones, ramasser des fruits</div><span class="htg">HTML · CSS · JS</span></div>
                 </div>
             </div>
         </div>
@@ -2961,12 +2961,13 @@
             <div class="ph2">
                 <span class="hud-label" style="margin-bottom:12px;display:flex" data-i18n="art.label">Pixel Art · Illustration</span>
                 <h2 data-i18n="nav.art">AUTRES ART</h2>
-                <p data-i18n="art.desc">Créations visuelles hors projets — pixel art, illustrations, expérimentations.</p>
+                <p data-i18n="art.desc">Créations visuelles hors projets : pixel art, illustrations, expérimentations.</p>
             </div>
-            <div class="gg stagger" style="padding-bottom:64px">
+            <div class="stagger" style="padding-bottom:64px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;max-width:360px">
                 <div class="gi" onclick="oLB(['./assets/lisa-export.png'],0)">
-                    <img src="./assets/lisa-export.png" alt="Pixel Art - Lisa & Akipouette" loading="lazy">
+                    <img src="./assets/lisa-export.png" alt="Pixel Art - Lisa & Akira" loading="lazy">
                 </div>
+                <div style="font-family:var(--mono);font-size:.65rem;color:var(--dim);letter-spacing:.08em" data-i18n="art.lisa.caption">Pixel art réalisé pour ma copine &amp; son chat Akira · Aseprite</div>
             </div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('home');return false;">← HOME</a></div></footer>
@@ -3859,10 +3860,11 @@
                 'home.card.incanta': 'Jeu de plateau produit IRL par une équipe de 5. Cartes, tokens, plateau, règles.',
                 'home.card.docs':    '9 projets : analyses, concepts, UI design, level design.',
                 'home.card.html':    'Projets web interactifs. Clicker games, interfaces de jeu.',
-                'home.card.art':     'Créations visuelles hors projets — pixel art, illustrations.',
+                'home.card.art':     'Créations visuelles hors projets : pixel art, illustrations.',
                 'nav.art':           'Autres Art',
                 'art.label':         'Pixel Art · Illustration',
-                'art.desc':          'Créations visuelles hors projets — pixel art, illustrations, expérimentations.',
+                'art.desc':          'Créations visuelles hors projets : pixel art, illustrations, expérimentations.',
+                'art.lisa.caption':  'Pixel art réalisé pour ma copine &amp; son chat Akira · Aseprite',
                 'docs.desc':         'Dossiers de conception, analyses, concepts GD/LD et UI. Cliquez pour explorer.',
                 'incanta.desc':      'Projet de jeu de plateau réalisé sur plusieurs mois par une équipe de cinq personnes. Thème : <strong style="color:var(--text)">M.O.B.A.</strong><br><br>Le jeu a été produit physiquement - tokens, cartes, livret, marqueurs, dés, plateau et boîtes. Initialement appelé <em style="color:var(--text)">Cryostail</em>, il a évolué pour résoudre des problèmes de game design.',
                 'incanta.meta.type': 'Board Game physique',
@@ -3880,7 +3882,7 @@
                 'html.feedback.desc':'Rendre une carte web plus "juicy" - micro-interactions',
                 'html.veigar.desc':  'Clicker game Veigar (LoL) - stack de dégâts',
                 'html.akira.desc':       'Clicker game fait en une soirée pour ma petite amie',
-                'html.echochase.desc':   'Jeu de jam LISAA — éviter ses clones, ramasser des fruits',
+                'html.echochase.desc':   'Jeu de jam LISAA : éviter ses clones, ramasser des fruits',
                 'html.echochase.longdesc': 'Jeu de jam réalisé en solo du 24 au 26 avril 2026 sur le thème "Poursuite". Inspiré des jeux d\'arcade des années 80. Évite tes clones qui rejouent ton trajet, ramasse des fruits, survie.',
                 'meta.solo':         'Solo',
                 'feedback.longdesc': 'Projet personnel : explorer comment rendre une simple carte web plus <em style="color:var(--text)">"juicy"</em> via des effets visuels et micro-interactions. Les données affichées sont fictives. La version test ci joint =/ la dernière version à jour.',
@@ -3950,10 +3952,11 @@
                 'home.card.incanta': 'Physical board game produced by a team of 5. Cards, tokens, board, rulebook.',
                 'home.card.docs':    '9 projects: analyses, concepts, UI design, level design.',
                 'home.card.html':    'Interactive web projects. Clicker games, game interfaces.',
-                'home.card.art':     'Visual creations outside projects — pixel art, illustrations.',
+                'home.card.art':     'Visual creations outside projects : pixel art, illustrations.',
                 'nav.art':           'Other Art',
                 'art.label':         'Pixel Art · Illustration',
-                'art.desc':          'Visual creations outside projects — pixel art, illustrations, experiments.',
+                'art.desc':          'Visual creations outside projects : pixel art, illustrations, experiments.',
+                'art.lisa.caption':  'Pixel art made for my girlfriend &amp; her cat Akira · Aseprite',
                 'docs.desc':         'Design documents, analyses, GD/LD concepts and UI. Click to explore.',
                 'incanta.desc':      'Board game project developed over several months by a team of five. Theme: <strong style="color:var(--text)">M.O.B.A.</strong><br><br>The game was produced physically - tokens, cards, rulebook, markers, dice, board and boxes. Originally called <em style="color:var(--text)">Cryostail</em>, it evolved to solve game design issues.',
                 'incanta.meta.type': 'Physical Board Game',
@@ -3971,7 +3974,7 @@
                 'html.feedback.desc':'Making a web card more "juicy" - micro-interactions',
                 'html.veigar.desc':  'Veigar (LoL) clicker game - damage stack mechanic',
                 'html.akira.desc':       'Clicker game made in one evening for my girlfriend',
-                'html.echochase.desc':   'LISAA game jam — dodge your clones, collect fruits',
+                'html.echochase.desc':   'LISAA game jam : dodge your clones, collect fruits',
                 'html.echochase.longdesc': 'Game jam project made solo from April 24–26, 2026 on the theme "Chase". Inspired by 80s arcade games. Dodge clones that replay your exact path, collect fruits, survive.',
                 'meta.solo':         'Solo',
                 'feedback.longdesc': 'Personal project: explore how to make a simple web card more <em style="color:var(--text)">"juicy"</em> through visual effects and micro-interactions. Displayed data is fictional.',
