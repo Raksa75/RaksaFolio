@@ -2426,6 +2426,7 @@
                     <a href="#" onclick="go('docs');return false;" data-p="docs">Documentations</a>
                     <a href="#" onclick="go('incanta');return false;" data-p="incanta">IN CANTA - Board Game</a>
                     <a href="#" onclick="go('html');return false;" data-p="html">HTML Project</a>
+                    <a href="#" onclick="go('art');return false;" data-p="art" data-i18n="nav.art">Autres Art</a>
                     <a href="#" onclick="go('parastin');return false;" data-p="parastin">PARASTIN - Video Game</a>
                     <a href="#" onclick="go('ascend');return false;" data-p="ascend" data-i18n="nav.ascend">ASCEND RUSH - Video Game</a>
                 </div>
@@ -2441,6 +2442,7 @@
         <a href="#" class="ms" onclick="go('docs');tM();return false;">↳ Documentations</a>
         <a href="#" class="ms" onclick="go('incanta');tM();return false;">↳ IN CANTA - Board Game</a>
         <a href="#" class="ms" onclick="go('html');tM();return false;">↳ HTML Project</a>
+        <a href="#" class="ms" onclick="go('art');tM();return false;" data-i18n="nav.art">↳ Autres Art</a>
         <a href="#" class="ms" onclick="go('parastin');tM();return false;">↳ PARASTIN</a>
         <a href="#" class="ms" onclick="go('ascend');tM();return false;">↳ ASCEND RUSH</a>
         <a href="#" onclick="go('about');tM();return false;" data-i18n="nav.about">À propos</a>
@@ -2501,6 +2503,11 @@
                 <div class="pc ripple-wrap" onclick="go('html')">
                     <img src="./assets/79a95f412eeb.jpg" alt="HTML" loading="lazy">
                     <div class="pci"><div class="pct">HTML · CSS · JS</div><h3>HTML PROJECT</h3><p class="pcd" data-i18n="home.card.html">Projets web interactifs. Clicker games, interfaces de jeu.</p></div>
+                    <div class="pca">→</div>
+                </div>
+                <div class="pc ripple-wrap" onclick="go('art')">
+                    <img src="./assets/lisa-export.png" alt="Autres Art" loading="lazy">
+                    <div class="pci"><div class="pct" data-i18n="art.label">Pixel Art · Illustration</div><h3 data-i18n="nav.art">AUTRES ART</h3><p class="pcd" data-i18n="home.card.art">Créations visuelles hors projets — pixel art, illustrations.</p></div>
                     <div class="pca">→</div>
                 </div>
             </div>
@@ -2946,6 +2953,24 @@
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('html');return false;">← HTML</a></div></footer>
     </div>
 
+
+    <!-- ═══════════════════ AUTRES ART ══════════════════ -->
+    <div class="page" id="page-art">
+        <div class="cnt">
+            <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><span data-i18n="nav.art">AUTRES ART</span></div>
+            <div class="ph2">
+                <span class="hud-label" style="margin-bottom:12px;display:flex" data-i18n="art.label">Pixel Art · Illustration</span>
+                <h2 data-i18n="nav.art">AUTRES ART</h2>
+                <p data-i18n="art.desc">Créations visuelles hors projets — pixel art, illustrations, expérimentations.</p>
+            </div>
+            <div class="gg stagger" style="padding-bottom:64px">
+                <div class="gi" onclick="oLB(['./assets/lisa-export.png'],0)">
+                    <img src="./assets/lisa-export.png" alt="Pixel Art - Lisa & Akipouette" loading="lazy">
+                </div>
+            </div>
+        </div>
+        <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('home');return false;">← HOME</a></div></footer>
+    </div>
 
     <!-- ═══════════════════ PARASTIN ══════════════════ -->
     <div class="page" id="page-parastin">
@@ -3834,6 +3859,10 @@
                 'home.card.incanta': 'Jeu de plateau produit IRL par une équipe de 5. Cartes, tokens, plateau, règles.',
                 'home.card.docs':    '9 projets : analyses, concepts, UI design, level design.',
                 'home.card.html':    'Projets web interactifs. Clicker games, interfaces de jeu.',
+                'home.card.art':     'Créations visuelles hors projets — pixel art, illustrations.',
+                'nav.art':           'Autres Art',
+                'art.label':         'Pixel Art · Illustration',
+                'art.desc':          'Créations visuelles hors projets — pixel art, illustrations, expérimentations.',
                 'docs.desc':         'Dossiers de conception, analyses, concepts GD/LD et UI. Cliquez pour explorer.',
                 'incanta.desc':      'Projet de jeu de plateau réalisé sur plusieurs mois par une équipe de cinq personnes. Thème : <strong style="color:var(--text)">M.O.B.A.</strong><br><br>Le jeu a été produit physiquement - tokens, cartes, livret, marqueurs, dés, plateau et boîtes. Initialement appelé <em style="color:var(--text)">Cryostail</em>, il a évolué pour résoudre des problèmes de game design.',
                 'incanta.meta.type': 'Board Game physique',
@@ -3921,6 +3950,10 @@
                 'home.card.incanta': 'Physical board game produced by a team of 5. Cards, tokens, board, rulebook.',
                 'home.card.docs':    '9 projects: analyses, concepts, UI design, level design.',
                 'home.card.html':    'Interactive web projects. Clicker games, game interfaces.',
+                'home.card.art':     'Visual creations outside projects — pixel art, illustrations.',
+                'nav.art':           'Other Art',
+                'art.label':         'Pixel Art · Illustration',
+                'art.desc':          'Visual creations outside projects — pixel art, illustrations, experiments.',
                 'docs.desc':         'Design documents, analyses, GD/LD concepts and UI. Click to explore.',
                 'incanta.desc':      'Board game project developed over several months by a team of five. Theme: <strong style="color:var(--text)">M.O.B.A.</strong><br><br>The game was produced physically - tokens, cards, rulebook, markers, dice, board and boxes. Originally called <em style="color:var(--text)">Cryostail</em>, it evolved to solve game design issues.',
                 'incanta.meta.type': 'Physical Board Game',
@@ -4547,7 +4580,7 @@ const ASSET_MAP = {
 
 
         /* ── ROUTING ────────────────────────────────────── */
-        const PAGES = ['home', 'docs', 'dd', 'incanta', 'concept', 'rulebook', 'cards', 'board', 'balancing', 'html', 'html-feedback', 'html-veigar', 'html-akira', 'html-echochase', 'html-league-fantasy', 'parastin', 'parastin-proto', 'parastin-sf', 'ascend', 'ascend-gdd', 'ascend-gcd', 'about'];
+        const PAGES = ['home', 'docs', 'dd', 'incanta', 'concept', 'rulebook', 'cards', 'board', 'balancing', 'html', 'html-feedback', 'html-veigar', 'html-akira', 'html-echochase', 'html-league-fantasy', 'art', 'parastin', 'parastin-proto', 'parastin-sf', 'ascend', 'ascend-gdd', 'ascend-gcd', 'about'];
         let _poppingState = false;
 
         function go(id) {
