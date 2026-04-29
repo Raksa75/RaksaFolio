@@ -2873,8 +2873,9 @@
                 <div class="mb"><div class="mi"><div class="mk">TYPE</div><div class="mv">Clicker Game</div></div><div class="mi"><div class="mk">TECH</div><div class="mv">HTML · CSS · JS</div></div><div class="mi"><div class="mk" data-i18n="meta.duration">DURÉE</div><div class="mv" data-i18n="meta.onevening">1 soirée</div></div></div>
             </div>
             <div style="width:100%;margin-bottom:64px;border:1px solid var(--b);border-radius:var(--r);overflow:hidden;background:#fff;position:relative" class="stagger">
-                <iframe
-                    src="./AkipouetteClicker/index.html"
+                <iframe id="akira-iframe"
+                    data-src="./AkipouetteClicker/index.html"
+                    src=""
                     style="width:100%;height:680px;border:none;display:block"
                     title="Akipouette Clicker"
                     sandbox="allow-scripts allow-same-origin"
@@ -2901,8 +2902,9 @@
                 </div>
             </div>
             <div style="width:100%;margin-bottom:64px;border:1px solid var(--b);border-radius:var(--r);overflow:hidden;background:#000;position:relative" class="stagger">
-                <iframe
-                    src="./EchoChase/index.html"
+                <iframe id="echochase-iframe"
+                    data-src="./EchoChase/index.html"
+                    src=""
                     style="width:100%;height:700px;border:none;display:block"
                     title="EchoChase"
                     sandbox="allow-scripts allow-same-origin"
@@ -4607,6 +4609,25 @@ const ASSET_MAP = {
         const PAGES = ['home', 'docs', 'dd', 'incanta', 'concept', 'rulebook', 'cards', 'board', 'balancing', 'html', 'html-feedback', 'html-veigar', 'html-akira', 'html-echochase', 'html-league-fantasy', 'art', 'parastin', 'parastin-proto', 'parastin-sf', 'ascend', 'ascend-gdd', 'ascend-gcd', 'about'];
         let _poppingState = false;
 
+        // Cache srcdoc content once at startup so iframes can be killed and restored on navigation
+        const _iframeCache = {};
+        ['feedback-iframe', 'parastin-iframe'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el && el.srcdoc) _iframeCache[id] = el.srcdoc;
+        });
+        function _killIframes(page) {
+            if (!page) return;
+            page.querySelectorAll('iframe[data-src]').forEach(ifr => { ifr.src = ''; });
+            page.querySelectorAll('iframe[id]').forEach(ifr => { if (_iframeCache[ifr.id]) ifr.srcdoc = ''; });
+        }
+        function _restoreIframes(page) {
+            if (!page) return;
+            page.querySelectorAll('iframe[data-src]').forEach(ifr => { if (!ifr.src || ifr.src === location.origin + '/') ifr.src = ifr.dataset.src; });
+            page.querySelectorAll('iframe[id]').forEach(ifr => { if (_iframeCache[ifr.id] && !ifr.srcdoc) ifr.srcdoc = _iframeCache[ifr.id]; });
+            const ov = page.querySelector('#parastin-overlay');
+            if (ov) ov.style.display = 'flex';
+        }
+
         function go(id) {
             if (!_poppingState) history.pushState({p: id}, '', '#' + id);
             _poppingState = false;
@@ -4614,9 +4635,12 @@ const ASSET_MAP = {
             wipe.style.transition = 'clip-path .16s cubic-bezier(.4,0,1,1)';
             wipe.style.clipPath = 'inset(0 0% 0 0)';
             setTimeout(() => {
+                const _leavingPage = document.querySelector('.page.active');
+                _killIframes(_leavingPage);
                 PAGES.forEach(p => { const el = document.getElementById('page-' + p); if (el) el.classList.remove('active'); });
                 const t = document.getElementById('page-' + id);
                 if (t) {
+                    _restoreIframes(t);
                     t.classList.add('active'); window.scrollTo({ top: 0 });
                     if (id === 'ascend-gdd') {
                         const gddGal = document.getElementById('gdd-gallery');
