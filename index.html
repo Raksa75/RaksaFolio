@@ -4775,8 +4775,8 @@ const ASSET_MAP = {
         document.getElementById('lb').addEventListener('click', e => { if (e.target === document.getElementById('lb')) cLB(); });
 
 
-        // Apply saved theme on load
-        if (localStorage.getItem('theme') === 'light') {
+        // Apply saved theme on load (default: light)
+        if (localStorage.getItem('theme') !== 'dark') {
             document.body.classList.add('light');
             document.getElementById('theme-btn').textContent = '🌙';
         }
