@@ -2507,7 +2507,7 @@
                 </div>
                 <div class="pc ripple-wrap" onclick="go('art')">
                     <img src="./assets/lisa-export.png" alt="Autres Art" loading="lazy">
-                    <div class="pci"><div class="pct" data-i18n="art.label">Pixel Art · Illustration</div><h3 data-i18n="nav.art">AUTRES ART</h3><p class="pcd" data-i18n="home.card.art">Créations visuelles hors projets : pixel art, illustrations.</p></div>
+                    <div class="pci"><div class="pct" data-i18n="art.label">À PROPOS · Console</div><h3 data-i18n="nav.art">EASTER EGGS</h3><p class="pcd" data-i18n="home.card.art">Console cachée, jeux jouables &amp; commandes secrètes.</p></div>
                     <div class="pca">→</div>
                 </div>
             </div>
@@ -2958,16 +2958,48 @@
     </div>
 
 
-    <!-- ═══════════════════ AUTRES ART ══════════════════ -->
+    <!-- ═══════════════════ EASTER EGGS ══════════════════ -->
     <div class="page" id="page-art">
         <div class="cnt">
-            <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><span data-i18n="nav.art">AUTRES ART</span></div>
+            <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span>EASTER EGGS</div>
             <div class="ph2">
-                <span class="hud-label" style="margin-bottom:12px;display:flex" data-i18n="art.label">Pixel Art · Illustration</span>
-                <h2 data-i18n="nav.art">AUTRES ART</h2>
-                <p data-i18n="art.desc">Créations visuelles hors projets : pixel art, illustrations, expérimentations.</p>
+                <span class="hud-label" style="margin-bottom:12px;display:flex" data-i18n="art.label">À PROPOS · Console cachée</span>
+                <h2>EASTER<br><span class="g">EGGS</span></h2>
+                <p data-i18n-html="art.desc">Dans la page <strong style="color:var(--text)">À PROPOS</strong>, une console interactive attend les curieux. Tape <code style="font-family:var(--mono);color:var(--v2);font-size:.85em">help</code> pour commencer.</p>
             </div>
-            <div class="stagger" style="padding-bottom:64px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;max-width:360px">
+
+            <div class="stagger" style="margin-bottom:44px">
+                <a class="btn bp ripple-wrap" href="#" onclick="go('about');return false;" data-i18n="art.cta">[ ALLER À LA CONSOLE ]</a>
+            </div>
+
+            <div class="sep stagger" data-i18n="art.sep.games">// JEUX JOUABLES</div>
+            <div class="stagger" style="font-family:var(--mono);font-size:.72rem;background:var(--card);border:1px solid var(--b);border-radius:var(--r);padding:20px 24px;margin-bottom:48px;line-height:2.2;overflow-x:auto">
+                <div style="color:var(--dim);margin-bottom:6px;font-size:.65rem;letter-spacing:.1em">// Dans À PROPOS → tape ces commandes :</div>
+                <div><span style="color:var(--v2)">play doom</span><span style="color:var(--dim)">          · DOOM - le classique FPS (attention au volume)</span></div>
+                <div><span style="color:var(--v2)">play spaceinvader</span><span style="color:var(--dim)">  · Space Invaders - défends-toi contre les aliens</span></div>
+                <div><span style="color:var(--v2)">play pacman</span><span style="color:var(--dim)">        · Pac-Man - mange tous les dots du labyrinthe</span></div>
+                <div><span style="color:var(--v2)">play snake</span><span style="color:var(--dim)">         · Snake - mange, grandis, ne te mords pas</span></div>
+                <div><span style="color:var(--v2)">play pong</span><span style="color:var(--dim)">          · Pong - toi vs IA, premier à 7 gagne</span></div>
+                <div><span style="color:var(--v2)">play breakout</span><span style="color:var(--dim)">      · Casse-brique - détruis toutes les briques</span></div>
+                <div><span style="color:var(--v2)">play frogger</span><span style="color:var(--dim)">       · Frogger - traverse les routes et rentre chez toi</span></div>
+                <div><span style="color:var(--v2)">play trex</span><span style="color:var(--dim)">          · T-Rex - saute par-dessus les obstacles</span></div>
+                <div><span style="color:var(--v2)">play flappy</span><span style="color:var(--dim)">        · Flappy Bird - passe entre les tuyaux</span></div>
+                <div><span style="color:var(--v2)">play demineur</span><span style="color:var(--dim)">      · Démineur - clic gauche=révéler, clic droit=flag</span></div>
+            </div>
+
+            <div class="sep stagger" data-i18n="art.sep.secrets">// COMMANDES CACHÉES</div>
+            <p class="stagger" style="color:var(--dim);font-size:.88rem;line-height:1.8;max-width:520px;margin-bottom:24px" data-i18n="art.secrets.desc">Des dizaines de commandes secrètes sont enfouies dans la console. Certaines parlent de jeux, d'autres de personnes, d'autres encore du portfolio lui-même.</p>
+            <div class="skl stagger" style="margin-bottom:64px">
+                <span class="sp">🎮 Projets du portfolio</span>
+                <span class="sp">🏆 Esport & compétitif</span>
+                <span class="sp">👥 Personnes</span>
+                <span class="sp">🐱 Animaux</span>
+                <span class="sp">🔧 Dev & tools</span>
+                <span class="sp" style="opacity:.5;font-style:italic">... et d'autres</span>
+            </div>
+
+            <div class="sep stagger">// PIXEL ART</div>
+            <div class="stagger" style="padding-bottom:64px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;max-width:300px;margin-top:24px">
                 <div class="gi" onclick="oLB(['./assets/lisa-export.png'],0)">
                     <img src="./assets/lisa-export.png" alt="Pixel Art - Lisa & Akira" loading="lazy">
                 </div>
@@ -3867,9 +3899,14 @@
                 'home.card.html':    'Projets web interactifs. Clicker games, interfaces de jeu.',
                 'home.card.art':     'Créations visuelles hors projets : pixel art, illustrations.',
                 'nav.html':          'Projets Annexes',
-                'nav.art':           'Autres Art',
-                'art.label':         'Pixel Art · Illustration',
-                'art.desc':          'Créations visuelles hors projets : pixel art, illustrations, expérimentations.',
+                'nav.art':           'Easter Eggs',
+                'art.label':         'À PROPOS · Console cachée',
+                'art.desc':          'Dans la page <strong style="color:var(--text)">À PROPOS</strong>, une console interactive attend les curieux. Tape <code style="font-family:var(--mono);color:var(--v2);font-size:.85em">help</code> pour commencer.',
+                'art.cta':           '[ ALLER À LA CONSOLE ]',
+                'art.sep.games':     '// JEUX JOUABLES',
+                'art.sep.secrets':   '// COMMANDES CACHÉES',
+                'art.secrets.desc':  'Des dizaines de commandes secrètes sont enfouies dans la console. Certaines parlent de jeux, d\'autres de personnes, d\'autres encore du portfolio lui-même.',
+                'home.card.art':     'Console cachée, jeux jouables &amp; commandes secrètes.',
                 'art.lisa.caption':  'Pixel art réalisé pour ma copine &amp; son chat Akira · Aseprite',
                 'docs.desc':         'Dossiers de conception, analyses, concepts GD/LD et UI. Cliquez pour explorer.',
                 'incanta.desc':      'Projet de jeu de plateau réalisé sur plusieurs mois par une équipe de cinq personnes. Thème : <strong style="color:var(--text)">M.O.B.A.</strong><br><br>Le jeu a été produit physiquement - tokens, cartes, livret, marqueurs, dés, plateau et boîtes. Initialement appelé <em style="color:var(--text)">Cryostail</em>, il a évolué pour résoudre des problèmes de game design.',
@@ -3969,9 +4006,14 @@
                 'home.card.html':    'Interactive web projects. Clicker games, game interfaces.',
                 'home.card.art':     'Visual creations outside projects : pixel art, illustrations.',
                 'nav.html':          'Side Projects',
-                'nav.art':           'Other Art',
-                'art.label':         'Pixel Art · Illustration',
-                'art.desc':          'Visual creations outside projects : pixel art, illustrations, experiments.',
+                'nav.art':           'Easter Eggs',
+                'art.label':         'ABOUT · Hidden Console',
+                'art.desc':          'On the <strong style="color:var(--text)">ABOUT</strong> page, an interactive console awaits the curious. Type <code style="font-family:var(--mono);color:var(--v2);font-size:.85em">help</code> to get started.',
+                'art.cta':           '[ GO TO THE CONSOLE ]',
+                'art.sep.games':     '// PLAYABLE GAMES',
+                'art.sep.secrets':   '// HIDDEN COMMANDS',
+                'art.secrets.desc':  'Dozens of secret commands are buried in the console. Some are about games, others about people, others about the portfolio itself.',
+                'home.card.art':     'Hidden console, playable games &amp; secret commands.',
                 'art.lisa.caption':  'Pixel art made for my girlfriend &amp; her cat Akira · Aseprite',
                 'docs.desc':         'Design documents, analyses, GD/LD concepts and UI. Click to explore.',
                 'incanta.desc':      'Board game project developed over several months by a team of five. Theme: <strong style="color:var(--text)">M.O.B.A.</strong><br><br>The game was produced physically - tokens, cards, rulebook, markers, dice, board and boxes. Originally called <em style="color:var(--text)">Cryostail</em>, it evolved to solve game design issues.',
