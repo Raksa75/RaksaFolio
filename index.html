@@ -2949,30 +2949,9 @@
             <div class="ph2">
                 <span class="hud-label" style="margin-bottom:12px;display:flex" data-i18n="art.label">Jeux · Console · Secrets</span>
                 <h2>PLAY<span class="g">GROUND</span></h2>
-                <p data-i18n-html="art.desc">10 jeux classiques jouables, une console cachée avec des dizaines de commandes secrètes: le tout intégré dans ce portfolio. Accès depuis la page <strong style="color:var(--text)">À PROPOS</strong>.</p>
+                <p data-i18n-html="art.desc">10 jeux classiques jouables et des dizaines de commandes secrètes, directement dans ce portfolio.</p>
             </div>
-
-            <div class="stagger" style="margin-bottom:44px">
-                <a class="btn bp ripple-wrap" href="#" onclick="go('about');return false;" data-i18n="art.cta">[ ALLER À LA CONSOLE ]</a>
-            </div>
-
-            <div class="sep stagger" data-i18n="art.sep.games">// JEUX JOUABLES</div>
-            <div class="stagger" style="font-family:var(--mono);font-size:.72rem;background:var(--card);border:1px solid var(--b);border-radius:var(--r);padding:20px 24px;margin-bottom:48px;line-height:2.2;overflow-x:auto">
-                <div style="color:var(--dim);margin-bottom:6px;font-size:.65rem;letter-spacing:.1em">// Dans À PROPOS → tape ces commandes :</div>
-                <div><span style="color:var(--v2)">play doom</span><span style="color:var(--dim)">          · DOOM - le classique FPS (attention au volume)</span></div>
-                <div><span style="color:var(--v2)">play spaceinvader</span><span style="color:var(--dim)">  · Space Invaders - défends-toi contre les aliens</span></div>
-                <div><span style="color:var(--v2)">play pacman</span><span style="color:var(--dim)">        · Pac-Man - mange tous les dots du labyrinthe</span></div>
-                <div><span style="color:var(--v2)">play snake</span><span style="color:var(--dim)">         · Snake - mange, grandis, ne te mords pas</span></div>
-                <div><span style="color:var(--v2)">play pong</span><span style="color:var(--dim)">          · Pong - toi vs IA, premier à 7 gagne</span></div>
-                <div><span style="color:var(--v2)">play breakout</span><span style="color:var(--dim)">      · Casse-brique - détruis toutes les briques</span></div>
-                <div><span style="color:var(--v2)">play frogger</span><span style="color:var(--dim)">       · Frogger - traverse les routes et rentre chez toi</span></div>
-                <div><span style="color:var(--v2)">play trex</span><span style="color:var(--dim)">          · T-Rex - saute par-dessus les obstacles</span></div>
-                <div><span style="color:var(--v2)">play flappy</span><span style="color:var(--dim)">        · Flappy Bird - passe entre les tuyaux</span></div>
-                <div><span style="color:var(--v2)">play demineur</span><span style="color:var(--dim)">      · Démineur - clic gauche=révéler, clic droit=flag</span></div>
-            </div>
-
-            <div class="sep stagger" data-i18n="art.sep.secrets">// COMMANDES CACHÉES</div>
-            <p class="stagger" style="color:var(--dim);font-size:.88rem;line-height:1.8;max-width:520px;margin-bottom:64px" data-i18n="art.secrets.desc">Des dizaines de commandes secrètes sont enfouies dans la console. Certaines parlent de jeux, d'autres de personnes, d'autres encore du portfolio lui-même.</p>
+            <div id="art-console-slot" style="margin-bottom:64px"></div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('home');return false;">← HOME</a></div></footer>
     </div>
@@ -3869,7 +3848,7 @@
                 'nav.html':          'Projets Annexes',
                 'nav.art':           'Playground',
                 'art.label':         'Jeux · Console · Secrets',
-                'art.desc':          '10 jeux classiques jouables, une console cachée avec des dizaines de commandes secrètes: le tout intégré dans ce portfolio. Accès depuis la page <strong style="color:var(--text)">À PROPOS</strong>.',
+                'art.desc':          '10 jeux classiques jouables et des dizaines de commandes secrètes, directement dans ce portfolio.',
                 'art.cta':           '[ ALLER À LA CONSOLE ]',
                 'art.sep.games':     '// JEUX JOUABLES',
                 'art.sep.secrets':   '// COMMANDES CACHÉES',
@@ -3976,7 +3955,7 @@
                 'nav.html':          'Side Projects',
                 'nav.art':           'Playground',
                 'art.label':         'Games · Console · Secrets',
-                'art.desc':          '10 classic playable games, a hidden console with dozens of secret commands: all built into this portfolio. Access from the <strong style="color:var(--text)">ABOUT</strong> page.',
+                'art.desc':          '10 classic playable games and dozens of secret commands, right here in this portfolio.',
                 'art.cta':           '[ GO TO THE CONSOLE ]',
                 'art.sep.games':     '// PLAYABLE GAMES',
                 'art.sep.secrets':   '// HIDDEN COMMANDS',
@@ -4628,6 +4607,17 @@ const ASSET_MAP = {
             const el = document.getElementById(id);
             if (el && el.srcdoc) _iframeCache[id] = el.srcdoc;
         });
+        function _moveConsole(toPageId) {
+            const cw = document.querySelector('.console-wrap');
+            if (!cw) return;
+            if (toPageId === 'art') {
+                const slot = document.getElementById('art-console-slot');
+                if (slot && !slot.contains(cw)) slot.appendChild(cw);
+            } else {
+                const aboutCnt = document.querySelector('#page-about .cnt');
+                if (aboutCnt && !aboutCnt.contains(cw)) aboutCnt.appendChild(cw);
+            }
+        }
         function _killIframes(page) {
             if (!page) return;
             page.querySelectorAll('iframe[data-src]').forEach(ifr => { ifr.src = ''; });
@@ -4685,6 +4675,7 @@ const ASSET_MAP = {
                         }, 50);
                     }
                 }
+                if (id === 'art' || id === 'about') _moveConsole(id);
                 document.querySelectorAll('[data-p]').forEach(a => a.classList.toggle('act', a.dataset.p === id));
                 wipe.style.transition = 'clip-path .2s cubic-bezier(0,0,.2,1)';
                 wipe.style.clipPath = 'inset(0 100% 0 0)';
