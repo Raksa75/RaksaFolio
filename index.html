@@ -2951,6 +2951,18 @@
                 <h2>PLAY<span class="g">GROUND</span></h2>
                 <p data-i18n-html="art.desc">10 jeux classiques jouables et des dizaines de commandes secrètes, directement dans ce portfolio.</p>
             </div>
+            <div class="stagger" style="font-family:var(--mono);font-size:.75rem;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px">
+                <span style="color:var(--v2);background:var(--card);border:1px solid var(--b);border-radius:4px;padding:4px 10px">play doom</span>
+                <span style="color:var(--v2);background:var(--card);border:1px solid var(--b);border-radius:4px;padding:4px 10px">play spaceinvader</span>
+                <span style="color:var(--v2);background:var(--card);border:1px solid var(--b);border-radius:4px;padding:4px 10px">play pacman</span>
+                <span style="color:var(--v2);background:var(--card);border:1px solid var(--b);border-radius:4px;padding:4px 10px">play snake</span>
+                <span style="color:var(--v2);background:var(--card);border:1px solid var(--b);border-radius:4px;padding:4px 10px">play pong</span>
+                <span style="color:var(--v2);background:var(--card);border:1px solid var(--b);border-radius:4px;padding:4px 10px">play breakout</span>
+                <span style="color:var(--v2);background:var(--card);border:1px solid var(--b);border-radius:4px;padding:4px 10px">play frogger</span>
+                <span style="color:var(--v2);background:var(--card);border:1px solid var(--b);border-radius:4px;padding:4px 10px">play trex</span>
+                <span style="color:var(--v2);background:var(--card);border:1px solid var(--b);border-radius:4px;padding:4px 10px">play flappy</span>
+                <span style="color:var(--v2);background:var(--card);border:1px solid var(--b);border-radius:4px;padding:4px 10px">play demineur</span>
+            </div>
             <div id="art-console-slot" style="margin-bottom:64px"></div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('home');return false;">← HOME</a></div></footer>
@@ -3608,7 +3620,7 @@
                 <div class="console-header">
                     <span>// TERMINAL</span>
                     <div style="display:flex; align-items:center;">
-                        <span style="text-transform:none; font-family:var(--body); font-size:0.75rem; color:var(--dim); letter-spacing:0; margin-right:15px;">(Appuyez sur F8 ou sur EXIT pour quitter le jeu en cours)</span>
+                        <span style="text-transform:none; font-family:var(--body); font-size:0.75rem; color:var(--dim); letter-spacing:0; margin-right:15px;">(F8 ou Échap pour quitter le jeu en cours)</span>
                         <span>GUEST_ACCESS</span>
                     </div>
                 </div>
@@ -4805,9 +4817,9 @@ const ASSET_MAP = {
         let gameActive = false;
         let currentGame = null;
 
-        // Ecoute de la touche F8 globale pour quitter les jeux
+        // Ecoute de la touche F8/Escape globale pour quitter les jeux
         document.addEventListener('keydown', e => {
-            if (e.key === 'F8' && gameActive) {
+            if ((e.key === 'F8' || e.key === 'Escape') && gameActive) {
                 stopGame();
                 e.preventDefault();
             }
@@ -4847,16 +4859,16 @@ const ASSET_MAP = {
             else if (v === 'play doom') startGame('doom');
             else if (v === 'help') {
                 cLog('// COMMANDS ──────────────────────────────────', 'var(--dim)');
-                cLog('  <span style="color:var(--v2)">play doom</span>          - DOOM : le classique FPS (attention au volume)');
-                cLog('  <span style="color:var(--v2)">play spaceinvader</span>  - Space Invaders : défends-toi contre les aliens');
-                cLog('  <span style="color:var(--v2)">play pacman</span>        - Pac-Man : mange tous les dots du labyrinthe classique');
-                cLog('  <span style="color:var(--v2)">play frogger</span>       - Frogger : traverse les routes et rentre chez toi');
-                cLog('  <span style="color:var(--v2)">play trex</span>          - T-Rex : saute par-dessus les obstacles sans fin');
-                cLog('  <span style="color:var(--v2)">play breakout</span>      - Casse-brique : détruis toutes les briques');
-                cLog('  <span style="color:var(--v2)">play pong</span>          - Pong : joueur vs IA, premier à 7 gagne');
-                cLog('  <span style="color:var(--v2)">play snake</span>         - Snake : mange, grandis, ne te mords pas');
-                cLog('  <span style="color:var(--v2)">play flappy</span>        - Flappy Bird : passe entre les tuyaux');
-                cLog('  <span style="color:var(--v2)">play demineur</span>      - Démineur : clic gauche=révéler, clic droit=flag');
+                cLog('  <span style="color:var(--v2)">play doom</span>');
+                cLog('  <span style="color:var(--v2)">play spaceinvader</span>');
+                cLog('  <span style="color:var(--v2)">play pacman</span>');
+                cLog('  <span style="color:var(--v2)">play frogger</span>');
+                cLog('  <span style="color:var(--v2)">play trex</span>');
+                cLog('  <span style="color:var(--v2)">play breakout</span>');
+                cLog('  <span style="color:var(--v2)">play pong</span>');
+                cLog('  <span style="color:var(--v2)">play snake</span>');
+                cLog('  <span style="color:var(--v2)">play flappy</span>');
+                cLog('  <span style="color:var(--v2)">play demineur</span>');
                 cLog('// ─────────────────────────────────────────────', 'var(--dim)');
                 cLog('  <span style="color:#00ff41">Certaines commandes sont cachées - essaie de les trouver</span>');
                 cLog('// ─────────────────────────────────────────────', 'var(--dim)');
