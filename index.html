@@ -3002,6 +3002,10 @@
                 <div class="sc2" onclick="go('parastin-sf')">
                     <img src="./assets/5901a5d9f4d3.png" alt="Silent Frame" loading="lazy">
                     <div class="sc2-l" data-i18n="parastin.sf.label">SILENT FRAME - Pitch & Documentation</div>
+                </div>
+                <div class="sc2" onclick="go('parastin-gdd')">
+                    <img src="./assets/5901a5d9f4d3.png" alt="Parastin GDD" loading="lazy" style="filter:hue-rotate(200deg)">
+                    <div class="sc2-l" data-i18n="parastin.gdd.label">GDD - GAME DESIGN DOCUMENT</div>
                 </div></div>
         </div>
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('home');return false;">← HOME</a></div></footer>
@@ -3020,6 +3024,15 @@
         <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('parastin');return false;">← PARASTIN</a></div></footer>
     </div>
 
+
+    <div class="page" id="page-parastin-gdd">
+        <div class="cnt">
+            <div class="bc"><a href="#" onclick="go('home');return false;">HOME</a><span>/</span><a href="#" onclick="go('parastin');return false;">PARASTIN</a><span>/</span>GDD</div>
+            <div class="gh"><div class="hud-label" style="margin-bottom:10px;display:flex">PARASTIN</div><h2>GAME DESIGN<br><span class="g">DOCUMENT</span></h2><p data-i18n="parastin.gdd.desc">Document de conception du projet Parastin.</p></div>
+            <div class="gg stagger" id="parastin-gdd-gallery" style="padding-bottom:64px"></div>
+        </div>
+        <footer><div class="fc">© 2025 NZ_</div><div class="fl"><a href="#" onclick="go('parastin');return false;">← PARASTIN</a></div></footer>
+    </div>
 
     <div class="page" id="page-parastin-proto">
         <div class="cnt">
@@ -3948,6 +3961,8 @@
                 'parastin.proto.desc': 'Mini prototype jouable codé en une session. Déplace le triangle bleu, pare les ennemis colorés avec la bonne touche selon leur couleur. Système de dash, parades, score et stats en fin de partie.',
                 'parastin.proto.controller': 'Conçu pour être joué à la manette',
                 'parastin.sf.label':   'SILENT FRAME - Pitch & Documentation',
+                'parastin.gdd.label':  'GDD - GAME DESIGN DOCUMENT',
+                'parastin.gdd.desc':   'Document de conception complet du projet Parastin.',
                 'parastin.sf.desc':    'Pitch de fin d\'année 2025–2026 - accepté par l\'administration LISAA. Projet en cours de développement avec la même équipe qu\'IN CANTA.',
 
                 'league.desc':         'Site de prédiction des matchs pro League of Legends avec un système de cartes et de gatcha. Les joueurs collectent des cartes de pros, les équipent d\'items et prédisent les résultats des matchs des grandes ligues (LEC, LCS, LCK, LPL...).',
@@ -4055,6 +4070,8 @@
                 'parastin.proto.desc': 'Playable mini prototype built in one session. Move the blue triangle, parry color-coded enemies with the matching button. Dash system, parries, score and end-of-game stats.',
                 'parastin.proto.controller': 'Designed to be played with a controller',
                 'parastin.sf.label':   'SILENT FRAME - Pitch & Documentation',
+                'parastin.gdd.label':  'GDD - GAME DESIGN DOCUMENT',
+                'parastin.gdd.desc':   'Full design document for the Parastin project.',
                 'parastin.sf.desc':    'End-of-year pitch 2025–2026 - accepted by LISAA administration. Ongoing project with the same team as IN CANTA.',
 
                 'league.desc':         'Pro League of Legends match prediction site with a card & gacha system. Players collect pro player cards, equip them with items and predict match results across major leagues (LEC, LCS, LCK, LPL...).',
@@ -4617,7 +4634,7 @@ const ASSET_MAP = {
 
 
         /* ── ROUTING ────────────────────────────────────── */
-        const PAGES = ['home', 'docs', 'dd', 'incanta', 'concept', 'rulebook', 'cards', 'board', 'balancing', 'html', 'html-feedback', 'html-akira', 'html-echochase', 'html-league-fantasy', 'art', 'parastin', 'parastin-proto', 'parastin-sf', 'ascend', 'ascend-gdd', 'ascend-gcd', 'about'];
+        const PAGES = ['home', 'docs', 'dd', 'incanta', 'concept', 'rulebook', 'cards', 'board', 'balancing', 'html', 'html-feedback', 'html-akira', 'html-echochase', 'html-league-fantasy', 'art', 'parastin', 'parastin-proto', 'parastin-sf', 'parastin-gdd', 'ascend', 'ascend-gdd', 'ascend-gcd', 'about'];
         let _poppingState = false;
 
         // Cache srcdoc content once at startup so iframes can be killed and restored on navigation
@@ -4664,6 +4681,13 @@ const ASSET_MAP = {
                 if (t) {
                     _restoreIframes(t);
                     t.classList.add('active'); window.scrollTo({ top: 0 });
+                    if (id === 'parastin-gdd') {
+                        const pgddGal = document.getElementById('parastin-gdd-gallery');
+                        if (pgddGal) pgddGal.innerHTML = '';
+                        setTimeout(() => {
+                            buildPdfJsGallery('parastin-gdd-gallery', './assets/PDF/Parastin_GDD_FR.pdf');
+                        }, 50);
+                    }
                     if (id === 'ascend-gdd') {
                         const gddGal = document.getElementById('gdd-gallery');
                         if (gddGal) gddGal.innerHTML = '';
