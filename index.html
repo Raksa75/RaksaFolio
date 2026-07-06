@@ -1516,6 +1516,14 @@
             padding-bottom: 64px
         }
 
+        #cardsg {
+            grid-template-columns: repeat(5, 1fr);
+        }
+        @media (max-width: 1200px) { #cardsg { grid-template-columns: repeat(4, 1fr); } }
+        @media (max-width: 900px)  { #cardsg { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 600px)  { #cardsg { grid-template-columns: repeat(2, 1fr); } }
+
+
         .gi {
             overflow: hidden;
             border: 1px solid var(--b);
