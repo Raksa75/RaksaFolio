@@ -4661,8 +4661,8 @@ const ASSET_MAP = {
         }
         function _restoreIframes(page) {
             if (!page) return;
-            page.querySelectorAll('iframe[data-src]').forEach(ifr => { ifr.src = ifr.dataset.src; });
-            page.querySelectorAll('iframe[id]').forEach(ifr => { if (_iframeCache[ifr.id]) ifr.srcdoc = _iframeCache[ifr.id]; });
+            page.querySelectorAll('iframe[data-src]').forEach(ifr => { if (!ifr.src || ifr.src === location.origin + '/') ifr.src = ifr.dataset.src; });
+            page.querySelectorAll('iframe[id]').forEach(ifr => { if (_iframeCache[ifr.id] && ifr.srcdoc === '') ifr.srcdoc = _iframeCache[ifr.id]; });
             const ov = page.querySelector('#parastin-overlay');
             if (ov) ov.style.display = 'flex';
         }
