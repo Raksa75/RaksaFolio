@@ -4107,6 +4107,13 @@
                 if (lang === 'en') buildPdfJsGallery('gdd-gallery', './assets/PDF/Ascend_Rush_GDD_EN.pdf');
                 else buildPdfJsGallery('gdd-gallery', './assets/PDF/Ascend_Rush_GDD_FR.pdf');
             }
+            // Rebuild Parastin GDD gallery if on parastin-gdd page
+            if (document.getElementById('page-parastin-gdd').classList.contains('active')) {
+                const pgddGal = document.getElementById('parastin-gdd-gallery');
+                if (pgddGal) pgddGal.innerHTML = '';
+                if (lang === 'en') buildPdfJsGallery('parastin-gdd-gallery', './assets/PDF/Parastin_GDD_EN.pdf');
+                else buildPdfJsGallery('parastin-gdd-gallery', './assets/PDF/Parastin_GDD_FR.pdf');
+            }
             // Rebuild GCD gallery if on ascend-gcd page
             if (document.getElementById('page-ascend-gcd').classList.contains('active')) {
                 const gcdGal = document.getElementById('gcd-gallery');
@@ -4685,7 +4692,8 @@ const ASSET_MAP = {
                         const pgddGal = document.getElementById('parastin-gdd-gallery');
                         if (pgddGal) pgddGal.innerHTML = '';
                         setTimeout(() => {
-                            buildPdfJsGallery('parastin-gdd-gallery', './assets/PDF/Parastin_GDD_FR.pdf');
+                            if (currentLang === 'en') buildPdfJsGallery('parastin-gdd-gallery', './assets/PDF/Parastin_GDD_EN.pdf');
+                            else buildPdfJsGallery('parastin-gdd-gallery', './assets/PDF/Parastin_GDD_FR.pdf');
                         }, 50);
                     }
                     if (id === 'ascend-gdd') {
