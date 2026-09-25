@@ -1,4 +1,7 @@
 /* ── TERMINAL & GAMES ───────────────────────── */
+
+// FR / EN pick for terminal & game UI strings (secret command replies stay as written)
+const tr = (fr, en) => (typeof currentLang !== 'undefined' && currentLang === 'en' ? en : fr);
 const cInput = document.getElementById('c-input');
 const cHistory = document.getElementById('c-history');
 const cInputRow = document.getElementById('c-input-row');
@@ -43,7 +46,7 @@ cInput.addEventListener('keydown', (e) => {
 });
 
 function runCommand(val) {
-    cLog('> ' + val, 'var(--dim)');
+    cLog('> ' + esc(val), 'var(--dim)');
     const v = val.toLowerCase();
 
     if (v === 'play spaceinvader') startGame('spaceinvader');
@@ -69,7 +72,7 @@ function runCommand(val) {
         cLog('  <span style="color:var(--v2)">play flappy</span>');
         cLog('  <span style="color:var(--v2)">play demineur</span>');
         cLog('// ─────────────────────────────────────────────', 'var(--dim)');
-        cLog('  <span style="color:#00ff41">Certaines commandes sont cachées - essaie de les trouver</span>');
+        cLog('  <span style="color:#00ff41">' + tr('Certaines commandes sont cachées - essaie de les trouver', 'Some commands are hidden - try to find them') + '</span>');
         cLog('// ─────────────────────────────────────────────', 'var(--dim)');
     }
     else if (v === 'goat') cLog('// OPESANEC - <a href="https://www.twitch.tv/opesanec" target="_blank" style="color:var(--v2);text-decoration:underline">twitch.tv/opesanec</a>', 'var(--cyan)');
@@ -103,7 +106,7 @@ function runCommand(val) {
     else if (v === 'fabien') cLog('// bel homme chauve');
     else if (v === 'clope' || v === 'cigarette') cLog('// de la merde', '#f43f5e');
 
-    else { cLog(`'${val}' : commande inconnue`, '#f43f5e'); }
+    else { cLog(`'${esc(val)}' : ${tr('commande inconnue', 'unknown command')}`, '#f43f5e'); }
     cInput.value = '';
 }
 
@@ -770,7 +773,7 @@ function breakoutLoop(ts) {
         ctx.font = 'bold 22px "IBM Plex Mono"'; ctx.textAlign = 'center';
         ctx.fillText(victory ? 'VICTOIRE !' : 'GAME OVER', canvas.width / 2, canvas.height / 2 - 10);
         ctx.font = '12px "IBM Plex Mono"'; ctx.fillStyle = '#4a5070';
-        ctx.fillText('ESPACE pour rejouer', canvas.width / 2, canvas.height / 2 + 18);
+        ctx.fillText(tr('ESPACE pour rejouer', 'SPACE to restart'), canvas.width / 2, canvas.height / 2 + 18);
         if (keys.space) initBreakout();
         gameAnimFrame = requestAnimationFrame(breakoutLoop); return;
     }
@@ -821,7 +824,7 @@ function breakoutLoop(ts) {
     ctx.font = '11px "IBM Plex Mono"'; ctx.fillStyle = '#4a5070'; ctx.textAlign = 'left';
     ctx.fillText('SCORE ' + brkScore, 8, canvas.height - 6);
     ctx.textAlign = 'right';
-    ctx.fillText('VIES ' + '♥'.repeat(brkLives), canvas.width - 8, canvas.height - 6);
+    ctx.fillText(tr('VIES ', 'LIVES ') + '♥'.repeat(brkLives), canvas.width - 8, canvas.height - 6);
     gameAnimFrame = requestAnimationFrame(breakoutLoop);
 }
 
@@ -849,9 +852,9 @@ function pongLoop(ts) {
     if (gameOver || victory) {
         ctx.font = 'bold 22px "IBM Plex Mono"'; ctx.textAlign = 'center';
         ctx.fillStyle = victory ? '#22d3ee' : '#f43f5e';
-        ctx.fillText(victory ? 'VICTOIRE !' : 'DÉFAITE', canvas.width / 2, canvas.height / 2 - 10);
+        ctx.fillText(victory ? tr('VICTOIRE !', 'VICTORY!') : tr('DÉFAITE', 'DEFEAT'), canvas.width / 2, canvas.height / 2 - 10);
         ctx.font = '12px "IBM Plex Mono"'; ctx.fillStyle = '#4a5070';
-        ctx.fillText('ESPACE pour rejouer', canvas.width / 2, canvas.height / 2 + 18);
+        ctx.fillText(tr('ESPACE pour rejouer', 'SPACE to restart'), canvas.width / 2, canvas.height / 2 + 18);
         if (keys.space) initPong();
         gameAnimFrame = requestAnimationFrame(pongLoop); return;
     }
@@ -898,7 +901,7 @@ function pongLoop(ts) {
     ctx.fillStyle = '#a855f7'; ctx.fillText(pngSP, canvas.width / 2 - 60, 42);
     ctx.fillStyle = '#22d3ee'; ctx.fillText(pngSAI, canvas.width / 2 + 60, 42);
     ctx.font = '10px "IBM Plex Mono"'; ctx.fillStyle = '#2a2d50';
-    ctx.fillText('TOI', canvas.width / 2 - 60, 56); ctx.fillText('IA', canvas.width / 2 + 60, 56);
+    ctx.fillText(tr('TOI', 'YOU'), canvas.width / 2 - 60, 56); ctx.fillText(tr('IA', 'AI'), canvas.width / 2 + 60, 56);
     gameAnimFrame = requestAnimationFrame(pongLoop);
 }
 
@@ -934,7 +937,7 @@ function snakeLoop(ts) {
         ctx.fillStyle = victory ? '#22d3ee' : '#f43f5e';
         ctx.fillText(gameOver ? 'GAME OVER' : 'VICTOIRE !', canvas.width / 2, canvas.height / 2 - 10);
         ctx.font = '12px "IBM Plex Mono"'; ctx.fillStyle = '#4a5070';
-        ctx.fillText('Flèche pour rejouer', canvas.width / 2, canvas.height / 2 + 18);
+        ctx.fillText(tr('Flèche pour rejouer', 'Arrow key to restart'), canvas.width / 2, canvas.height / 2 + 18);
         if (snakeNextDir.r || snakeNextDir.c) initSnake();
         gameAnimFrame = requestAnimationFrame(snakeLoop); return;
     }
@@ -993,15 +996,15 @@ function flappyLoop(ts) {
         ctx.font = 'bold 16px "IBM Plex Mono"'; ctx.fillStyle = '#a855f7';
         ctx.fillText('SCORE ' + flpScore, canvas.width / 2, canvas.height / 2 + 4);
         ctx.font = '12px "IBM Plex Mono"'; ctx.fillStyle = '#4a5070';
-        ctx.fillText('ESPACE pour rejouer', canvas.width / 2, canvas.height / 2 + 26);
+        ctx.fillText(tr('ESPACE pour rejouer', 'SPACE to restart'), canvas.width / 2, canvas.height / 2 + 26);
         if (keys.space) initFlappy();
         gameAnimFrame = requestAnimationFrame(flappyLoop); return;
     }
 
     if (!flpStarted) {
         ctx.fillStyle = '#4a5070'; ctx.font = '14px "IBM Plex Mono"'; ctx.textAlign = 'center';
-        ctx.fillText('APPUIE SUR ESPACE', canvas.width / 2, canvas.height / 2 - 10);
-        ctx.fillText('POUR VOLER', canvas.width / 2, canvas.height / 2 + 10);
+        ctx.fillText(tr('APPUIE SUR ESPACE', 'PRESS SPACE'), canvas.width / 2, canvas.height / 2 - 10);
+        ctx.fillText(tr('POUR VOLER', 'TO FLY'), canvas.width / 2, canvas.height / 2 + 10);
         ctx.fillStyle = '#a855f7';
         ctx.beginPath(); ctx.arc(flpBird.x, flpBird.y, flpBird.r, 0, Math.PI * 2); ctx.fill();
         if (keys.space) flpStarted = true;
@@ -1155,7 +1158,7 @@ function dmDraw() {
     ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
     ctx.fillText('MINES ' + dmMineCount, 6, canvas.height - 4);
     ctx.textAlign = 'right';
-    if (dmWon)  { ctx.fillStyle = '#22d3ee'; ctx.fillText('VICTOIRE ! - clic pour rejouer', canvas.width-6, canvas.height-4); }
-    else if (dmLost) { ctx.fillStyle = '#f43f5e'; ctx.fillText('BOOM ! - clic pour rejouer', canvas.width-6, canvas.height-4); }
-    else { ctx.fillStyle = '#2a2d50'; ctx.fillText('G.GAUCHE=révéler  G.DROIT=flag', canvas.width-6, canvas.height-4); }
+    if (dmWon)  { ctx.fillStyle = '#22d3ee'; ctx.fillText(tr('VICTOIRE ! - clic pour rejouer', 'VICTORY! - click to replay'), canvas.width-6, canvas.height-4); }
+    else if (dmLost) { ctx.fillStyle = '#f43f5e'; ctx.fillText(tr('BOOM ! - clic pour rejouer', 'BOOM! - click to replay'), canvas.width-6, canvas.height-4); }
+    else { ctx.fillStyle = '#2a2d50'; ctx.fillText(tr('G.GAUCHE=révéler  G.DROIT=flag', 'L-CLICK=reveal  R-CLICK=flag'), canvas.width-6, canvas.height-4); }
 }

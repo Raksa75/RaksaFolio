@@ -114,7 +114,19 @@
         .achievements li { margin: 10px 0; color: #cbd5e1; border-bottom: 1px solid #334155; padding-bottom: 5px;}
         .achievements span { color: #eab308; font-weight: bold; margin-right: 10px; }
 
+        /* Fallbacks if the hotlinked images ever go offline */
+        .image-container { background: radial-gradient(120% 90% at 50% 20%, #3b2a0a 0%, #1a1f2e 55%, #0d1117 100%); }
+        .logo-fallback { font-weight: 800; color: #eab308; letter-spacing: 1px; transform: rotate(-45deg); font-size: 14px; }
+        .back-logo .logo-fallback { display: block; transform: none; font-size: 40px; margin-bottom: 20px; }
     </style>
+    <script>
+        function logoFallback(img) {
+            const s = document.createElement('span');
+            s.className = 'logo-fallback';
+            s.textContent = 'KC';
+            img.replaceWith(s);
+        }
+    </script>
 </head>
 <body>
 
@@ -126,11 +138,11 @@
                     <div class="bg-pattern"></div>
 
                     <div class="rank-badge">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Karmine_Corp_logo.svg/1348px-Karmine_Corp_logo.svg.png" alt="KC Logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Karmine_Corp_logo.svg/1348px-Karmine_Corp_logo.svg.png" alt="KC Logo" onerror="logoFallback(this)">
                     </div>
 
                     <div class="image-container">
-                        <img src="https://medias.lequipe.fr/img-photo-jpg/emre-double61-demirtas-est-devenu-double-champion-d-europe-fin-mars-riot-games/1500000001635209/61:0,1157:730-1200-800-75/13119.jpg" class="player-img">
+                        <img src="https://medias.lequipe.fr/img-photo-jpg/emre-double61-demirtas-est-devenu-double-champion-d-europe-fin-mars-riot-games/1500000001635209/61:0,1157:730-1200-800-75/13119.jpg" class="player-img" onerror="this.style.visibility='hidden'">
                     </div>
 
                     <div class="ui-panel">
@@ -149,7 +161,7 @@
 
                 <div class="card-side card-back">
                     <div class="back-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Karmine_Corp_logo.svg/1348px-Karmine_Corp_logo.svg.png">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Karmine_Corp_logo.svg/1348px-Karmine_Corp_logo.svg.png" alt="KC Logo" onerror="logoFallback(this)">
                     </div>
                     <h3>PALMARÈS</h3>
                     <ul class="achievements" style="list-style: none; padding: 0; width: 100%; text-align: left;">
