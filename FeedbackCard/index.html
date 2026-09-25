@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>TFT Pro Card - KC Edition</title>
+    <style>
+        /* --- SETUP --- */
+        body {
+            background-color: #0f0f0f;
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh; margin: 0; font-family: 'Segoe UI', sans-serif; overflow: hidden;
+        }
+
+        .scene { perspective: 1500px; }
+
+        /* --- STRUCTURE 3D --- */
+        .card-tilt-wrapper {
+            width: 320px; height: 500px;
+            position: relative; cursor: pointer;
+            --rx: 0deg; --ry: 0deg; --tx: 50%; --ty: 50%;
+            transform-style: preserve-3d;
+            transform: rotateX(var(--rx)) rotateY(var(--ry));
+            transition: transform 0.1s ease-out;
+        }
+
+        .card-flip-container {
+            width: 100%; height: 100%; position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+        }
+        .card-flip-container.is-flipped { transform: rotateY(180deg); }
+
+        /* --- DESIGN DE LA CARTE (COMMUN) --- */
+        .card-side {
+            position: absolute; inset: 0; border-radius: 16px;
+            backface-visibility: hidden; overflow: hidden;
+            background: #161b22;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- FACE AVANT --- */
+        .card-front { display: flex; flex-direction: column; }
+
+        /* 1. FOND ABSTRAIT */
+        .bg-pattern {
+            position: absolute; inset: 0; z-index: 0;
+            background-image: 
+                linear-gradient(30deg, #1a1f2e 12%, transparent 12.5%, transparent 87%, #1a1f2e 87.5%, #1a1f2e),
+                linear-gradient(150deg, #1a1f2e 12%, transparent 12.5%, transparent 87%, #1a1f2e 87.5%, #1a1f2e),
+                linear-gradient(60deg, #1f2433 25%, transparent 25.5%, transparent 75%, #1f2433 75%, #1f2433);
+            background-size: 20px 35px; opacity: 0.5;
+        }
+
+        /* 2. IMAGE JOUEUR (Masquée) */
+        .image-container {
+            height: 65%; width: 100%; position: relative; z-index: 1;
+        }
+        .player-img {
+            width: 100%; height: 100%; object-fit: cover; object-position: top center;
+            mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+            filter: saturate(1.1) contrast(1.1);
+        }
+
+        /* 3. UI PANEL (Bas) */
+        .ui-panel {
+            height: 35%; position: relative; z-index: 2;
+            padding: 0 20px;
+            background: linear-gradient(to top, #0d1117 90%, transparent 100%);
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .ui-accent-line { width: 40px; height: 4px; background: #eab308; margin-bottom: 10px; border-radius: 2px; }
+        .team-name { color: #94a3b8; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+        .player-nick { color: white; font-size: 2.5rem; font-weight: 800; text-transform: uppercase; line-height: 1; margin: 5px 0; }
+        
+        /* Stat bar modifiée (Role supprimé) */
+        .stat-row {
+            display: flex; gap: 20px; margin-top: 10px;
+            font-size: 0.75rem; color: #64748b; font-family: monospace;
+        }
+        .stat-item span { color: #eab308; font-weight: bold; margin-left: 5px; }
+
+        /* 4. BADGE LOGO (Modifié) */
+        .rank-badge {
+            position: absolute; top: 20px; right: 20px;
+            width: 45px; height: 45px;
+            background: #1e293b; border: 1px solid #eab308;
+            display: flex; justify-content: center; align-items: center;
+            transform: rotate(45deg); /* Le conteneur est en losange */
+            z-index: 10; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+        /* L'image à l'intérieur est contre-rotatée pour paraître droite */
+        .rank-badge img {
+            width: 65%; height: 65%; object-fit: contain;
+            transform: rotate(-45deg); 
+        }
+
+        /* 5. REFLET */
+        .glass-glare {
+            position: absolute; inset: 0; z-index: 20; pointer-events: none;
+            background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.05) 45%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            background-size: 300% 300%; background-position: var(--tx) var(--ty);
+            background-repeat: no-repeat; mix-blend-mode: overlay;
+        }
+
+        /* --- FACE ARRIERE --- */
+        .card-back {
+            transform: rotateY(180deg); background: #0d1117; color: white;
+            display: flex; flex-direction: column; align-items: center; padding: 30px; text-align: center;
+        }
+        .back-logo img { width: 80px; height: 80px; margin-bottom: 20px; }
+        .achievements li { margin: 10px 0; color: #cbd5e1; border-bottom: 1px solid #334155; padding-bottom: 5px;}
+        .achievements span { color: #eab308; font-weight: bold; margin-right: 10px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="scene">
+        <div class="card-tilt-wrapper" id="cardTilt">
+            <div class="card-flip-container" id="cardFlip">
+
+                <div class="card-side card-front">
+                    <div class="bg-pattern"></div>
+
+                    <div class="rank-badge">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Karmine_Corp_logo.svg/1348px-Karmine_Corp_logo.svg.png" alt="KC Logo">
+                    </div>
+
+                    <div class="image-container">
+                        <img src="https://medias.lequipe.fr/img-photo-jpg/emre-double61-demirtas-est-devenu-double-champion-d-europe-fin-mars-riot-games/1500000001635209/61:0,1157:730-1200-800-75/13119.jpg" class="player-img">
+                    </div>
+
+                    <div class="ui-panel">
+                        <div class="ui-accent-line"></div>
+                        <div class="team-name">Karmine Corp</div>
+                        <div class="player-nick">Double61</div>
+                        
+                        <div class="stat-row">
+                            <div class="stat-item">REGION <span>EUW</span></div>
+                            <div class="stat-item">SET <span>16</span></div>
+                        </div>
+                    </div>
+
+                    <div class="glass-glare"></div>
+                </div>
+
+                <div class="card-side card-back">
+                    <div class="back-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Karmine_Corp_logo.svg/1348px-Karmine_Corp_logo.svg.png">
+                    </div>
+                    <h3>PALMARÈS</h3>
+                    <ul class="achievements" style="list-style: none; padding: 0; width: 100%; text-align: left;">
+                        <li><span>WORLD</span> Champion Set 3.5</li>
+                        <li><span>EMEA</span> Superbrawl Winner</li>
+                        <li><span>FR</span> Hex League Winner</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tilt = document.getElementById('cardTilt');
+        const flip = document.getElementById('cardFlip');
+
+        document.addEventListener('mousemove', (e) => {
+            const rect = tilt.getBoundingClientRect();
+            const x = e.clientX - (rect.left + rect.width/2);
+            const y = e.clientY - (rect.top + rect.height/2);
+            
+            tilt.style.setProperty('--rx', `${-y/20}deg`);
+            tilt.style.setProperty('--ry', `${x/20}deg`);
+            tilt.style.setProperty('--tx', `${50 + (x/rect.width)*100}%`);
+            tilt.style.setProperty('--ty', `${50 + (y/rect.height)*100}%`);
+        });
+
+        document.addEventListener('mouseleave', () => {
+            tilt.style.transition = 'transform 0.5s ease';
+            tilt.style.setProperty('--rx', '0deg'); tilt.style.setProperty('--ry', '0deg');
+            setTimeout(() => tilt.style.transition = 'transform 0.1s', 500);
+        });
+
+        tilt.addEventListener('click', () => flip.classList.toggle('is-flipped'));
+    </script>
+</body>
+</html>
