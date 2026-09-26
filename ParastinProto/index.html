@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Jeu Rythme & Stats</title>
+    <style>
+        body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #0a0a0a; overflow: hidden; color: white; font-family: 'Segoe UI', sans-serif; }
+        canvas { background-color: #121212; border: 2px solid #333; }
+        
+        /* UI EN JEU */
+        #ui { position: absolute; top: 20px; left: 20px; pointer-events: none; z-index: 10; }
+        .score { font-size: 24px; color: #fff; text-shadow: 0 0 10px #fff; }
+        .health { position: absolute; top: 20px; right: 20px; font-size: 24px; color: #e74c3c; z-index: 10; }
+        #dash-ui { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); width: 200px; height: 6px; background: #333; border-radius: 3px; z-index: 10; }
+        #dash-bar { width: 100%; height: 100%; background: #00d2ff; border-radius: 3px; }
+        #controls { position: absolute; bottom: 10px; left: 10px; font-size: 12px; color: #777; z-index: 10; }
+        .key-red { color: #e74c3c; font-weight: bold; }
+        .key-green { color: #2ecc71; font-weight: bold; }
+        .key-yellow { color: #f1c40f; font-weight: bold; }
+
+        /* ÉCRAN GAME OVER */
+        #gameOverScreen {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none; /* Caché par défaut */
+            flex-direction: column; justify-content: center; align-items: center;
+            z-index: 20;
+        }
+        h1 { color: #e74c3c; font-size: 48px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 5px; }
+        .stats-container { background: #1e1e1e; padding: 30px; border-radius: 10px; border: 1px solid #333; min-width: 300px; }
+        .stat-line { display: flex; justify-content: space-between; margin: 10px 0; font-size: 18px; color: #ccc; }
+        .stat-val { font-weight: bold; color: #fff; }
+        
+        button { margin-top: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer; border: none; border-radius: 5px; transition: 0.2s; }
+        #restartBtn { background: #00d2ff; color: #000; font-weight: bold; }
+        #restartBtn:hover { background: #fff; }
+        #detailsBtn { background: #333; color: #fff; margin-left: 10px; }
+        #detailsBtn:hover { background: #555; }
+
+        #detailsPanel { 
+            display: none; 
+            margin-top: 15px; border-top: 1px solid #444; padding-top: 15px; 
+        }
+        .color-stat { display: flex; align-items: center; margin: 5px 0; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 10px; }
+    </style>
+</head>
+<body>
+
+<div id="ui"><div class="score">Score: <span id="scoreVal">0</span></div></div>
+<div class="health">Vie: <span id="playerHealth">3</span></div>
+<div id="dash-ui"><div id="dash-bar"></div></div>
+<div id="controls">
+    ZQSD/Flèches : déplacement &nbsp;|&nbsp; <span class="key-red">A=Rouge</span> | <span class="key-green">X=Vert</span> | <span class="key-yellow">Y=Jaune</span> | Espace=Dash
+</div>
+
+<div id="gameOverScreen">
+    <h1>Game Over</h1>
+    <div class="stats-container">
+        <div class="stat-line">Score Total <span class="stat-val" id="endScore">0</span></div>
+        <div class="stat-line">Distance <span class="stat-val" id="endDist">0</span></div>
+        <div class="stat-line">Dashs utilisés <span class="stat-val" id="endDash">0</span></div>
+        <div class="stat-line">Parades réussies <span class="stat-val" id="endParryOk" style="color:#2ecc71">0</span></div>
+        <div class="stat-line">Parades ratées <span class="stat-val" id="endParryMiss" style="color:#e74c3c">0</span></div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <button id="restartBtn" onclick="location.reload()">Rejouer</button>
+            <button id="detailsBtn" onclick="toggleDetails()">+ Détails</button>
+        </div>
+
+        <div id="detailsPanel">
+            <div class="color-stat"><div class="dot" style="background:#e74c3c"></div> Rouges tués: <span class="stat-val" id="endRed" style="margin-left:auto">0</span></div>
+            <div class="color-stat"><div class="dot" style="background:#2ecc71"></div> Verts tués: <span class="stat-val" id="endGreen" style="margin-left:auto">0</span></div>
+            <div class="color-stat"><div class="dot" style="background:#f1c40f"></div> Jaunes tués: <span class="stat-val" id="endYellow" style="margin-left:auto">0</span></div>
+        </div>
+    </div>
+</div>
+
+<canvas id="gameCanvas"></canvas>
+
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 800; canvas.height = 600;
+
+    // --- CONFIGURATION ---
+    const COLORS = { RED: '#e74c3c', GREEN: '#2ecc71', YELLOW: '#f1c40f' };
+    const spawnSequence = [COLORS.RED, COLORS.GREEN, COLORS.YELLOW];
+    let currentSpawnIndex = 0;
+    
+    // --- STATS ---
+    const stats = {
+        dashes: 0,
+        parryAttempts: 0,
+        parrySuccess: 0,
+        distance: 0,
+        killsByColor: { [COLORS.RED]: 0, [COLORS.GREEN]: 0, [COLORS.YELLOW]: 0 }
+    };
+
+    let score = 0;
+    let playerHealth = 3;
+    let particles = [];
+    let wasParryButtonPressed = false;
+    let gameOver = false;
+    let startTime = Date.now();
+
+    const player = {
+        x: 400, y: 300, radius: 15, 
+        baseColor: '#ffffff', parryColor: null,
+        speed: 3.0,
+        isDashing: false, dashTimer: 0, dashCooldown: 0, dashVx:0, dashVy:0,
+        isParrying: false, parryTimer: 0, parryDuration: 50,
+        invincible: false
+    };
+
+    let enemies = [createTriangle(spawnSequence[0])];
+
+    // --- LOGIQUE DIFFICULTÉ ---
+    // Toutes les 20 secondes (20000ms), on augmente le cap d'ennemis de 1
+    function checkSpawnLogic() {
+        if(gameOver) return;
+        
+        const timeElapsed = Date.now() - startTime;
+        // Formule : 1 ennemi de base + 1 toutes les 20s
+        const targetEnemyCount = 1 + Math.floor(timeElapsed / 20000); 
+
+        if (enemies.length < targetEnemyCount) {
+            spawnEnemy();
+        }
+    }
+
+    function spawnEnemy() {
+        // Rotation des couleurs pour varier même s'ils s'accumulent
+        currentSpawnIndex = (currentSpawnIndex + 1) % spawnSequence.length;
+        const color = spawnSequence[currentSpawnIndex];
+        
+        let ex, ey;
+        // Spawn loin du joueur
+        do {
+            ex = Math.random() * canvas.width;
+            ey = Math.random() * canvas.height;
+        } while (Math.hypot(player.x - ex, player.y - ey) < 300);
+
+        const newEnemy = createTriangle(color);
+        newEnemy.x = ex; newEnemy.y = ey;
+        enemies.push(newEnemy);
+    }
+
+    function createTriangle(color) {
+        return {
+            x: 0, y: 0, 
+            baseSize: 20, currentSize: 20,
+            color: color,
+            state: 'follow', 
+            timer: 0,
+            prepareDuration: 60,
+            speed: 0.8, 
+            chargeSpeed: 10, 
+            dashDuration: 30,
+            dashVx: 0, dashVy: 0, 
+            angle: 0, lockedAngle: 0,
+            shakeX: 0, shakeY: 0
+        };
+    }
+
+    function createParticle(x, y, color, count = 1, speed = 4) {
+        for(let i=0; i<count; i++) {
+            particles.push({
+                x, y, vx: (Math.random() - 0.5) * speed, vy: (Math.random() - 0.5) * speed, life: 1.0, color
+            });
+        }
+    }
+
+    function triggerParry(color) {
+        if (!player.isParrying && !player.isDashing && player.parryTimer <= -10) {
+            player.isParrying = true;
+            player.parryColor = color; 
+            player.parryTimer = player.parryDuration;
+            stats.parryAttempts++; // Compte comme une tentative
+            createParticle(player.x, player.y, color, 8, 3);
+        }
+    }
+
+
+    // ── KEYBOARD SUPPORT ─────────────────────────────────────────
+    const kb = {};
+    window.addEventListener('keydown', e => {
+        kb[e.key] = true;
+        if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key)) e.preventDefault();
+    });
+    window.addEventListener('keyup', e => { kb[e.key] = false; });
+    // ─────────────────────────────────────────────────────────────
+
+    function handleInput() {
+        if(gameOver) return;
+
+        const gamepads = navigator.getGamepads();
+        let gp = null;
+        for (let i = 0; i < gamepads.length; i++) {
+            if (gamepads[i] && !gamepads[i].id.includes("HyperX") && gamepads[i].axes.length >= 2) {
+                gp = gamepads[i]; break;
+            }
+        }
+
+        if (gp) {
+            // Stats Distance (approximative basée sur input)
+            let prevX = player.x; 
+            let prevY = player.y;
+
+            if (!player.isDashing) {
+                if (Math.abs(gp.axes[0]) > 0.15) player.x += gp.axes[0] * player.speed;
+                if (Math.abs(gp.axes[1]) > 0.15) player.y += gp.axes[1] * player.speed;
+            }
+
+            // Calcul distance réelle frame par frame
+            let dist = Math.hypot(player.x - prevX, player.y - prevY);
+            stats.distance += dist;
+
+            // DASH (B - Btn 1)
+            if (gp.buttons[1].pressed && player.dashCooldown <= 0 && !player.isDashing) {
+                player.isDashing = true;
+                player.dashTimer = 12;
+                player.dashVx = (Math.abs(gp.axes[0]) > 0.2 ? gp.axes[0] : 1) * 12;
+                player.dashVy = (Math.abs(gp.axes[1]) > 0.2 ? gp.axes[1] : 0) * 12;
+                player.dashCooldown = 60;
+                stats.dashes++; // Stat Dash
+                createParticle(player.x, player.y, '#fff', 10, 8);
+            }
+
+            // PARADES (A=0, X=2, Y=3)
+            const btnA = gp.buttons[0].pressed;
+            const btnX = gp.buttons[2].pressed;
+            const btnY = gp.buttons[3].pressed;
+
+            if ((btnA || btnX || btnY) && !wasParryButtonPressed) {
+                if (btnA) triggerParry(COLORS.RED);
+                else if (btnX) triggerParry(COLORS.GREEN);
+                else if (btnY) triggerParry(COLORS.YELLOW);
+            }
+            wasParryButtonPressed = (btnA || btnX || btnY);
+        }
+
+        // Keyboard fallback
+        if (!gp) {
+            const spd = player.speed;
+            if (!player.isDashing) {
+                if (kb['ArrowLeft']  || kb['q'] || kb['Q']) player.x -= spd;
+                if (kb['ArrowRight'] || kb['d'] || kb['D']) player.x += spd;
+                if (kb['ArrowUp']    || kb['z'] || kb['Z']) player.y -= spd;
+                if (kb['ArrowDown']  || kb['s'] || kb['S']) player.y += spd;
+            }
+            // Dash: Space or Shift
+            if ((kb[' '] || kb['Shift']) && player.dashCooldown <= 0 && !player.isDashing) {
+                let dx = (kb['ArrowRight']||kb['d']||kb['D']) ? 1 : (kb['ArrowLeft']||kb['q']||kb['Q']) ? -1 : 1;
+                let dy = (kb['ArrowDown'] ||kb['s']||kb['S']) ? 1 : (kb['ArrowUp']  ||kb['z']||kb['Z']) ? -1 : 0;
+                player.isDashing = true; player.dashTimer = 12;
+                player.dashVx = dx * 12; player.dashVy = dy * 12;
+                player.dashCooldown = 60; stats.dashes++;
+                createParticle(player.x, player.y, '#fff', 10, 8);
+            }
+            // Parry: A=rouge, X=vert, Y=jaune
+            const kA = kb['a']||kb['A'], kX = kb['x']||kb['X'], kY = kb['y']||kb['Y'];
+            if ((kA||kX||kY) && !wasParryButtonPressed) {
+                if (kA) triggerParry(COLORS.RED);
+                else if (kX) triggerParry(COLORS.GREEN);
+                else if (kY) triggerParry(COLORS.YELLOW);
+            }
+            wasParryButtonPressed = (kA||kX||kY);
+        }
+    }
+
+    function updateTriangle(enemy) {
+        const dx = player.x - enemy.x;
+        const dy = player.y - enemy.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+
+        if (enemy.state === 'follow') {
+            enemy.currentSize = enemy.baseSize;
+            enemy.shakeX = 0; enemy.shakeY = 0;
+            enemy.angle = Math.atan2(dy, dx);
+            enemy.x += Math.cos(enemy.angle) * enemy.speed;
+            enemy.y += Math.sin(enemy.angle) * enemy.speed;
+            if (dist < 100) { 
+                enemy.state = 'prepare'; enemy.timer = enemy.prepareDuration; enemy.lockedAngle = enemy.angle; 
+            }
+        } else if (enemy.state === 'prepare') {
+            enemy.timer--;
+            enemy.angle = enemy.lockedAngle;
+            enemy.currentSize = enemy.baseSize + (enemy.prepareDuration - enemy.timer) * 0.3;
+            enemy.shakeX = (Math.random() - 0.5) * 4; enemy.shakeY = (Math.random() - 0.5) * 4;
+            if (enemy.timer <= 0) {
+                enemy.state = 'charge'; enemy.timer = enemy.dashDuration;
+                enemy.dashVx = Math.cos(enemy.lockedAngle) * enemy.chargeSpeed;
+                enemy.dashVy = Math.sin(enemy.lockedAngle) * enemy.chargeSpeed;
+                createParticle(enemy.x, enemy.y, enemy.color, 8, 4);
+            }
+        } else if (enemy.state === 'charge') {
+            enemy.shakeX = 0; enemy.shakeY = 0;
+            enemy.x += enemy.dashVx; enemy.y += enemy.dashVy;
+            enemy.timer--;
+            if (enemy.timer <= 0) { enemy.state = 'cooldown'; enemy.timer = 120; }
+        } else if (enemy.state === 'cooldown') {
+            enemy.currentSize = enemy.baseSize * 0.7;
+            enemy.timer--; 
+            if (enemy.timer <= 0) enemy.state = 'follow';
+        }
+    }
+
+    function update() {
+        if(gameOver) return;
+
+        handleInput();
+        checkSpawnLogic(); // Vérifie s'il faut ajouter des ennemis
+        
+        enemies.forEach(updateTriangle);
+
+        // Physique Dash Joueur
+        if (player.isDashing) {
+            let prevX = player.x; let prevY = player.y;
+            player.x += player.dashVx; player.y += player.dashVy;
+            stats.distance += Math.hypot(player.x - prevX, player.y - prevY);
+            player.dashTimer--;
+            createParticle(player.x, player.y, player.baseColor, 1, 1);
+            if (player.dashTimer <= 0) player.isDashing = false;
+        }
+        if (player.dashCooldown > 0) player.dashCooldown--;
+
+        // Timer Parade
+        if (player.isParrying) {
+            player.parryTimer--;
+            if(player.parryTimer % 5 === 0) createParticle(player.x, player.y, player.parryColor, 1, 1);
+            if(player.parryTimer <= 0) { player.isParrying = false; player.parryColor = null; }
+        } else if (player.parryTimer > -30) {
+            player.parryTimer--;
+        }
+
+        particles.forEach((p, i) => {
+            p.x += p.vx; p.y += p.vy; p.life -= 0.04;
+            if (p.life <= 0) particles.splice(i, 1);
+        });
+
+        player.x = Math.max(player.radius, Math.min(canvas.width - player.radius, player.x));
+        player.y = Math.max(player.radius, Math.min(canvas.height - player.radius, player.y));
+
+        checkCollisions();
+    }
+
+    function checkCollisions() {
+        for (let i = enemies.length - 1; i >= 0; i--) {
+            let enemy = enemies[i];
+            
+            if (Math.hypot(player.x - enemy.x, player.y - enemy.y) < player.radius + enemy.currentSize/2 + 5) {
+                if (player.isParrying) {
+                    if (player.parryColor === enemy.color) {
+                        killEnemy(i);
+                    } else {
+                        if (!player.invincible) damagePlayer();
+                    }
+                } 
+                else if (!player.invincible && !player.isDashing && enemy.state !== 'cooldown') {
+                    damagePlayer();
+                }
+            }
+        }
+    }
+
+    function killEnemy(index) {
+        let enemy = enemies[index];
+        createParticle(enemy.x, enemy.y, enemy.color, 30, 8);
+        createParticle(enemy.x, enemy.y, '#fff', 20, 10);
+        
+        score++; 
+        document.getElementById('scoreVal').innerText = score;
+        stats.parrySuccess++; // Stat Succès
+        stats.killsByColor[enemy.color]++; // Stat par couleur
+        
+        enemies.splice(index, 1);
+        // On respawn immédiatement pour maintenir le flux, 
+        // checkSpawnLogic ajoutera les surnuméraires
+        spawnEnemy(); 
+    }
+
+    function damagePlayer() {
+        playerHealth--; document.getElementById('playerHealth').innerText = playerHealth;
+        player.invincible = true; setTimeout(() => player.invincible = false, 1500);
+        createParticle(player.x, player.y, '#ff0000', 20, 5);
+        if(playerHealth <= 0) triggerGameOver();
+    }
+
+    // --- GAME OVER ---
+    function triggerGameOver() {
+        gameOver = true;
+        
+        // Remplir les stats
+        document.getElementById('endScore').innerText = score;
+        document.getElementById('endDist').innerText = Math.floor(stats.distance);
+        document.getElementById('endDash').innerText = stats.dashes;
+        document.getElementById('endParryOk').innerText = stats.parrySuccess;
+        // Parades ratées = Total tentatives - Succès
+        let missed = Math.max(0, stats.parryAttempts - stats.parrySuccess);
+        document.getElementById('endParryMiss').innerText = missed;
+
+        // Détails couleurs
+        document.getElementById('endRed').innerText = stats.killsByColor[COLORS.RED];
+        document.getElementById('endGreen').innerText = stats.killsByColor[COLORS.GREEN];
+        document.getElementById('endYellow').innerText = stats.killsByColor[COLORS.YELLOW];
+
+        // Afficher l'overlay
+        document.getElementById('gameOverScreen').style.display = 'flex';
+    }
+
+    function toggleDetails() {
+        const panel = document.getElementById('detailsPanel');
+        const btn = document.getElementById('detailsBtn');
+        if (panel.style.display === 'block') {
+            panel.style.display = 'none';
+            btn.innerText = '+ Détails';
+        } else {
+            panel.style.display = 'block';
+            btn.innerText = '- Détails';
+        }
+    }
+
+    function draw() {
+        if (gameOver) return; // On arrête de dessiner si mort
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(p => { ctx.globalAlpha = p.life; ctx.fillStyle = p.color; ctx.fillRect(p.x, p.y, 4, 4); });
+        ctx.globalAlpha = 1.0;
+
+        enemies.forEach(enemy => {
+            ctx.save();
+            ctx.translate(enemy.x + (enemy.shakeX||0), enemy.y + (enemy.shakeY||0));
+            ctx.rotate(enemy.angle);
+            ctx.fillStyle = enemy.color; ctx.shadowColor = enemy.color;
+            ctx.shadowBlur = (enemy.state === 'prepare') ? 20 : 0;
+            ctx.beginPath();
+            let s = enemy.currentSize;
+            ctx.moveTo(s, 0); ctx.lineTo(-s, -s/1.5); ctx.lineTo(-s, s/1.5);
+            ctx.closePath(); ctx.fill();
+            ctx.restore();
+        });
+
+        if (!player.invincible || (Math.floor(Date.now() / 100) % 2 === 0)) {
+            let pCol = player.isParrying ? player.parryColor : player.baseColor;
+            ctx.shadowBlur = (player.isParrying || player.isDashing) ? 30 : 10;
+            ctx.shadowColor = pCol; ctx.fillStyle = pCol;
+            ctx.beginPath(); ctx.arc(player.x, player.y, player.radius, 0, Math.PI*2); ctx.fill();
+        }
+        ctx.shadowBlur = 0;
+        document.getElementById('dash-bar').style.width = Math.max(0, ((60 - player.dashCooldown) / 60 * 100)) + "%";
+    }
+
+    function loop() { update(); draw(); requestAnimationFrame(loop); }
+    loop();
+</script>
+</body>
+</html>
