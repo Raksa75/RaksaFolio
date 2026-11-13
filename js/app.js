@@ -343,14 +343,14 @@ function initPage(id) {
 
 
 /* ── ROUTING ────────────────────────────────────── */
-const PAGES = ['home', 'docs', 'dd', 'incanta', 'concept', 'rulebook', 'cards', 'board', 'balancing', 'html', 'html-feedback', 'html-akira', 'html-echochase', 'html-league-fantasy', 'art', 'parastin', 'parastin-proto', 'parastin-sf', 'parastin-gdd', 'ascend', 'ascend-gdd', 'ascend-gcd', 'about'];
+const PAGES = ['home', 'docs', 'dd', 'incanta', 'concept', 'rulebook', 'cards', 'board', 'balancing', 'html', 'html-feedback', 'html-akira', 'html-echochase', 'html-league-fantasy', 'art', 'parastin', 'parastin-proto', 'parastin-sf', 'parastin-gdd', 'ascend', 'ascend-gdd', 'ascend-gcd', '42', 'about'];
 const NAV_PARENT = {
     dd: 'docs', concept: 'incanta', rulebook: 'incanta', cards: 'incanta', board: 'incanta', balancing: 'incanta',
     'html-feedback': 'html', 'html-akira': 'html', 'html-echochase': 'html', 'html-league-fantasy': 'html',
     'parastin-proto': 'parastin', 'parastin-sf': 'parastin', 'parastin-gdd': 'parastin',
     'ascend-gdd': 'ascend', 'ascend-gcd': 'ascend'
 };
-const PROJECT_PAGES = ['docs', 'incanta', 'html', 'art', 'parastin', 'ascend'];
+const PROJECT_PAGES = ['docs', 'incanta', 'html', '42', 'art', 'parastin', 'ascend'];
 const BASE_TITLE = document.title;
 
 function parseHash(hash) {
