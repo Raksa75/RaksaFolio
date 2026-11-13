@@ -99,6 +99,7 @@ function runCommand(val) {
     else if (v === 'css') cLog('// best prototypage');
     else if (v === 'js') cLog('// best prototypage');
     else if (v === 'lisaa') cLog('// je ne me prononcerai pas');
+    else if (v === '42' || v === 'github') cLog('// 42 Paris - <a href="https://github.com/Raksa75/42" target="_blank" rel="noopener" style="color:var(--v2);text-decoration:underline">github.com/Raksa75/42</a>', 'var(--cyan)');
     else if (v === 'karim') cLog('// fou');
     else if (v === 'jetpack cat' || v === 'jetpack') cLog('// meow meow meow meow meow');
     else if (v === 'ascend rush' || v === 'ascend') cLog('// une meuf qui cours');

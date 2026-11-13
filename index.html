@@ -53,9 +53,9 @@
         "jobTitle": "Game Designer (étudiant)",
         "url": "https://raksa75.github.io/RaksaFolio/",
         "email": "mailto:Pro.Nicolas.Zimmermann@gmail.com",
-        "affiliation": { "@type": "EducationalOrganization", "name": "LISAA Paris" },
-        "knowsAbout": ["Game Design", "Board Game Design", "Level Design", "Balancing", "Prototyping", "UI Design"],
-        "sameAs": ["https://twitter.com/RaksakorekoPro"]
+        "affiliation": [{ "@type": "EducationalOrganization", "name": "LISAA Paris" }, { "@type": "EducationalOrganization", "name": "42 Paris", "url": "https://42.fr" }],
+        "knowsAbout": ["Game Design", "Board Game Design", "Level Design", "Balancing", "Prototyping", "UI Design", "C"],
+        "sameAs": ["https://twitter.com/RaksakorekoPro", "https://github.com/Raksa75"]
     }
     </script>
 </head>
@@ -133,6 +133,7 @@
                     <span class="dm-sep" aria-hidden="true"></span>
                     <a href="#docs" data-p="docs"><span class="dm-t">DOCUMENTATIONS</span><span class="dm-s">GD · LD · UI</span></a>
                     <a href="#html" data-p="html"><span class="dm-t" data-i18n="nav.html">Projets Annexes</span><span class="dm-s">HTML · CSS · JS</span></a>
+                    <a href="#42" data-p="42"><span class="dm-t">42 PARIS</span><span class="dm-s">C · Common Core</span></a>
                     <a href="#art" data-p="art"><span class="dm-t" data-i18n="nav.art">Playground</span><span class="dm-s">Console · Games</span></a>
                 </div>
             </li>
@@ -158,8 +159,9 @@
         <a href="#ascend" data-p="ascend"><span class="mob-n">04</span>ASCEND RUSH</a>
         <a href="#docs" data-p="docs"><span class="mob-n">05</span>DOCUMENTATIONS</a>
         <a href="#html" data-p="html"><span class="mob-n">06</span><span data-i18n="nav.html">Projets Annexes</span></a>
-        <a href="#art" data-p="art"><span class="mob-n">07</span><span data-i18n="nav.art">Playground</span></a>
-        <a href="#about" data-p="about"><span class="mob-n">08</span><span data-i18n="nav.about">À propos</span></a>
+        <a href="#42" data-p="42"><span class="mob-n">07</span>42 PARIS</a>
+        <a href="#art" data-p="art"><span class="mob-n">08</span><span data-i18n="nav.art">Playground</span></a>
+        <a href="#about" data-p="about"><span class="mob-n">09</span><span data-i18n="nav.about">À propos</span></a>
         <div class="mob-foot"><a href="mailto:Pro.Nicolas.Zimmermann@gmail.com">Pro.Nicolas.Zimmermann@gmail.com</a></div>
     </div>
 
@@ -225,6 +227,11 @@
                 <a class="pc ripple-wrap" href="#html">
                     <img decoding="async" src="./assets/79a95f412eeb.webp" alt="HTML" loading="lazy">
                     <div class="pci"><div class="pct">HTML · CSS · JS</div><h3 data-i18n="nav.html">PROJETS ANNEXES</h3><p class="pcd" data-i18n="home.card.html">Projets web interactifs. Clicker games, interfaces de jeu.</p></div>
+                    <div class="pca">→</div>
+                </a>
+                <a class="pc ripple-wrap" href="#42">
+                    <img decoding="async" src="./assets/42-card.svg" alt="42 Paris : code C" loading="lazy">
+                    <div class="pci"><div class="pct" data-i18n="home.tag.s42">C · Unix · Norme 42</div><h3>42 PARIS</h3><p class="pcd" data-i18n="home.card.s42">Tronc commun de 42 Paris : Libft, ft_printf. Projets en C, code sur GitHub.</p></div>
                     <div class="pca">→</div>
                 </a>
                 <a class="pc ripple-wrap" href="#art">
@@ -471,6 +478,57 @@
         <footer><div class="ft-in"><div class="fc"><span class="ft-logo">NZ<em>_</em></span><span>© <span class="yr">2026</span> Nicolas Zimmermann · <span data-i18n="footer.tag">Game Design Portfolio</span></span></div><div class="fl"><a href="#html">← <span data-i18n="nav.html">PROJETS ANNEXES</span></a><a href="mailto:Pro.Nicolas.Zimmermann@gmail.com">MAIL</a></div></div></footer>
     </div>
 
+    <!-- ═══════════════════ 42 PARIS ══════════════════ -->
+    <div class="page" id="page-42">
+        <div class="cnt">
+            <div class="bc"><a href="#home">HOME</a><span>/</span>42 PARIS</div>
+            <div class="pdb">
+                <div>
+                    <span class="hud-label" data-i18n="s42.label">C · Unix · Norme 42</span>
+                    <h2>42<br><span class="g">PARIS</span></h2>
+                    <p data-i18n-html="s42.desc">Mes projets du <strong>tronc commun de 42 Paris</strong>, l'école de programmation sans professeurs ni cours : on apprend en réalisant des projets, évalués ensuite par d'autres étudiants. Tout est écrit en <strong>C</strong>, en respectant la <strong>Norme 42</strong>, et compile avec <code>-Wall -Wextra -Werror</code>.</p>
+                    <div class="pdb-cta">
+                        <a class="btn bp ripple-wrap" href="https://github.com/Raksa75/42" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg><span data-i18n="s42.cta">[ VOIR LE REPO GITHUB ]</span></a>
+                    </div>
+                </div>
+                <div class="mb">
+                    <div class="mi"><div class="mk" data-i18n="meta.school">ÉCOLE</div><div class="mv">42 Paris</div></div>
+                    <div class="mi"><div class="mk" data-i18n="meta.track">CURSUS</div><div class="mv" data-i18n="s42.meta.track">Tronc commun</div></div>
+                    <div class="mi"><div class="mk" data-i18n="meta.lang">LANGAGE</div><div class="mv">C</div></div>
+                    <div class="mi"><div class="mk" data-i18n="meta.projects">PROJETS</div><div class="mv" data-i18n="s42.meta.projects">1 terminé · 1 en cours</div></div>
+                    <div class="mi"><div class="mk">REPO</div><div class="mv"><a class="mv-link" href="https://github.com/Raksa75/42" target="_blank" rel="noopener">Raksa75/42</a></div></div>
+                </div>
+            </div>
+
+            <div class="sep" data-i18n="s42.sep.projects">// PROJETS</div>
+            <div class="p42-grid stagger">
+                <article class="p42">
+                    <div class="p42-head"><h3>LIBFT</h3><span class="p42-st ok" data-i18n="s42.done">TERMINÉ</span></div>
+                    <div class="p42-sub" data-i18n="s42.libft.sub">libft.a · 43 fonctions</div>
+                    <p data-i18n-html="s42.libft.desc">Premier projet du tronc commun : recoder en C une partie de la libc (<code>strlen</code>, <code>memmove</code>, <code>atoi</code>...), y ajouter des fonctions utilitaires (<code>split</code>, <code>itoa</code>, <code>strjoin</code>...) et des fonctions de listes chaînées. Le tout forme une librairie statique réutilisée dans les projets suivants.</p>
+                    <div class="p42-tags"><span>libc</span><span>malloc</span><span>ft_split</span><span>t_list</span><span>Makefile</span></div>
+                    <a class="p42-link" href="https://github.com/Raksa75/42/tree/main/Libft" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg><span data-i18n="s42.code">VOIR LE CODE</span></a>
+                </article>
+                <article class="p42">
+                    <div class="p42-head"><h3>FT_PRINTF</h3><span class="p42-st wip" data-i18n="s42.wip">EN COURS</span></div>
+                    <div class="p42-sub" data-i18n="s42.printf.sub">libftprintf.a · 9 conversions</div>
+                    <p data-i18n-html="s42.printf.desc">Recoder la fonction <code>printf()</code> de la libc : lecture de la chaîne de format, <strong>fonctions variadiques</strong> (<code>va_start</code>, <code>va_arg</code>, <code>va_end</code>), conversion de bases et récursion. Comme l'original, elle renvoie le nombre de caractères affichés.</p>
+                    <div class="p42-tags"><span>%c</span><span>%s</span><span>%p</span><span>%d</span><span>%i</span><span>%u</span><span>%x</span><span>%X</span><span>%%</span></div>
+                    <a class="p42-link" href="https://github.com/Raksa75/42/tree/main/Printf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg><span data-i18n="s42.code">VOIR LE CODE</span></a>
+                </article>
+            </div>
+
+            <div class="sep" data-i18n="s42.sep.learn">// CE QUE J'Y APPRENDS</div>
+            <div class="feat-grid stagger">
+                <div class="mb feat"><div class="mi"><div class="mk" data-i18n="s42.f1.t">MÉMOIRE &amp; POINTEURS</div><div class="mv" data-i18n="s42.f1.d">Allocation dynamique, pointeurs et doubles pointeurs, fuites mémoire traquées avec valgrind.</div></div></div>
+                <div class="mb feat"><div class="mi"><div class="mk" data-i18n="s42.f2.t">FONCTIONS VARIADIQUES</div><div class="mv" data-i18n="s42.f2.d">Lire un nombre variable d'arguments avec va_arg, comme le vrai printf.</div></div></div>
+                <div class="mb feat"><div class="mi"><div class="mk" data-i18n="s42.f3.t">MAKEFILE &amp; LIBRAIRIES</div><div class="mv" data-i18n="s42.f3.d">Compiler une librairie statique avec ar et des règles all, clean, fclean et re.</div></div></div>
+                <div class="mb feat"><div class="mi"><div class="mk" data-i18n="s42.f4.t">NORME &amp; PEER REVIEW</div><div class="mv" data-i18n="s42.f4.d">Code conforme à la Norme (norminette), testé avec des testeurs de la communauté, puis évalué par d'autres étudiants.</div></div></div>
+            </div>
+        </div>
+        <footer><div class="ft-in"><div class="fc"><span class="ft-logo">NZ<em>_</em></span><span>© <span class="yr">2026</span> Nicolas Zimmermann · <span data-i18n="footer.tag">Game Design Portfolio</span></span></div><div class="fl"><a href="#home">← HOME</a><a href="https://github.com/Raksa75/42" target="_blank" rel="noopener">GITHUB</a><a href="mailto:Pro.Nicolas.Zimmermann@gmail.com">MAIL</a></div></div></footer>
+    </div>
+
 
     <!-- ═══════════════════ PLAYGROUND ══════════════════ -->
     <div class="page" id="page-art">
@@ -651,12 +709,13 @@
                         <p>Je suis <strong>Nicolas "Raksakoreko" Zimmermann</strong>, étudiant en Game Design à la <strong>LISAA Paris</strong>. Ma passion pour le game design découle de mon background compétitif.</p>
                         <p>J'ai joué professionnellement <strong>CS:GO</strong> entre 2014 et 2016, puis à <strong>League of Legends</strong> où j'ai atteint le rang <strong>GrandMaster+ EUW</strong> depuis 2023. Aujourd'hui je travaille avec la <strong>Whatoubance</strong> (ex Fnatic, Aegis, Solary, Mihos Esports, GentleMates) sur <strong>TFT</strong>.</p>
                         <p>Vous trouverez ici des créations & concepts de jeux <strong>physiques</strong> (jeux de plateau, CCG, TCG, etc.) et <strong>"numériques"</strong> (Unreal, Unity, HTML/JS/CSS, voire Godot).</p>
+                        <p>Côté programmation, je suis le tronc commun de <strong>42 Paris</strong> : des projets en C (<a href="#42">Libft, ft_printf...</a>) dont le code est sur <a href="https://github.com/Raksa75/42" target="_blank" rel="noopener">GitHub</a>.</p>
                         <p data-i18n-html="about.mo5">Je suis également membre de <a href="https://mo5.com/fr/" target="_blank" rel="noopener" style="color:var(--v2);text-decoration:none;border-bottom:1px solid var(--v2)">MO5</a>, association française œuvrant à la conservation du patrimoine vidéoludique.</p>
                     </div>
                     <div class="sks">
                         <div class="skt" data-i18n="about.skills">SKILLS</div>
                         <div class="skl">
-                            <span class="sp">Game Design</span><span class="sp">Board Game</span><span class="sp">HTML/CSS/JS</span><span class="sp">Unity</span><span class="sp">Unreal Engine</span><span class="sp">Balancing</span><span class="sp">UI Design</span><span class="sp">GDD</span><span class="sp">Level Design</span><span class="sp">Prototyping</span><span class="sp">UX Design</span><span class="sp">QA</span>
+                            <span class="sp">Game Design</span><span class="sp">Board Game</span><span class="sp">HTML/CSS/JS</span><span class="sp">C</span><span class="sp">Unity</span><span class="sp">Unreal Engine</span><span class="sp">Balancing</span><span class="sp">UI Design</span><span class="sp">GDD</span><span class="sp">Level Design</span><span class="sp">Prototyping</span><span class="sp">UX Design</span><span class="sp">QA</span>
                         </div>
 
                         <div class="sks" style="margin-top:28px">
@@ -687,8 +746,7 @@
                         <div class="cch" data-i18n="about.contact">// CONTACT</div>
                         <div class="ccb">
                             <a href="mailto:Pro.Nicolas.Zimmermann@gmail.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 7 10 6 10-6" /></svg>Pro.Nicolas.Zimmermann@gmail.com</a>
-
-
+                            <a href="https://github.com/Raksa75" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>github.com/Raksa75</a>
                         </div>
                     </div>
                     <div class="gb">
